@@ -10,8 +10,13 @@ changes in plain language.
   a `.js` file (`window.SCHEDULE_DATA = …`) and not JSON loaded with `fetch`.
 - SheetJS is vendored in `vendor/xlsx.full.min.js` (0.20.3, Apache-2.0). Only
   `admin.html` loads it; the student page doesn't need it.
-- Look: navy `#002B49`, gold `#C5A059`, system fonts (works offline). Must stay
-  mobile friendly (timetable shows one day at a time with day tabs below 860px).
+- Look follows the Católica Lisbon **Master Programs study plans** (the owner's reference):
+  Montserrat (vendored in `vendor/fonts`, SIL OFL), navy header bars `#012E47` with white
+  small caps, flat pastel blocks with square corners (teal `#ACDBE2`, mint `#C5E6DA`,
+  blush `#F5E8E8`, steel `#9FB8D1`, mist `#F1F2F1`), a colour legend strip under the
+  timetable, and a header "CATÓLICA LISBON | MASTER PROGRAMS … TITLE" (wordmark as text,
+  no logo image). Gold `#C5A059` is an accent only (header rule, focus ring, notes).
+- Must stay mobile friendly (timetable shows one day at a time with day tabs below 860px).
 
 ## Files
 - `index.html` + `js/student.js` – student screen.
@@ -52,7 +57,9 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   Period filter = Unit (`S1` → Semester 1, `T2` → Term 2).
 
 ## Student features
-Search + programme/period filters; "+ Add" or drag a card onto the timetable; button shows
+Search + programme/period filters; "+ Add" or drag a card onto the timetable; drag a class
+block from the timetable back onto the course list to remove that course (the list turns red,
+"Drop here to remove …"); button shows
 "Added ✓" and "Remove ✕" on hover; added courses pinned at the top; section dropdown on the card
 with "✓ fits" / "⚠ overlaps"; Mon–Fri 08:00–20:00 grid in 1h30 blocks; overlaps in red (blocks,
 cards, banner); typical week or a specific week; .ics export (one event per real date,

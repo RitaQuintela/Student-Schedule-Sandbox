@@ -11,11 +11,11 @@
   const BLOCKS = (S.DAY_END - S.DAY_START) / 90; // 8 blocks of 1h30
   const SPAN = S.DAY_END - S.DAY_START;
 
-  // Course colours: [text/border, background]
+  // Course colours from the study plans' pastels: [stripe, background]
   const COLORS = [
-    ['#0B4F8A', '#E3EEF8'], ['#7A4E00', '#FBF0D9'], ['#1E6B47', '#E2F2E9'], ['#6A3A8C', '#F0E6F7'],
-    ['#00687A', '#DFF3F6'], ['#8A3A1E', '#F8E6DE'], ['#4A5A0E', '#EEF2D9'], ['#2F3D8A', '#E5E8F7'],
-    ['#7A2E5A', '#F6E3EE'], ['#3D5566', '#E7EDF1'],
+    ['#2E7F8E', '#ACDBE2'], ['#3F8C70', '#C5E6DA'], ['#B06A6A', '#F5E8E8'], ['#3C5F86', '#9FB8D1'],
+    ['#5A5F9E', '#CDD0EA'], ['#2F8BA3', '#D3ECF2'], ['#9A7A3E', '#F3EBDD'], ['#6E706E', '#E1E2E1'],
+    ['#2D6E5A', '#DDEFE8'], ['#7E5A8C', '#EDE3F1'],
   ];
 
   /* ---------- Storage (wrapped: private windows can block it) ---------- */
@@ -243,7 +243,7 @@
     const clashHtml = others.length ? `<div class="cc-clash">⚠ Overlaps with ${esc(others.join(', '))}</div>` : '';
 
     return `<article class="course-card added${mine.length ? ' conflict' : ''}" draggable="true" data-code="${esc(course.code)}"
-        style="--course-color:${entry.color[0]}">
+        style="--course-color:${entry.color[0]};--course-bg:${entry.color[1]}">
       <div class="cc-head">
         <div><h3>${esc(course.name)}</h3><div class="cc-meta">${meta}</div></div>
         <button class="add-btn is-added" data-act="remove" aria-label="Remove ${esc(course.name)}">
@@ -316,7 +316,7 @@
         const clash = clashIds.has(s.id);
         const dates = s.weeks.map(w => S.shortDate(S.classDate(w, s.day))).join(', ');
         const tip = `${e.course.name}\n${sectionLabel(s)} · ${timeRange(s)}${s.room ? ' · ' + s.room : ''}\nDates: ${dates}${clash ? '\n⚠ Overlaps with another class' : ''}`;
-        html += `<div class="event${clash ? ' clash' : ''}" title="${esc(tip)}"
+        html += `<div class="event${clash ? ' clash' : ''}" title="${esc(tip)}" draggable="true" data-code="${esc(e.course.code)}"
           style="top:calc(${top}% + 1px);height:calc(${height}% - 2px);left:calc(${left}% + 2px);width:calc(${width}% - 4px);--ev-fg:${e.color[0]};--ev-bg:${e.color[1]}">
           <b>${clash && lanes === 1 ? '⚠ ' : ''}${esc(courseTitle(e.course))}</b>
           <span>${esc(sectionLabel(s))} · ${timeRange(s)}</span>
@@ -367,12 +367,23 @@
     banner.textContent = `✓ No overlaps · ${list.length} course${list.length === 1 ? '' : 's'} · ${weekly} class${weekly === 1 ? '' : 'es'} in a typical week`;
   }
 
+  // Colour key under the timetable, like the one at the foot of the study plans.
+  function renderLegend(list, clashes) {
+    $('legend').innerHTML = list.map(e =>
+      `<span style="--chip-fg:${e.color[0]};--chip-bg:${e.color[1]}">${esc(e.course.name)} · ${esc(e.option.label)}</span>`).join('') +
+      (clashes.length ? '<span class="clash">⚠ Overlap</span>' : '');
+  }
+
   function update() {
     const list = entries();
     const clashes = findClashes(list);
     renderList(list, clashes);
     renderTimetable(list, clashes);
     renderBanner(list, clashes);
+    renderLegend(list, clashes);
+    $('bar-week').textContent = state.week === 'typical'
+      ? '· typical week'
+      : `· ${S.shortDate(state.week)} – ${S.shortDate(S.addDays(state.week, 4))}`;
     $('switch-count').textContent = list.length ? `(${list.length})` : '';
     persist();
   }
@@ -479,26 +490,70 @@
     }
   });
 
-  // Drag a course card onto the timetable to add it.
+  // Drag and drop, both ways:
+  // - a course card onto the timetable adds it;
+  // - a class block from the timetable back onto the course list removes its course.
+  // `drag` remembers where the drag started (browsers hide the data until the drop).
+  let drag = null; // { from: 'list' | 'timetable', code }
+  const tt = $('timetable');
+  const sidebar = $('sidebar');
+
+  function endDrag() {
+    drag = null;
+    tt.classList.remove('drop-hover');
+    sidebar.classList.remove('drop-remove');
+    $('sidebar-bar').textContent = 'Courses';
+    document.querySelectorAll('.dragging').forEach(el => el.classList.remove('dragging'));
+  }
+
   $('course-list').addEventListener('dragstart', e => {
     const card = e.target.closest('.course-card');
     if (!card) return;
+    drag = { from: 'list', code: card.dataset.code };
     e.dataTransfer.setData('text/plain', card.dataset.code);
     e.dataTransfer.effectAllowed = 'copy';
     card.classList.add('dragging');
   });
-  $('course-list').addEventListener('dragend', e => {
-    const card = e.target.closest('.course-card');
-    if (card) card.classList.remove('dragging');
+  tt.addEventListener('dragstart', e => {
+    const block = e.target.closest('.event');
+    if (!block) return;
+    drag = { from: 'timetable', code: block.dataset.code };
+    e.dataTransfer.setData('text/plain', block.dataset.code);
+    e.dataTransfer.effectAllowed = 'move';
+    block.classList.add('dragging');
+    const course = data.byCode.get(block.dataset.code);
+    $('sidebar-bar').textContent = `Drop here to remove ${course ? course.name : 'this course'}`;
   });
-  const tt = $('timetable');
-  tt.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; tt.classList.add('drop-hover'); });
+  document.addEventListener('dragend', endDrag);
+
+  tt.addEventListener('dragover', e => {
+    if (!drag || drag.from !== 'list') return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'copy';
+    tt.classList.add('drop-hover');
+  });
   tt.addEventListener('dragleave', e => { if (!tt.contains(e.relatedTarget)) tt.classList.remove('drop-hover'); });
   tt.addEventListener('drop', e => {
+    if (!drag || drag.from !== 'list') return;
     e.preventDefault();
-    tt.classList.remove('drop-hover');
-    const code = e.dataTransfer.getData('text/plain');
-    if (code) addCourse(code);
+    const code = drag.code;
+    endDrag();
+    addCourse(code);
+  });
+
+  sidebar.addEventListener('dragover', e => {
+    if (!drag || drag.from !== 'timetable') return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    sidebar.classList.add('drop-remove');
+  });
+  sidebar.addEventListener('dragleave', e => { if (!sidebar.contains(e.relatedTarget)) sidebar.classList.remove('drop-remove'); });
+  sidebar.addEventListener('drop', e => {
+    if (!drag || drag.from !== 'timetable') return;
+    e.preventDefault();
+    const code = drag.code;
+    endDrag();
+    removeCourse(code);
   });
 
   $('day-tabs').addEventListener('click', e => {

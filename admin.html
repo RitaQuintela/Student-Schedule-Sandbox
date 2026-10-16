@@ -9,16 +9,22 @@
 <body>
 <header class="app-header">
   <div class="inner">
-    <div class="brand">
-      <span class="school">Católica Lisbon School of Business &amp; Economics</span>
-      <h1>Schedule Sandbox · Admin</h1>
+    <div class="lockup">
+      <div class="wordmark">Católica<br>Lisbon<small>Business &amp; Economics</small></div>
+      <span class="divider" aria-hidden="true"></span>
+      <div class="programs">Master<br>Programs</div>
     </div>
-    <div class="header-note"><a href="index.html" style="color:#fff">Open the student view →</a></div>
+    <div class="title">
+      <h1>Schedule Sandbox · Admin</h1>
+      <p><a href="index.html">Open the student view →</a></p>
+    </div>
   </div>
 </header>
 
 <main class="admin">
   <section class="panel">
+    <div class="bar">Publish a timetable</div>
+    <div class="panel-body">
     <h2>1. Upload the timetable export</h2>
     <p class="lead">Use the “Bullet extraction” file from the scheduling system (.xlsx or .csv). Nothing is sent anywhere: the file is read in this browser only.</p>
     <label class="dropzone" id="dropzone">
@@ -27,13 +33,16 @@
       <div style="font-size:13px;margin-top:4px">.xlsx, .xls or .csv</div>
     </label>
     <p id="current-preview" class="lead" style="margin-top:12px" hidden></p>
+    </div>
   </section>
 
   <section class="panel" id="result" hidden>
+    <div class="bar">Summary</div>
+    <div class="panel-body">
     <h2>2. Check the summary</h2>
     <p class="lead" id="file-name"></p>
     <div class="stats" id="stats"></div>
-    <h3 style="font-size:15px;margin:16px 0 8px">Problems to review</h3>
+    <h2>Problems to review</h2>
     <div id="issues"></div>
     <details>
       <summary>Courses and the options students will see</summary>
@@ -47,9 +56,12 @@
       <button class="btn gold" id="download-data">Download data file (timetable-data.js)</button>
     </div>
     <p class="lead" id="blocked" style="color:#C0262D;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
+    </div>
   </section>
 
   <section class="panel">
+    <div class="bar">Excel template &amp; rules</div>
+    <div class="panel-body">
     <h2>Excel template</h2>
     <p class="lead">A blank file with the right columns and a few example rows, including how to pair T and PL sections with the Annotations column.</p>
     <button class="btn" id="template">Download Excel template</button>
@@ -66,6 +78,7 @@
         <li>Classes should be Monday–Friday between 08:00 and 20:00.</li>
       </ul>
     </details>
+    </div>
   </section>
 </main>
 
