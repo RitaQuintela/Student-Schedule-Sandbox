@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule Sandbox · Católica Lisbon</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="inner">
+    <div class="brand">
+      <span class="school">Católica Lisbon School of Business &amp; Economics</span>
+      <h1>Schedule Sandbox</h1>
+    </div>
+    <div class="header-note">Build your own weekly timetable.<br>This is a planning tool, not your official enrolment.</div>
+  </div>
+</header>
+
+<div id="preview-notice" class="notice" hidden>
+  <span id="preview-text"></span>
+  <button id="preview-clear" class="btn small">Back to the published timetable</button>
+</div>
+
+<nav class="mobile-switch" aria-label="Switch view">
+  <button id="show-courses" class="active">Courses</button>
+  <button id="show-timetable">Timetable <span id="switch-count"></span></button>
+</nav>
+
+<main id="app" class="student" data-view="courses">
+  <aside class="sidebar panel" aria-label="Courses">
+    <div class="filters">
+      <label class="field">Search
+        <input id="search" type="search" placeholder="Course name, acronym or code">
+      </label>
+      <div class="row">
+        <label class="field">Programme
+          <select id="programme"><option value="">All programmes</option></select>
+        </label>
+        <label class="field">Period
+          <select id="unit"><option value="">All periods</option></select>
+        </label>
+      </div>
+    </div>
+    <div class="list-meta" id="list-meta"></div>
+    <div class="course-list" id="course-list"></div>
+  </aside>
+
+  <section class="tt-panel panel" aria-label="Weekly timetable">
+    <div class="print-only">
+      <h2 style="margin:0;color:#002B49">My timetable</h2>
+      <p id="print-week" style="margin:2px 0 8px"></p>
+    </div>
+    <div class="tt-toolbar">
+      <label class="field">Show
+        <select id="week"></select>
+      </label>
+      <div class="actions">
+        <button id="export-ics" class="btn">Export to calendar (.ics)</button>
+        <button id="print" class="btn">Print / PDF</button>
+        <button id="clear-all" class="btn">Clear all</button>
+      </div>
+    </div>
+    <div id="banner" class="banner" role="status"></div>
+    <div class="day-tabs" id="day-tabs" role="tablist" aria-label="Day"></div>
+    <div class="timetable" id="timetable"></div>
+    <p class="legend">Tip: drag a course from the list onto the timetable to add it. Red means two classes happen at the same time in at least one week.</p>
+    <div class="print-only print-list" id="print-list"></div>
+  </section>
+</main>
+
+<footer class="app-footer">
+  Always confirm your final enrolment in the official systems. ·
+  <a href="admin.html">Admin</a>
+</footer>
+
+<script src="data/timetable-data.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/student.js"></script>
+</body>
+</html>

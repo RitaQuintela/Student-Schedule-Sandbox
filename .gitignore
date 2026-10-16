@@ -1,0 +1,4 @@
+# Raw timetable exports from the scheduling system contain staff names and emails.
+# Only the cleaned data/timetable-data.js (made by admin.html) is published.
+Bullet extraction*
+*.raw.csv

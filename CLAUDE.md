@@ -1,0 +1,69 @@
+# Schedule Sandbox – notes for Claude
+
+Web app for Católica Lisbon master students to build a weekly timetable by
+combining courses and choosing sections. The owner is not a developer: explain
+changes in plain language.
+
+## Tech constraints
+- Plain HTML, CSS and JavaScript. No frameworks, no build step, no npm.
+- Must work by opening `index.html` directly (file://). That is why the data is
+  a `.js` file (`window.SCHEDULE_DATA = …`) and not JSON loaded with `fetch`.
+- SheetJS is vendored in `vendor/xlsx.full.min.js` (0.20.3, Apache-2.0). Only
+  `admin.html` loads it; the student page doesn't need it.
+- Look: navy `#002B49`, gold `#C5A059`, system fonts (works offline). Must stay
+  mobile friendly (timetable shows one day at a time with day tabs below 860px).
+
+## Files
+- `index.html` + `js/student.js` – student screen.
+- `admin.html` + `js/admin.js` – upload, summary/warnings, preview, data file download, Excel template.
+- `js/parser.js` – **all data rules**, shared by both screens. Change rules here only.
+- `data/timetable-data.js` – the published timetable (cleaned rows). Replaced by the admin, never edited by hand.
+- `css/styles.css` – all styling, including print.
+- `.claude/launch.json` – local preview server (`python -m http.server 8123`) for testing.
+
+## Data rules (input: "Bullet extraction" export, .xlsx or .csv)
+Columns used: ModuleName, ModuleAcronym, ModuleCode, Typology (T, PL, TP, O, S),
+SectionName, StudentGroup, Unit (e.g. S1, T2), Classroom, WeekdayName, StartTime,
+EndTime, Week, Annotations. Other columns are ignored. Headers match case-insensitively.
+
+- One row = one weekly session. Courses are grouped by **ModuleCode**, sections by
+  **SectionName** within a course. A section can have several sessions per week.
+- **Pairing (decided by the admin, never by the student)** happens only in courses that have PL sections:
+  - The lecture typology is `T`; if the course has PLs but no T, `TP` plays that role (e.g. Macroeconomics: PL1 + TP1).
+  - A lecture row whose Annotations mention PL section names (e.g. "For PL-G1, PL-G2 and PL-E1.") is paired with those PLs.
+    Name matching is exact-token: "PL1" does not match "PL1-A" or "PL10".
+  - A PL not mentioned in any note is paired with the lecture section(s) that have no pairing note (usually the single T).
+  - If several lecture sections have no note, PLs are matched by section number (PL1-A → T1) and the admin gets a warning. (The 2026/27 sample has no notes, so Business Research Methods and Marketing Research rely on this.)
+  - If no match is possible, the PL is offered on its own and the admin gets a "not paired" warning.
+  - The student picks one PL; its paired lecture(s) come with it. Option id = PL section name.
+  - Lecture sections paired with no PL, and other typologies in a PL course, are not offered (warning).
+- Courses with no PL sections (TP, O, S…) offer one option per section.
+- Annotations that are not pairing notes (e.g. "Online course…") are shown to students.
+- **Week** is a comma-separated list of Mondays (YYYY-MM-DD; dd/mm/yyyy and Excel dates also accepted).
+  Real class date = that Monday + weekday. Skipped weeks (holidays) are simply absent;
+  T2 units start mid-semester. A non-Monday date is moved to its Monday with a warning.
+- **Overlap**: two sessions overlap only if same weekday AND times overlap (back-to-back is fine)
+  AND they share at least one week.
+- Admin warnings: unpaired PL, auto-paired by number, unpaired lecture, times outside 08:00–20:00
+  (kept, clipped in the grid), non-weekday rows (skipped), invalid times, missing values, duplicates,
+  same code with different names. Errors (missing columns, no usable rows) block applying.
+- Programme filter: StudentGroup with the class/group suffix removed
+  (`MP_Man_SEI_S1_PA` → `MP_Man_SEI`, `MSc_Econ_1` → `MSc_Econ`, `ELEC_*` → "Electives (…)").
+  Period filter = Unit (`S1` → Semester 1, `T2` → Term 2).
+
+## Student features
+Search + programme/period filters; "+ Add" or drag a card onto the timetable; button shows
+"Added ✓" and "Remove ✕" on hover; added courses pinned at the top; section dropdown on the card
+with "✓ fits" / "⚠ overlaps"; Mon–Fri 08:00–20:00 grid in 1h30 blocks; overlaps in red (blocks,
+cards, banner); typical week or a specific week; .ics export (one event per real date,
+TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
+(`scheduleSandbox.student.v1`; admin previews use separate keys).
+
+## Privacy
+Raw exports contain staff usernames/emails (CreatedUser, LastModifiedUser). They are
+git-ignored (`Bullet extraction*`). Only the cleaned `data/timetable-data.js` is committed.
+
+## Testing
+Start the preview server from `.claude/launch.json`, then test `index.html` and `admin.html`
+at desktop and 375px widths. `window.ScheduleSandbox` and `window.ScheduleAdmin` expose helpers
+for console checks. Browsers cache scripts: reload with `fetch(url, {cache:'reload'})` first.

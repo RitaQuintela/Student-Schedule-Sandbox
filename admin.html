@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule Sandbox Admin · Católica Lisbon</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="inner">
+    <div class="brand">
+      <span class="school">Católica Lisbon School of Business &amp; Economics</span>
+      <h1>Schedule Sandbox · Admin</h1>
+    </div>
+    <div class="header-note"><a href="index.html" style="color:#fff">Open the student view →</a></div>
+  </div>
+</header>
+
+<main class="admin">
+  <section class="panel">
+    <h2>1. Upload the timetable export</h2>
+    <p class="lead">Use the “Bullet extraction” file from the scheduling system (.xlsx or .csv). Nothing is sent anywhere: the file is read in this browser only.</p>
+    <label class="dropzone" id="dropzone">
+      <input type="file" id="file" accept=".xlsx,.xls,.csv" hidden>
+      <strong>Choose a file</strong> or drag it here
+      <div style="font-size:13px;margin-top:4px">.xlsx, .xls or .csv</div>
+    </label>
+    <p id="current-preview" class="lead" style="margin-top:12px" hidden></p>
+  </section>
+
+  <section class="panel" id="result" hidden>
+    <h2>2. Check the summary</h2>
+    <p class="lead" id="file-name"></p>
+    <div class="stats" id="stats"></div>
+    <h3 style="font-size:15px;margin:16px 0 8px">Problems to review</h3>
+    <div id="issues"></div>
+    <details>
+      <summary>Courses and the options students will see</summary>
+      <div class="table-wrap"><table id="courses"></table></div>
+    </details>
+
+    <h2 style="margin-top:20px">3. Apply</h2>
+    <p class="lead">“Preview” shows this timetable in the student view, only in this browser, so you can check it. “Download data file” gives you <code>timetable-data.js</code>, the file that publishes it for students (see the README).</p>
+    <div class="actions">
+      <button class="btn primary" id="apply">Preview in the student view</button>
+      <button class="btn gold" id="download-data">Download data file (timetable-data.js)</button>
+    </div>
+    <p class="lead" id="blocked" style="color:#C0262D;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Excel template</h2>
+    <p class="lead">A blank file with the right columns and a few example rows, including how to pair T and PL sections with the Annotations column.</p>
+    <button class="btn" id="template">Download Excel template</button>
+    <details>
+      <summary>Rules the app follows</summary>
+      <ul class="steps">
+        <li>One row = one weekly class. Rows are grouped into courses by <b>ModuleCode</b>, and into sections by <b>SectionName</b>. A section can have several rows (several classes a week).</li>
+        <li><b>Week</b> lists the Mondays of the weeks the class happens, separated by commas. The real date is that Monday plus the weekday. Missing weeks (holidays) simply aren't listed.</li>
+        <li><b>T/PL pairing</b> is set in the <b>Annotations</b> column of the T rows, e.g. “For PL-G1, PL-G2 and PL-E1.” A PL not mentioned in any note goes with the T section(s) that have no pairing note. Students pick a PL; its T comes with it.</li>
+        <li>If a course has PL sections but no T, its TP sections play the role of the T.</li>
+        <li>If several T sections have no pairing note, PLs are matched by number (PL1-A → T1) and you get a warning, so add notes to make it official.</li>
+        <li>Courses without PL sections (TP, O, S) offer one choice per section.</li>
+        <li>Any other Annotations text (e.g. “Online course…”) is shown to students.</li>
+        <li>Classes should be Monday–Friday between 08:00 and 20:00.</li>
+      </ul>
+    </details>
+  </section>
+</main>
+
+<footer class="app-footer"><a href="index.html">Student view</a></footer>
+
+<script src="vendor/xlsx.full.min.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
