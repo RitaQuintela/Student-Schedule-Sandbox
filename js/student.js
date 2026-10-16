@@ -11,11 +11,11 @@
   const BLOCKS = (S.DAY_END - S.DAY_START) / 90; // 8 blocks of 1h30
   const SPAN = S.DAY_END - S.DAY_START;
 
-  // Course colours from the study plans' pastels: [stripe, background]
+  // Course colours from the brand book's programme palette: [stripe, light tint]
   const COLORS = [
-    ['#2E7F8E', '#ACDBE2'], ['#3F8C70', '#C5E6DA'], ['#B06A6A', '#F5E8E8'], ['#3C5F86', '#9FB8D1'],
-    ['#5A5F9E', '#CDD0EA'], ['#2F8BA3', '#D3ECF2'], ['#9A7A3E', '#F3EBDD'], ['#6E706E', '#E1E2E1'],
-    ['#2D6E5A', '#DDEFE8'], ['#7E5A8C', '#EDE3F1'],
+    ['#0061FF', '#E5EFFF'], ['#946FF1', '#F0EAFE'], ['#6CC9CC', '#E2F5F5'], ['#5C8AF6', '#E6EEFE'],
+    ['#64C5B8', '#E1F4F1'], ['#655FC4', '#E9E8F8'], ['#54B5D3', '#E1F2F8'], ['#B78BFC', '#F4EEFF'],
+    ['#05217F', '#E2E6F2'], ['#5744DE', '#E9E6FB'],
   ];
 
   /* ---------- Storage (wrapped: private windows can block it) ---------- */
@@ -318,6 +318,7 @@
         const tip = `${e.course.name}\n${sectionLabel(s)} · ${timeRange(s)}${s.room ? ' · ' + s.room : ''}\nDates: ${dates}${clash ? '\n⚠ Overlaps with another class' : ''}`;
         html += `<div class="event${clash ? ' clash' : ''}" title="${esc(tip)}" draggable="true" data-code="${esc(e.course.code)}"
           style="top:calc(${top}% + 1px);height:calc(${height}% - 2px);left:calc(${left}% + 2px);width:calc(${width}% - 4px);--ev-fg:${e.color[0]};--ev-bg:${e.color[1]}">
+          <button class="ev-remove" data-code="${esc(e.course.code)}" title="Remove ${esc(e.course.name)} from my timetable" aria-label="Remove ${esc(e.course.name)}">×</button>
           <b>${clash && lanes === 1 ? '⚠ ' : ''}${esc(courseTitle(e.course))}</b>
           <span>${esc(sectionLabel(s))} · ${timeRange(s)}</span>
           ${s.room ? `<span>${esc(s.room)}</span>` : ''}
@@ -554,6 +555,12 @@
     const code = drag.code;
     endDrag();
     removeCourse(code);
+  });
+
+  // The small × on a class block removes that course from the timetable.
+  tt.addEventListener('click', e => {
+    const btn = e.target.closest('.ev-remove');
+    if (btn) removeCourse(btn.dataset.code);
   });
 
   $('day-tabs').addEventListener('click', e => {

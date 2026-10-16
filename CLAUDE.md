@@ -10,12 +10,17 @@ changes in plain language.
   a `.js` file (`window.SCHEDULE_DATA = …`) and not JSON loaded with `fetch`.
 - SheetJS is vendored in `vendor/xlsx.full.min.js` (0.20.3, Apache-2.0). Only
   `admin.html` loads it; the student page doesn't need it.
-- Look follows the Católica Lisbon **Master Programs study plans** (the owner's reference):
-  Montserrat (vendored in `vendor/fonts`, SIL OFL), navy header bars `#012E47` with white
-  small caps, flat pastel blocks with square corners (teal `#ACDBE2`, mint `#C5E6DA`,
-  blush `#F5E8E8`, steel `#9FB8D1`, mist `#F1F2F1`), a colour legend strip under the
-  timetable, and a header "CATÓLICA LISBON | MASTER PROGRAMS … TITLE" (wordmark as text,
-  no logo image). Gold `#C5A059` is an accent only (header rule, focus ring, notes).
+- Look follows the **Católica-Lisbon SBE Brand Guidelines 2026 (v2.3)**, with the layout
+  structure of the Master Programs study plans (header bars, flat blocks, colour legend):
+  - Institutional Blue `#0061FF` = main colour (header, bars, buttons, links, day headers).
+  - Masters purple `#B78BFC` (`#946FF1` on white, digital) = accent (header line, tags, notes, focus).
+  - Complementary black `#131313`, grey `#F3F3F3`, white. Course colours = brand programme
+    colours as stripe + light tint (see `COLORS` in `js/student.js`). Red `#C0262D` only for overlaps.
+  - Never use the logo's Bright Blue `#003CA5` outside the logo. No navy/gold (old identity).
+  - Typeface Barlow, vendored in `vendor/fonts` (SIL OFL).
+  - Logo: `assets/logo-clsbe-white.svg` on blue (colour version `assets/logo-clsbe.svg` for white
+    backgrounds), the version **without seal** (internal tools). Min. width on screen 150 px.
+    Don't recolour, distort, outline or crowd it.
 - Must stay mobile friendly (timetable shows one day at a time with day tabs below 860px).
 
 ## Files
@@ -24,6 +29,7 @@ changes in plain language.
 - `js/parser.js` – **all data rules**, shared by both screens. Change rules here only.
 - `data/timetable-data.js` – the published timetable (cleaned rows). Replaced by the admin, never edited by hand.
 - `css/styles.css` – all styling, including print.
+- `assets/` – official logos (SVG, from the brand pack).
 - `.claude/launch.json` – local preview server (`python -m http.server 8123`) for testing.
 
 ## Data rules (input: "Bullet extraction" export, .xlsx or .csv)
@@ -58,8 +64,8 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
 
 ## Student features
 Search + programme/period filters; "+ Add" or drag a card onto the timetable; drag a class
-block from the timetable back onto the course list to remove that course (the list turns red,
-"Drop here to remove …"); button shows
+block from the timetable back onto the course list, or click the small × on a block, to remove
+that course (the list turns red, "Drop here to remove …"); button shows
 "Added ✓" and "Remove ✕" on hover; added courses pinned at the top; section dropdown on the card
 with "✓ fits" / "⚠ overlaps"; Mon–Fri 08:00–20:00 grid in 1h30 blocks; overlaps in red (blocks,
 cards, banner); typical week or a specific week; .ics export (one event per real date,
