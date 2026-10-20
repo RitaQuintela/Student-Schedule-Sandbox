@@ -181,7 +181,149 @@
     handleFile(e.dataTransfer.files[0]);
   });
 
+  /* ---------- Exam calendar ---------- */
+
+  const EXAM_PREVIEW_KEY = 'scheduleSandbox.examPreview.v1';
+  const E = window.Exams;
+  let currentExams = null; // { source, payload, link }
+
+  // Exams are matched against the timetable uploaded above, or the preview,
+  // or the published one – whichever is most recent in this browser.
+  function referenceCourses() {
+    if (current && current.dataset.courses.length) return { courses: current.dataset.courses, from: `the timetable uploaded above (${current.source})` };
+    try {
+      const preview = JSON.parse(localStorage.getItem(PREVIEW_KEY));
+      if (preview && preview.rows) return { courses: S.buildDataset(preview.rows).courses, from: `the timetable being previewed (${preview.source})` };
+    } catch (e) { /* ignore */ }
+    const published = window.SCHEDULE_DATA || { rows: [] };
+    return { courses: S.buildDataset(published.rows || []).courses, from: 'the published timetable' };
+  }
+
+  function showExamPreviewStatus() {
+    let preview = null;
+    try { preview = JSON.parse(localStorage.getItem(EXAM_PREVIEW_KEY)); } catch (e) { /* ignore */ }
+    const el = $('exam-current-preview');
+    if (preview && preview.exams) {
+      el.innerHTML = `This browser is currently previewing the exam calendar “${esc(preview.source || 'file')}” in the student view. ` +
+        `<button class="btn small" id="clear-exam-preview">Stop preview</button>`;
+      el.hidden = false;
+      $('clear-exam-preview').onclick = () => {
+        try { localStorage.removeItem(EXAM_PREVIEW_KEY); } catch (e) { /* ignore */ }
+        showExamPreviewStatus();
+      };
+    } else {
+      el.hidden = true;
+    }
+  }
+
+  async function handleExamFile(file) {
+    if (!file) return;
+    let parsed;
+    try {
+      parsed = await E.readExamFile(window.XLSX, file);
+    } catch (err) {
+      parsed = { exams: [], periods: [], issues: [{ level: 'error', message: 'This file could not be read. Is it the exam planner (.xlsm or .xlsx)? (' + err.message + ')' }] };
+    }
+    const payload = { generatedAt: new Date().toISOString(), source: file.name, periods: parsed.periods, exams: parsed.exams };
+    const ref = referenceCourses();
+    const link = E.linkExams(payload, ref.courses);
+    const issues = parsed.issues.slice();
+    if (!payload.exams.length && !issues.some(i => i.level === 'error')) {
+      issues.push({ level: 'error', message: 'No Master exams were found in this file.' });
+    }
+    if (link.unmatched.length) {
+      issues.push({
+        level: 'warning',
+        message: `${link.unmatched.length} exam course name(s) have no course with that name in ${ref.from}. ` +
+          'That is expected for courses not in this timetable (e.g. another term); otherwise check the spelling in the planner, ' +
+          `because students won't see these exams: ${link.unmatched.join('; ')}.`,
+      });
+    }
+    if (link.beforeStart.length) {
+      issues.push({
+        level: 'info',
+        message: 'Not shown to students because the exam is before the course\'s first class (probably the same course taught in an earlier term): ' +
+          link.beforeStart.map(b => `${b.course.name} – ${b.exam.season} ${E.weekdayShort(b.exam.date)} ${S.shortDate(b.exam.date)}`).join('; ') + '.',
+      });
+    }
+    if (link.loose.length) {
+      issues.push({ level: 'info', message: 'Matched despite different spelling: ' + link.loose.map(([a, b]) => `“${a}” → “${b}”`).join('; ') + '.' });
+    }
+    if (link.noExam.length) {
+      issues.push({ level: 'info', message: `Courses in ${ref.from} with no exam in this file: ${link.noExam.join('; ')}.` });
+    }
+    currentExams = { source: file.name, payload, link, issues, ref };
+    renderExams();
+  }
+
+  function renderExams() {
+    const { payload, link, issues, source, ref } = currentExams;
+    $('exam-result').hidden = false;
+    $('exam-file-name').textContent = `File: ${source} · matched against ${ref.from}`;
+    const courseCount = new Set(payload.exams.map(e => e.course)).size;
+    const tiles = [
+      [payload.periods.length, 'exam seasons'],
+      [payload.exams.length, 'exams (course + date)'],
+      [courseCount, 'courses with exams'],
+      [`${link.byCode.size} / ${ref.courses.length}`, 'timetable courses with an exam'],
+      [link.unmatched.length, 'exam names not matched'],
+    ];
+    $('exam-stats').innerHTML = tiles.map(([n, l]) => `<div class="stat"><div class="num">${esc(n)}</div><div class="lbl">${esc(l)}</div></div>`).join('');
+
+    const errors = issues.filter(i => i.level === 'error');
+    const others = issues.filter(i => i.level !== 'error');
+    const icon = { error: '✕', warning: '⚠', info: 'ℹ' };
+    const list = arr => `<ul class="issues">${arr.map(i => `<li class="${i.level}">${icon[i.level]} ${esc(i.message)}</li>`).join('')}</ul>`;
+    $('exam-issues').innerHTML = !issues.length
+      ? '<div class="issues-ok">✓ No problems found.</div>'
+      : (errors.length ? `<p class="lead"><b>${errors.length} error(s)</b> – these must be fixed before applying.</p>${list(errors)}` : '') +
+        (others.length ? `<div style="margin-top:8px">${list(others)}</div>` : '');
+
+    $('exam-table').innerHTML = '<tr><th>Season</th><th>Date</th><th>Course</th></tr>' +
+      payload.exams.map(e => `<tr><td>${esc(e.season)}</td><td>${E.weekdayShort(e.date)} ${S.shortDate(e.date)}</td><td>${esc(e.course)}</td></tr>`).join('');
+
+    const blocked = errors.length > 0;
+    $('exam-apply').disabled = blocked;
+    $('exam-download').disabled = blocked;
+    $('exam-blocked').hidden = !blocked;
+  }
+
+  $('exam-apply').addEventListener('click', () => {
+    if (!currentExams) return;
+    try {
+      localStorage.setItem(EXAM_PREVIEW_KEY, JSON.stringify(currentExams.payload));
+    } catch (e) {
+      alert('This browser would not save the preview (storage blocked or full).');
+      return;
+    }
+    showExamPreviewStatus();
+    window.open('index.html#exams', '_blank');
+  });
+
+  $('exam-download').addEventListener('click', () => {
+    if (!currentExams) return;
+    const js = '/* Published exam calendar for Schedule Sandbox.\n' +
+      ' * To publish a new exam calendar, replace this file with the one downloaded\n' +
+      ' * from the admin page (admin.html). Do not edit by hand. */\n' +
+      'window.EXAM_DATA = ' + JSON.stringify(currentExams.payload, null, 1) + ';\n';
+    download('exam-data.js', js, 'text/javascript;charset=utf-8');
+  });
+
+  $('exam-file').addEventListener('change', e => handleExamFile(e.target.files[0]));
+  const edz = $('exam-dropzone');
+  edz.addEventListener('dragover', e => { e.preventDefault(); edz.classList.add('hover'); });
+  edz.addEventListener('dragleave', () => edz.classList.remove('hover'));
+  edz.addEventListener('drop', e => {
+    e.preventDefault();
+    edz.classList.remove('hover');
+    handleExamFile(e.dataTransfer.files[0]);
+  });
+
   showPreviewStatus();
+  showExamPreviewStatus();
   // Exposed for testing in the browser console.
-  window.ScheduleAdmin = { handleFile, buildTemplate, get current() { return current; } };
+  window.ScheduleAdmin = {
+    handleFile, buildTemplate, handleExamFile,
+    get current() { return current; }, get currentExams() { return currentExams; },
+  };
 })();

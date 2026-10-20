@@ -12,11 +12,15 @@
     <img class="logo" src="assets/logo-clsbe-white.svg" alt="Católica Lisbon School of Business &amp; Economics" width="170" height="54">
     <div class="title">
       <span class="kicker">Master Programs</span>
-      <h1>Schedule Sandbox</h1>
-      <p>Build your weekly timetable · a planning tool, not your enrolment</p>
+      <h1>Schedule Sandbox <span class="beta">Beta</span></h1>
+      <p>Plan your terms, compare courses and spot clashes before you enroll.</p>
     </div>
   </div>
 </header>
+
+<div class="beta-note" role="note">
+  <strong>Beta version.</strong> Use it to plan, but always check the information against the official class timetable and exam calendar. Schedule Sandbox does not enroll you in anything.
+</div>
 
 <div id="preview-notice" class="notice" hidden>
   <span id="preview-text"></span>
@@ -26,6 +30,7 @@
 <nav class="mobile-switch" aria-label="Switch view">
   <button id="show-courses" class="active">Courses</button>
   <button id="show-timetable">Timetable <span id="switch-count"></span></button>
+  <button id="show-exams">Exams <span id="switch-exams"></span></button>
 </nav>
 
 <main id="app" class="student" data-view="courses">
@@ -73,15 +78,26 @@
       <div class="print-only print-list" id="print-list"></div>
     </div>
   </section>
+
+  <section class="ex-panel panel" id="exams" aria-label="Exam calendar">
+    <div class="bar">Exam Calendar <small>· your courses</small></div>
+    <div class="tt-inner">
+      <div id="exam-banner" class="banner" role="status"></div>
+      <div id="exam-seasons"></div>
+      <p class="hint" id="exam-note"></p>
+    </div>
+  </section>
 </main>
 
 <footer class="app-footer">
-  Always confirm your final enrolment in the official systems. ·
+  Always confirm your final enrollment in the official systems. ·
   <a href="admin.html">Admin</a>
 </footer>
 
 <script src="data/timetable-data.js"></script>
+<script src="data/exam-data.js"></script>
 <script src="js/parser.js"></script>
+<script src="js/exams.js"></script>
 <script src="js/student.js"></script>
 </body>
 </html>

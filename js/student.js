@@ -33,15 +33,31 @@
   /* ---------- Data ---------- */
 
   let source = window.SCHEDULE_DATA || { rows: [] };
+  const previewNotes = [];
   const preview = load(PREVIEW_KEY);
   if (preview && Array.isArray(preview.rows)) {
     source = preview;
     const when = preview.generatedAt ? new Date(preview.generatedAt).toLocaleString() : '';
-    document.getElementById('preview-text').textContent =
-      `Preview: you are seeing the timetable uploaded on the admin page (“${preview.source || 'file'}”, ${when}). Only this browser sees it.`;
-    document.getElementById('preview-notice').hidden = false;
+    previewNotes.push(`the timetable uploaded on the admin page (“${preview.source || 'file'}”, ${when})`);
   }
   const data = S.buildDataset(source.rows || []);
+
+  // Exam calendar: published file, or an admin preview saved in this browser.
+  const EXAM_PREVIEW_KEY = 'scheduleSandbox.examPreview.v1';
+  const E = window.Exams;
+  let examSource = window.EXAM_DATA || { periods: [], exams: [] };
+  const examPreview = load(EXAM_PREVIEW_KEY);
+  if (examPreview && Array.isArray(examPreview.exams)) {
+    examSource = examPreview;
+    const when = examPreview.generatedAt ? new Date(examPreview.generatedAt).toLocaleString() : '';
+    previewNotes.push(`the exam calendar uploaded on the admin page (“${examPreview.source || 'file'}”, ${when})`);
+  }
+  const examLink = E.linkExams(examSource, data.courses);
+  if (previewNotes.length) {
+    document.getElementById('preview-text').textContent =
+      `Preview: you are seeing ${previewNotes.join(' and ')}. Only this browser sees it.`;
+    document.getElementById('preview-notice').hidden = false;
+  }
   // Choices made while previewing are kept apart, so they never replace the real ones.
   const STORE_KEY = source === preview ? 'scheduleSandbox.student.preview.v1' : 'scheduleSandbox.student.v1';
 
@@ -242,6 +258,15 @@
     })).values()];
     const clashHtml = others.length ? `<div class="cc-clash">⚠ Overlaps with ${esc(others.join(', '))}</div>` : '';
 
+    // Exam dates for this course (red when another of your exams is the same day).
+    const myExams = examLink.byCode.get(course.code) || [];
+    const examHtml = myExams.length
+      ? `<div class="cc-exams"><b>Exams</b>${myExams.map(x => {
+          const clash = examInfo.clashDates.has(x.date);
+          return `<span class="${clash ? 'clash' : ''}"${clash ? ' title="Another of your exams is on this day"' : ''}>${clash ? '⚠ ' : ''}${esc(E.seasonSingular(x.season))} · ${E.weekdayShort(x.date)} ${S.shortDate(x.date)}</span>`;
+        }).join('')}</div>`
+      : (examSource.exams.length ? '<div class="cc-exams none">No exam date in the exam calendar</div>' : '');
+
     return `<article class="course-card added${mine.length ? ' conflict' : ''}" draggable="true" data-code="${esc(course.code)}"
         style="--course-color:${entry.color[0]};--course-bg:${entry.color[1]}">
       <div class="cc-head">
@@ -253,7 +278,7 @@
         <label class="field">${course.options.length > 1 ? 'Choose your section' : 'Section'}
           <select data-act="option">${options}</select></label>
         <ul class="session-list">${sessions}</ul>
-        ${notes}${clashHtml}
+        ${notes}${examHtml}${clashHtml}
       </div></article>`;
   }
 
@@ -375,9 +400,97 @@
       (clashes.length ? '<span class="clash">⚠ Overlap</span>' : '');
   }
 
+  /* ---------- Rendering: exam calendar ---------- */
+
+  let examInfo = { clashDates: new Set(), closeDates: new Set() };
+
+  function examItems(list) {
+    return list.flatMap(e => (examLink.byCode.get(e.course.code) || []).map(exam => ({ course: e.course, color: e.color, exam })));
+  }
+
+  function examChip(it, clash) {
+    return `<span class="ex-chip${clash ? ' clash' : ''}" style="--chip-fg:${it.color[0]};--chip-bg:${it.color[1]}"
+      title="${esc(it.course.name)} – ${esc(E.seasonSingular(it.exam.season))}">${esc(courseTitle(it.course))}</span>`;
+  }
+
+  function dayLabel(d) {
+    return `${E.weekdayShort(d)} ${S.shortDate(d)}`;
+  }
+
+  function renderExams(list) {
+    const items = examItems(list);
+    const res = E.findExamClashes(items);
+    const closeDates = new Set(res.close.flatMap(c => [c.date, c.next]));
+    examInfo = { clashDates: res.clashDates, closeDates };
+
+    // Summary banner
+    const banner = $('exam-banner');
+    const names = arr => [...new Set(arr.map(it => it.course.name))].map(esc).join(', ');
+    if (!examSource.exams.length) {
+      banner.className = 'banner';
+      banner.textContent = 'The exam calendar has not been published yet.';
+    } else if (!list.length) {
+      banner.className = 'banner';
+      banner.textContent = 'Add courses to see their exam dates here.';
+    } else if (res.clashes.length) {
+      banner.className = 'banner bad';
+      banner.innerHTML = `<strong>⚠ ${res.clashes.length} day${res.clashes.length === 1 ? '' : 's'} with more than one exam.</strong>` +
+        `<ul>${res.clashes.map(c => `<li><b>${dayLabel(c.date)}</b>: ${names(c.items)}</li>`).join('')}</ul>` +
+        (res.close.length ? `<div style="margin-top:6px">Also on consecutive days: ${res.close.map(c => `${dayLabel(c.date)} → ${dayLabel(c.next)}`).join('; ')}.</div>` : '');
+    } else if (res.close.length) {
+      banner.className = 'banner warn';
+      banner.innerHTML = `<strong>No exam clashes</strong>, but some exams are on consecutive days:` +
+        `<ul>${res.close.map(c => `<li><b>${dayLabel(c.date)} → ${dayLabel(c.next)}</b>: ${names(c.items)}</li>`).join('')}</ul>`;
+    } else if (items.length) {
+      banner.className = 'banner ok';
+      banner.textContent = `✓ No exam clashes · ${items.length} exam${items.length === 1 ? '' : 's'} for your courses`;
+    } else {
+      banner.className = 'banner';
+      banner.textContent = 'None of your courses has an exam in the published calendar.';
+    }
+
+    // One day strip per season (a simple list on phones)
+    $('exam-seasons').innerHTML = (examSource.periods || []).map(p => {
+      const days = E.seasonDays(p);
+      const inSeason = d => (res.byDate.get(d) || []).filter(it => it.exam.period === p.id);
+      const strip = days.map(d => {
+        const its = inSeason(d);
+        const wd = E.weekdayShort(d);
+        const cls = ['ex-day'];
+        if (wd === 'Sat' || wd === 'Sun') cls.push('weekend');
+        if (its.length && res.clashDates.has(d)) cls.push('clash');
+        else if (its.length && closeDates.has(d)) cls.push('close');
+        return `<div class="${cls.join(' ')}"><div class="ex-dh">${wd}<small>${S.shortDate(d)}</small></div>
+          <div class="ex-cell">${its.map(it => examChip(it, res.clashDates.has(d))).join('')}</div></div>`;
+      }).join('');
+      const listed = days.filter(d => inSeason(d).length);
+      const rows = listed.map(d => {
+        const its = inSeason(d);
+        const clash = res.clashDates.has(d);
+        const close = !clash && closeDates.has(d);
+        return `<li class="${clash ? 'clash' : close ? 'close' : ''}"><span class="when">${clash ? '⚠ ' : ''}${dayLabel(d)}</span>
+          <span class="what">${its.map(it => examChip(it, clash)).join('')}</span></li>`;
+      }).join('');
+      return `<div class="ex-season">
+        <h3>${esc(p.season)} <small>${S.shortDate(days[0])} – ${S.shortDate(days[days.length - 1])}</small></h3>
+        <div class="ex-strip" style="grid-template-columns:repeat(${days.length}, minmax(58px, 1fr))">${strip}</div>
+        <ul class="ex-list">${rows || '<li class="empty">No exams for your courses in this season.</li>'}</ul>
+      </div>`;
+    }).join('');
+
+    const without = list.filter(e => !examLink.byCode.has(e.course.code)).map(e => e.course.name);
+    $('exam-note').textContent = examSource.exams.length
+      ? 'Exam times and rooms are not in the calendar yet.' +
+        (without.length ? ` No exam date found for: ${without.join('; ')} – check with your program.` : '')
+      : '';
+    $('switch-exams').textContent = res.clashes.length ? '⚠' : items.length ? `(${items.length})` : '';
+    $('show-exams').classList.toggle('has-clash', res.clashes.length > 0);
+  }
+
   function update() {
     const list = entries();
     const clashes = findClashes(list);
+    renderExams(list);
     renderList(list, clashes);
     renderTimetable(list, clashes);
     renderBanner(list, clashes);
@@ -444,6 +557,23 @@
           count++;
         });
       });
+    });
+    // Exams as all-day events (times are not known yet).
+    examItems(list).forEach(({ course, exam }) => {
+      const day = exam.date.replace(/-/g, '');
+      const next = S.addDays(exam.date, 1).replace(/-/g, '');
+      lines.push(
+        'BEGIN:VEVENT',
+        'UID:' + ['exam', course.code, exam.period, day].join('-').replace(/[^A-Za-z0-9-]/g, '') + '@schedule-sandbox',
+        'DTSTAMP:' + now,
+        'DTSTART;VALUE=DATE:' + day,
+        'DTEND;VALUE=DATE:' + next,
+        'SUMMARY:' + icsText(`Exam: ${course.name} (${E.seasonSingular(exam.season)})`),
+        'DESCRIPTION:' + icsText('Time and room to be confirmed. Always check the official exam calendar.'),
+        'TRANSP:TRANSPARENT',
+        'END:VEVENT',
+      );
+      count++;
     });
     lines.push('END:VCALENDAR');
     return { text: lines.map(icsFold).join('\r\n') + '\r\n', count };
@@ -575,10 +705,12 @@
     $('app').dataset.view = view;
     $('show-courses').classList.toggle('active', view === 'courses');
     $('show-timetable').classList.toggle('active', view === 'timetable');
+    $('show-exams').classList.toggle('active', view === 'exams');
     window.scrollTo({ top: 0 });
   }
   $('show-courses').addEventListener('click', () => setView('courses'));
   $('show-timetable').addEventListener('click', () => setView('timetable'));
+  $('show-exams').addEventListener('click', () => setView('exams'));
 
   $('export-ics').addEventListener('click', () => {
     const list = entries();
@@ -594,6 +726,7 @@
   });
   $('preview-clear').addEventListener('click', () => {
     forget(PREVIEW_KEY);
+    forget(EXAM_PREVIEW_KEY);
     forget('scheduleSandbox.student.preview.v1');
     location.reload();
   });
@@ -601,6 +734,12 @@
   renderFilters();
   update();
 
+  // admin.html opens index.html#exams after an exam preview.
+  if (location.hash === '#exams') {
+    if (window.matchMedia('(max-width: 860px)').matches) setView('exams');
+    else $('exams').scrollIntoView();
+  }
+
   // Exposed for testing in the browser console.
-  window.ScheduleSandbox = { data, state, entries, findClashes, buildIcs, addCourse, removeCourse, setOption, update };
+  window.ScheduleSandbox = { data, state, entries, findClashes, buildIcs, addCourse, removeCourse, setOption, update, examLink, examItems };
 })();

@@ -69,6 +69,32 @@ a { color: var(--blue); }
 .title p { margin: 4px 0 0; font-size: 14px; font-weight: 300; }
 .title a { color: #fff; }
 
+/* ---------- Beta label and disclaimer ---------- */
+
+.beta {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+  padding: 1px 7px;
+  background: var(--purple);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+}
+.beta-note {
+  max-width: 1440px;
+  margin: 12px auto 0;
+  padding: 8px 14px;
+  background: var(--purple-tint);
+  border-left: 4px solid var(--purple-ink);
+  font-size: 14px;
+}
+@media (max-width: 860px) { .beta-note { margin: 10px 16px 0; font-size: 13px; } }
+@media print { .beta-note { font-size: 10px; margin: 0 0 6px; } }
+
 /* ---------- Notices ---------- */
 
 .notice {
@@ -397,6 +423,64 @@ a { color: var(--blue); }
 .legend span.clash { --chip-bg: var(--red-soft); --chip-fg: var(--red); color: var(--red); }
 .hint { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
 
+/* ---------- Exam calendar ---------- */
+
+:root { --amber: #C77700; --amber-soft: #FFF3DC; }
+.sidebar { grid-row: span 2; }
+.ex-panel { grid-column: 2; min-width: 0; }
+.banner.warn { background: var(--amber-soft); border-left-color: var(--amber); color: #5E3A00; }
+
+.ex-season h3 { margin: 14px 0 6px; font-size: 17px; font-weight: 700; color: var(--blue); }
+.ex-season:first-child h3 { margin-top: 0; }
+.ex-season h3 small { font-size: 13px; font-weight: 400; color: var(--muted); }
+.ex-strip { display: grid; border: 1px solid var(--blue); overflow-x: auto; }
+.ex-day { display: flex; flex-direction: column; border-left: 1px solid var(--border); min-height: 96px; min-width: 0; }
+.ex-day:first-child { border-left: 0; }
+.ex-dh {
+  background: var(--blue);
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: 5px 2px;
+}
+.ex-dh small { display: block; font-size: 11px; font-weight: 400; text-transform: none; letter-spacing: 0; opacity: .9; }
+.ex-day.weekend .ex-dh { background: #5C8AF6; }
+.ex-day.weekend .ex-cell { background: var(--grey); }
+.ex-cell { flex: 1; padding: 4px; display: grid; gap: 3px; align-content: start; }
+.ex-day.clash .ex-dh { background: var(--red); }
+.ex-day.clash .ex-cell { background: var(--red-soft); }
+.ex-day.close .ex-cell { box-shadow: inset 0 3px 0 var(--amber); background: var(--amber-soft); }
+.ex-chip {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 5px;
+  background: var(--chip-bg);
+  border-left: 3px solid var(--chip-fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ex-chip.clash { box-shadow: inset 0 0 0 1px var(--red); color: var(--red); }
+.ex-list { display: none; list-style: none; margin: 0; padding: 0; border: 1px solid var(--border); }
+.ex-list li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 9px; border-top: 1px solid var(--border); }
+.ex-list li:first-child { border-top: 0; }
+.ex-list .when { min-width: 96px; font-weight: 600; }
+.ex-list .what { display: flex; flex-wrap: wrap; gap: 4px; }
+.ex-list li.clash { background: var(--red-soft); }
+.ex-list li.clash .when { color: var(--red); }
+.ex-list li.close { background: var(--amber-soft); }
+.ex-list li.empty { color: var(--muted); }
+
+.cc-exams { font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: baseline; }
+.cc-exams b { font-weight: 600; margin-right: 2px; }
+.cc-exams span { background: rgba(255, 255, 255, .8); padding: 1px 6px; }
+.cc-exams span.clash { background: var(--red); color: #fff; font-weight: 600; }
+.cc-exams.none { color: var(--muted); font-style: italic; }
+
 /* Mobile switch between course list and timetable */
 .mobile-switch { display: none; }
 
@@ -435,8 +519,14 @@ a { color: var(--blue); }
     cursor: pointer;
   }
   .mobile-switch button.active { background: var(--blue); color: #fff; }
-  .student[data-view="courses"] .tt-panel { display: none; }
-  .student[data-view="timetable"] .sidebar { display: none; }
+  .sidebar, .ex-panel { grid-row: auto; grid-column: auto; }
+  .student:not([data-view="courses"]) .sidebar { display: none; }
+  .student:not([data-view="timetable"]) .tt-panel { display: none; }
+  .student:not([data-view="exams"]) .ex-panel { display: none; }
+  .mobile-switch button.has-clash { border-color: var(--red); color: var(--red); }
+  .mobile-switch button.active.has-clash { background: var(--red); color: #fff; }
+  .ex-strip { display: none; }
+  .ex-list { display: block; }
 
   .day-tabs { display: flex; }
   .timetable { grid-template-columns: 52px 1fr; }
@@ -473,6 +563,9 @@ a { color: var(--blue); }
   .sidebar, .tt-toolbar, .day-tabs, .mobile-switch, .notice, .app-footer, .hint, .ev-remove, .tt-panel > .bar { display: none !important; }
   .student { display: block; padding: 0; }
   .student .tt-panel { display: block !important; border: 0; }
+  .student .ex-panel { display: block !important; border: 0; break-before: page; }
+  .ex-strip { display: grid !important; }
+  .ex-list { display: none !important; }
   .tt-inner { padding: 6px 0 0; }
   .timetable { grid-template-columns: 52px repeat(5, minmax(0, 1fr)) !important; }
   .timetable .tt-dayhead, .timetable .tt-day { display: block !important; }
@@ -518,6 +611,7 @@ a { color: var(--blue); }
 .issues li { padding: 7px 10px; font-size: 13px; border-left: 4px solid; }
 .issues li.error { background: var(--red-soft); color: var(--red); border-color: var(--red); }
 .issues li.warning { background: var(--purple-tint); color: #3B2B66; border-color: var(--purple-ink); }
+.issues li.info { background: var(--grey); color: #3A3D42; border-color: var(--border); }
 .issues-ok { background: var(--green-soft); color: var(--green); padding: 10px 12px; font-size: 14px; border-left: 4px solid var(--green); }
 
 .admin table { width: 100%; border-collapse: collapse; font-size: 13px; }

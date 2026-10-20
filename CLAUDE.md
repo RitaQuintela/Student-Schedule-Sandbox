@@ -30,8 +30,10 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
 ## Files
 - `index.html` + `js/student.js` – student screen.
 - `admin.html` + `js/admin.js` – upload, summary/warnings, preview, data file download, Excel template.
-- `js/parser.js` – **all data rules**, shared by both screens. Change rules here only.
+- `js/parser.js` – **all timetable data rules**, shared by both screens. Change rules here only.
+- `js/exams.js` – **all exam rules** (reading the planner, name matching, clashes), shared by both screens.
 - `data/timetable-data.js` – the published timetable (cleaned rows). Replaced by the admin, never edited by hand.
+- `data/exam-data.js` – the published exam calendar (`window.EXAM_DATA`: periods + exams). Same rule.
 - `css/styles.css` – all styling, including print.
 - `assets/` – official logos (SVG, from the brand pack).
 - `.claude/launch.json` – local preview server (`python -m http.server 8123`) for testing.
@@ -66,6 +68,25 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   (`MP_Man_SEI_S1_PA` → `MP_Man_SEI`, `MSc_Econ_1` → `MSc_Econ`, `ELEC_*` → "Electives (…)").
   Period filter = Unit (`S1` → Semester 1, `T2` → Term 2).
 
+## Exam rules (input: Integrated Exams Planner, .xlsm/.xlsx)
+- Read the **ExamData** sheet (header row found by its labels, not by position): Period ID, Cycle,
+  Season, Date, Course. Keep **Cycle = MSc** only. One exam per Period + Date + Course (the planner
+  repeats it per program/track). Season date ranges come from the **Periods** sheet (MSc, Active ≠ No;
+  up to 3 ranges); a season without a Periods row uses its first–last exam date. Macros never run.
+  If there is no ExamData sheet, any sheet with Date and Course columns is used.
+- No course codes in the planner, so exams link to timetable courses **by name**, ignoring case,
+  accents, `&`/`and`, punctuation/hyphens, text in brackets (`(IMSc)`) and a final "s" on words.
+  "Language Courses" maps to every course whose name contains "language" or "extensive course".
+- An exam dated **before the course's first class week** is ignored (same course name taught in an
+  earlier term, e.g. a T1 midterm for the T2 edition) and listed as an admin note.
+- Times are TBD: two of a student's exams on the **same day = clash (red)**; exams on **consecutive
+  days = amber note**.
+- Admin: unmatched exam names = one combined warning; loose matches, ignored early exams and
+  courses without exams = info notes. Errors (no ExamData/no MSc exams) block applying.
+  Preview key `scheduleSandbox.examPreview.v1`. Raw planners (`*.xlsm`) are git-ignored.
+- Student: "Exam Calendar" section under the timetable (Exams tab on phones): one day strip per
+  season (list by date on phones), exam dates on each course card, exams in the .ics as all-day events.
+
 ## Student features
 Search + program/period filters; "+ Add" or drag a card onto the timetable; drag a class
 block from the timetable back onto the course list, or click the small × on a block, to remove
@@ -74,7 +95,9 @@ that course (the list turns red, "Drop here to remove …"); button shows
 with "✓ fits" / "⚠ overlaps"; Mon–Fri 08:00–20:00 grid in 1h30 blocks; overlaps in red (blocks,
 cards, banner); typical week or a specific week; .ics export (one event per real date,
 TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
-(`scheduleSandbox.student.v1`; admin previews use separate keys).
+(`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta** label and
+a beta disclaimer ("use it, but always check the information"). Subtitle: "Plan your terms,
+compare courses and spot clashes before you enroll."
 
 ## Privacy
 Raw exports contain staff usernames/emails (CreatedUser, LastModifiedUser). They are

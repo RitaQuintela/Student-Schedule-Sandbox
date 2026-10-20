@@ -2,3 +2,5 @@
 # Only the cleaned data/timetable-data.js (made by admin.html) is published.
 Bullet extraction*
 *.raw.csv
+# Exam planners (working files with student numbers) are never published.
+*.xlsm
