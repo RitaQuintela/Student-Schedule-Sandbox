@@ -349,8 +349,11 @@
 
     if (!list.length) add('error', 'No usable rows were found in this file.');
 
+    const terms = computeTerms(list);
+
     return {
       courses: list,
+      terms,
       byCode: new Map(list.map(c => [c.code, c])),
       weeks: [...allWeeks].sort(),
       units: [...units].sort().map(u => ({ code: u, label: unitLabel(u) })),
@@ -464,6 +467,71 @@
     };
   }
 
+  /* ---------- Trimesters ---------- */
+
+  /*
+   * Work out the two trimesters of each semester from the courses' Units:
+   *   semester 1 = units S1, T1, T2  ->  Trimester 1 and Trimester 2
+   *   semester 2 = units S2, T3, T4  ->  Trimester 3 and Trimester 4
+   * A trimester's dates are the weeks of the courses tagged with it. If one
+   * trimester has no courses (e.g. a T2-only export), it is the rest of the
+   * semester's weeks before (or after) the other trimester. A semester with
+   * only S courses can't be split and is shown as one period.
+   * Returns [{ id, label, start, end, inferred }], start/end = Mondays.
+   */
+  const SEMESTERS = [
+    { sem: 'S1', first: 'T1', second: 'T2' },
+    { sem: 'S2', first: 'T3', second: 'T4' },
+  ];
+
+  function computeTerms(courses) {
+    const weeksOf = unit => {
+      const set = new Set();
+      courses.forEach(c => {
+        if (!c.units.includes(unit)) return;
+        c.sections.forEach(s => s.sessions.forEach(ss => { if (ss.unit === unit) ss.weeks.forEach(w => set.add(w)); }));
+      });
+      return [...set].sort();
+    };
+    const terms = [];
+    SEMESTERS.forEach(({ sem, first, second }) => {
+      const a = weeksOf(first);
+      const b = weeksOf(second);
+      const all = [...new Set([...weeksOf(sem), ...a, ...b])].sort();
+      if (!all.length) return;
+      const label = id => 'Trimester ' + id.slice(1);
+      if (!a.length && !b.length) {
+        terms.push({ id: sem, label: 'Semester ' + sem.slice(1), start: all[0], end: all[all.length - 1], inferred: false });
+        return;
+      }
+      let t1;
+      let t2;
+      if (a.length && b.length) {
+        t1 = { start: a[0], end: a[a.length - 1], inferred: false };
+        t2 = { start: b[0], end: b[b.length - 1], inferred: false };
+      } else if (b.length) {
+        const before = all.filter(w => w < b[0]);
+        t2 = { start: b[0], end: b[b.length - 1], inferred: false };
+        t1 = before.length ? { start: before[0], end: before[before.length - 1], inferred: true } : null;
+      } else {
+        const after = all.filter(w => w > a[a.length - 1]);
+        t1 = { start: a[0], end: a[a.length - 1], inferred: false };
+        t2 = after.length ? { start: after[0], end: after[after.length - 1], inferred: true } : null;
+      }
+      if (t1) terms.push(Object.assign({ id: first, label: label(first) }, t1));
+      if (t2) terms.push(Object.assign({ id: second, label: label(second) }, t2));
+    });
+    return terms;
+  }
+
+  function inTerm(session, term) {
+    return session.weeks.some(w => w >= term.start && w <= term.end);
+  }
+
+  function termWeeks(session, term) {
+    return session.weeks.filter(w => w >= term.start && w <= term.end);
+  }
+
   /* ---------- Overlaps ---------- */
 
   // Two classes only overlap if they share the day, the time AND a week.
@@ -491,7 +559,7 @@
   global.Schedule = {
     DAY_START, DAY_END, WEEKDAYS, WEEKDAYS_SHORT, COLUMNS, REQUIRED,
     readFile, normaliseRows, cleanRows, buildDataset,
-    sessionsOverlap, sharedWeeks, classDate, addDays, shortDate, formatTime,
+    sessionsOverlap, sharedWeeks, classDate, computeTerms, inTerm, termWeeks, addDays, shortDate, formatTime,
     parseTime, parseWeeks, programmeOf, programmeLabel, unitLabel, mentions,
   };
 })(window);

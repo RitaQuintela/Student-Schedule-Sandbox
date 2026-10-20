@@ -68,6 +68,12 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   (`MP_Man_SEI_S1_PA` → `MP_Man_SEI`, `MSc_Econ_1` → `MSc_Econ`, `ELEC_*` → "Electives (…)").
   Period filter = Unit (`S1` → Semester 1, `T2` → Term 2).
 
+## Trimesters (timetable dropdown)
+- `computeTerms` in `js/parser.js`: semester 1 = Units S1/T1/T2 → Trimester 1 and 2; semester 2 =
+  S2/T3/T4 → Trimester 3 and 4. A trimester's dates = weeks of the courses tagged with it; if one
+  trimester has no courses, it is the semester's other weeks before/after (flagged "inferred" on the
+  admin page). A semester with only S courses is one "Semester n" option. Default = today's trimester.
+
 ## Exam rules (input: Integrated Exams Planner, .xlsm/.xlsx)
 - Read the **ExamData** sheet (header row found by its labels, not by position): Period ID, Cycle,
   Season, Date, Course. Keep **Cycle = MSc** only. One exam per Period + Date + Course (the planner
@@ -93,7 +99,9 @@ block from the timetable back onto the course list, or click the small × on a b
 that course (the list turns red, "Drop here to remove …"); button shows
 "Added ✓" and "Remove ✕" on hover; added courses pinned at the top; section dropdown on the card
 with "✓ fits" / "⚠ overlaps"; Mon–Fri 08:00–20:00 grid in 1h30 blocks; overlaps in red (blocks,
-cards, banner); typical week or a specific week; .ics export (one event per real date,
+cards, banner); **Trimester** dropdown (no "typical week", no single weeks): the grid shows only
+classes with a week inside the chosen trimester; course cards show day/time/section/room only
+(no week counts); .ics export (one event per real date,
 TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
 (`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta** tab (purple, on the line under the
 header) and a centered beta disclaimer in the footer (replaces the old "Always confirm your final enrollment" line) ("use it, but always check the information"). Subtitle:

@@ -24,8 +24,9 @@ to put together their own weekly timetable.
 5. **Check for overlaps.** Clashing classes turn **red** on the timetable and on the course
    card, and a red banner lists them. Two classes only clash if they happen on the same day,
    at the same time, in at least one of the same weeks.
-6. **Look at a specific week.** Use **Show** to switch from the typical week to a particular
-   week (some classes skip holidays, and Term 2 courses only start mid-semester).
+6. **Pick the trimester.** Use **Trimester** to switch between the two trimesters of the semester
+   (e.g. Trimester 1 and Trimester 2). Each shows only the classes that happen in it; semester-long
+   courses appear in both. Overlaps are only counted when classes really happen in the same week.
 7. **Save it to your calendar.** **Export to calendar (.ics)** creates one event for every real
    class date (Lisbon time). Open the file with Google Calendar, Outlook or Apple Calendar.
    **Print / PDF** gives you a printable timetable.
@@ -50,7 +51,8 @@ between days.
 
 1. Export the timetable from the scheduling system ("Bullet extraction", `.xlsx` or `.csv`).
 2. Open **`admin.html`** and upload the file. Nothing is sent anywhere; it's read in your browser.
-3. Read the **summary** (courses, sections, weekly classes) and the **problems to review**:
+3. Read the **summary** (courses, sections, weekly classes), the **trimester dates** students will
+   see, and the **problems to review**:
    - **Errors** (red) must be fixed in the file before you can continue.
    - **Warnings** (amber) don't block you, but check them. For example, “PLs were paired
      by section number” means the file has no pairing notes for that course.

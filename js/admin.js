@@ -79,6 +79,14 @@
     ];
     $('stats').innerHTML = tiles.map(([n, l]) => `<div class="stat"><div class="num">${esc(n)}</div><div class="lbl">${esc(l)}</div></div>`).join('');
 
+    // Trimesters students can choose on the timetable (dates come from the Units).
+    $('terms-info').innerHTML = d.terms.length
+      ? `<ul class="issues">${d.terms.map(t => `<li class="${t.inferred ? 'warning' : 'info'}">${t.inferred ? '⚠' : 'ℹ'} <b>${esc(t.label)}</b>: ` +
+          `${S.shortDate(t.start)} – ${S.shortDate(S.addDays(t.end, 4))}` +
+          (t.inferred ? ' – no courses are tagged with this trimester, so these dates are the rest of the semester. Please check.' : '') +
+          '</li>').join('')}</ul>`
+      : '';
+
     const errors = d.issues.filter(i => i.level === 'error');
     const warnings = d.issues.filter(i => i.level === 'warning');
     if (!errors.length && !warnings.length) {

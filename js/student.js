@@ -67,7 +67,7 @@
   const todayIdx = (new Date().getDay() + 6) % 7;
   const state = {
     selections: new Map(), // course code -> { option: id, color: index }, in the order added
-    week: 'typical',
+    term: '',            // trimester shown on the timetable (e.g. 'T1')
     search: '',
     programme: '',
     unit: '',
@@ -81,14 +81,17 @@
     const option = course.options.some(o => o.id === sel.option) ? sel.option : course.options[0].id;
     state.selections.set(code, { option, color: Number(sel.color) || 0 });
   });
-  if (saved.week && (saved.week === 'typical' || data.weeks.includes(saved.week))) state.week = saved.week;
+  // Show the saved trimester, else the one happening today, else the first.
+  const todayIso = new Date().toISOString().slice(0, 10);
+  const currentTerm = data.terms.find(t => todayIso >= t.start && todayIso <= S.addDays(t.end, 6));
+  state.term = (data.terms.find(t => t.id === saved.term) || currentTerm || data.terms[0] || { id: '' }).id;
   if (saved.programme && data.programmes.some(p => p.code === saved.programme)) state.programme = saved.programme;
   if (saved.unit && data.units.some(u => u.code === saved.unit)) state.unit = saved.unit;
 
   function persist() {
     save(STORE_KEY, {
       selections: [...state.selections],
-      week: state.week,
+      term: state.term,
       programme: state.programme,
       unit: state.unit,
     });
@@ -134,8 +137,18 @@
     });
   }
 
-  function inShownWeek(session) {
-    return state.week === 'typical' || session.weekSet.has(state.week);
+  function shownTerm() {
+    return data.terms.find(t => t.id === state.term) || null;
+  }
+
+  // Classes shown on the grid: those with at least one week in the chosen trimester.
+  function inShownTerm(session) {
+    const term = shownTerm();
+    return !term || S.inTerm(session, term);
+  }
+
+  function termRange(term) {
+    return `${S.shortDate(term.start)} – ${S.shortDate(S.addDays(term.end, 4))}`;
   }
 
   // All overlapping pairs between different selected courses.
@@ -193,9 +206,8 @@
       data.units.map(u => `<option value="${esc(u.code)}">${esc(u.label)}</option>`).join('');
     $('programme').value = state.programme;
     $('unit').value = state.unit;
-    $('week').innerHTML = '<option value="typical">Typical week (all classes)</option>' +
-      data.weeks.map(w => `<option value="${w}">Week of ${S.shortDate(w)} – ${S.shortDate(S.addDays(w, 4))}</option>`).join('');
-    $('week').value = state.week;
+    $('week').innerHTML = data.terms.map(t => `<option value="${t.id}">${t.label} · ${termRange(t)}</option>`).join('');
+    $('week').value = state.term;
   }
 
   function renderList(list, clashes) {
@@ -245,7 +257,7 @@
       const allDates = s.weeks.map(w => S.shortDate(S.classDate(w, s.day))).join(', ');
       return `<li class="${clashIds.has(s.id) ? 'clash' : ''}" title="Dates: ${esc(allDates)}">
         <span class="when">${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}</span>
-        <span class="what">${esc(sectionLabel(s))}${s.room ? ' · ' + esc(s.room) : ''} · ${weeksText(s.weeks)}</span></li>`;
+        <span class="what">${esc(sectionLabel(s))}${s.room ? ' · ' + esc(s.room) : ''}</span></li>`;
     }).join('');
 
     const notes = [...new Set(entry.option.sections.flatMap(s => s.studentNotes))]
@@ -310,14 +322,14 @@
   }
 
   function renderTimetable(list, clashes) {
-    const shownClashes = state.week === 'typical' ? clashes : clashes.filter(c => c.weeks.includes(state.week));
+    const term = shownTerm();
+    const shownClashes = term ? clashes.filter(c => c.weeks.some(w => w >= term.start && w <= term.end)) : clashes;
     const clashIds = new Set(shownClashes.flatMap(c => [c.a.id, c.b.id]));
     const clashDays = new Set(shownClashes.map(c => c.a.day));
 
     let html = '<div class="tt-corner"></div>';
     S.WEEKDAYS.forEach((d, i) => {
-      const date = state.week === 'typical' ? '' : `<small>${S.shortDate(S.classDate(state.week, i))}</small>`;
-      html += `<div class="tt-dayhead${i === state.day ? ' current' : ''}">${d}${date}</div>`;
+      html += `<div class="tt-dayhead${i === state.day ? ' current' : ''}">${d}</div>`;
     });
     html += '<div class="tt-times">';
     for (let b = 0; b < BLOCKS; b++) html += `<div class="tt-time">${S.formatTime(S.DAY_START + b * 90)}</div>`;
@@ -327,7 +339,7 @@
     S.WEEKDAYS.forEach((d, day) => {
       const items = [];
       list.forEach(e => e.option.sessions.forEach(s => {
-        if (s.day === day && inShownWeek(s) && s.end > S.DAY_START && s.start < S.DAY_END) items.push({ e, s });
+        if (s.day === day && inShownTerm(s) && s.end > S.DAY_START && s.start < S.DAY_END) items.push({ e, s });
       }));
       shownCount += items.length;
       html += `<div class="tt-day${day === state.day ? ' current' : ''}" style="height:calc(var(--block-h) * ${BLOCKS})">`;
@@ -347,7 +359,10 @@
           <b>${clash && lanes === 1 ? '⚠ ' : ''}${esc(courseTitle(e.course))}</b>
           <span>${esc(sectionLabel(s))} · ${timeRange(s)}</span>
           ${s.room ? `<span>${esc(s.room)}</span>` : ''}
-          ${state.week === 'typical' ? `<span class="partial">${s.weeks.length} wk${s.weeks.length === 1 ? '' : 's'} · from ${S.shortDate(S.classDate(s.weeks[0], s.day))}</span>` : ''}
+          ${(() => {
+            const wk = term ? S.termWeeks(s, term) : s.weeks;
+            return `<span class="partial">${wk.length} wk${wk.length === 1 ? '' : 's'} · from ${S.shortDate(S.classDate(wk[0], s.day))}</span>`;
+          })()}
         </div>`;
       });
       html += '</div>';
@@ -356,7 +371,7 @@
     if (!list.length) {
       html += `<div class="tt-empty">Your timetable is empty.<br>Add courses with “+ Add” or drag them here.</div>`;
     } else if (!shownCount) {
-      html += `<div class="tt-empty">None of your courses have classes in this week.</div>`;
+      html += `<div class="tt-empty">None of your courses have classes in this trimester.</div>`;
     }
     $('timetable').innerHTML = html;
 
@@ -388,9 +403,11 @@
       banner.innerHTML = `<strong>⚠ ${items.length} overlap${items.length === 1 ? '' : 's'} in your timetable.</strong> Try another section for one of these courses:<ul>${items.join('')}</ul>`;
       return;
     }
-    const weekly = list.reduce((n, e) => n + e.option.sessions.length, 0);
+    const term = shownTerm();
+    const weekly = list.reduce((n, e) => n + e.option.sessions.filter(inShownTerm).length, 0);
     banner.className = 'banner ok';
-    banner.textContent = `✓ No overlaps · ${list.length} course${list.length === 1 ? '' : 's'} · ${weekly} class${weekly === 1 ? '' : 'es'} in a typical week`;
+    banner.textContent = `✓ No overlaps · ${list.length} course${list.length === 1 ? '' : 's'} · ${weekly} class${weekly === 1 ? '' : 'es'} a week` +
+      (term ? ` in ${term.label}` : '');
   }
 
   // Colour key under the timetable, like the one at the foot of the study plans.
@@ -495,9 +512,8 @@
     renderTimetable(list, clashes);
     renderBanner(list, clashes);
     renderLegend(list, clashes);
-    $('bar-week').textContent = state.week === 'typical'
-      ? '· typical week'
-      : `· ${S.shortDate(state.week)} – ${S.shortDate(S.addDays(state.week, 4))}`;
+    const term = shownTerm();
+    $('bar-week').textContent = term ? `· ${term.label} · ${termRange(term)}` : '';
     $('switch-count').textContent = list.length ? `(${list.length})` : '';
     persist();
   }
@@ -593,9 +609,8 @@
 
   function preparePrint() {
     const list = entries();
-    $('print-week').textContent = state.week === 'typical'
-      ? 'Typical week (all classes)'
-      : `Week of ${S.shortDate(state.week)} – ${S.shortDate(S.addDays(state.week, 4))}`;
+    const term = shownTerm();
+    $('print-week').textContent = term ? `${term.label} · ${termRange(term)}` : '';
     $('print-list').innerHTML = list.map(e =>
       `<p><b>${esc(e.course.name)}</b> (${esc(e.course.code)}) – ${esc(e.option.label)}: ` +
       e.option.sessions.map(s => `${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}${s.room ? ' ' + esc(s.room) : ''}`).join('; ') + '</p>').join('');
@@ -606,7 +621,7 @@
   $('search').addEventListener('input', e => { state.search = e.target.value; update(); });
   $('programme').addEventListener('change', e => { state.programme = e.target.value; update(); });
   $('unit').addEventListener('change', e => { state.unit = e.target.value; update(); });
-  $('week').addEventListener('change', e => { state.week = e.target.value; update(); });
+  $('week').addEventListener('change', e => { state.term = e.target.value; update(); });
 
   $('course-list').addEventListener('click', e => {
     const btn = e.target.closest('button[data-act]');
