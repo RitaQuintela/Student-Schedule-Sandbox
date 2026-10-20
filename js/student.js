@@ -206,7 +206,7 @@
       data.units.map(u => `<option value="${esc(u.code)}">${esc(u.label)}</option>`).join('');
     $('programme').value = state.programme;
     $('unit').value = state.unit;
-    $('week').innerHTML = data.terms.map(t => `<option value="${t.id}">${t.label} · ${termRange(t)}</option>`).join('');
+    $('week').innerHTML = data.terms.map(t => `<option value="${t.id}">${t.label}</option>`).join('');
     $('week').value = state.term;
   }
 
@@ -358,12 +358,7 @@
           <button class="ev-remove" data-code="${esc(e.course.code)}" title="Remove ${esc(e.course.name)} from my timetable" aria-label="Remove ${esc(e.course.name)}">×</button>
           <b>${clash && lanes === 1 ? '⚠ ' : ''}${esc(courseTitle(e.course))}</b>
           <span>${esc(sectionLabel(s))} · ${timeRange(s)}</span>
-          ${s.room ? `<span>${esc(s.room)}</span>` : ''}
-          ${(() => {
-            const wk = term ? S.termWeeks(s, term) : s.weeks;
-            return `<span class="partial">${wk.length} wk${wk.length === 1 ? '' : 's'} · from ${S.shortDate(S.classDate(wk[0], s.day))}</span>`;
-          })()}
-        </div>`;
+          ${s.room ? `<span>${esc(s.room)}</span>` : ''}        </div>`;
       });
       html += '</div>';
     });
