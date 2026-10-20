@@ -386,13 +386,22 @@
       banner.textContent = 'Start by adding courses from the list. Each course lets you choose between its sections.';
       return;
     }
-    if (clashes.length) {
+    // The banner follows the trimester dropdown: only overlaps in weeks of the
+    // trimester shown, with a short pointer to overlaps in the other trimester(s).
+    const term = shownTerm();
+    const inTermWeeks = t => w => w >= t.start && w <= t.end;
+    const termClashes = term ? clashes.filter(c => c.weeks.some(inTermWeeks(term))) : clashes;
+    const elsewhere = term
+      ? data.terms.filter(t => t !== term && clashes.some(c => c.weeks.some(inTermWeeks(t)))).map(t => t.label)
+      : [];
+    const otherNote = elsewhere.length ? ` There are also overlaps in ${elsewhere.join(' and ')}.` : '';
+    if (termClashes.length) {
       // One line per pair of courses and time slot.
       const lines = new Map();
-      clashes.forEach(c => {
+      termClashes.forEach(c => {
         const key = [c.x.course.code, c.y.course.code, c.a.day, c.a.start, c.b.start].join('|');
         const prev = lines.get(key);
-        const weeks = new Set([...(prev ? prev.weeks : []), ...c.weeks]);
+        const weeks = new Set([...(prev ? prev.weeks : []), ...(term ? c.weeks.filter(inTermWeeks(term)) : c.weeks)]);
         lines.set(key, { c, weeks });
       });
       const items = [...lines.values()].map(({ c, weeks }) => {
@@ -400,21 +409,21 @@
         return `<li><b>${esc(c.x.course.name)}</b> (${esc(sectionLabel(c.a))}) and <b>${esc(c.y.course.name)}</b> (${esc(sectionLabel(c.b))}) · ${S.WEEKDAYS_SHORT[c.a.day]} ${timeRange(c.a)} / ${timeRange(c.b)} · ${weeksText(w)}</li>`;
       });
       banner.className = 'banner bad';
-      banner.innerHTML = `<strong>⚠ ${items.length} overlap${items.length === 1 ? '' : 's'} in your timetable.</strong> Try another section for one of these courses:<ul>${items.join('')}</ul>`;
+      banner.innerHTML = `<strong>⚠ ${items.length} overlap${items.length === 1 ? '' : 's'} in ${term ? esc(term.label) : 'your timetable'}.</strong> ` +
+        `Try another section for one of these courses:<ul>${items.join('')}</ul>${esc(otherNote)}`;
       return;
     }
-    const term = shownTerm();
     const weekly = list.reduce((n, e) => n + e.option.sessions.filter(inShownTerm).length, 0);
-    banner.className = 'banner ok';
-    banner.textContent = `✓ No overlaps · ${list.length} course${list.length === 1 ? '' : 's'} · ${weekly} class${weekly === 1 ? '' : 'es'} a week` +
-      (term ? ` in ${term.label}` : '');
+    banner.className = elsewhere.length ? 'banner warn' : 'banner ok';
+    banner.textContent = `✓ No overlaps in ${term ? term.label : 'your timetable'} · ${list.length} course${list.length === 1 ? '' : 's'} · ` +
+      `${weekly} class${weekly === 1 ? '' : 'es'} a week.` + otherNote;
   }
 
   // Colour key under the timetable, like the one at the foot of the study plans.
   function renderLegend(list, clashes) {
     $('legend').innerHTML = list.map(e =>
       `<span style="--chip-fg:${e.color[0]};--chip-bg:${e.color[1]}">${esc(e.course.name)} · ${esc(e.option.label)}</span>`).join('') +
-      (clashes.length ? '<span class="clash">⚠ Overlap</span>' : '');
+      (document.querySelector('.event.clash') ? '<span class="clash">⚠ Overlap</span>' : '');
   }
 
   /* ---------- Rendering: exam calendar ---------- */
