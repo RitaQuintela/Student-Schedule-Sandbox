@@ -4,6 +4,10 @@ Web app for Católica Lisbon master students to build a weekly timetable by
 combining courses and choosing sections. The owner is not a developer: explain
 changes in plain language.
 
+**Wording:** always write "Master" (never "Master's") and "Program(s)" (never "Programme(s)")
+in anything users or readers see: UI text, messages, templates, docs. Internal code names
+(`programmeOf`, the `programme` filter id and saved setting) are kept so saved choices still work.
+
 ## Tech constraints
 - Plain HTML, CSS and JavaScript. No frameworks, no build step, no npm.
 - Must work by opening `index.html` directly (file://). That is why the data is
@@ -13,8 +17,8 @@ changes in plain language.
 - Look follows the **Católica-Lisbon SBE Brand Guidelines 2026 (v2.3)**, with the layout
   structure of the Master Programs study plans (header bars, flat blocks, colour legend):
   - Institutional Blue `#0061FF` = main colour (header, bars, buttons, links, day headers).
-  - Masters purple `#B78BFC` (`#946FF1` on white, digital) = accent (header line, tags, notes, focus).
-  - Complementary black `#131313`, grey `#F3F3F3`, white. Course colours = brand programme
+  - Master purple `#B78BFC` (`#946FF1` on white, digital) = accent (header line, tags, notes, focus).
+  - Complementary black `#131313`, grey `#F3F3F3`, white. Course colours = brand program
     colours as stripe + light tint (see `COLORS` in `js/student.js`). Red `#C0262D` only for overlaps.
   - Never use the logo's Bright Blue `#003CA5` outside the logo. No navy/gold (old identity).
   - Typeface Barlow, vendored in `vendor/fonts` (SIL OFL).
@@ -58,12 +62,12 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
 - Admin warnings: unpaired PL, auto-paired by number, unpaired lecture, times outside 08:00–20:00
   (kept, clipped in the grid), non-weekday rows (skipped), invalid times, missing values, duplicates,
   same code with different names. Errors (missing columns, no usable rows) block applying.
-- Programme filter: StudentGroup with the class/group suffix removed
+- Program filter: StudentGroup with the class/group suffix removed
   (`MP_Man_SEI_S1_PA` → `MP_Man_SEI`, `MSc_Econ_1` → `MSc_Econ`, `ELEC_*` → "Electives (…)").
   Period filter = Unit (`S1` → Semester 1, `T2` → Term 2).
 
 ## Student features
-Search + programme/period filters; "+ Add" or drag a card onto the timetable; drag a class
+Search + program/period filters; "+ Add" or drag a card onto the timetable; drag a class
 block from the timetable back onto the course list, or click the small × on a block, to remove
 that course (the list turns red, "Drop here to remove …"); button shows
 "Added ✓" and "Remove ✕" on hover; added courses pinned at the top; section dropdown on the card

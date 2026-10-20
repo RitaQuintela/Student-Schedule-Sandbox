@@ -10,8 +10,8 @@ to put together their own weekly timetable.
 
 ## For students
 
-1. **Open the app.** Open `index.html` (or the website link your programme shares).
-2. **Find your courses.** Search by name, acronym or code, or filter by programme and period.
+1. **Open the app.** Open `index.html` (or the website link your program shares).
+2. **Find your courses.** Search by name, acronym or code, or filter by program and period.
 3. **Add a course.** Click **+ Add**, or drag the course onto the timetable.
    The button changes to **Added ✓**. Click it again to remove the course (it shows **Remove ✕**),
    or click the small **×** on one of its classes in the timetable (you can also drag a class
@@ -63,7 +63,7 @@ Download the **Excel template** from the admin page. The key rules:
 | WeekdayName, StartTime, EndTime | Monday–Friday, between 08:00 and 20:00. |
 | Week | The Mondays of the weeks the class happens, e.g. `2026-10-26,2026-11-02`. Leave out holiday weeks. |
 | Unit | The period: S1, T2… (used for the period filter). |
-| StudentGroup | Programme groups, comma-separated (used for the programme filter). |
+| StudentGroup | Program groups, comma-separated (used for the program filter). |
 | Annotations | On **T** rows: which PLs go with this T, e.g. `For PL-G1, PL-G2 and PL-E1.` Any other note (e.g. “Online course…”) is shown to students. |
 
 **T/PL pairing:** a PL that isn't mentioned in any T note goes with the T section that has

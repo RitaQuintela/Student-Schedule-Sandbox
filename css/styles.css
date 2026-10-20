@@ -1,7 +1,7 @@
 /*
  * Schedule Sandbox – Católica-Lisbon SBE brand (Brand Guidelines 2026, v2.3).
  * - Institutional Blue #0061FF is the main colour (bars, buttons, links).
- * - Masters purple #B78BFC (with #946FF1 on white, digital) is the accent.
+ * - Master purple #B78BFC (with #946FF1 on white, digital) is the accent.
  * - Complementary: black #131313, grey #F3F3F3, white.
  * - Typeface: Barlow (vendored, SIL OFL).
  * - The logo's Bright Blue #003CA5 is for the logo only and is not used here.
@@ -19,8 +19,8 @@
   --blue: #0061FF;          /* Azul Institucional */
   --blue-dark: #004FD1;     /* hover only */
   --blue-tint: #E5EFFF;
-  --purple: #B78BFC;        /* Roxo Masters of Science */
-  --purple-ink: #946FF1;    /* Masters purple on white, digital */
+  --purple: #B78BFC;        /* Roxo Masters of Science (brand book name) */
+  --purple-ink: #946FF1;    /* Master purple on white, digital */
   --purple-tint: #F2EBFF;
   --ink: #131313;
   --grey: #F3F3F3;
@@ -49,7 +49,7 @@ a { color: var(--blue); }
 .app-header {
   background: var(--blue);
   color: #fff;
-  /* Masters purple line, as in the brand's "linha" graphic element */
+  /* Master purple line, as in the brand's "linha" graphic element */
   border-bottom: 4px solid var(--purple);
 }
 .app-header .inner {

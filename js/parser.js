@@ -140,7 +140,7 @@
     return a.name.localeCompare(b.name, undefined, { numeric: true });
   }
 
-  /* ---------- Programmes and periods (for the student filters) ---------- */
+  /* ---------- Programs and periods (for the student filters) ---------- */
 
   // MP_Man_SEI_S1_PA -> MP_Man_SEI, MP_Fin_S3_PB -> MP_Fin, MSc_Econ_1 -> MSc_Econ
   function programmeOf(group) {

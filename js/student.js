@@ -11,7 +11,7 @@
   const BLOCKS = (S.DAY_END - S.DAY_START) / 90; // 8 blocks of 1h30
   const SPAN = S.DAY_END - S.DAY_START;
 
-  // Course colours from the brand book's programme palette: [stripe, light tint]
+  // Course colours from the brand book's program palette: [stripe, light tint]
   const COLORS = [
     ['#0061FF', '#E5EFFF'], ['#946FF1', '#F0EAFE'], ['#6CC9CC', '#E2F5F5'], ['#5C8AF6', '#E6EEFE'],
     ['#64C5B8', '#E1F4F1'], ['#655FC4', '#E9E8F8'], ['#54B5D3', '#E1F2F8'], ['#B78BFC', '#F4EEFF'],
@@ -171,7 +171,7 @@
   /* ---------- Rendering: course list ---------- */
 
   function renderFilters() {
-    $('programme').innerHTML = '<option value="">All programmes</option>' +
+    $('programme').innerHTML = '<option value="">All programs</option>' +
       data.programmes.map(p => `<option value="${esc(p.code)}">${esc(p.label)}</option>`).join('');
     $('unit').innerHTML = '<option value="">All periods</option>' +
       data.units.map(u => `<option value="${esc(u.code)}">${esc(u.label)}</option>`).join('');

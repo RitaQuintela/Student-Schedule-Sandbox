@@ -90,7 +90,7 @@
         (warnings.length ? `<p class="lead" style="margin-top:10px"><b>${warnings.length} warning(s)</b> – the file can be applied, but please check these.</p>${list(warnings)}` : '');
     }
 
-    $('courses').innerHTML = '<tr><th>Course</th><th>Code</th><th>Period</th><th>Programmes</th><th>Choices for students</th></tr>' +
+    $('courses').innerHTML = '<tr><th>Course</th><th>Code</th><th>Period</th><th>Programs</th><th>Choices for students</th></tr>' +
       d.courses.map(c => `<tr><td>${esc(c.name)}</td><td>${esc(c.code)}</td><td>${esc(c.units.join(', '))}</td>
         <td>${esc(c.programmes.join(', '))}</td><td>${c.options.map(o => esc(o.label)).join('<br>')}</td></tr>`).join('');
 
@@ -157,7 +157,7 @@
       ['WeekdayName: Monday to Friday. StartTime/EndTime: HH:MM between 08:00 and 20:00.'],
       ['Week: the Mondays of the weeks the class happens, as YYYY-MM-DD, separated by commas.'],
       ['Unit: the period, e.g. S1 (semester) or T2 (term).'],
-      ['StudentGroup: programme groups, separated by commas (e.g. MP_Fin_S1_PA). Used for the programme filter.'],
+      ['StudentGroup: program groups, separated by commas (e.g. MP_Fin_S1_PA). Used for the program filter.'],
       ['Annotations on T rows pair them with PLs: "For PL-G1 and PL-G2." Other notes are shown to students.'],
     ]);
     help['!cols'] = [{ wch: 110 }];
