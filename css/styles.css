@@ -71,28 +71,34 @@ a { color: var(--blue); }
 
 /* ---------- Beta label and disclaimer ---------- */
 
-.beta {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 6px;
-  padding: 1px 7px;
+/* "Beta" as a tab sitting on the purple line under the header */
+.app-header .inner { position: relative; }
+.beta-tab {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
+  padding: 3px 14px 2px;
   background: var(--purple);
   color: var(--ink);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: .08em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  border-radius: var(--radius);
+  border-radius: 6px 6px 0 0;
+  line-height: 1.3;
 }
+.app-header .title { padding-bottom: 14px; }
 .beta-note {
   max-width: 1440px;
   margin: 12px auto 0;
-  padding: 8px 14px;
+  padding: 8px 20px;
   background: var(--purple-tint);
-  border-left: 4px solid var(--purple-ink);
+  border-top: 1px solid var(--purple);
+  border-bottom: 1px solid var(--purple);
+  text-align: center;
   font-size: 14px;
 }
-@media (max-width: 860px) { .beta-note { margin: 10px 16px 0; font-size: 13px; } }
+@media (max-width: 860px) { .beta-note { margin: 10px 16px 0; font-size: 13px; padding: 8px 12px; } .beta-tab { right: 16px; } }
 @media print { .beta-note { font-size: 10px; margin: 0 0 6px; } }
 
 /* ---------- Notices ---------- */

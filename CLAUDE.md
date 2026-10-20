@@ -95,9 +95,9 @@ that course (the list turns red, "Drop here to remove …"); button shows
 with "✓ fits" / "⚠ overlaps"; Mon–Fri 08:00–20:00 grid in 1h30 blocks; overlaps in red (blocks,
 cards, banner); typical week or a specific week; .ics export (one event per real date,
 TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
-(`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta** label and
-a beta disclaimer ("use it, but always check the information"). Subtitle: "Plan your terms,
-compare courses and spot clashes before you enroll."
+(`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta** tab (purple, on the line under the
+header) and a centered beta disclaimer ("use it, but always check the information"). Subtitle:
+"Plan your classes and exams, create your schedule, and avoid overlaps before your enrollment day."
 
 ## Privacy
 Raw exports contain staff usernames/emails (CreatedUser, LastModifiedUser). They are
