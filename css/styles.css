@@ -89,8 +89,7 @@ a { color: var(--blue); }
 }
 .app-header .title { padding-bottom: 14px; }
 .beta-note {
-  max-width: 1440px;
-  margin: 12px auto 0;
+  margin: 0 0 10px;
   padding: 8px 20px;
   background: var(--purple-tint);
   border-top: 1px solid var(--purple);
@@ -98,7 +97,7 @@ a { color: var(--blue); }
   text-align: center;
   font-size: 14px;
 }
-@media (max-width: 860px) { .beta-note { margin: 10px 16px 0; font-size: 13px; padding: 8px 12px; } .beta-tab { right: 16px; } }
+@media (max-width: 860px) { .beta-note { font-size: 13px; padding: 8px 12px; } .beta-tab { right: 16px; } }
 @media print { .beta-note { font-size: 10px; margin: 0 0 6px; } }
 
 /* ---------- Notices ---------- */
@@ -494,6 +493,7 @@ a { color: var(--blue); }
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px 24px;
+  text-align: center;
   font-size: 12px;
   color: var(--muted);
 }
@@ -566,7 +566,7 @@ a { color: var(--blue); }
   :root { --block-h: 52px; }
   body { background: #fff; font-size: 11px; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .sidebar, .tt-toolbar, .day-tabs, .mobile-switch, .notice, .app-footer, .hint, .ev-remove, .tt-panel > .bar { display: none !important; }
+  .sidebar, .tt-toolbar, .day-tabs, .mobile-switch, .notice, .app-footer > a, .hint, .ev-remove, .tt-panel > .bar { display: none !important; }
   .student { display: block; padding: 0; }
   .student .tt-panel { display: block !important; border: 0; }
   .student .ex-panel { display: block !important; border: 0; break-before: page; }

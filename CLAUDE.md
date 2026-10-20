@@ -96,8 +96,8 @@ with "✓ fits" / "⚠ overlaps"; Mon–Fri 08:00–20:00 grid in 1h30 blocks; o
 cards, banner); typical week or a specific week; .ics export (one event per real date,
 TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
 (`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta** tab (purple, on the line under the
-header) and a centered beta disclaimer ("use it, but always check the information"). Subtitle:
-"Plan your classes and exams, create your schedule, and avoid overlaps before your enrollment day."
+header) and a centered beta disclaimer in the footer (replaces the old "Always confirm your final enrollment" line) ("use it, but always check the information"). Subtitle:
+"Plan your classes and exams, try different schedule options, and avoid overlaps before enrollment."
 
 ## Privacy
 Raw exports contain staff usernames/emails (CreatedUser, LastModifiedUser). They are
