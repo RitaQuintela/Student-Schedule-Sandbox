@@ -70,7 +70,9 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   (kept, clipped in the grid), non-weekday rows (skipped), invalid times, missing values, duplicates,
   same code with different names. Errors (missing columns, no usable rows) block applying.
 - Program filter: StudentGroup with the class/group suffix removed
-  (`MP_Man_SEI_S1_PA` → `MP_Man_SEI`, `MSc_Econ_1` → `MSc_Econ`, `ELEC_*` → "Electives (…)").
+  (`MP_Man_SEI_S1_PA` → `MP_Man_SEI`, `MSc_Econ_1` → `MSc_Econ`), shown with the full names in
+  `PROGRAM_NAMES` (`js/parser.js`, names given by the owner, e.g. `MP_Fin` → "Masters in Finance").
+  A code not in that list shows as the code and the admin gets a warning to send its name.
   Period filter = Unit (`S1` → Semester 1, `T2` → Term 2).
 
 ## Trimesters (timetable dropdown)

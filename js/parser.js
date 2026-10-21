@@ -147,7 +147,24 @@
     return group.replace(/_S\d+(_P[A-Z0-9]+)?$/i, '').replace(/_\d+$/, '');
   }
 
+  // Full program names for the Program filter, given by the program office.
+  // A code that isn't listed here shows as the code itself, and the admin page warns.
+  const PROGRAM_NAMES = {
+    ELEC_MSC_MAN: 'Electives in Management',
+    MP_Fin: 'Masters in Finance',
+    MP_Man_ICF: 'Intl MSc Management (Corporate Finance)',
+    MP_Man_IEI: 'Intl MSc Management (Entrepreneurship & Innovation)',
+    MP_Man_IMkt: 'Intl MSc Management (Marketing)',
+    MP_Man_ISC: 'Intl MSc Management (Strategy & Consulting)',
+    MP_Man_SEI: 'MSc Management (Strategy, Entrepreneurship & Impact)',
+    MP_Man_SMkt: 'MSc Management (Strategic Marketing)',
+    MSc_Bus: 'MSc Business',
+    MSc_Bus_Analytics: 'MSc Business Analytics',
+    MSc_Econ: 'MSc Economics',
+  };
+
   function programmeLabel(code) {
+    if (PROGRAM_NAMES[code]) return PROGRAM_NAMES[code];
     const elec = code.match(/^ELEC_?(.*)$/i);
     if (elec) return 'Electives' + (elec[1] ? ' (' + elec[1].replace(/_/g, ' ') + ')' : '');
     return code.replace(/_/g, ' ');
@@ -352,6 +369,11 @@
     });
 
     if (!list.length) add('error', 'No usable rows were found in this file.');
+
+    const unnamed = [...programmes.keys()].filter(p => !PROGRAM_NAMES[p]).sort();
+    if (unnamed.length) {
+      add('warning', `Program code(s) without a full name: ${unnamed.join(', ')}. Students see the code in the Program filter; send the full name(s) to be added.`);
+    }
 
     const terms = computeTerms(list);
 
