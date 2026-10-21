@@ -36,8 +36,9 @@ to put together their own weekly timetable.
    of your exams fall on the same day; **orange** means exams on consecutive days. Each course card
    also lists its exam dates. Exam times and rooms aren't included yet.
 
-> **Beta version.** Use it to plan, but always check the information against the official class
-> timetable and exam calendar.
+> **Beta version.** Schedule Sandbox is only a planning tool: it does not enroll you in anything.
+> Use it to plan your enrollment on the official platforms, and always check the information against
+> the official class timetable and exam calendar.
 
 Your choices are remembered in this browser, so you can come back later. On a phone,
 switch between **Courses** and **Timetable** at the top, and use the day tabs to move
