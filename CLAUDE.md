@@ -19,7 +19,7 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
   - Institutional Blue `#0061FF` = main colour (header, bars, buttons, links, day headers).
   - Master purple `#B78BFC` (`#946FF1` on white, digital) = accent (header line, tags, notes, focus).
   - Complementary black `#131313`, grey `#F3F3F3`, white. Course colours = brand program
-    colours as stripe + light tint (see `COLORS` in `js/student.js`). Red `#C0262D` only for overlaps.
+    colours as stripe + light tint (see `COLORS` in `js/student.js`). Red `#C0262D` only for overlaps; removing a course (Remove ✕, the × on blocks, drag-to-remove) uses black `#131313`.
   - Never use the logo's Bright Blue `#003CA5` outside the logo. No navy/gold (old identity).
   - Typeface Barlow, vendored in `vendor/fonts` (SIL OFL).
   - Logo: `assets/logo-clsbe-white.svg` on blue (colour version `assets/logo-clsbe.svg` for white

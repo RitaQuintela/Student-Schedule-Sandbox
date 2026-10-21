@@ -199,8 +199,8 @@ a { color: var(--blue); }
   flex-direction: column;
   max-height: calc(100vh - 24px);
 }
-.sidebar.drop-remove { outline: 3px dashed var(--red); outline-offset: -3px; }
-.sidebar.drop-remove .bar { background: var(--red); }
+.sidebar.drop-remove { outline: 3px dashed var(--ink); outline-offset: -3px; }   /* removing a course: black, red is only for overlaps */
+.sidebar.drop-remove .bar { background: var(--ink); }
 .filters { padding: 12px; display: grid; gap: 10px; border-bottom: 1px solid var(--border); }
 .filters { grid-template-columns: minmax(0, 1fr); }
 /* Fields never grow wider than the sidebar: long program names are cut with "…" when closed. */
@@ -260,7 +260,7 @@ a { color: var(--blue); }
 .add-btn:hover { background: var(--blue); color: #fff; }
 .add-btn .when-hover { display: none; }
 .add-btn.is-added { background: var(--blue); color: #fff; }
-.add-btn.is-added:hover, .add-btn.is-added:focus-visible { background: var(--red); border-color: var(--red); color: #fff; }
+.add-btn.is-added:hover, .add-btn.is-added:focus-visible { background: var(--ink); border-color: var(--ink); color: #fff; }
 .add-btn.is-added:hover .when-idle, .add-btn.is-added:focus-visible .when-idle { display: none; }
 .add-btn.is-added:hover .when-hover, .add-btn.is-added:focus-visible .when-hover { display: inline; }
 
@@ -401,7 +401,7 @@ a { color: var(--blue); }
   text-align: center;
   cursor: pointer;
 }
-.ev-remove:hover { background: var(--red); color: #fff; }
+.ev-remove:hover { background: var(--ink); color: #fff; }
 
 .tt-empty {
   position: absolute;
