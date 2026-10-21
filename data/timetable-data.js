@@ -2,7 +2,7 @@
  * To publish a new timetable, replace this file with the one downloaded
  * from the admin page (admin.html). Do not edit by hand. */
 window.SCHEDULE_DATA = {
- "generatedAt": "2026-10-21T09:23:01.597Z",
+ "generatedAt": "2026-10-21T09:43:55.092Z",
  "source": "Bullet extraction T1_T2 MSc v2.csv",
  "rows": [
   {
