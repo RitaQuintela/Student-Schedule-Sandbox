@@ -49,11 +49,13 @@
     </details>
 
     <h2 style="margin-top:20px">3. Apply</h2>
-    <p class="lead">“Preview” shows this timetable in the student view, only in this browser, so you can check it. “Download data file” gives you <code>timetable-data.js</code>, the file that publishes it for students (see the README).</p>
+    <p class="lead">“Preview” shows this timetable in the student view, only in this browser, so you can check it. “Publish to students” puts it on the live site (set up once under <a href="#publishing">Publishing settings</a>). “Download data file” gives you <code>timetable-data.js</code> to publish by hand instead.</p>
     <div class="actions">
-      <button class="btn primary" id="apply">Preview in the student view</button>
-      <button class="btn accent" id="download-data">Download data file (timetable-data.js)</button>
+      <button class="btn" id="apply">Preview in the student view</button>
+      <button class="btn primary" id="publish-data">Publish to students</button>
+      <button class="btn" id="download-data">Download data file (timetable-data.js)</button>
     </div>
+    <p class="publish-status" id="publish-status" role="status"></p>
     <p class="lead" id="blocked" style="color:#C0262D;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
     </div>
   </section>
@@ -79,11 +81,49 @@
         <div class="table-wrap"><table id="exam-table"></table></div>
       </details>
       <div class="actions">
-        <button class="btn primary" id="exam-apply">Preview in the student view</button>
-        <button class="btn accent" id="exam-download">Download data file (exam-data.js)</button>
+        <button class="btn" id="exam-apply">Preview in the student view</button>
+        <button class="btn primary" id="exam-publish">Publish to students</button>
+        <button class="btn" id="exam-download">Download data file (exam-data.js)</button>
       </div>
+      <p class="publish-status" id="exam-publish-status" role="status"></p>
       <p class="lead" id="exam-blocked" style="color:#C0262D;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
     </div>
+    </div>
+  </section>
+
+  <section class="panel" id="publishing">
+    <div class="bar">Publishing settings</div>
+    <div class="panel-body">
+    <h2>Publish straight to students</h2>
+    <p class="lead">With a GitHub token saved here, the <b>Publish to students</b> buttons update the live site directly (it shows the change within 1–2 minutes). The token is saved <b>only in this browser</b>: set it up on your own computer only. Without a token, this page can only preview and download.</p>
+    <div class="publish-form">
+      <label class="field">GitHub token
+        <input type="password" id="pub-token" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+      </label>
+      <label class="field">Repository
+        <input type="text" id="pub-repo" spellcheck="false">
+      </label>
+      <label class="field">Branch
+        <input type="text" id="pub-branch" spellcheck="false">
+      </label>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="pub-save">Save in this browser</button>
+      <button class="btn" id="pub-test">Test connection</button>
+      <button class="btn" id="pub-forget">Forget token</button>
+    </div>
+    <p class="publish-status" id="pub-status" role="status"></p>
+    <details>
+      <summary>How to create the token (about once a year)</summary>
+      <ol class="steps">
+        <li>Signed in to GitHub, open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+        <li><b>Token name</b>: “Schedule Sandbox publishing”. <b>Expiration</b>: up to 1 year.</li>
+        <li><b>Repository access</b>: “Only select repositories” → <b>Student-Schedule-Sandbox</b>.</li>
+        <li><b>Permissions → Repository permissions → Contents</b>: “Read and write”. Leave everything else as it is.</li>
+        <li>Click <b>Generate token</b>, copy it (it starts with <code>github_pat_</code>) and paste it above, then <b>Save in this browser</b> and <b>Test connection</b>.</li>
+        <li>Never share the token or paste it anywhere else. If it leaks, delete it on GitHub and create a new one.</li>
+      </ol>
+    </details>
     </div>
   </section>
 

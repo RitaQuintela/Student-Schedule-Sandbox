@@ -58,8 +58,9 @@ between days.
      by section number” means the file has no pairing notes for that course.
 4. Click **Preview in the student view** to try it yourself. Only your browser sees the preview.
    Use **Stop preview** (or “Back to the published timetable”) when you're done.
-5. Click **Download data file** to get `timetable-data.js`, and replace the file
-   `data/timetable-data.js` with it. That's the only file that changes. No code editing needed.
+5. Click **Publish to students**. The live site shows the new timetable within 1–2 minutes.
+   (One-time setup: see **Set up publishing** below. Without it, use **Download data file** and
+   replace `data/timetable-data.js` by hand.)
 
 ### Publish a new exam calendar
 
@@ -73,8 +74,24 @@ between days.
      courses from another term; otherwise fix the spelling in the planner.
    - **Not shown to students**: exams dated before a course's first class (usually the same course
      taught in an earlier term) are left out.
-3. **Preview in the student view**, then **Download data file** to get `exam-data.js`, and replace
-   `data/exam-data.js` with it. The class timetable and the exam calendar are published separately.
+3. **Preview in the student view**, then **Publish to students**. The class timetable and the exam
+   calendar are published separately.
+
+### Set up publishing (once, then about once a year)
+
+The **Publish to students** buttons save the new data straight to GitHub, which hosts the site.
+They need a GitHub *token*: a key that only allows changing files in this repository.
+
+1. Signed in to GitHub, open <https://github.com/settings/personal-access-tokens/new>.
+2. **Token name**: "Schedule Sandbox publishing". **Expiration**: up to 1 year.
+3. **Repository access**: "Only select repositories" → **Student-Schedule-Sandbox**.
+4. **Permissions → Repository permissions → Contents**: "Read and write". Nothing else.
+5. **Generate token**, copy it, and paste it on the admin page under **Publishing settings**.
+   Click **Save in this browser**, then **Test connection**.
+
+The token is saved only in that browser, so set it up on your own computer. Never share it; if it
+leaks, delete it on GitHub and make a new one. When it expires, the admin page tells you, and you
+repeat these steps.
 
 ### How to fill in the timetable file
 

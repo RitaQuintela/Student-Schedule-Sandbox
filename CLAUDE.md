@@ -29,7 +29,7 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
 
 ## Files
 - `index.html` + `js/student.js` – student screen.
-- `admin.html` + `js/admin.js` – upload, summary/warnings, preview, data file download, Excel template.
+- `admin.html` + `js/admin.js` – upload, summary/warnings, preview, **Publish to students**, data file download, Excel template.
 - `js/parser.js` – **all timetable data rules**, shared by both screens. Change rules here only.
 - `js/exams.js` – **all exam rules** (reading the planner, name matching, clashes), shared by both screens.
 - `data/timetable-data.js` – the published timetable (cleaned rows). Replaced by the admin, never edited by hand.
@@ -107,6 +107,17 @@ TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
 (`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta** tab (purple, on the line under the
 header) and a centered beta disclaimer in the footer (replaces the old "Always confirm your final enrollment" line) ("use it, but always check the information"). Subtitle:
 "Plan your classes and exams, try different schedule options, and avoid overlaps before enrollment."
+
+## Publishing (admin page)
+- **Publish to students** (timetable and exam sections) saves `data/timetable-data.js` /
+  `data/exam-data.js` straight into the GitHub repo via the REST contents API (GET for the sha, then
+  PUT), commit message "Publish … from <file> (admin page)". GitHub Pages rebuilds in 1–2 minutes.
+- Needs a fine-grained GitHub token (only Student-Schedule-Sandbox, Contents: Read and write, ≤1 year)
+  saved under **Publishing settings**, stored only in that browser (`scheduleSandbox.publish.v1`:
+  token, repo default `RitaQuintela/Student-Schedule-Sandbox`, branch default `main`). The token is
+  only sent to api.github.com and never shown again. Errors are explained in plain words (401 expired,
+  403 no permission, 404 wrong repo/branch). "Download data file" stays as the manual fallback.
+- Never ask the owner to paste the token in chat; never put a token in the repo.
 
 ## Privacy
 Raw exports contain staff usernames/emails (CreatedUser, LastModifiedUser). They are

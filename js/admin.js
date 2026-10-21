@@ -59,6 +59,7 @@
     $('courses').innerHTML = '';
     $('apply').disabled = true;
     $('download-data').disabled = true;
+    $('publish-data').disabled = true;
     $('blocked').hidden = false;
   }
 
@@ -105,7 +106,9 @@
     const blocked = errors.length > 0;
     $('apply').disabled = blocked;
     $('download-data').disabled = blocked;
+    $('publish-data').disabled = blocked;
     $('blocked').hidden = !blocked;
+    setStatus('publish-status', '', '');
   }
 
   function payload() {
@@ -134,13 +137,16 @@
     window.open('index.html', '_blank');
   });
 
-  $('download-data').addEventListener('click', () => {
-    if (!current) return;
-    const js = '/* Published timetable for Schedule Sandbox.\n' +
+  function timetableJs() {
+    return '/* Published timetable for Schedule Sandbox.\n' +
       ' * To publish a new timetable, replace this file with the one downloaded\n' +
       ' * from the admin page (admin.html). Do not edit by hand. */\n' +
       'window.SCHEDULE_DATA = ' + JSON.stringify(payload(), null, 1) + ';\n';
-    download('timetable-data.js', js, 'text/javascript;charset=utf-8');
+  }
+
+  $('download-data').addEventListener('click', () => {
+    if (!current) return;
+    download('timetable-data.js', timetableJs(), 'text/javascript;charset=utf-8');
   });
 
   function buildTemplate() {
@@ -293,7 +299,9 @@
     const blocked = errors.length > 0;
     $('exam-apply').disabled = blocked;
     $('exam-download').disabled = blocked;
+    $('exam-publish').disabled = blocked;
     $('exam-blocked').hidden = !blocked;
+    setStatus('exam-publish-status', '', '');
   }
 
   $('exam-apply').addEventListener('click', () => {
@@ -308,13 +316,16 @@
     window.open('index.html#exams', '_blank');
   });
 
-  $('exam-download').addEventListener('click', () => {
-    if (!currentExams) return;
-    const js = '/* Published exam calendar for Schedule Sandbox.\n' +
+  function examJs() {
+    return '/* Published exam calendar for Schedule Sandbox.\n' +
       ' * To publish a new exam calendar, replace this file with the one downloaded\n' +
       ' * from the admin page (admin.html). Do not edit by hand. */\n' +
       'window.EXAM_DATA = ' + JSON.stringify(currentExams.payload, null, 1) + ';\n';
-    download('exam-data.js', js, 'text/javascript;charset=utf-8');
+  }
+
+  $('exam-download').addEventListener('click', () => {
+    if (!currentExams) return;
+    download('exam-data.js', examJs(), 'text/javascript;charset=utf-8');
   });
 
   $('exam-file').addEventListener('change', e => handleExamFile(e.target.files[0]));
@@ -327,11 +338,171 @@
     handleExamFile(e.dataTransfer.files[0]);
   });
 
+  /* ---------- Publish to students (GitHub) ---------- */
+  /*
+   * The live site is the GitHub repository's files, served by GitHub Pages.
+   * "Publish" saves the new data file into the repository through GitHub's
+   * API, using a token the admin saves in this browser (it is only ever sent
+   * to api.github.com). GitHub Pages then rebuilds the site in 1–2 minutes.
+   */
+  const PUBLISH_KEY = 'scheduleSandbox.publish.v1';
+  const DEFAULT_REPO = 'RitaQuintela/Student-Schedule-Sandbox';
+  const DEFAULT_BRANCH = 'main';
+
+  function publishSettings() {
+    let s = null;
+    try { s = JSON.parse(localStorage.getItem(PUBLISH_KEY)); } catch (e) { /* ignore */ }
+    s = s || {};
+    return { token: s.token || '', repo: s.repo || DEFAULT_REPO, branch: s.branch || DEFAULT_BRANCH };
+  }
+
+  function setStatus(id, cls, html) {
+    const el = $(id);
+    el.className = 'publish-status' + (cls ? ' ' + cls : '');
+    el.innerHTML = html;
+  }
+
+  function showPublishSettings() {
+    const s = publishSettings();
+    $('pub-token').value = '';
+    $('pub-token').placeholder = s.token ? 'Token saved in this browser (paste a new one to replace it)' : 'github_pat_…';
+    $('pub-repo').value = s.repo;
+    $('pub-branch').value = s.branch;
+  }
+
+  // UTF-8 safe base64 (course names have accents).
+  function toBase64(str) {
+    const bytes = new TextEncoder().encode(str);
+    let bin = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(bin);
+  }
+
+  async function github(path, options) {
+    const s = publishSettings();
+    const res = await fetch('https://api.github.com' + path, Object.assign({}, options, {
+      headers: Object.assign({
+        Accept: 'application/vnd.github+json',
+        Authorization: 'Bearer ' + s.token,
+        'X-GitHub-Api-Version': '2022-11-28',
+      }, (options && options.headers) || {}),
+    }));
+    let body = null;
+    try { body = await res.json(); } catch (e) { /* no body */ }
+    return { ok: res.ok, status: res.status, body };
+  }
+
+  function explain(status, body) {
+    const msg = body && body.message ? ` (GitHub says: ${body.message})` : '';
+    if (status === 401) return 'GitHub did not accept the token: it may be mistyped, deleted or expired. Create a new one (see “How to create the token”) and save it again.';
+    if (status === 403) return 'The token is not allowed to change this repository. Check that it has access to Student-Schedule-Sandbox with “Contents: Read and write”.' + msg;
+    if (status === 404) return 'Repository or branch not found, or the token cannot see it. Check the repository and branch names under Publishing settings.' + msg;
+    if (status === 409 || status === 422) return 'GitHub refused the change, probably because the file changed at the same moment. Please try again.' + msg;
+    if (status === 0) return 'Could not reach GitHub. Check your internet connection and try again.';
+    return `GitHub returned an error (${status}).` + msg;
+  }
+
+  async function publishFile(path, content, message) {
+    const s = publishSettings();
+    const where = `/repos/${s.repo}/contents/${path}`;
+    let existing;
+    try {
+      existing = await github(`${where}?ref=${encodeURIComponent(s.branch)}`);
+    } catch (e) {
+      throw new Error(explain(0));
+    }
+    if (!existing.ok && existing.status !== 404) throw new Error(explain(existing.status, existing.body));
+    const body = { message, content: toBase64(content), branch: s.branch };
+    if (existing.ok && existing.body && existing.body.sha) body.sha = existing.body.sha; // replace the current file
+    let put;
+    try {
+      put = await github(where, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    } catch (e) {
+      throw new Error(explain(0));
+    }
+    if (!put.ok) throw new Error(explain(put.status, put.body));
+    return put.body.commit;
+  }
+
+  async function doPublish(kind) {
+    const isExam = kind === 'exam';
+    const item = isExam ? currentExams : current;
+    if (!item) return;
+    const statusId = isExam ? 'exam-publish-status' : 'publish-status';
+    const button = $(isExam ? 'exam-publish' : 'publish-data');
+    if (!publishSettings().token) {
+      setStatus(statusId, 'bad', 'Publishing is not set up in this browser yet. Add your GitHub token under <a href="#publishing">Publishing settings</a> (once), then try again.');
+      return;
+    }
+    const what = isExam ? 'exam calendar' : 'timetable';
+    if (!confirm(`Publish this ${what} (“${item.source}”) to students?\n\nIt replaces the current ${what} on the live site, which shows the change within 1–2 minutes.`)) return;
+    button.disabled = true;
+    setStatus(statusId, 'busy', 'Publishing…');
+    try {
+      const commit = await publishFile(
+        isExam ? 'data/exam-data.js' : 'data/timetable-data.js',
+        isExam ? examJs() : timetableJs(),
+        `Publish ${what} from ${item.source} (admin page)`,
+      );
+      const link = commit && commit.html_url ? ` <a href="${esc(commit.html_url)}" target="_blank" rel="noopener">See the change on GitHub</a>.` : '';
+      setStatus(statusId, 'ok', `✓ Published. The live site will show the new ${what} within 1–2 minutes (students may need to refresh the page).${link}`);
+    } catch (e) {
+      setStatus(statusId, 'bad', '✕ Not published. ' + esc(e.message));
+    } finally {
+      button.disabled = false;
+    }
+  }
+
+  $('publish-data').addEventListener('click', () => doPublish('timetable'));
+  $('exam-publish').addEventListener('click', () => doPublish('exam'));
+
+  $('pub-save').addEventListener('click', () => {
+    const old = publishSettings();
+    const token = $('pub-token').value.trim() || old.token;
+    const repo = $('pub-repo').value.trim() || DEFAULT_REPO;
+    const branch = $('pub-branch').value.trim() || DEFAULT_BRANCH;
+    if (!token) { setStatus('pub-status', 'bad', 'Paste a token first.'); return; }
+    if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) { setStatus('pub-status', 'bad', 'The repository should look like “owner/name”, e.g. RitaQuintela/Student-Schedule-Sandbox.'); return; }
+    try {
+      localStorage.setItem(PUBLISH_KEY, JSON.stringify({ token, repo, branch }));
+    } catch (e) {
+      setStatus('pub-status', 'bad', 'This browser would not save the settings (storage blocked).');
+      return;
+    }
+    showPublishSettings();
+    setStatus('pub-status', 'ok', '✓ Saved in this browser. Click “Test connection” to check it works.');
+  });
+
+  $('pub-test').addEventListener('click', async () => {
+    const s = publishSettings();
+    if (!s.token) { setStatus('pub-status', 'bad', 'No token saved yet.'); return; }
+    setStatus('pub-status', 'busy', 'Checking…');
+    try {
+      let repo;
+      try { repo = await github(`/repos/${s.repo}`); } catch (e) { throw new Error(explain(0)); }
+      if (!repo.ok) throw new Error(explain(repo.status, repo.body));
+      if (repo.body.permissions && !repo.body.permissions.push) throw new Error(explain(403));
+      const branch = await github(`/repos/${s.repo}/branches/${encodeURIComponent(s.branch)}`);
+      if (!branch.ok) throw new Error(explain(branch.status, branch.body));
+      setStatus('pub-status', 'ok', `✓ Connected. This browser can publish to ${esc(s.repo)}, branch ${esc(s.branch)}.`);
+    } catch (e) {
+      setStatus('pub-status', 'bad', '✕ ' + esc(e.message));
+    }
+  });
+
+  $('pub-forget').addEventListener('click', () => {
+    if (!confirm('Remove the GitHub token from this browser? You will need to paste it again to publish.')) return;
+    try { localStorage.removeItem(PUBLISH_KEY); } catch (e) { /* ignore */ }
+    showPublishSettings();
+    setStatus('pub-status', 'ok', 'Token removed from this browser.');
+  });
+
+  showPublishSettings();
   showPreviewStatus();
   showExamPreviewStatus();
   // Exposed for testing in the browser console.
   window.ScheduleAdmin = {
-    handleFile, buildTemplate, handleExamFile,
+    handleFile, buildTemplate, handleExamFile, publishFile, toBase64,
     get current() { return current; }, get currentExams() { return currentExams; },
   };
 })();
