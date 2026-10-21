@@ -44,7 +44,12 @@ SectionName, StudentGroup, Unit (e.g. S1, T2), Classroom, WeekdayName, StartTime
 EndTime, Week, Annotations. Other columns are ignored. Headers match case-insensitively.
 
 - One row = one weekly session. Courses are grouped by **ModuleCode**, sections by
-  **SectionName** within a course. A section can have several sessions per week.
+  **SectionName + trimester** within a course (trimester = Unit T1–T4; S1/S2 count as none).
+  A section can have several sessions per week.
+- **Course + term**: Bullet reuses section names across trimesters (Business Ethics TP1 in T1 and
+  TP1 in T2 are different editions). A course taught in several trimesters offers one choice per
+  section per trimester ("TP1 · Trimester 1", option id `TP1@T1`); pairing happens within a
+  trimester only. Single-edition courses keep plain ids (`TP1`, `PL1-A`).
 - **Pairing (decided by the admin, never by the student)** happens only in courses that have PL sections:
   - The lecture typology is `T`; if the course has PLs but no T, `TP` plays that role (e.g. Macroeconomics: PL1 + TP1).
   - A lecture row whose Annotations mention PL section names (e.g. "For PL-G1, PL-G2 and PL-E1.") is paired with those PLs.
@@ -83,6 +88,9 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
 - No course codes in the planner, so exams link to timetable courses **by name**, ignoring case,
   accents, `&`/`and`, punctuation/hyphens, text in brackets (`(IMSc)`) and a final "s" on words.
   "Language Courses" maps to every course whose name contains "language" or "extensive course".
+- For a course with several trimester editions, each exam belongs to the edition that has started
+  by the exam date and finished most recently (`examsForOption`): a 19 Oct midterm → T1 edition,
+  a 19 Dec endterm → T2 edition. Students only see their chosen edition's exams.
 - An exam dated **before the course's first class week** is ignored (same course name taught in an
   earlier term, e.g. a T1 midterm for the T2 edition) and listed as an admin note.
 - Times are TBD: two of a student's exams on the **same day = clash (red)**; exams on **consecutive

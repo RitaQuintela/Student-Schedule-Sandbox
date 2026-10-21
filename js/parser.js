@@ -291,10 +291,14 @@
         add('warning', `${where}: module code ${code} also appears as "${course.name}". Using "${course.name}".`, code);
       }
 
-      let section = course.sections.get(sectionName);
+      // Bullet reuses section names across trimesters (TP1 in T1 and TP1 in T2 are
+      // different editions of the course), so a section is name + trimester.
+      const term = termOf(text(r.Unit));
+      const sectionKey = sectionName + '|' + term;
+      let section = course.sections.get(sectionKey);
       if (!section) {
-        section = { name: sectionName, typ, sessions: [], groups: new Set(), notes: [], studentNotes: [] };
-        course.sections.set(sectionName, section);
+        section = { name: sectionName, term, typ, sessions: [], groups: new Set(), notes: [], studentNotes: [] };
+        course.sections.set(sectionKey, section);
       } else if (section.typ !== typ) {
         add('warning', `${where}: section ${sectionName} appears with typologies ${section.typ} and ${typ}. Using ${section.typ}.`, code);
       }
@@ -302,7 +306,7 @@
       const groups = text(r.StudentGroup).split(',').map(s => s.trim()).filter(Boolean);
       const unit = text(r.Unit);
       const room = text(r.Classroom);
-      const key = [code, sectionName, day, start, end, weeks.join(','), room].join('|');
+      const key = [code, sectionName, term, day, start, end, weeks.join(','), room].join('|');
       if (seen.has(key)) {
         add('warning', `${where}: duplicate of an earlier row; ignored.`, code);
         return;
@@ -384,14 +388,51 @@
    *   have no pairing note. If there are several such lectures, PLs are
    *   matched by section number (PL1-A -> T1) and the admin is warned.
    */
+  // "T1".."T4" for trimester units; '' for semester (S1/S2) or anything else.
+  function termOf(unit) {
+    return /^T\d$/i.test(unit) ? unit.toUpperCase() : '';
+  }
+
+  /*
+   * A course taught in more than one trimester (e.g. Business Ethics in T1 and
+   * again in T2) gives one set of choices per trimester: "TP1 · Trimester 1",
+   * "TP1 · Trimester 2". Pairing happens within a trimester only.
+   */
   function buildOptions(course, add) {
-    const secs = [...course.sections.values()].sort(byName);
+    const all = [...course.sections.values()];
+    const byTerm = new Map();
+    all.forEach(sec => {
+      if (!byTerm.has(sec.term)) byTerm.set(sec.term, []);
+      byTerm.get(sec.term).push(sec);
+    });
+    const editions = [...byTerm.keys()].filter(Boolean);
+    if (editions.length <= 1) {
+      course.options = optionsFor(course, all, add, null);
+      course.options.forEach(o => { o.term = editions[0] || ''; });
+      course.editions = 1;
+      return;
+    }
+    course.editions = byTerm.size;
+    course.options = [...byTerm.keys()].sort().flatMap(term => optionsFor(course, byTerm.get(term), add, term || null));
+  }
+
+  function optionsFor(course, sections, add, term) {
+    const secs = sections.slice().sort(byName);
     const pls = secs.filter(s => s.typ === 'PL');
+    const termLabel = term ? 'Trimester ' + term.slice(1) : '';
+    course = term ? { name: `${course.name} (${termLabel})`, code: course.code } : course; // for messages
+    const finish = list => list.map(o => {
+      if (term) {
+        o.id += '@' + term;
+        o.label += ' · ' + termLabel;
+      }
+      o.term = term || '';
+      return o;
+    });
 
     if (!pls.length) {
       secs.forEach(s => { s.studentNotes = s.notes.slice(); });
-      course.options = secs.map(s => makeOption(s.name, [s]));
-      return;
+      return finish(secs.map(s => makeOption(s.name, [s])));
     }
 
     const lectureTyp = secs.some(s => s.typ === 'T') ? 'T' : secs.some(s => s.typ === 'TP') ? 'TP' : null;
@@ -450,10 +491,10 @@
     }
 
     // Label puts the PL first, because that is what the student is choosing.
-    course.options = pls.map(p => {
+    return finish(pls.map(p => {
       const lects = pairs.get(p.name).sort(byName);
       return makeOption(p.name, [...lects, p], [p, ...lects].map(s => s.name).join(' + '));
-    });
+    }));
   }
 
   function makeOption(id, sections, label) {

@@ -226,6 +226,35 @@
     };
   }
 
+  /*
+   * For a course taught in several trimesters, an exam belongs to the edition
+   * that has started by the exam date and finished most recently: a 19 Oct
+   * exam goes to the T1 edition (T2 hasn't started), a 19 Dec exam to T2.
+   * Courses with one edition keep all their exams.
+   */
+  function examsForOption(course, option, exams) {
+    if (!exams || !exams.length || !option) return exams || [];
+    const editions = new Map();
+    course.options.forEach(o => {
+      const t = o.term || '';
+      o.sessions.forEach(ss => ss.weeks.forEach(w => {
+        const r = editions.get(t) || { first: w, last: w };
+        if (w < r.first) r.first = w;
+        if (w > r.last) r.last = w;
+        editions.set(t, r);
+      }));
+    });
+    if (editions.size <= 1) return exams;
+    const mine = option.term || '';
+    return exams.filter(e => {
+      let best = null;
+      editions.forEach((r, t) => {
+        if (r.first <= e.date && (best === null || r.last > editions.get(best).last)) best = t;
+      });
+      return best === mine;
+    });
+  }
+
   /* ---------- Clashes ---------- */
 
   // items: [{ course, exam }] for the student's chosen courses.
@@ -272,6 +301,6 @@
   }
 
   global.Exams = {
-    readExamFile, linkExams, findExamClashes, seasonDays, seasonSingular, weekdayShort, normName, toIso,
+    readExamFile, linkExams, examsForOption, findExamClashes, seasonDays, seasonSingular, weekdayShort, normName, toIso,
   };
 })(window);

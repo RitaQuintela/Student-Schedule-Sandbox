@@ -271,7 +271,7 @@
     const clashHtml = others.length ? `<div class="cc-clash">⚠ Overlaps with ${esc(others.join(', '))}</div>` : '';
 
     // Exam dates for this course (red when another of your exams is the same day).
-    const myExams = examLink.byCode.get(course.code) || [];
+    const myExams = E.examsForOption(course, entry.option, examLink.byCode.get(course.code) || []);
     const examHtml = myExams.length
       ? `<div class="cc-exams"><b>Exams</b>${myExams.map(x => {
           const clash = examInfo.clashDates.has(x.date);
@@ -426,7 +426,8 @@
   let examInfo = { clashDates: new Set(), closeDates: new Set() };
 
   function examItems(list) {
-    return list.flatMap(e => (examLink.byCode.get(e.course.code) || []).map(exam => ({ course: e.course, color: e.color, exam })));
+    return list.flatMap(e => E.examsForOption(e.course, e.option, examLink.byCode.get(e.course.code) || [])
+      .map(exam => ({ course: e.course, color: e.color, exam })));
   }
 
   function examChip(it, clash) {
@@ -499,7 +500,8 @@
       </div>`;
     }).join('');
 
-    const without = list.filter(e => !examLink.byCode.has(e.course.code)).map(e => e.course.name);
+    const without = list.filter(e => !E.examsForOption(e.course, e.option, examLink.byCode.get(e.course.code) || []).length)
+      .map(e => e.course.name);
     $('exam-note').textContent = examSource.exams.length
       ? 'Exam times and rooms are not in the calendar yet.' +
         (without.length ? ` No exam date found for: ${without.join('; ')} – check with your program.` : '')
