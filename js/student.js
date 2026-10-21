@@ -416,13 +416,6 @@
       `${weekly} class${weekly === 1 ? '' : 'es'} a week.` + otherNote;
   }
 
-  // Colour key under the timetable, like the one at the foot of the study plans.
-  function renderLegend(list, clashes) {
-    $('legend').innerHTML = list.map(e =>
-      `<span style="--chip-fg:${e.color[0]};--chip-bg:${e.color[1]}">${esc(e.course.name)} · ${esc(e.option.label)}</span>`).join('') +
-      (document.querySelector('.event.clash') ? '<span class="clash">⚠ Overlap</span>' : '');
-  }
-
   /* ---------- Rendering: exam calendar ---------- */
 
   let examInfo = { clashDates: new Set(), closeDates: new Set() };
@@ -519,7 +512,6 @@
     renderList(list, clashes);
     renderTimetable(list, clashes);
     renderBanner(list, clashes);
-    renderLegend(list, clashes);
     const term = shownTerm();
     $('bar-week').textContent = term ? `· ${term.label} · ${termRange(term)}` : '';
     $('switch-count').textContent = list.length ? `(${list.length})` : '';

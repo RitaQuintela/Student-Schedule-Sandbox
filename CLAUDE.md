@@ -15,7 +15,7 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
 - SheetJS is vendored in `vendor/xlsx.full.min.js` (0.20.3, Apache-2.0). Only
   `admin.html` loads it; the student page doesn't need it.
 - Look follows the **Católica-Lisbon SBE Brand Guidelines 2026 (v2.3)**, with the layout
-  structure of the Master Programs study plans (header bars, flat blocks, colour legend):
+  structure of the Master Programs study plans (header bars, flat blocks; no colour legend under the timetable):
   - Institutional Blue `#0061FF` = main colour (header, bars, buttons, links, day headers).
   - Master purple `#B78BFC` (`#946FF1` on white, digital) = accent (header line, tags, notes, focus).
   - Complementary black `#131313`, grey `#F3F3F3`, white. Course colours = brand program

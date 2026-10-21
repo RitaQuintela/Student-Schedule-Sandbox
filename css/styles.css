@@ -5,7 +5,7 @@
  * - Complementary: black #131313, grey #F3F3F3, white.
  * - Typeface: Barlow (vendored, SIL OFL).
  * - The logo's Bright Blue #003CA5 is for the logo only and is not used here.
- * Layout keeps the study-plan structure: header bars, flat blocks, colour legend.
+ * Layout keeps the study-plan structure: header bars and flat blocks.
  */
 
 @font-face { font-family: "Barlow"; font-weight: 300; font-display: swap; src: url("../vendor/fonts/barlow-300.woff2") format("woff2"); }
@@ -416,18 +416,6 @@ a { color: var(--blue); }
   padding: 20px;
 }
 
-/* Colour key under the timetable, like the one at the foot of the study plans */
-.legend { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
-.legend span {
-  flex: 1 1 140px;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 6px;
-  background: var(--chip-bg);
-  border-bottom: 3px solid var(--chip-fg);
-}
-.legend span.clash { --chip-bg: var(--red-soft); --chip-fg: var(--red); color: var(--red); }
 .hint { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
 
 /* ---------- Exam calendar ---------- */
