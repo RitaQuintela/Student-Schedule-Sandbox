@@ -114,8 +114,8 @@ classes with a week inside the chosen trimester, and the overlap banner lists on
 overlaps (with a note if the other trimester has some); course cards and timetable blocks show day/time/section/room only
 (no week counts); .ics export (one event per real date,
 TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
-(`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta** tab (purple, on the line under the
-header) and a centered beta disclaimer in the footer (replaces the old "Always confirm your final enrollment" line) ("only a planning tool … plan your enrollment on the official platforms … always check"). Subtitle:
+(`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta version** tab (purple, on the line under the
+header) and a centered beta disclaimer in the footer (replaces the old "Always confirm your final enrollment" line) ("Schedule Sandbox is a beta planning tool: it does not enroll you … always check"). Subtitle:
 "Plan your classes and exams, try different schedule options, and avoid overlaps before enrollment."
 
 ## Publishing (admin page)
