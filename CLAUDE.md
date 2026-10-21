@@ -111,7 +111,7 @@ that course (the list turns red, "Drop here to remove …"); button shows
 with "✓ fits" / "⚠ overlaps"; Mon–Fri 08:00–20:00 grid in 1h30 blocks; overlaps in red (blocks,
 cards, banner); **Trimester** dropdown (no "typical week", no single weeks): the grid shows only
 classes with a week inside the chosen trimester, and the overlap banner lists only that trimester's
-overlaps (with a note if the other trimester has some); course cards and timetable blocks show day/time/section/room only
+overlaps (with a note if the other trimester has some); course cards, timetable blocks, their hover tooltips, the overlap banner, the timetable header and the printed header show **no class dates** (only trimester names, days, times, sections, rooms); dates appear only in the exam calendar, Bullet notes and the .ics export. Course cards and timetable blocks show day/time/section/room only
 (no week counts); .ics export (one event per real date,
 TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
 (`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta version** tab (purple, on the line under the

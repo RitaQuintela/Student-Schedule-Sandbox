@@ -113,12 +113,6 @@
     return S.formatTime(s.start) + '–' + S.formatTime(s.end);
   }
 
-  function weeksText(weeks) {
-    const n = weeks.length;
-    const range = S.shortDate(weeks[0]) + (n > 1 ? ' – ' + S.shortDate(weeks[n - 1]) : '');
-    return `${n} week${n === 1 ? '' : 's'} · ${range}`;
-  }
-
   function courseTitle(course) {
     return (course.acronym || course.name).replace(/_/g, ' ');
   }
@@ -145,10 +139,6 @@
   function inShownTerm(session) {
     const term = shownTerm();
     return !term || S.inTerm(session, term);
-  }
-
-  function termRange(term) {
-    return `${S.shortDate(term.start)} – ${S.shortDate(S.addDays(term.end, 4))}`;
   }
 
   // All overlapping pairs between different selected courses.
@@ -254,8 +244,7 @@
     }).join('');
 
     const sessions = entry.option.sessions.map(s => {
-      const allDates = s.weeks.map(w => S.shortDate(S.classDate(w, s.day))).join(', ');
-      return `<li class="${clashIds.has(s.id) ? 'clash' : ''}" title="Dates: ${esc(allDates)}">
+      return `<li class="${clashIds.has(s.id) ? 'clash' : ''}">
         <span class="when">${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}</span>
         <span class="what">${esc(sectionLabel(s))}${s.room ? ' · ' + esc(s.room) : ''}</span></li>`;
     }).join('');
@@ -351,8 +340,7 @@
         const left = lane / lanes * 100;
         const width = 100 / lanes;
         const clash = clashIds.has(s.id);
-        const dates = s.weeks.map(w => S.shortDate(S.classDate(w, s.day))).join(', ');
-        const tip = `${e.course.name}\n${sectionLabel(s)} · ${timeRange(s)}${s.room ? ' · ' + s.room : ''}\nDates: ${dates}${clash ? '\n⚠ Overlaps with another class' : ''}`;
+        const tip = `${e.course.name}\n${sectionLabel(s)} · ${timeRange(s)}${s.room ? ' · ' + s.room : ''}${clash ? '\n⚠ Overlaps with another class' : ''}`;
         html += `<div class="event${clash ? ' clash' : ''}" title="${esc(tip)}" draggable="true" data-code="${esc(e.course.code)}"
           style="top:calc(${top}% + 1px);height:calc(${height}% - 2px);left:calc(${left}% + 2px);width:calc(${width}% - 4px);--ev-fg:${e.color[0]};--ev-bg:${e.color[1]}">
           <button class="ev-remove" data-code="${esc(e.course.code)}" title="Remove ${esc(e.course.name)} from my timetable" aria-label="Remove ${esc(e.course.name)}">×</button>
@@ -402,8 +390,7 @@
         lines.set(key, { c, weeks });
       });
       const items = [...lines.values()].map(({ c, weeks }) => {
-        const w = [...weeks].sort();
-        return `<li><b>${esc(c.x.course.name)}</b> (${esc(sectionLabel(c.a))}) and <b>${esc(c.y.course.name)}</b> (${esc(sectionLabel(c.b))}) · ${S.WEEKDAYS_SHORT[c.a.day]} ${timeRange(c.a)} / ${timeRange(c.b)} · ${weeksText(w)}</li>`;
+        return `<li><b>${esc(c.x.course.name)}</b> (${esc(sectionLabel(c.a))}) and <b>${esc(c.y.course.name)}</b> (${esc(sectionLabel(c.b))}) · ${S.WEEKDAYS_SHORT[c.a.day]} ${timeRange(c.a)} / ${timeRange(c.b)}</li>`;
       });
       banner.className = 'banner bad';
       banner.innerHTML = `<strong>⚠ ${items.length} overlap${items.length === 1 ? '' : 's'} in ${term ? esc(term.label) : 'your timetable'}.</strong> ` +
@@ -513,7 +500,7 @@
     renderTimetable(list, clashes);
     renderBanner(list, clashes);
     const term = shownTerm();
-    $('bar-week').textContent = term ? `· ${term.label} · ${termRange(term)}` : '';
+    $('bar-week').textContent = term ? `· ${term.label}` : '';
     $('switch-count').textContent = list.length ? `(${list.length})` : '';
     persist();
   }
@@ -610,7 +597,7 @@
   function preparePrint() {
     const list = entries();
     const term = shownTerm();
-    $('print-week').textContent = term ? `${term.label} · ${termRange(term)}` : '';
+    $('print-week').textContent = term ? term.label : '';
     $('print-list').innerHTML = list.map(e =>
       `<p><b>${esc(e.course.name)}</b> (${esc(e.course.code)}) – ${esc(e.option.label)}: ` +
       e.option.sessions.map(s => `${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}${s.room ? ' ' + esc(s.room) : ''}`).join('; ') + '</p>').join('');
