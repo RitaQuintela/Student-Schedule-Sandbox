@@ -417,8 +417,8 @@
 
   /*
    * A course taught in more than one trimester (e.g. Business Ethics in T1 and
-   * again in T2) gives one set of choices per trimester: "TP1 · Trimester 1",
-   * "TP1 · Trimester 2". Pairing happens within a trimester only.
+   * again in T2) gives one set of choices per trimester: "Trimester 1 · TP1",
+   * "Trimester 2 · TP1". Pairing happens within a trimester only.
    */
   function buildOptions(course, add) {
     const all = [...course.sections.values()];
@@ -446,7 +446,7 @@
     const finish = list => list.map(o => {
       if (term) {
         o.id += '@' + term;
-        o.label += ' · ' + termLabel;
+        o.label = termLabel + ' · ' + o.label;
       }
       o.term = term || '';
       return o;

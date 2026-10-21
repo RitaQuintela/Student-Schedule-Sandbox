@@ -446,8 +446,8 @@ a { color: var(--blue); }
   padding: 5px 2px;
 }
 .ex-dh small { display: block; font-size: 11px; font-weight: 400; text-transform: none; letter-spacing: 0; opacity: .9; }
-.ex-day.weekend .ex-dh { background: #5C8AF6; }
-.ex-day.weekend .ex-cell { background: var(--grey); }
+.ex-day.sunday .ex-dh { background: #5C8AF6; }
+.ex-day.sunday .ex-cell { background: var(--grey); }
 .ex-cell { flex: 1; padding: 4px; display: grid; gap: 3px; align-content: start; }
 .ex-day.clash .ex-dh { background: var(--red); }
 .ex-day.clash .ex-cell { background: var(--red-soft); }

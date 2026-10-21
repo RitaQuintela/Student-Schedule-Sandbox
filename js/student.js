@@ -461,7 +461,7 @@
         const its = inSeason(d);
         const wd = E.weekdayShort(d);
         const cls = ['ex-day'];
-        if (wd === 'Sat' || wd === 'Sun') cls.push('weekend');
+        if (wd === 'Sun') cls.push('sunday');
         if (its.length && res.clashDates.has(d)) cls.push('clash');
         else if (its.length && closeDates.has(d)) cls.push('close');
         return `<div class="${cls.join(' ')}"><div class="ex-dh">${wd}<small>${S.shortDate(d)}</small></div>

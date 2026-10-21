@@ -48,7 +48,7 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   A section can have several sessions per week.
 - **Course + term**: Bullet reuses section names across trimesters (Business Ethics TP1 in T1 and
   TP1 in T2 are different editions). A course taught in several trimesters offers one choice per
-  section per trimester ("TP1 · Trimester 1", option id `TP1@T1`); pairing happens within a
+  section per trimester ("Trimester 1 · TP1", trimester shown first, option id `TP1@T1`); pairing happens within a
   trimester only. Single-edition courses keep plain ids (`TP1`, `PL1-A`).
 - **Pairing (decided by the admin, never by the student)** happens only in courses that have PL sections:
   - The lecture typology is `T`; if the course has PLs but no T, `TP` plays that role (e.g. Macroeconomics: PL1 + TP1).
