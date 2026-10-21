@@ -2,12 +2,12 @@
  * To publish a new timetable, replace this file with the one downloaded
  * from the admin page (admin.html). Do not edit by hand. */
 window.SCHEDULE_DATA = {
- "generatedAt": "2026-10-20T11:13:29.391Z",
- "source": "Bullet extraction T1_T2 MSc.csv",
+ "generatedAt": "2026-10-21T09:23:01.597Z",
+ "source": "Bullet extraction T1_T2 MSc v2.csv",
  "rows": [
   {
    "ModuleName": "Corporate Finance",
-   "ModuleAcronym": "Corp_Fin",
+   "ModuleAcronym": "Corp Fin",
    "ModuleCode": "L35.1924",
    "Typology": "T",
    "SectionName": "T1",
@@ -22,7 +22,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Corporate Finance",
-   "ModuleAcronym": "Corp_Fin",
+   "ModuleAcronym": "Corp Fin",
    "ModuleCode": "L35.1924",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -37,7 +37,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Corporate Finance",
-   "ModuleAcronym": "Corp_Fin",
+   "ModuleAcronym": "Corp Fin",
    "ModuleCode": "L35.1924",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -52,7 +52,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Corporate Finance",
-   "ModuleAcronym": "Corp_Fin",
+   "ModuleAcronym": "Corp Fin",
    "ModuleCode": "L35.1924",
    "Typology": "T",
    "SectionName": "T1",
@@ -67,7 +67,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "French Language Course | level A1",
-   "ModuleAcronym": "FLC A1",
+   "ModuleAcronym": "French A1",
    "ModuleCode": "L35.1974",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -82,7 +82,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "French Language Course | level A1",
-   "ModuleAcronym": "FLC A1",
+   "ModuleAcronym": "French A1",
    "ModuleCode": "L35.1974",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -97,7 +97,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "French Language Course | level A1",
-   "ModuleAcronym": "FLC A1",
+   "ModuleAcronym": "French A1",
    "ModuleCode": "L35.1974",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -112,7 +112,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "The Business of Fashion",
-   "ModuleAcronym": "Bus_Fash",
+   "ModuleAcronym": "Bus Fashion",
    "ModuleCode": "L35.2034",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -127,7 +127,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Strategic Management",
-   "ModuleAcronym": "Strat_MGT",
+   "ModuleAcronym": "Strat Mgmt",
    "ModuleCode": "L35.1247",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -142,7 +142,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Strategic Management",
-   "ModuleAcronym": "Strat_MGT",
+   "ModuleAcronym": "Strat Mgmt",
    "ModuleCode": "L35.1247",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -157,7 +157,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Strategic Management",
-   "ModuleAcronym": "Strat_MGT",
+   "ModuleAcronym": "Strat Mgmt",
    "ModuleCode": "L35.1247",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -172,7 +172,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Strategic Management",
-   "ModuleAcronym": "Strat_MGT",
+   "ModuleAcronym": "Strat Mgmt",
    "ModuleCode": "L35.1247",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -187,7 +187,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Spanish Language Course | Level A1",
-   "ModuleAcronym": "Span_LC_A1",
+   "ModuleAcronym": "Spanish A1",
    "ModuleCode": "L35.1846",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -202,7 +202,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Spanish Language Course | Level A1",
-   "ModuleAcronym": "Span_LC_A1",
+   "ModuleAcronym": "Spanish A1",
    "ModuleCode": "L35.1846",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -217,7 +217,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Spanish Language Course | Level A1",
-   "ModuleAcronym": "Span_LC_A1",
+   "ModuleAcronym": "Spanish A1",
    "ModuleCode": "L35.1846",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -232,7 +232,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Spanish Language Course | Level A1",
-   "ModuleAcronym": "Span_LC_A1",
+   "ModuleAcronym": "Spanish A1",
    "ModuleCode": "L35.1846",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -247,7 +247,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Spanish Language Course | Level A1",
-   "ModuleAcronym": "Span_LC_A1",
+   "ModuleAcronym": "Spanish A1",
    "ModuleCode": "L35.1846",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -262,7 +262,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Spanish Language Course | Level A1",
-   "ModuleAcronym": "Span_LC_A1",
+   "ModuleAcronym": "Spanish A1",
    "ModuleCode": "L35.1846",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -277,7 +277,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Project Management",
-   "ModuleAcronym": "PRJ_MGT",
+   "ModuleAcronym": "Proj Mgmt",
    "ModuleCode": "L35.1242",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -292,7 +292,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Project Management",
-   "ModuleAcronym": "PRJ_MGT",
+   "ModuleAcronym": "Proj Mgmt",
    "ModuleCode": "L35.1242",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -307,7 +307,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "New Value Creation",
-   "ModuleAcronym": "New_Val_Creat",
+   "ModuleAcronym": "New Value Creat",
    "ModuleCode": "L35.1632",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -322,7 +322,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "New Value Creation",
-   "ModuleAcronym": "New_Val_Creat",
+   "ModuleAcronym": "New Value Creat",
    "ModuleCode": "L35.1632",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -337,7 +337,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Responsible Business",
-   "ModuleAcronym": "Resp_Bus",
+   "ModuleAcronym": "Responsible Bus",
    "ModuleCode": "L35.1869",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -352,7 +352,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Responsible Business",
-   "ModuleAcronym": "Resp_Bus",
+   "ModuleAcronym": "Responsible Bus",
    "ModuleCode": "L35.1869",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -367,7 +367,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -382,7 +382,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -397,7 +397,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -412,7 +412,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -427,7 +427,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -442,7 +442,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -457,7 +457,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -472,7 +472,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -487,7 +487,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Intensive Course",
-   "ModuleAcronym": "PT_IntenC",
+   "ModuleAcronym": "PT Intensive",
    "ModuleCode": "L35.1730",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -502,7 +502,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Intensive Course",
-   "ModuleAcronym": "PT_IntenC",
+   "ModuleAcronym": "PT Intensive",
    "ModuleCode": "L35.1730",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -517,7 +517,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management",
-   "ModuleAcronym": "Mktg_MGT",
+   "ModuleAcronym": "Mktg Mgmt",
    "ModuleCode": "L35.1332",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -532,7 +532,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management",
-   "ModuleAcronym": "Mktg_MGT",
+   "ModuleAcronym": "Mktg Mgmt",
    "ModuleCode": "L35.1332",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -547,7 +547,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management",
-   "ModuleAcronym": "Mktg_MGT",
+   "ModuleAcronym": "Mktg Mgmt",
    "ModuleCode": "L35.1332",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -562,7 +562,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management",
-   "ModuleAcronym": "Mktg_MGT",
+   "ModuleAcronym": "Mktg Mgmt",
    "ModuleCode": "L35.1332",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -577,7 +577,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management",
-   "ModuleAcronym": "Mktg_MGT",
+   "ModuleAcronym": "Mktg Mgmt",
    "ModuleCode": "L35.1332",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -592,7 +592,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management",
-   "ModuleAcronym": "Mktg_MGT",
+   "ModuleAcronym": "Mktg Mgmt",
    "ModuleCode": "L35.1332",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -607,7 +607,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Planning",
-   "ModuleAcronym": "Mktg_Plan",
+   "ModuleAcronym": "Mktg Planning",
    "ModuleCode": "L35.1531",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -622,7 +622,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Planning",
-   "ModuleAcronym": "Mktg_Plan",
+   "ModuleAcronym": "Mktg Planning",
    "ModuleCode": "L35.1531",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -637,7 +637,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Research",
-   "ModuleAcronym": "Mktg_Rsrch",
+   "ModuleAcronym": "Mktg Res",
    "ModuleCode": "L35.1535",
    "Typology": "PL",
    "SectionName": "PL3",
@@ -652,7 +652,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Research",
-   "ModuleAcronym": "Mktg_Rsrch",
+   "ModuleAcronym": "Mktg Res",
    "ModuleCode": "L35.1535",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -667,7 +667,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Research",
-   "ModuleAcronym": "Mktg_Rsrch",
+   "ModuleAcronym": "Mktg Res",
    "ModuleCode": "L35.1535",
    "Typology": "PL",
    "SectionName": "PL2",
@@ -682,7 +682,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Research",
-   "ModuleAcronym": "Mktg_Rsrch",
+   "ModuleAcronym": "Mktg Res",
    "ModuleCode": "L35.1535",
    "Typology": "T",
    "SectionName": "T2",
@@ -697,7 +697,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Research",
-   "ModuleAcronym": "Mktg_Rsrch",
+   "ModuleAcronym": "Mktg Res",
    "ModuleCode": "L35.1535",
    "Typology": "T",
    "SectionName": "T1",
@@ -712,7 +712,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Research",
-   "ModuleAcronym": "Mktg_Rsrch",
+   "ModuleAcronym": "Mktg Res",
    "ModuleCode": "L35.1535",
    "Typology": "T",
    "SectionName": "T1",
@@ -727,7 +727,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Research",
-   "ModuleAcronym": "Mktg_Rsrch",
+   "ModuleAcronym": "Mktg Res",
    "ModuleCode": "L35.1535",
    "Typology": "T",
    "SectionName": "T2",
@@ -742,7 +742,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Research",
-   "ModuleAcronym": "Mktg_Rsrch",
+   "ModuleAcronym": "Mktg Res",
    "ModuleCode": "L35.1535",
    "Typology": "T",
    "SectionName": "T3",
@@ -757,7 +757,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Research",
-   "ModuleAcronym": "Mktg_Rsrch",
+   "ModuleAcronym": "Mktg Res",
    "ModuleCode": "L35.1535",
    "Typology": "T",
    "SectionName": "T3",
@@ -772,7 +772,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Managerial Economics",
-   "ModuleAcronym": "Mngerial_Ec",
+   "ModuleAcronym": "Mgr Econ",
    "ModuleCode": "L35.1484",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -787,7 +787,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Managerial Economics",
-   "ModuleAcronym": "Mngerial_Ec",
+   "ModuleAcronym": "Mgr Econ",
    "ModuleCode": "L35.1484",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -802,7 +802,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Managing People",
-   "ModuleAcronym": "Mnging_People",
+   "ModuleAcronym": "Mng People",
    "ModuleCode": "L35.1489",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -817,7 +817,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Managing People",
-   "ModuleAcronym": "Mnging_People",
+   "ModuleAcronym": "Mng People",
    "ModuleCode": "L35.1489",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -832,7 +832,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Leadership Development",
-   "ModuleAcronym": "Ldevelopment",
+   "ModuleAcronym": "Lead Dev",
    "ModuleCode": "L35.1388",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -847,7 +847,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Leadership Development",
-   "ModuleAcronym": "Ldevelopment",
+   "ModuleAcronym": "Lead Dev",
    "ModuleCode": "L35.1388",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -862,7 +862,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Leadership Development",
-   "ModuleAcronym": "Ldevelopment",
+   "ModuleAcronym": "Lead Dev",
    "ModuleCode": "L35.1388",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -877,7 +877,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Leadership Development",
-   "ModuleAcronym": "Ldevelopment",
+   "ModuleAcronym": "Lead Dev",
    "ModuleCode": "L35.1388",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -892,7 +892,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "International Industry Analysis",
-   "ModuleAcronym": "Int_Indust_Analy",
+   "ModuleAcronym": "Intl Industry An",
    "ModuleCode": "L35.1230",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -907,7 +907,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "International Industry Analysis",
-   "ModuleAcronym": "Int_Indust_Analy",
+   "ModuleAcronym": "Intl Industry An",
    "ModuleCode": "L35.1230",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -922,7 +922,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "International Marketing",
-   "ModuleAcronym": "Int_Mktg",
+   "ModuleAcronym": "Intl Mktg",
    "ModuleCode": "L35.1427",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -937,7 +937,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "International Marketing",
-   "ModuleAcronym": "Int_Mktg",
+   "ModuleAcronym": "Intl Mktg",
    "ModuleCode": "L35.1427",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -952,7 +952,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "International Negotiation",
-   "ModuleAcronym": "Int_Negotiation",
+   "ModuleAcronym": "Intl Negotiation",
    "ModuleCode": "L35.1493",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -967,7 +967,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "International Negotiation",
-   "ModuleAcronym": "Int_Negotiation",
+   "ModuleAcronym": "Intl Negotiation",
    "ModuleCode": "L35.1493",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -982,7 +982,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "International Negotiation",
-   "ModuleAcronym": "Int_Negotiation",
+   "ModuleAcronym": "Intl Negotiation",
    "ModuleCode": "L35.1493",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -997,7 +997,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "International Negotiation",
-   "ModuleAcronym": "Int_Negotiation",
+   "ModuleAcronym": "Intl Negotiation",
    "ModuleCode": "L35.1493",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -1012,7 +1012,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Intrapreneurship",
-   "ModuleAcronym": "Intrapre",
+   "ModuleAcronym": "Intrapreneurship",
    "ModuleCode": "L35.1791",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1027,7 +1027,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Finance",
-   "ModuleAcronym": "Fin",
+   "ModuleAcronym": "Finance",
    "ModuleCode": "L35.1574",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -1042,7 +1042,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Finance",
-   "ModuleAcronym": "Fin",
+   "ModuleAcronym": "Finance",
    "ModuleCode": "L35.1574",
    "Typology": "T",
    "SectionName": "T1",
@@ -1057,7 +1057,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Finance",
-   "ModuleAcronym": "Fin",
+   "ModuleAcronym": "Finance",
    "ModuleCode": "L35.1574",
    "Typology": "T",
    "SectionName": "T1",
@@ -1072,7 +1072,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Finance",
-   "ModuleAcronym": "Fin",
+   "ModuleAcronym": "Finance",
    "ModuleCode": "L35.1574",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -1087,7 +1087,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -1102,7 +1102,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1117,7 +1117,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -1132,7 +1132,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1147,7 +1147,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -1162,7 +1162,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -1177,7 +1177,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Digital Marketing",
-   "ModuleAcronym": "Digit_Mktg",
+   "ModuleAcronym": "Dig Mktg",
    "ModuleCode": "L35.1417",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1192,7 +1192,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Digital Marketing",
-   "ModuleAcronym": "Digit_Mktg",
+   "ModuleAcronym": "Dig Mktg",
    "ModuleCode": "L35.1417",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1207,7 +1207,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Digital Transformation",
-   "ModuleAcronym": "Digit_Transf",
+   "ModuleAcronym": "Dig Transf",
    "ModuleCode": "L35.1631",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1222,7 +1222,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Digital Transformation",
-   "ModuleAcronym": "Digit_Transf",
+   "ModuleAcronym": "Dig Transf",
    "ModuleCode": "L35.1631",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1237,7 +1237,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Competitive Intelligence",
-   "ModuleAcronym": "Compet_Intel",
+   "ModuleAcronym": "Compet Intel",
    "ModuleCode": "L35.1850",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1252,7 +1252,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Consumer Behaviour",
-   "ModuleAcronym": "Cons_Behav",
+   "ModuleAcronym": "Cons Behav",
    "ModuleCode": "L35.1215",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -1267,7 +1267,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Consumer Behaviour",
-   "ModuleAcronym": "Cons_Behav",
+   "ModuleAcronym": "Cons Behav",
    "ModuleCode": "L35.1215",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1282,7 +1282,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Consumer Behaviour",
-   "ModuleAcronym": "Cons_Behav",
+   "ModuleAcronym": "Cons Behav",
    "ModuleCode": "L35.1215",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -1297,7 +1297,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Consumer Behaviour",
-   "ModuleAcronym": "Cons_Behav",
+   "ModuleAcronym": "Cons Behav",
    "ModuleCode": "L35.1215",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1312,7 +1312,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Consumer Behaviour",
-   "ModuleAcronym": "Cons_Behav",
+   "ModuleAcronym": "Cons Behav",
    "ModuleCode": "L35.1215",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -1327,7 +1327,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Consumer Behaviour",
-   "ModuleAcronym": "Cons_Behav",
+   "ModuleAcronym": "Cons Behav",
    "ModuleCode": "L35.1215",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -1342,7 +1342,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Accounting",
-   "ModuleAcronym": "ACCT",
+   "ModuleAcronym": "Accounting",
    "ModuleCode": "L35.1573",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -1357,7 +1357,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Brand Management",
-   "ModuleAcronym": "Brand_MGT",
+   "ModuleAcronym": "Brand Mgmt",
    "ModuleCode": "L35.1213",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1372,7 +1372,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Brand Management",
-   "ModuleAcronym": "Brand_MGT",
+   "ModuleAcronym": "Brand Mgmt",
    "ModuleCode": "L35.1213",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1387,7 +1387,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -1402,7 +1402,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1417,7 +1417,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -1432,7 +1432,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1447,7 +1447,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -1462,7 +1462,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -1477,7 +1477,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "T",
    "SectionName": "T1",
@@ -1492,7 +1492,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "T",
    "SectionName": "T2",
@@ -1507,7 +1507,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "T",
    "SectionName": "T3",
@@ -1522,7 +1522,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "T",
    "SectionName": "T4",
@@ -1537,7 +1537,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "T",
    "SectionName": "T2",
@@ -1552,7 +1552,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "T",
    "SectionName": "T1",
@@ -1567,7 +1567,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "T",
    "SectionName": "T3",
@@ -1582,7 +1582,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "PL",
    "SectionName": "PL1-A",
@@ -1597,7 +1597,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "T",
    "SectionName": "T4",
@@ -1612,7 +1612,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "PL",
    "SectionName": "PL1-B",
@@ -1627,7 +1627,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "PL",
    "SectionName": "PL3-A",
@@ -1642,7 +1642,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "PL",
    "SectionName": "PL2-A",
@@ -1657,7 +1657,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "PL",
    "SectionName": "PL2-B",
@@ -1672,7 +1672,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "PL",
    "SectionName": "PL3-B",
@@ -1687,7 +1687,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "PL",
    "SectionName": "PL4-B",
@@ -1702,7 +1702,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Research Methods",
-   "ModuleAcronym": "BRM",
+   "ModuleAcronym": "Bus Res Meth",
    "ModuleCode": "L35.1534",
    "Typology": "PL",
    "SectionName": "PL4-A",
@@ -1717,7 +1717,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Analytics for Economics",
-   "ModuleAcronym": "Data_Anal_Econ",
+   "ModuleAcronym": "Data Analyt Econ",
    "ModuleCode": "L35.1901",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -1732,7 +1732,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Analytics for Economics",
-   "ModuleAcronym": "Data_Anal_Econ",
+   "ModuleAcronym": "Data Analyt Econ",
    "ModuleCode": "L35.1901",
    "Typology": "T",
    "SectionName": "T1",
@@ -1747,7 +1747,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Analytics for Economics",
-   "ModuleAcronym": "Data_Anal_Econ",
+   "ModuleAcronym": "Data Analyt Econ",
    "ModuleCode": "L35.1901",
    "Typology": "T",
    "SectionName": "T1",
@@ -1762,7 +1762,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economic Analysis of Social Policies",
-   "ModuleAcronym": "Ec_ASPolicies",
+   "ModuleAcronym": "Econ Soc Policy",
    "ModuleCode": "L35.1151",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1777,7 +1777,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economic Analysis of Social Policies",
-   "ModuleAcronym": "Ec_ASPolicies",
+   "ModuleAcronym": "Econ Soc Policy",
    "ModuleCode": "L35.1151",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1792,7 +1792,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Macroeconomic Policy",
-   "ModuleAcronym": "Macro_Policy",
+   "ModuleAcronym": "Macro Policy",
    "ModuleCode": "L35.1263",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1807,7 +1807,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Macroeconomic Policy",
-   "ModuleAcronym": "Macro_Policy",
+   "ModuleAcronym": "Macro Policy",
    "ModuleCode": "L35.1263",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1822,7 +1822,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Introduction to Econometrics",
-   "ModuleAcronym": "Introd_Econ",
+   "ModuleAcronym": "Intro Econometr",
    "ModuleCode": "L35.1902",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1837,7 +1837,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Introduction to Econometrics",
-   "ModuleAcronym": "Introd_Econ",
+   "ModuleAcronym": "Intro Econometr",
    "ModuleCode": "L35.1902",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1852,7 +1852,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Introduction to Econometrics",
-   "ModuleAcronym": "Introd_Econ",
+   "ModuleAcronym": "Intro Econometr",
    "ModuleCode": "L35.1902",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1867,7 +1867,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Mathematics for Economists",
-   "ModuleAcronym": "Math_Economists",
+   "ModuleAcronym": "Math Economists",
    "ModuleCode": "L35.1691",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1882,7 +1882,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Mathematics for Economists",
-   "ModuleAcronym": "Math_Economists",
+   "ModuleAcronym": "Math Economists",
    "ModuleCode": "L35.1691",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -1897,7 +1897,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Microeconomics",
-   "ModuleAcronym": "Micro",
+   "ModuleAcronym": "Microeconomics",
    "ModuleCode": "L35.1899",
    "Typology": "T",
    "SectionName": "T1",
@@ -1912,7 +1912,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Microeconomics",
-   "ModuleAcronym": "Micro",
+   "ModuleAcronym": "Microeconomics",
    "ModuleCode": "L35.1899",
    "Typology": "T",
    "SectionName": "T1",
@@ -1927,7 +1927,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Microeconomics",
-   "ModuleAcronym": "Micro",
+   "ModuleAcronym": "Microeconomics",
    "ModuleCode": "L35.1899",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -1957,7 +1957,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP1-A",
@@ -1972,7 +1972,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP2-A",
@@ -1987,7 +1987,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP2-B",
@@ -2002,7 +2002,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP3-A",
@@ -2017,7 +2017,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP3-B",
@@ -2032,7 +2032,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP4-A",
@@ -2047,7 +2047,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP5-B",
@@ -2062,7 +2062,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP4-B",
@@ -2077,7 +2077,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Talks by Executives",
-   "ModuleAcronym": "TbyE",
+   "ModuleAcronym": "Exec Talks",
    "ModuleCode": "L35.2077",
    "Typology": "S",
    "SectionName": "S1",
@@ -2092,7 +2092,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Talks by Executives",
-   "ModuleAcronym": "TbyE",
+   "ModuleAcronym": "Exec Talks",
    "ModuleCode": "L35.2077",
    "Typology": "S",
    "SectionName": "S1",
@@ -2107,7 +2107,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Talks by Executives",
-   "ModuleAcronym": "TbyE",
+   "ModuleAcronym": "Exec Talks",
    "ModuleCode": "L35.2077",
    "Typology": "S",
    "SectionName": "S2",
@@ -2122,7 +2122,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Talks by Executives",
-   "ModuleAcronym": "TbyE",
+   "ModuleAcronym": "Exec Talks",
    "ModuleCode": "L35.2077",
    "Typology": "S",
    "SectionName": "S2",
@@ -2137,7 +2137,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2152,7 +2152,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -2167,7 +2167,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -2182,7 +2182,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -2197,7 +2197,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -2212,7 +2212,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2227,7 +2227,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -2242,7 +2242,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -2257,7 +2257,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -2272,7 +2272,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin_A&Forecast",
+   "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -2287,7 +2287,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP1",
@@ -2302,7 +2302,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP2",
@@ -2317,7 +2317,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP3",
@@ -2332,7 +2332,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP4",
@@ -2347,7 +2347,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP5",
@@ -2362,7 +2362,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP1",
@@ -2377,7 +2377,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP2",
@@ -2392,7 +2392,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP3",
@@ -2407,7 +2407,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP4",
@@ -2422,7 +2422,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Science for Finance",
-   "ModuleAcronym": "Data_Sci_Fin",
+   "ModuleAcronym": "Data Sci Fin",
    "ModuleCode": "L35.1697",
    "Typology": "T",
    "SectionName": "TP5",
@@ -2437,7 +2437,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Visualization",
-   "ModuleAcronym": "Data_Vis",
+   "ModuleAcronym": "Data Vis",
    "ModuleCode": "L35.1893",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2452,7 +2452,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Visualization",
-   "ModuleAcronym": "Data_Vis",
+   "ModuleAcronym": "Data Vis",
    "ModuleCode": "L35.1893",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2467,7 +2467,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Foundation of Statistics with Applications in R",
-   "ModuleAcronym": "Found_Stat_Appll_R",
+   "ModuleAcronym": "Found Stats R",
    "ModuleCode": "L35.1892",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -2482,7 +2482,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Foundation of Statistics with Applications in R",
-   "ModuleAcronym": "Found_Stat_Appll_R",
+   "ModuleAcronym": "Found Stats R",
    "ModuleCode": "L35.1892",
    "Typology": "T",
    "SectionName": "T1",
@@ -2497,7 +2497,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Foundation of Statistics with Applications in R",
-   "ModuleAcronym": "Found_Stat_Appll_R",
+   "ModuleAcronym": "Found Stats R",
    "ModuleCode": "L35.1892",
    "Typology": "T",
    "SectionName": "T1",
@@ -2512,7 +2512,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Introduction to Programming",
-   "ModuleAcronym": "Int_Prog",
+   "ModuleAcronym": "Intro Prog",
    "ModuleCode": "L35.1891",
    "Typology": "T",
    "SectionName": "T1",
@@ -2527,7 +2527,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Introduction to Programming",
-   "ModuleAcronym": "Int_Prog",
+   "ModuleAcronym": "Intro Prog",
    "ModuleCode": "L35.1891",
    "Typology": "T",
    "SectionName": "T1",
@@ -2542,7 +2542,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Introduction to Programming",
-   "ModuleAcronym": "Int_Prog",
+   "ModuleAcronym": "Intro Prog",
    "ModuleCode": "L35.1891",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -2557,7 +2557,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Management Accounting",
-   "ModuleAcronym": "MGT_ACCT",
+   "ModuleAcronym": "Mgmt Acct",
    "ModuleCode": "L35.1488",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2572,7 +2572,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "New Value Creation",
-   "ModuleAcronym": "New_Val_Creat",
+   "ModuleAcronym": "New Value Creat",
    "ModuleCode": "L35.1632",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2587,7 +2587,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Managerial Decision Making",
-   "ModuleAcronym": "Mngerial_Dec_Makng",
+   "ModuleAcronym": "Mgr Decisions",
    "ModuleCode": "L35.1584",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2602,7 +2602,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Communication",
-   "ModuleAcronym": "Mktg_Comm",
+   "ModuleAcronym": "Mktg Comm",
    "ModuleCode": "L35.1236",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2617,7 +2617,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "The Family Business Advantage",
-   "ModuleAcronym": "TFam_BusAdv",
+   "ModuleAcronym": "Family Bus Adv",
    "ModuleCode": "L35.2056",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2647,7 +2647,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Project Management",
-   "ModuleAcronym": "PRJ_MGT",
+   "ModuleAcronym": "Proj Mgmt",
    "ModuleCode": "L35.1242",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2662,7 +2662,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Impact Investing",
-   "ModuleAcronym": "Impact_Invest",
+   "ModuleAcronym": "Impact Invest",
    "ModuleCode": "L35.1492",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2677,7 +2677,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Managerial Decision Making",
-   "ModuleAcronym": "Mngerial_Dec_Makng",
+   "ModuleAcronym": "Mgr Decisions",
    "ModuleCode": "L35.1584",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2692,7 +2692,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "SDGs as Business Strategy",
-   "ModuleAcronym": "SDGBS",
+   "ModuleAcronym": "SDGs Bus Strat",
    "ModuleCode": "L35.1972",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2707,7 +2707,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Digital Product Management",
-   "ModuleAcronym": "Digit_Product_MGT",
+   "ModuleAcronym": "Dig Product Mgmt",
    "ModuleCode": "L35.1790",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2722,7 +2722,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Managing Social Innovation",
-   "ModuleAcronym": "Mnging_Soc_Innov",
+   "ModuleAcronym": "Mng Soc Innov",
    "ModuleCode": "L35.1585",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2737,7 +2737,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "The Family Business Advantage",
-   "ModuleAcronym": "TFam_BusAdv",
+   "ModuleAcronym": "Family Bus Adv",
    "ModuleCode": "L35.2056",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2767,7 +2767,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Project Management",
-   "ModuleAcronym": "PRJ_MGT",
+   "ModuleAcronym": "Proj Mgmt",
    "ModuleCode": "L35.1242",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2782,7 +2782,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Management Accounting",
-   "ModuleAcronym": "MGT_ACCT",
+   "ModuleAcronym": "Mgmt Acct",
    "ModuleCode": "L35.1488",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2797,7 +2797,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "New Value Creation",
-   "ModuleAcronym": "New_Val_Creat",
+   "ModuleAcronym": "New Value Creat",
    "ModuleCode": "L35.1632",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2812,7 +2812,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Communication",
-   "ModuleAcronym": "Mktg_Comm",
+   "ModuleAcronym": "Mktg Comm",
    "ModuleCode": "L35.1236",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2827,7 +2827,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Impact Investing",
-   "ModuleAcronym": "Impact_Invest",
+   "ModuleAcronym": "Impact Invest",
    "ModuleCode": "L35.1492",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2842,7 +2842,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "SDGs as Business Strategy",
-   "ModuleAcronym": "SDGBS",
+   "ModuleAcronym": "SDGs Bus Strat",
    "ModuleCode": "L35.1972",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2857,7 +2857,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Intrapreneurship",
-   "ModuleAcronym": "Intrapre",
+   "ModuleAcronym": "Intrapreneurship",
    "ModuleCode": "L35.1791",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2872,7 +2872,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Imperfect Markets",
-   "ModuleAcronym": "Imperf_Mark",
+   "ModuleAcronym": "Imperfect Mkts",
    "ModuleCode": "L35.1446",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -2887,7 +2887,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Econometrics",
-   "ModuleAcronym": "Econ",
+   "ModuleAcronym": "Econometrics",
    "ModuleCode": "L35.1903",
    "Typology": "T",
    "SectionName": "T1",
@@ -2902,7 +2902,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Econometrics",
-   "ModuleAcronym": "Econ",
+   "ModuleAcronym": "Econometrics",
    "ModuleCode": "L35.1903",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -2917,7 +2917,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Macroeconomics",
-   "ModuleAcronym": "Macro",
+   "ModuleAcronym": "Macroeconomics",
    "ModuleCode": "L35.1900",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2932,7 +2932,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Macroeconomics",
-   "ModuleAcronym": "Macro",
+   "ModuleAcronym": "Macroeconomics",
    "ModuleCode": "L35.1900",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -2947,7 +2947,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Econometrics",
-   "ModuleAcronym": "Econ",
+   "ModuleAcronym": "Econometrics",
    "ModuleCode": "L35.1903",
    "Typology": "T",
    "SectionName": "T1",
@@ -2962,7 +2962,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Imperfect Markets",
-   "ModuleAcronym": "Imperf_Mark",
+   "ModuleAcronym": "Imperfect Mkts",
    "ModuleCode": "L35.1446",
    "Typology": "T",
    "SectionName": "T1",
@@ -2977,7 +2977,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Macroeconomics",
-   "ModuleAcronym": "Macro",
+   "ModuleAcronym": "Macroeconomics",
    "ModuleCode": "L35.1900",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -2992,7 +2992,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Statistics",
-   "ModuleAcronym": "Bus_Stats",
+   "ModuleAcronym": "Bus Stats",
    "ModuleCode": "L35.1487",
    "Typology": "PL",
    "SectionName": "PL2",
@@ -3007,7 +3007,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Statistics",
-   "ModuleAcronym": "Bus_Stats",
+   "ModuleAcronym": "Bus Stats",
    "ModuleCode": "L35.1487",
    "Typology": "T",
    "SectionName": "T1",
@@ -3022,7 +3022,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Statistics",
-   "ModuleAcronym": "Bus_Stats",
+   "ModuleAcronym": "Bus Stats",
    "ModuleCode": "L35.1487",
    "Typology": "T",
    "SectionName": "T1",
@@ -3037,7 +3037,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Statistics",
-   "ModuleAcronym": "Bus_Stats",
+   "ModuleAcronym": "Bus Stats",
    "ModuleCode": "L35.1487",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -3052,7 +3052,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Time Series Econometrics",
-   "ModuleAcronym": "Tim_Ser_Econ",
+   "ModuleAcronym": "TS Econometrics",
    "ModuleCode": "L35.1368",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3067,7 +3067,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Privacy and Ethics",
-   "ModuleAcronym": "Dat_Priv_Eth",
+   "ModuleAcronym": "Data Priv Ethics",
    "ModuleCode": "L35.1894",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3082,7 +3082,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Data Privacy and Ethics",
-   "ModuleAcronym": "Dat_Priv_Eth",
+   "ModuleAcronym": "Data Priv Ethics",
    "ModuleCode": "L35.1894",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3097,7 +3097,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Time Series Econometrics",
-   "ModuleAcronym": "Tim_Ser_Econ",
+   "ModuleAcronym": "TS Econometrics",
    "ModuleCode": "L35.1368",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3112,7 +3112,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3127,7 +3127,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3142,7 +3142,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3157,7 +3157,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3172,7 +3172,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3187,7 +3187,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3202,7 +3202,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management",
-   "ModuleAcronym": "Adv_Strat_MGT",
+   "ModuleAcronym": "Adv Strat Mgmt",
    "ModuleCode": "L35.1324",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3217,7 +3217,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3232,7 +3232,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management",
-   "ModuleAcronym": "Adv_Strat_MGT",
+   "ModuleAcronym": "Adv Strat Mgmt",
    "ModuleCode": "L35.1324",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3247,7 +3247,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3262,7 +3262,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management",
-   "ModuleAcronym": "Adv_Strat_MGT",
+   "ModuleAcronym": "Adv Strat Mgmt",
    "ModuleCode": "L35.1324",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3277,7 +3277,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3292,7 +3292,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management",
-   "ModuleAcronym": "Adv_Strat_MGT",
+   "ModuleAcronym": "Adv Strat Mgmt",
    "ModuleCode": "L35.1324",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3307,7 +3307,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Decision-Making in a Business Context",
-   "ModuleAcronym": "FDMBC",
+   "ModuleAcronym": "Fin Decisions",
    "ModuleCode": "L35.1221",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3322,7 +3322,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Decision-Making in a Business Context",
-   "ModuleAcronym": "FDMBC",
+   "ModuleAcronym": "Fin Decisions",
    "ModuleCode": "L35.1221",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3337,7 +3337,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management (IMSc)",
-   "ModuleAcronym": "ASM (IMSc)",
+   "ModuleAcronym": "Adv Strat IMSc",
    "ModuleCode": "L35.1947",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3352,7 +3352,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management (IMSc)",
-   "ModuleAcronym": "ASM (IMSc)",
+   "ModuleAcronym": "Adv Strat IMSc",
    "ModuleCode": "L35.1947",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3367,7 +3367,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management (IMSc)",
-   "ModuleAcronym": "ASM (IMSc)",
+   "ModuleAcronym": "Adv Strat IMSc",
    "ModuleCode": "L35.1947",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3382,7 +3382,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management (IMSc)",
-   "ModuleAcronym": "ASM (IMSc)",
+   "ModuleAcronym": "Adv Strat IMSc",
    "ModuleCode": "L35.1947",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3397,7 +3397,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Decision-Making in a Business Context",
-   "ModuleAcronym": "FDMBC",
+   "ModuleAcronym": "Fin Decisions",
    "ModuleCode": "L35.1221",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3412,7 +3412,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Decision-Making in a Business Context",
-   "ModuleAcronym": "FDMBC",
+   "ModuleAcronym": "Fin Decisions",
    "ModuleCode": "L35.1221",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3427,7 +3427,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Design for Innovation",
-   "ModuleAcronym": "Design for Innovation",
+   "ModuleAcronym": "Design Innov",
    "ModuleCode": "L35.1879",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3442,7 +3442,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Design for Innovation",
-   "ModuleAcronym": "Design for Innovation",
+   "ModuleAcronym": "Design Innov",
    "ModuleCode": "L35.1879",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3457,7 +3457,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3472,7 +3472,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3487,7 +3487,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3502,7 +3502,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3517,7 +3517,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3532,7 +3532,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3547,7 +3547,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3562,7 +3562,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3577,7 +3577,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -3592,7 +3592,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -3607,7 +3607,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3622,7 +3622,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3637,7 +3637,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -3652,7 +3652,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Value and Capital Structure",
-   "ModuleAcronym": "FirmVCS",
+   "ModuleAcronym": "Firm Value & Cap",
    "ModuleCode": "L35.2143",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -3667,7 +3667,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Digital Marketing",
-   "ModuleAcronym": "Digit_Mktg",
+   "ModuleAcronym": "Dig Mktg",
    "ModuleCode": "L35.1417",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3682,7 +3682,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Digital Marketing",
-   "ModuleAcronym": "Digit_Mktg",
+   "ModuleAcronym": "Dig Mktg",
    "ModuleCode": "L35.1417",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3697,7 +3697,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3712,7 +3712,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3727,7 +3727,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3742,7 +3742,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -3757,7 +3757,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -3772,7 +3772,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3787,7 +3787,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3802,7 +3802,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3817,7 +3817,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -3832,7 +3832,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Markets",
-   "ModuleAcronym": "FinM",
+   "ModuleAcronym": "Fin Mkts",
    "ModuleCode": "L35.2140",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -3847,7 +3847,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management (IMSc)",
-   "ModuleAcronym": "MktManIMSc",
+   "ModuleAcronym": "Mktg Mgmt IMSc",
    "ModuleCode": "L35.2154",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3862,7 +3862,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management (IMSc)",
-   "ModuleAcronym": "MktManIMSc",
+   "ModuleAcronym": "Mktg Mgmt IMSc",
    "ModuleCode": "L35.2154",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3877,7 +3877,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management (IMSc)",
-   "ModuleAcronym": "MktManIMSc",
+   "ModuleAcronym": "Mktg Mgmt IMSc",
    "ModuleCode": "L35.2154",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3892,7 +3892,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Management (IMSc)",
-   "ModuleAcronym": "MktManIMSc",
+   "ModuleAcronym": "Mktg Mgmt IMSc",
    "ModuleCode": "L35.2154",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3907,7 +3907,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -3922,7 +3922,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -3937,7 +3937,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -3952,7 +3952,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3967,7 +3967,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -3982,7 +3982,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -3997,7 +3997,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4012,7 +4012,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4027,7 +4027,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -4042,7 +4042,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Investment and Financing Decisions",
-   "ModuleAcronym": "InvFD",
+   "ModuleAcronym": "Invest & Fin Dec",
    "ModuleCode": "L35.2133",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -4057,7 +4057,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management",
-   "ModuleAcronym": "Adv_Strat_MGT",
+   "ModuleAcronym": "Adv Strat Mgmt",
    "ModuleCode": "L35.1324",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4072,7 +4072,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Advanced Strategic Management",
-   "ModuleAcronym": "Adv_Strat_MGT",
+   "ModuleAcronym": "Adv Strat Mgmt",
    "ModuleCode": "L35.1324",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4087,7 +4087,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4102,7 +4102,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Economics of Business and Markets",
-   "ModuleAcronym": "EBM",
+   "ModuleAcronym": "Econ Bus Mkts",
    "ModuleCode": "L35.1220",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4117,7 +4117,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4132,7 +4132,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4147,7 +4147,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -4162,7 +4162,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -4177,7 +4177,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4192,7 +4192,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4207,7 +4207,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4222,7 +4222,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -4237,7 +4237,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -4252,7 +4252,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Investments",
-   "ModuleAcronym": "FinInv",
+   "ModuleAcronym": "Fin Invest",
    "ModuleCode": "L35.1223",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4267,7 +4267,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "History of Economic Thought",
-   "ModuleAcronym": "HistEcTh",
+   "ModuleAcronym": "Hist Ec Thought",
    "ModuleCode": "L35.2153",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4282,7 +4282,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4297,7 +4297,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4312,7 +4312,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4327,7 +4327,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4342,7 +4342,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -4357,7 +4357,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -4372,7 +4372,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -4387,7 +4387,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4402,7 +4402,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4417,7 +4417,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -4432,7 +4432,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -4447,7 +4447,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -4462,7 +4462,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -4477,7 +4477,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4492,7 +4492,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Firm Valuation",
-   "ModuleAcronym": "Firm_Val",
+   "ModuleAcronym": "Firm Valuation",
    "ModuleCode": "L35.1225",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4507,7 +4507,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "History of Economic Thought",
-   "ModuleAcronym": "HistEcTh",
+   "ModuleAcronym": "Hist Ec Thought",
    "ModuleCode": "L35.2153",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4522,7 +4522,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Brand Management",
-   "ModuleAcronym": "Brand_MGT",
+   "ModuleAcronym": "Brand Mgmt",
    "ModuleCode": "L35.1213",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4537,7 +4537,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Brand Management",
-   "ModuleAcronym": "Brand_MGT",
+   "ModuleAcronym": "Brand Mgmt",
    "ModuleCode": "L35.1213",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4552,7 +4552,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Brand Management",
-   "ModuleAcronym": "Brand_MGT",
+   "ModuleAcronym": "Brand Mgmt",
    "ModuleCode": "L35.1213",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4567,7 +4567,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Brand Management",
-   "ModuleAcronym": "Brand_MGT",
+   "ModuleAcronym": "Brand Mgmt",
    "ModuleCode": "L35.1213",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4582,7 +4582,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Financial Derivatives",
-   "ModuleAcronym": "Fin_Derivat",
+   "ModuleAcronym": "Fin Derivatives",
    "ModuleCode": "L35.1222",
    "Typology": "TP",
    "SectionName": "TP4",
@@ -4597,7 +4597,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Behavioral Economics",
-   "ModuleAcronym": "Beh_Econ",
+   "ModuleAcronym": "Behav Econ",
    "ModuleCode": "L35.1907",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4612,7 +4612,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP1-A",
@@ -4627,7 +4627,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP1-B",
@@ -4642,7 +4642,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP2-A",
@@ -4657,7 +4657,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP2-B",
@@ -4672,7 +4672,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP3-A",
@@ -4687,7 +4687,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP3-B",
@@ -4702,7 +4702,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP4-B",
@@ -4717,7 +4717,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP5-A",
@@ -4732,7 +4732,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP5-B",
@@ -4747,7 +4747,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP4-A",
@@ -4762,7 +4762,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "BusESResp",
+   "ModuleAcronym": "Bus Ethics & SR",
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4777,7 +4777,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Behavioral Economics",
-   "ModuleAcronym": "Beh_Econ",
+   "ModuleAcronym": "Behav Econ",
    "ModuleCode": "L35.1907",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4792,7 +4792,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Introduction to Programming",
-   "ModuleAcronym": "Int_Prog",
+   "ModuleAcronym": "Intro Prog",
    "ModuleCode": "L35.1891",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -4807,7 +4807,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Finance",
-   "ModuleAcronym": "Fin",
+   "ModuleAcronym": "Finance",
    "ModuleCode": "L35.1574",
    "Typology": "PL",
    "SectionName": "PL2",
@@ -4822,7 +4822,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Finance",
-   "ModuleAcronym": "Fin",
+   "ModuleAcronym": "Finance",
    "ModuleCode": "L35.1574",
    "Typology": "PL",
    "SectionName": "PL2",
@@ -4837,7 +4837,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Strategic Management",
-   "ModuleAcronym": "Strat_MGT",
+   "ModuleAcronym": "Strat Mgmt",
    "ModuleCode": "L35.1247",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4852,7 +4852,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Strategic Management",
-   "ModuleAcronym": "Strat_MGT",
+   "ModuleAcronym": "Strat Mgmt",
    "ModuleCode": "L35.1247",
    "Typology": "TP",
    "SectionName": "TP3",
@@ -4867,7 +4867,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Accounting",
-   "ModuleAcronym": "ACCT",
+   "ModuleAcronym": "Accounting",
    "ModuleCode": "L35.1573",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4882,7 +4882,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Planning",
-   "ModuleAcronym": "Mktg_Plan",
+   "ModuleAcronym": "Mktg Planning",
    "ModuleCode": "L35.1531",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4897,7 +4897,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Marketing Planning",
-   "ModuleAcronym": "Mktg_Plan",
+   "ModuleAcronym": "Mktg Planning",
    "ModuleCode": "L35.1531",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -4912,7 +4912,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP1-B",
@@ -4927,7 +4927,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Programming in Finance",
-   "ModuleAcronym": "PiFin",
+   "ModuleAcronym": "Prog Fin",
    "ModuleCode": "L35.2076",
    "Typology": "TP",
    "SectionName": "TP5-A",
@@ -4942,7 +4942,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Econometrics",
-   "ModuleAcronym": "Econ",
+   "ModuleAcronym": "Econometrics",
    "ModuleCode": "L35.1903",
    "Typology": "PL",
    "SectionName": "PL1",
@@ -4957,7 +4957,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP1",
@@ -4972,7 +4972,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -4987,7 +4987,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -5002,7 +5002,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Extensive Course | level A1",
-   "ModuleAcronym": "PT_EC_A1",
+   "ModuleAcronym": "PT Extensive A1",
    "ModuleCode": "L35.1346",
    "Typology": "TP",
    "SectionName": "TP5",
@@ -5017,7 +5017,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Intensive Course",
-   "ModuleAcronym": "PT_IntenC",
+   "ModuleAcronym": "PT Intensive",
    "ModuleCode": "L35.1730",
    "Typology": "TP",
    "SectionName": "TP2",
@@ -5032,7 +5032,7 @@ window.SCHEDULE_DATA = {
   },
   {
    "ModuleName": "Portuguese Intensive Course",
-   "ModuleAcronym": "PT_IntenC",
+   "ModuleAcronym": "PT Intensive",
    "ModuleCode": "L35.1730",
    "Typology": "TP",
    "SectionName": "TP2",
