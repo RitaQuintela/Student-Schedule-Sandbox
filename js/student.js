@@ -378,7 +378,9 @@
     const banner = $('banner');
     if (!list.length) {
       banner.className = 'banner';
-      banner.textContent = 'Start by adding courses from the list. Each course lets you choose between its sections.';
+      banner.innerHTML = 'Start by adding courses from the list. ' +
+        '<strong>If the Master Affairs team has already enrolled you in a section, pick that section.</strong> ' +
+        'You can only choose your own section for electives.';
       return;
     }
     // The banner follows the trimester dropdown: only overlaps in weeks of the
