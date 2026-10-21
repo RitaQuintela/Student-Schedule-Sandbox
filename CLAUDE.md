@@ -73,7 +73,7 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   (`MP_Man_SEI_S1_PA` → `MP_Man_SEI`, `MSc_Econ_1` → `MSc_Econ`), shown with the full names in
   `PROGRAM_NAMES` (`js/parser.js`, names given by the owner, e.g. `MP_Fin` → "Masters in Finance").
   A code not in that list shows as the code and the admin gets a warning to send its name.
-  Period filter = Unit (`S1` → Semester 1, `T2` → Term 2).
+  Period filter = Unit (`S1` → "Semester 1 (S1)", `T1` → "Trimester 1 (T1)").
 
 ## Trimesters (timetable dropdown)
 - `computeTerms` in `js/parser.js`: semester 1 = Units S1/T1/T2 → Trimester 1 and 2; semester 2 =

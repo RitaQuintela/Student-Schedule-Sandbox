@@ -174,7 +174,7 @@
     let m = unit.match(/^S(\d+)$/i);
     if (m) return 'Semester ' + m[1] + ' (' + unit + ')';
     m = unit.match(/^T(\d+)$/i);
-    if (m) return 'Term ' + m[1] + ' (' + unit + ')';
+    if (m) return 'Trimester ' + m[1] + ' (' + unit + ')';
     return unit;
   }
 
