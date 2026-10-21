@@ -21,8 +21,8 @@ to put together their own weekly timetable.
    **✓ fits** or **⚠ overlaps** with what you've already picked.
    For courses with practical classes (PL), you choose the PL; the theory class (T) that
    goes with it is added automatically.
-5. **Check for overlaps.** Clashing classes turn **red** on the timetable and on the course
-   card, and a red banner lists them. Two classes only clash if they happen on the same day,
+5. **Check for overlaps.** Clashing classes are highlighted in **raspberry** with ⚠ on the timetable and on the course
+   card, and a banner lists them. Two classes only clash if they happen on the same day,
    at the same time, in at least one of the same weeks.
 6. **Pick the trimester.** Use **Trimester** to switch between the two trimesters of the semester
    (e.g. Trimester 1 and Trimester 2). Each shows only the classes that happen in it; semester-long
@@ -32,8 +32,8 @@ to put together their own weekly timetable.
    **Print / PDF** gives you a printable timetable.
 
 8. **Check your exams.** The **Exam calendar** (under the timetable, or the **Exams** tab on a
-   phone) shows the exam dates of the courses you picked, season by season. A **red** day means two
-   of your exams fall on the same day; **amber** means exams on consecutive days. Each course card
+   phone) shows the exam dates of the courses you picked, season by season. A **raspberry** day means two
+   of your exams fall on the same day; **orange** means exams on consecutive days. Each course card
    also lists its exam dates. Exam times and rooms aren't included yet.
 
 > **Beta version.** Use it to plan, but always check the information against the official class
@@ -53,8 +53,8 @@ between days.
 2. Open **`admin.html`** and upload the file. Nothing is sent anywhere; it's read in your browser.
 3. Read the **summary** (courses, sections, weekly classes), the **trimester dates** students will
    see, and the **problems to review**:
-   - **Errors** (red) must be fixed in the file before you can continue.
-   - **Warnings** (amber) don't block you, but check them. For example, “PLs were paired
+   - **Errors** (raspberry) must be fixed in the file before you can continue.
+   - **Warnings** (purple) don't block you, but check them. For example, “PLs were paired
      by section number” means the file has no pairing notes for that course.
 4. Click **Preview in the student view** to try it yourself. Only your browser sees the preview.
    Use **Stop preview** (or “Back to the published timetable”) when you're done.

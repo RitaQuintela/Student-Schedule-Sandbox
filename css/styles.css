@@ -28,8 +28,11 @@
   --text: #131313;
   --muted: #5C5F66;
   --border: #DADCE0;
-  --red: #C0262D;
-  --red-soft: #FBE3E3;
+  /* Overlaps: brand raspberry ("Liderança" #CC4A59) for borders and fills, a darker
+     shade of it for text so small text stays readable (WCAG AA). */
+  --red: #CC4A59;
+  --red-soft: #FAE6E9;
+  --red-ink: #A93445;
   --green: #1F7A5C;
   --green-soft: #DFF3EC;
   --radius: 2px;
@@ -270,9 +273,9 @@ a { color: var(--blue); }
 .session-list li { display: flex; gap: 8px; align-items: baseline; }
 .session-list .when { font-weight: 600; min-width: 116px; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .session-list .what { font-weight: 400; color: #3A3D42; }
-.session-list li.clash .when { color: var(--red); }
+.session-list li.clash .when { color: var(--red-ink); }
 .cc-note { font-size: 13px; background: rgba(255, 255, 255, .75); padding: 5px 8px; border-left: 3px solid var(--purple-ink); }
-.cc-clash { font-size: 13px; color: var(--red); font-weight: 600; }
+.cc-clash { font-size: 13px; color: var(--red-ink); font-weight: 600; }
 
 /* ---------- Timetable ---------- */
 
@@ -296,7 +299,7 @@ a { color: var(--blue); }
   border-left: 4px solid var(--blue);
 }
 .banner.ok { background: var(--green-soft); border-left-color: var(--green); color: #175A44; }
-.banner.bad { background: var(--red-soft); border-left-color: var(--red); color: var(--red); }
+.banner.bad { background: var(--red-soft); border-left-color: var(--red); color: var(--red-ink); }
 .banner ul { margin: 6px 0 0; padding-left: 18px; }
 
 .day-tabs { display: none; gap: 4px; margin-bottom: 8px; }
@@ -312,7 +315,7 @@ a { color: var(--blue); }
   cursor: pointer;
 }
 .day-tabs button.active { background: var(--blue); color: #fff; }
-.day-tabs button.has-clash { border-color: var(--red); color: var(--red); }
+.day-tabs button.has-clash { border-color: var(--red); color: var(--red-ink); }
 .day-tabs button.active.has-clash { background: var(--red); color: #fff; }
 
 .timetable {
@@ -382,7 +385,7 @@ a { color: var(--blue); }
 }
 .event span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 400; }
 .event.clash { background: var(--red-soft); box-shadow: inset 0 0 0 2px var(--red); border-left-color: var(--red); }
-.event.clash b { color: var(--red); }
+.event.clash b { color: var(--red-ink); }
 .event.dragging { opacity: .4; }
 .ev-remove {
   position: absolute;
@@ -420,10 +423,11 @@ a { color: var(--blue); }
 
 /* ---------- Exam calendar ---------- */
 
-:root { --amber: #C77700; --amber-soft: #FFF3DC; }
+/* Softer notes (exams on consecutive days, overlaps in the other trimester): brand orange ("Inovação" #ED9438). */
+:root { --amber: #ED9438; --amber-soft: #FDEFE0; }
 .sidebar { grid-row: span 2; }
 .ex-panel { grid-column: 2; min-width: 0; }
-.banner.warn { background: var(--amber-soft); border-left-color: var(--amber); color: #5E3A00; }
+.banner.warn { background: var(--amber-soft); border-left-color: var(--amber); color: var(--ink); }
 
 .ex-season h3 { margin: 14px 0 6px; font-size: 17px; font-weight: 700; color: var(--blue); }
 .ex-season:first-child h3 { margin-top: 0; }
@@ -459,14 +463,14 @@ a { color: var(--blue); }
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.ex-chip.clash { box-shadow: inset 0 0 0 1px var(--red); color: var(--red); }
+.ex-chip.clash { box-shadow: inset 0 0 0 1px var(--red); color: var(--red-ink); }
 .ex-list { display: none; list-style: none; margin: 0; padding: 0; border: 1px solid var(--border); }
 .ex-list li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 9px; border-top: 1px solid var(--border); }
 .ex-list li:first-child { border-top: 0; }
 .ex-list .when { min-width: 96px; font-weight: 600; }
 .ex-list .what { display: flex; flex-wrap: wrap; gap: 4px; }
 .ex-list li.clash { background: var(--red-soft); }
-.ex-list li.clash .when { color: var(--red); }
+.ex-list li.clash .when { color: var(--red-ink); }
 .ex-list li.close { background: var(--amber-soft); }
 .ex-list li.empty { color: var(--muted); }
 
@@ -519,7 +523,7 @@ a { color: var(--blue); }
   .student:not([data-view="courses"]) .sidebar { display: none; }
   .student:not([data-view="timetable"]) .tt-panel { display: none; }
   .student:not([data-view="exams"]) .ex-panel { display: none; }
-  .mobile-switch button.has-clash { border-color: var(--red); color: var(--red); }
+  .mobile-switch button.has-clash { border-color: var(--red); color: var(--red-ink); }
   .mobile-switch button.active.has-clash { background: var(--red); color: #fff; }
   .ex-strip { display: none; }
   .ex-list { display: block; }
@@ -604,7 +608,7 @@ a { color: var(--blue); }
 
 .issues { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
 .issues li { padding: 7px 10px; font-size: 13px; border-left: 4px solid; }
-.issues li.error { background: var(--red-soft); color: var(--red); border-color: var(--red); }
+.issues li.error { background: var(--red-soft); color: var(--red-ink); border-color: var(--red); }
 .issues li.warning { background: var(--purple-tint); color: #3B2B66; border-color: var(--purple-ink); }
 .issues li.info { background: var(--grey); color: #3A3D42; border-color: var(--border); }
 .issues-ok { background: var(--green-soft); color: var(--green); padding: 10px 12px; font-size: 14px; border-left: 4px solid var(--green); }
@@ -619,7 +623,7 @@ a { color: var(--blue); }
 .publish-status { margin: 10px 0 0; font-size: 14px; }
 .publish-status:empty { display: none; }
 .publish-status.ok { color: var(--green); }
-.publish-status.bad { color: var(--red); }
+.publish-status.bad { color: var(--red-ink); }
 .publish-status.busy { color: var(--muted); }
 .admin details summary { cursor: pointer; font-weight: 600; color: var(--blue); margin: 10px 0; }
 .steps { margin: 0; padding-left: 20px; font-size: 14px; }
