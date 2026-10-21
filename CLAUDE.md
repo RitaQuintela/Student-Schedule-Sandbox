@@ -133,6 +133,12 @@ header) and a centered beta disclaimer in the footer (replaces the old "Always c
 Raw exports contain staff usernames/emails (CreatedUser, LastModifiedUser). They are
 git-ignored (`Bullet extraction*`). Only the cleaned `data/timetable-data.js` is committed.
 
+## Cache busting
+GitHub Pages lets browsers keep files for 10 minutes, so a new page can load with an old stylesheet.
+`index.html` and `admin.html` load `css/styles.css` and `js/*.js` with `?v=YYYYMMDDx`.
+**Whenever CSS or JS changes, bump that version in both HTML files** (same value everywhere).
+Data files (`data/*.js`) are not versioned (the admin's Publish button can't edit the HTML).
+
 ## Testing
 Start the preview server from `.claude/launch.json`, then test `index.html` and `admin.html`
 at desktop and 375px widths. `window.ScheduleSandbox` and `window.ScheduleAdmin` expose helpers
