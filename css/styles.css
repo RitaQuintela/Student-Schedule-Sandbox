@@ -325,7 +325,11 @@ a { color: var(--blue); }
   position: relative;
   background: var(--surface);
 }
-.timetable.drop-hover { outline: 3px dashed var(--purple-ink); outline-offset: 2px; }
+.tt-terms.drop-hover { outline: 3px dashed var(--purple-ink); outline-offset: 2px; }
+/* One grid per trimester: side by side when there is room, else one above the other. */
+.tt-terms { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 14px; }
+.tt-term { min-width: 0; }
+.tt-term h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: var(--blue); }
 .tt-corner, .tt-dayhead {
   background: var(--blue);
   color: #fff;
@@ -379,11 +383,8 @@ a { color: var(--blue); }
   font-size: 12px;
   font-weight: 700;
   padding-right: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  hyphens: auto;
 }
-.event span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 400; }
 .event.clash { background: var(--red-soft); box-shadow: inset 0 0 0 2px var(--red); border-left-color: var(--red); }
 .event.clash b { color: var(--red-ink); }
 .event.dragging { opacity: .4; }
@@ -537,7 +538,7 @@ a { color: var(--blue); }
   .ev-remove { width: 22px; height: 22px; line-height: 22px; font-size: 16px; }
   .event b { padding-right: 22px; }
   .tt-toolbar { align-items: stretch; }
-  .tt-toolbar .field { flex: 1 1 100%; }
+  .tt-terms { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 520px) {
@@ -567,6 +568,7 @@ a { color: var(--blue); }
   .ex-list { display: none !important; }
   .tt-inner { padding: 6px 0 0; }
   .timetable { grid-template-columns: 52px repeat(5, minmax(0, 1fr)) !important; }
+  .tt-terms { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px; }
   .timetable .tt-dayhead, .timetable .tt-day { display: block !important; }
   .print-only { display: block; }
   .print-list { margin-top: 10px; font-size: 10px; columns: 2; }

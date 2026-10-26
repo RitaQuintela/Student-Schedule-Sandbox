@@ -75,11 +75,14 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   A code not in that list shows as the code and the admin gets a warning to send its name.
   Period filter = Unit (`S1` → "Semester 1 (S1)", `T1` → "Trimester 1 (T1)").
 
-## Trimesters (timetable dropdown)
+## Trimesters (one grid each)
 - `computeTerms` in `js/parser.js`: semester 1 = Units S1/T1/T2 → Trimester 1 and 2; semester 2 =
   S2/T3/T4 → Trimester 3 and 4. A trimester's dates = weeks of the courses tagged with it; if one
   trimester has no courses, it is the semester's other weeks before/after (flagged "inferred" on the
-  admin page). A semester with only S courses is one "Semester n" option. Default = today's trimester.
+  admin page). A semester with only S courses is one "Semester n" grid.
+- The timetable shows **one grid per trimester** (headed "Trimester 1", "Trimester 2"), side by side when
+  there is room, one above the other otherwise (always side by side when printed). A class appears in
+  every trimester grid it has weeks in (semester courses in both). No trimester dropdown.
 
 ## Exam rules (input: Integrated Exams Planner, .xlsm/.xlsx)
 - Read the **ExamData** sheet (header row found by its labels, not by position): Period ID, Cycle,
@@ -109,9 +112,10 @@ block from the timetable back onto the course list, or click the small × on a b
 that course (the list turns red, "Drop here to remove …"); button shows
 "Added ✓" and "Remove ✕" on hover; added courses pinned at the top; section dropdown on the card
 with "✓ fits" / "⚠ overlaps"; Mon–Fri 08:00–20:00 grid in 1h30 blocks; overlaps in red (blocks,
-cards, banner); **Trimester** dropdown (no "typical week", no single weeks): the grid shows only
-classes with a week inside the chosen trimester, and the overlap banner lists only that trimester's
-overlaps (with a note if the other trimester has some); course cards, timetable blocks, their hover tooltips, the overlap banner, the timetable header and the printed header show **no class dates** (only trimester names, days, times, sections, rooms); dates appear only in the exam calendar, Bullet notes and the .ics export. Course cards and timetable blocks show day/time/section/room only
+cards, banner); one grid per trimester (no dropdown, no single weeks); class blocks show only the
+short course name (section, time and room are in the hover tooltip and on the card), day headers
+use short names (MON…FRI); the overlap banner lists every overlap once, starting with the
+trimester(s) it happens in; course cards, timetable blocks, their hover tooltips, the overlap banner, the timetable header and the printed header show **no class dates** (only trimester names, days, times, sections, rooms); dates appear only in the exam calendar, Bullet notes and the .ics export. Course cards show day/time/section/room only
 (no week counts); .ics export (one event per real date,
 TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
 (`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta version** tab (purple, on the line under the

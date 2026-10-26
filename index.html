@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Schedule Sandbox · Católica Lisbon</title>
-<link rel="stylesheet" href="css/styles.css?v=20261021j">
+<link rel="stylesheet" href="css/styles.css?v=20261026b">
 </head>
 <body>
 <header class="app-header">
@@ -49,16 +49,13 @@
   </aside>
 
   <section class="tt-panel panel" aria-label="Weekly timetable">
-    <div class="bar">Preview of Weekly Timetable <small id="bar-week"></small></div>
+    <div class="bar">Preview of Weekly Timetable</div>
     <div class="tt-inner">
       <div class="print-only">
         <h2 style="margin:0;color:#0061FF">My timetable</h2>
         <p id="print-week" style="margin:2px 0 8px"></p>
       </div>
       <div class="tt-toolbar">
-        <label class="field">Trimester
-          <select id="week"></select>
-        </label>
         <div class="actions">
           <button id="export-ics" class="btn">Export to calendar (.ics)</button>
           <button id="print" class="btn">Print / PDF</button>
@@ -67,7 +64,7 @@
       </div>
       <div id="banner" class="banner" role="status"></div>
       <div class="day-tabs" id="day-tabs" role="tablist" aria-label="Day"></div>
-      <div class="timetable" id="timetable"></div>
+      <div class="tt-terms" id="timetable"></div>
       <p class="hint">Drag a course from the list onto the timetable to add it, or drag a class from the timetable back to the list to remove it. Red means two classes happen at the same time.</p>
       <div class="print-only print-list" id="print-list"></div>
     </div>
@@ -92,8 +89,8 @@
 
 <script src="data/timetable-data.js"></script>
 <script src="data/exam-data.js"></script>
-<script src="js/parser.js?v=20261021j"></script>
-<script src="js/exams.js?v=20261021j"></script>
-<script src="js/student.js?v=20261021j"></script>
+<script src="js/parser.js?v=20261026b"></script>
+<script src="js/exams.js?v=20261026b"></script>
+<script src="js/student.js?v=20261026b"></script>
 </body>
 </html>

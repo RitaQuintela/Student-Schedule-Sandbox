@@ -67,7 +67,6 @@
   const todayIdx = (new Date().getDay() + 6) % 7;
   const state = {
     selections: new Map(), // course code -> { option: id, color: index }, in the order added
-    term: '',            // trimester shown on the timetable (e.g. 'T1')
     search: '',
     programme: '',
     unit: '',
@@ -81,17 +80,12 @@
     const option = course.options.some(o => o.id === sel.option) ? sel.option : course.options[0].id;
     state.selections.set(code, { option, color: Number(sel.color) || 0 });
   });
-  // Show the saved trimester, else the one happening today, else the first.
-  const todayIso = new Date().toISOString().slice(0, 10);
-  const currentTerm = data.terms.find(t => todayIso >= t.start && todayIso <= S.addDays(t.end, 6));
-  state.term = (data.terms.find(t => t.id === saved.term) || currentTerm || data.terms[0] || { id: '' }).id;
   if (saved.programme && data.programmes.some(p => p.code === saved.programme)) state.programme = saved.programme;
   if (saved.unit && data.units.some(u => u.code === saved.unit)) state.unit = saved.unit;
 
   function persist() {
     save(STORE_KEY, {
       selections: [...state.selections],
-      term: state.term,
       programme: state.programme,
       unit: state.unit,
     });
@@ -131,14 +125,18 @@
     });
   }
 
-  function shownTerm() {
-    return data.terms.find(t => t.id === state.term) || null;
+  // One grid per trimester (one grid with everything if the file has no dates).
+  function shownTerms() {
+    return data.terms.length ? data.terms : [null];
   }
 
-  // Classes shown on the grid: those with at least one week in the chosen trimester.
-  function inShownTerm(session) {
-    const term = shownTerm();
-    return !term || S.inTerm(session, term);
+  // Classes shown on a trimester's grid: those with at least one week in it.
+  function inTermOf(term) {
+    return session => !term || S.inTerm(session, term);
+  }
+
+  function clashesIn(term, clashes) {
+    return term ? clashes.filter(c => c.weeks.some(w => w >= term.start && w <= term.end)) : clashes;
   }
 
   // All overlapping pairs between different selected courses.
@@ -196,8 +194,6 @@
       data.units.map(u => `<option value="${esc(u.code)}">${esc(u.label)}</option>`).join('');
     $('programme').value = state.programme;
     $('unit').value = state.unit;
-    $('week').innerHTML = data.terms.map(t => `<option value="${t.id}">${t.label}</option>`).join('');
-    $('week').value = state.term;
   }
 
   function renderList(list, clashes) {
@@ -311,52 +307,56 @@
   }
 
   function renderTimetable(list, clashes) {
-    const term = shownTerm();
-    const shownClashes = term ? clashes.filter(c => c.weeks.some(w => w >= term.start && w <= term.end)) : clashes;
-    const clashIds = new Set(shownClashes.flatMap(c => [c.a.id, c.b.id]));
-    const clashDays = new Set(shownClashes.map(c => c.a.day));
+    const clashDays = new Set();
+    const grids = shownTerms().map(term => {
+      const termClashes = clashesIn(term, clashes);
+      const clashIds = new Set(termClashes.flatMap(c => [c.a.id, c.b.id]));
+      termClashes.forEach(c => clashDays.add(c.a.day));
+      const inTerm = inTermOf(term);
 
-    let html = '<div class="tt-corner"></div>';
-    S.WEEKDAYS.forEach((d, i) => {
-      html += `<div class="tt-dayhead${i === state.day ? ' current' : ''}">${d}</div>`;
-    });
-    html += '<div class="tt-times">';
-    for (let b = 0; b < BLOCKS; b++) html += `<div class="tt-time">${S.formatTime(S.DAY_START + b * 90)}</div>`;
-    html += '</div>';
-
-    let shownCount = 0;
-    S.WEEKDAYS.forEach((d, day) => {
-      const items = [];
-      list.forEach(e => e.option.sessions.forEach(s => {
-        if (s.day === day && inShownTerm(s) && s.end > S.DAY_START && s.start < S.DAY_END) items.push({ e, s });
-      }));
-      shownCount += items.length;
-      html += `<div class="tt-day${day === state.day ? ' current' : ''}" style="height:calc(var(--block-h) * ${BLOCKS})">`;
-      layoutDay(items).forEach(({ e, s, lane, lanes }) => {
-        const start = Math.max(s.start, S.DAY_START);
-        const end = Math.min(s.end, S.DAY_END);
-        const top = (start - S.DAY_START) / SPAN * 100;
-        const height = (end - start) / SPAN * 100;
-        const left = lane / lanes * 100;
-        const width = 100 / lanes;
-        const clash = clashIds.has(s.id);
-        const tip = `${e.course.name}\n${sectionLabel(s)} · ${timeRange(s)}${s.room ? ' · ' + s.room : ''}${clash ? '\n⚠ Overlaps with another class' : ''}`;
-        html += `<div class="event${clash ? ' clash' : ''}" title="${esc(tip)}" draggable="true" data-code="${esc(e.course.code)}"
-          style="top:calc(${top}% + 1px);height:calc(${height}% - 2px);left:calc(${left}% + 2px);width:calc(${width}% - 4px);--ev-fg:${e.color[0]};--ev-bg:${e.color[1]}">
-          <button class="ev-remove" data-code="${esc(e.course.code)}" title="Remove ${esc(e.course.name)} from my timetable" aria-label="Remove ${esc(e.course.name)}">×</button>
-          <b>${clash && lanes === 1 ? '⚠ ' : ''}${esc(courseTitle(e.course))}</b>
-          <span>${esc(sectionLabel(s))} · ${timeRange(s)}</span>
-          ${s.room ? `<span>${esc(s.room)}</span>` : ''}        </div>`;
+      let html = '<div class="tt-corner"></div>';
+      S.WEEKDAYS.forEach((d, i) => {
+        html += `<div class="tt-dayhead${i === state.day ? ' current' : ''}" title="${d}">${S.WEEKDAYS_SHORT[i]}</div>`;
       });
+      html += '<div class="tt-times">';
+      for (let b = 0; b < BLOCKS; b++) html += `<div class="tt-time">${S.formatTime(S.DAY_START + b * 90)}</div>`;
       html += '</div>';
-    });
 
-    if (!list.length) {
-      html += `<div class="tt-empty">Your timetable is empty.<br>Add courses with “+ Add” or drag them here.</div>`;
-    } else if (!shownCount) {
-      html += `<div class="tt-empty">None of your courses have classes in this trimester.</div>`;
-    }
-    $('timetable').innerHTML = html;
+      let shownCount = 0;
+      S.WEEKDAYS.forEach((d, day) => {
+        const items = [];
+        list.forEach(e => e.option.sessions.forEach(s => {
+          if (s.day === day && inTerm(s) && s.end > S.DAY_START && s.start < S.DAY_END) items.push({ e, s });
+        }));
+        shownCount += items.length;
+        html += `<div class="tt-day${day === state.day ? ' current' : ''}" style="height:calc(var(--block-h) * ${BLOCKS})">`;
+        layoutDay(items).forEach(({ e, s, lane, lanes }) => {
+          const start = Math.max(s.start, S.DAY_START);
+          const end = Math.min(s.end, S.DAY_END);
+          const top = (start - S.DAY_START) / SPAN * 100;
+          const height = (end - start) / SPAN * 100;
+          const left = lane / lanes * 100;
+          const width = 100 / lanes;
+          const clash = clashIds.has(s.id);
+          // Only the short name fits; section, time and room are in the tooltip and on the card.
+          const tip = `${e.course.name}\n${sectionLabel(s)} · ${timeRange(s)}${s.room ? ' · ' + s.room : ''}${clash ? '\n⚠ Overlaps with another class' : ''}`;
+          html += `<div class="event${clash ? ' clash' : ''}" title="${esc(tip)}" draggable="true" data-code="${esc(e.course.code)}"
+            style="top:calc(${top}% + 1px);height:calc(${height}% - 2px);left:calc(${left}% + 2px);width:calc(${width}% - 4px);--ev-fg:${e.color[0]};--ev-bg:${e.color[1]}">
+            <button class="ev-remove" data-code="${esc(e.course.code)}" title="Remove ${esc(e.course.name)} from my timetable" aria-label="Remove ${esc(e.course.name)}">×</button>
+            <b>${clash && lanes === 1 ? '⚠ ' : ''}${esc(courseTitle(e.course))}</b>
+          </div>`;
+        });
+        html += '</div>';
+      });
+
+      if (!list.length) {
+        html += `<div class="tt-empty">Your timetable is empty.<br>Add courses with “+ Add” or drag them here.</div>`;
+      } else if (!shownCount) {
+        html += `<div class="tt-empty">None of your courses have classes in this ${term ? 'trimester' : 'period'}.</div>`;
+      }
+      return `<div class="tt-term">${term ? `<h3>${esc(term.label)}</h3>` : ''}<div class="timetable">${html}</div></div>`;
+    });
+    $('timetable').innerHTML = grids.join('');
 
     $('day-tabs').innerHTML = S.WEEKDAYS_SHORT.map((d, i) =>
       `<button role="tab" data-day="${i}" aria-selected="${i === state.day}" class="${i === state.day ? 'active' : ''}${clashDays.has(i) ? ' has-clash' : ''}">${d}${clashDays.has(i) ? ' ⚠' : ''}</button>`).join('');
@@ -371,36 +371,27 @@
         'You can only choose your own section for electives.';
       return;
     }
-    // The banner follows the trimester dropdown: only overlaps in weeks of the
-    // trimester shown, with a short pointer to overlaps in the other trimester(s).
-    const term = shownTerm();
-    const inTermWeeks = t => w => w >= t.start && w <= t.end;
-    const termClashes = term ? clashes.filter(c => c.weeks.some(inTermWeeks(term))) : clashes;
-    const elsewhere = term
-      ? data.terms.filter(t => t !== term && clashes.some(c => c.weeks.some(inTermWeeks(t)))).map(t => t.label)
-      : [];
-    const otherNote = elsewhere.length ? ` There are also overlaps in ${elsewhere.join(' and ')}.` : '';
-    if (termClashes.length) {
-      // One line per pair of courses and time slot.
-      const lines = new Map();
-      termClashes.forEach(c => {
+    // Overlaps are listed per trimester (a semester course can clash in both).
+    const terms = shownTerms();
+    // One line per pair of courses and time slot, naming the trimester(s) it happens in.
+    const lines = new Map();
+    terms.forEach(term => {
+      clashesIn(term, clashes).forEach(c => {
         const key = [c.x.course.code, c.y.course.code, c.a.day, c.a.start, c.b.start].join('|');
-        const prev = lines.get(key);
-        const weeks = new Set([...(prev ? prev.weeks : []), ...(term ? c.weeks.filter(inTermWeeks(term)) : c.weeks)]);
-        lines.set(key, { c, weeks });
+        if (!lines.has(key)) lines.set(key, { c, terms: [] });
+        if (term && !lines.get(key).terms.includes(term.label)) lines.get(key).terms.push(term.label);
       });
-      const items = [...lines.values()].map(({ c, weeks }) => {
-        return `<li><b>${esc(c.x.course.name)}</b> (${esc(sectionLabel(c.a))}) and <b>${esc(c.y.course.name)}</b> (${esc(sectionLabel(c.b))}) · ${S.WEEKDAYS_SHORT[c.a.day]} ${timeRange(c.a)} / ${timeRange(c.b)}</li>`;
-      });
+    });
+    const items = [...lines.values()].map(({ c, terms: where }) =>
+      `<li>${terms.length > 1 && where.length ? `<b>${esc(where.join(' and '))}:</b> ` : ''}<b>${esc(c.x.course.name)}</b> (${esc(sectionLabel(c.a))}) and <b>${esc(c.y.course.name)}</b> (${esc(sectionLabel(c.b))}) · ${S.WEEKDAYS_SHORT[c.a.day]} ${timeRange(c.a)} / ${timeRange(c.b)}</li>`);
+    if (items.length) {
       banner.className = 'banner bad';
-      banner.innerHTML = `<strong>⚠ ${items.length} overlap${items.length === 1 ? '' : 's'} in ${term ? esc(term.label) : 'your timetable'}.</strong> ` +
-        `Try another section for one of these courses:<ul>${items.join('')}</ul>${esc(otherNote)}`;
+      banner.innerHTML = `<strong>⚠ ${items.length} overlap${items.length === 1 ? '' : 's'}.</strong> ` +
+        `Try another section for one of these courses:<ul>${items.join('')}</ul>`;
       return;
     }
-    const weekly = list.reduce((n, e) => n + e.option.sessions.filter(inShownTerm).length, 0);
-    banner.className = elsewhere.length ? 'banner warn' : 'banner ok';
-    banner.textContent = `✓ No overlaps in ${term ? term.label : 'your timetable'} · ${list.length} course${list.length === 1 ? '' : 's'} · ` +
-      `${weekly} class${weekly === 1 ? '' : 'es'} a week.` + otherNote;
+    banner.className = 'banner ok';
+    banner.textContent = `✓ No overlaps · ${list.length} course${list.length === 1 ? '' : 's'}.`;
   }
 
   /* ---------- Rendering: exam calendar ---------- */
@@ -499,8 +490,6 @@
     renderList(list, clashes);
     renderTimetable(list, clashes);
     renderBanner(list, clashes);
-    const term = shownTerm();
-    $('bar-week').textContent = term ? `· ${term.label}` : '';
     $('switch-count').textContent = list.length ? `(${list.length})` : '';
     persist();
   }
@@ -596,8 +585,7 @@
 
   function preparePrint() {
     const list = entries();
-    const term = shownTerm();
-    $('print-week').textContent = term ? term.label : '';
+    $('print-week').textContent = data.terms.map(t => t.label).join(' and ');
     $('print-list').innerHTML = list.map(e =>
       `<p><b>${esc(e.course.name)}</b> (${esc(e.course.code)}) – ${esc(e.option.label)}: ` +
       e.option.sessions.map(s => `${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}${s.room ? ' ' + esc(s.room) : ''}`).join('; ') + '</p>').join('');
@@ -608,7 +596,6 @@
   $('search').addEventListener('input', e => { state.search = e.target.value; update(); });
   $('programme').addEventListener('change', e => { state.programme = e.target.value; update(); });
   $('unit').addEventListener('change', e => { state.unit = e.target.value; update(); });
-  $('week').addEventListener('change', e => { state.term = e.target.value; update(); });
 
   $('course-list').addEventListener('click', e => {
     const btn = e.target.closest('button[data-act]');
