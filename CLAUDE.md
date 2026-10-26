@@ -21,7 +21,12 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
   - Complementary black `#131313`, grey `#F3F3F3`, white. Course colours = brand program
     colours as stripe + light tint (see `COLORS` in `js/student.js`). Overlaps use brand raspberry `#CC4A59` (text in the darker `#A93445` for readability), brand orange `#ED9438` is kept for warning banners (no orange highlighting of consecutive exam days); removing a course (Remove ✕, the × on blocks, drag-to-remove) uses black `#131313`.
   - Never use the logo's Bright Blue `#003CA5` outside the logo. No navy/gold (old identity).
-  - Typeface Barlow, vendored in `vendor/fonts` (SIL OFL).
+  - Typeface Barlow, vendored in `vendor/fonts` (SIL OFL). Handwriting: Caveat (`vendor/fonts/caveat.woff2`,
+    variable weight, latin subset, SIL OFL), used only for the draft stamp.
+  - **Draft look** (owner's choice, "sketch C"): purple marker swipe under the page title and the
+    trimester headings, sketchy timetable grid (wobbly hour lines, dashed day lines), and a tilted
+    raspberry hand-drawn **DRAFT stamp** in the timetable toolbar, before the buttons (CSS at the end of
+    `styles.css`).
   - Logo: `assets/logo-clsbe-white.svg` on blue (colour version `assets/logo-clsbe.svg` for white
     backgrounds), the version **without seal** (internal tools). Min. width on screen 150 px.
     Don't recolour, distort, outline or crowd it.
@@ -136,8 +141,12 @@ short course name (section, time and room are in the hover tooltip and on the ca
 use short names (MON…FRI); the overlap banner lists every overlap once, starting with the
 trimester(s) it happens in; course cards, timetable blocks, their hover tooltips, the overlap banner, the timetable header and the printed header show **no class dates** (only trimester names, days, times, sections, rooms); dates appear only in the exam calendar, Bullet notes and the .ics export. Course cards show day/time/section/room only
 (no week counts); .ics export (one event per real date,
-TZID Europe/Lisbon); Print/PDF; selection saved in localStorage
-(`scheduleSandbox.student.v1`; admin previews use separate keys). Header shows a **Beta version** tab (purple, on the line under the
+TZID Europe/Lisbon, file named after the draft); Print/PDF (header shows the draft name);
+**named drafts**: the DRAFT stamp shows the current draft's name and opens a menu to switch drafts,
+create a new empty one, duplicate, rename (max 30 characters) or delete (max 10 drafts); each draft
+keeps its own courses and sections; "Clear all" clears the current draft only. Saved in localStorage
+(`scheduleSandbox.student.v1` = `{ drafts: [{ id, name, selections }], draftId, programme, unit }`;
+older saves with a single `selections` list become "Draft 1"; admin previews use separate keys). Header shows a **Beta version** tab (purple, on the line under the
 header) and a centered beta disclaimer in the footer (replaces the old "Always confirm your final enrollment" line) ("Schedule Sandbox is a beta planning tool: it does not enroll you … always check"). Subtitle:
 "Plan your classes and exams, try different schedule options, and avoid overlaps before enrollment."
 

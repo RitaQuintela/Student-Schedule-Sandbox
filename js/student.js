@@ -71,7 +71,10 @@
   }
   const todayIdx = (new Date().getDay() + 6) % 7;
   const state = {
-    selections: new Map(), // course code -> { option: id ('' until picked), color: index }, in the order added
+    // Drafts: named scenarios the student can switch between. Each keeps its own courses.
+    drafts: [],          // [{ id, name, selections }]
+    draftId: '',
+    selections: new Map(), // the active draft's: course code -> { option: id ('' until picked), color: index }, in the order added
     search: '',
     programme: '',
     unit: '',
@@ -79,18 +82,34 @@
     view: 'courses',
   };
 
-  (saved.selections || []).forEach(([code, sel]) => {
-    const course = data.byCode.get(code);
-    if (!course || !course.options.length || !sel) return;
-    const option = course.options.some(o => o.id === sel.option) ? sel.option : firstOption(course);
-    state.selections.set(code, { option, color: Number(sel.color) || 0 });
-  });
+  function restoreSelections(list) {
+    const map = new Map();
+    (list || []).forEach(([code, sel]) => {
+      const course = data.byCode.get(code);
+      if (!course || !course.options.length || !sel) return;
+      const option = course.options.some(o => o.id === sel.option) ? sel.option : firstOption(course);
+      map.set(code, { option, color: Number(sel.color) || 0 });
+    });
+    return map;
+  }
+  // Saves from before drafts existed (a single "selections" list) become "Draft 1".
+  const savedDrafts = Array.isArray(saved.drafts) && saved.drafts.length
+    ? saved.drafts
+    : [{ id: 'd1', name: 'Draft 1', selections: saved.selections }];
+  state.drafts = savedDrafts.map(d => ({ id: String(d.id), name: String(d.name || 'Draft'), selections: restoreSelections(d.selections) }));
+  state.draftId = (state.drafts.find(d => d.id === saved.draftId) || state.drafts[0]).id;
+  state.selections = currentDraft().selections;
+
+  function currentDraft() {
+    return state.drafts.find(d => d.id === state.draftId);
+  }
   if (saved.programme && data.programmes.some(p => p.code === saved.programme)) state.programme = saved.programme;
   if (saved.unit && data.units.some(u => u.code === saved.unit)) state.unit = saved.unit;
 
   function persist() {
     save(STORE_KEY, {
-      selections: [...state.selections],
+      drafts: state.drafts.map(d => ({ id: d.id, name: d.name, selections: [...d.selections] })),
+      draftId: state.draftId,
       programme: state.programme,
       unit: state.unit,
     });
@@ -213,6 +232,66 @@
   function setOption(code, id) {
     const sel = state.selections.get(code);
     if (sel) { sel.option = id; update(); }
+  }
+
+  /* ---------- Drafts ---------- */
+
+  const MAX_DRAFTS = 10;
+
+  function switchDraft(id) {
+    state.draftId = id;
+    state.selections = currentDraft().selections;
+    update();
+  }
+
+  function nextDraftName() {
+    let n = state.drafts.length + 1;
+    while (state.drafts.some(d => d.name === 'Draft ' + n)) n++;
+    return 'Draft ' + n;
+  }
+
+  // A new empty draft, or a copy of the current one.
+  function newDraft(copy) {
+    if (state.drafts.length >= MAX_DRAFTS) { alert(`You can keep up to ${MAX_DRAFTS} drafts. Delete one first.`); return; }
+    const selections = copy ? new Map([...state.selections].map(([k, v]) => [k, Object.assign({}, v)])) : new Map();
+    const name = copy ? `${currentDraft().name} (copy)`.slice(0, 30) : nextDraftName();
+    const id = 'd' + Date.now().toString(36);
+    state.drafts.push({ id, name, selections });
+    switchDraft(id);
+  }
+
+  function renameDraft() {
+    const draft = currentDraft();
+    const name = prompt('Name this draft (for example “Plan A” or “Finance electives”):', draft.name);
+    if (name === null || !name.trim()) return;
+    draft.name = name.trim().slice(0, 30);
+    update();
+  }
+
+  function deleteDraft() {
+    const draft = currentDraft();
+    if (!confirm(`Delete “${draft.name}” and its courses?`)) return;
+    state.drafts = state.drafts.filter(d => d !== draft);
+    if (!state.drafts.length) state.drafts.push({ id: 'd' + Date.now().toString(36), name: 'Draft 1', selections: new Map() });
+    switchDraft(state.drafts[0].id);
+  }
+
+  function renderDrafts() {
+    $('draft-name').textContent = currentDraft().name;
+    $('draft-menu').innerHTML =
+      `<div class="dm-title">Your drafts</div>` +
+      state.drafts.map(d => `<button role="menuitemradio" aria-checked="${d.id === state.draftId}" data-draft="${esc(d.id)}">` +
+        `<span class="dm-check">${d.id === state.draftId ? '✓' : ''}</span>${esc(d.name)} <small>· ${d.selections.size} course${d.selections.size === 1 ? '' : 's'}</small></button>`).join('') +
+      `<hr><button role="menuitem" data-act="new">+ New empty draft</button>` +
+      `<button role="menuitem" data-act="copy">Duplicate this draft</button>` +
+      `<button role="menuitem" data-act="rename">Rename this draft</button>` +
+      `<button role="menuitem" data-act="delete">Delete this draft</button>`;
+  }
+
+  function toggleDraftMenu(open) {
+    const menu = $('draft-menu');
+    menu.hidden = !open;
+    $('draft-stamp').setAttribute('aria-expanded', String(open));
   }
 
   /* ---------- Rendering: course list ---------- */
@@ -561,6 +640,7 @@
     renderList(list, clashes);
     renderTimetable(list, clashes);
     renderBanner(list, clashes);
+    renderDrafts();
     $('switch-count').textContent = state.selections.size ? `(${state.selections.size})` : '';
     persist();
   }
@@ -656,7 +736,7 @@
 
   function preparePrint() {
     const list = entries();
-    $('print-week').textContent = data.terms.map(t => t.label).join(' and ');
+    $('print-week').textContent = [currentDraft().name, data.terms.map(t => t.label).join(' and ')].filter(Boolean).join(' · ');
     $('print-list').innerHTML = list.map(e =>
       `<p><b>${esc(e.course.name)}</b> (${esc(e.course.code)}) – ${esc(e.option.label)}: ` +
       shownSessions(e.option).map(s => `${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}${s.room ? ' ' + esc(s.room) : ''}`).join('; ') + '</p>').join('');
@@ -776,14 +856,33 @@
     const list = entries();
     if (!list.length) { alert('Add at least one course and choose its section first.'); return; }
     const { text } = buildIcs(list);
-    download('my-timetable.ics', text, 'text/calendar;charset=utf-8');
+    const slug = currentDraft().name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    download(`my-timetable${slug ? '-' + slug : ''}.ics`, text, 'text/calendar;charset=utf-8');
   });
   $('print').addEventListener('click', () => { preparePrint(); window.print(); });
   window.addEventListener('beforeprint', preparePrint);
   $('clear-all').addEventListener('click', () => {
     if (!state.selections.size) return;
-    if (confirm('Remove all courses from your timetable?')) { state.selections.clear(); update(); }
+    if (confirm(`Remove all courses from “${currentDraft().name}”?`)) { state.selections.clear(); update(); }
   });
+
+  // The draft stamp opens a small menu: switch, new, duplicate, rename, delete.
+  $('draft-stamp').addEventListener('click', e => {
+    e.stopPropagation();
+    toggleDraftMenu($('draft-menu').hidden);
+  });
+  $('draft-menu').addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    toggleDraftMenu(false);
+    if (btn.dataset.draft) switchDraft(btn.dataset.draft);
+    else if (btn.dataset.act === 'new') newDraft(false);
+    else if (btn.dataset.act === 'copy') newDraft(true);
+    else if (btn.dataset.act === 'rename') renameDraft();
+    else if (btn.dataset.act === 'delete') deleteDraft();
+  });
+  document.addEventListener('click', e => { if (!e.target.closest('.draft')) toggleDraftMenu(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleDraftMenu(false); });
   $('preview-clear').addEventListener('click', () => {
     forget(PREVIEW_KEY);
     forget(EXAM_PREVIEW_KEY);
@@ -801,5 +900,5 @@
   }
 
   // Exposed for testing in the browser console.
-  window.ScheduleSandbox = { data, state, entries, findClashes, buildIcs, addCourse, removeCourse, setOption, update, examLink, examItems };
+  window.ScheduleSandbox = { data, state, entries, newDraft, switchDraft, findClashes, buildIcs, addCourse, removeCourse, setOption, update, examLink, examItems };
 })();

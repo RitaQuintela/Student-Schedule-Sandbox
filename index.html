@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Schedule Sandbox · Católica Lisbon</title>
-<link rel="stylesheet" href="css/styles.css?v=20261026g">
+<link rel="stylesheet" href="css/styles.css?v=20261026h">
 </head>
 <body>
 <header class="app-header">
@@ -56,6 +56,12 @@
         <p id="print-week" style="margin:2px 0 8px"></p>
       </div>
       <div class="tt-toolbar">
+        <div class="draft">
+          <button id="draft-stamp" class="stamp" aria-haspopup="true" aria-expanded="false" title="Your drafts: switch, create, rename">
+            <span class="stamp-word">Draft</span><span class="stamp-name"><span id="draft-name"></span> ▾</span>
+          </button>
+          <div id="draft-menu" class="draft-menu" role="menu" hidden></div>
+        </div>
         <div class="actions">
           <button id="export-ics" class="btn">Export to calendar (.ics)</button>
           <button id="print" class="btn">Print / PDF</button>
@@ -89,8 +95,8 @@
 
 <script src="data/timetable-data.js"></script>
 <script src="data/exam-data.js"></script>
-<script src="js/parser.js?v=20261026g"></script>
-<script src="js/exams.js?v=20261026g"></script>
-<script src="js/student.js?v=20261026g"></script>
+<script src="js/parser.js?v=20261026h"></script>
+<script src="js/exams.js?v=20261026h"></script>
+<script src="js/student.js?v=20261026h"></script>
 </body>
 </html>

@@ -14,6 +14,8 @@
 @font-face { font-family: "Barlow"; font-weight: 600; font-display: swap; src: url("../vendor/fonts/barlow-600.woff2") format("woff2"); }
 @font-face { font-family: "Barlow"; font-weight: 700; font-display: swap; src: url("../vendor/fonts/barlow-700.woff2") format("woff2"); }
 @font-face { font-family: "Barlow"; font-weight: 800; font-display: swap; src: url("../vendor/fonts/barlow-800.woff2") format("woff2"); }
+/* Handwriting for the "draft" look (Caveat, SIL OFL, variable weight). */
+@font-face { font-family: "Caveat"; font-weight: 400 700; font-display: swap; src: url("../vendor/fonts/caveat.woff2") format("woff2"); }
 
 :root {
   --blue: #0061FF;          /* Azul Institucional */
@@ -635,3 +637,45 @@ a { color: var(--blue); }
 
 /* Added course still waiting for its section */
 .course-card.pending select { border-color: var(--purple-ink); box-shadow: 0 0 0 2px var(--purple-tint); }
+
+/* ---------- Draft look: hand-drawn touches ---------- */
+
+/* Marker swipe under the title and the trimester headings */
+.title h1, .tt-term h3, .ex-season h3 { position: relative; display: inline-block; }
+.title h1::after, .tt-term h3::after, .ex-season h3::after {
+  content: ""; position: absolute; left: -2px; right: -2px; bottom: -7px; height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 50 3, 120 11, 197 5' fill='none' stroke='%23B78BFC' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%; pointer-events: none;
+}
+.tt-term h3::after, .ex-season h3::after { bottom: -5px; height: 7px; opacity: .7; }
+.tt-term h3, .ex-season h3 { margin-bottom: 10px; }
+
+/* Sketchy grid: wobbly hour lines, dashed day lines */
+.tt-day { border-left-style: dashed; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 64' preserveAspectRatio='none'%3E%3Cpath d='M0 1 C 20 0.2, 40 1.8, 60 0.8 S 90 1.6, 100 0.9' fill='none' stroke='%23D2D2D2' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); background-size: 100% var(--block-h); }
+.tt-time { border-top-style: dashed; }
+.ex-day { border-left-style: dashed; }
+
+/* Draft stamp, in front of the toolbar buttons; opens the drafts menu */
+.tt-toolbar { align-items: center; }
+.draft { position: relative; }
+.stamp {
+  font-family: "Caveat", cursive; color: #C2414F; background: transparent; cursor: pointer;
+  border: 3px solid #C2414F; border-radius: 9px; padding: 0 12px 2px; line-height: 1;
+  transform: rotate(-5deg); display: inline-flex; flex-direction: column; align-items: center;
+  opacity: .85; transition: opacity .15s, transform .15s;
+}
+.stamp:hover, .stamp[aria-expanded="true"] { opacity: 1; transform: rotate(-3deg) scale(1.03); }
+.stamp:focus-visible { outline: 2px solid var(--purple-ink); outline-offset: 4px; }
+.stamp-word { font-size: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.stamp-name { font-size: 19px; font-weight: 600; max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.draft-menu {
+  position: absolute; z-index: 20; top: calc(100% + 8px); left: 0; min-width: 240px;
+  background: var(--surface); border: 1px solid var(--border); box-shadow: 0 6px 18px rgba(0, 0, 0, .12); padding: 6px;
+}
+.draft-menu .dm-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 4px 8px; }
+.draft-menu button { display: flex; align-items: baseline; gap: 6px; width: 100%; text-align: left; background: none; border: 0; padding: 7px 8px; font: inherit; font-size: 14px; cursor: pointer; color: var(--ink); }
+.draft-menu button:hover { background: var(--purple-tint); }
+.draft-menu button small { color: var(--muted); }
+.draft-menu .dm-check { width: 14px; color: var(--purple-ink); font-weight: 700; }
+.draft-menu hr { border: 0; border-top: 1px solid var(--border); margin: 6px 0; }
+@media (max-width: 860px) { .stamp-word { font-size: 24px; } .stamp-name { font-size: 17px; } }
+@media print { .title h1::after { display: none; } }
