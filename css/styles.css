@@ -640,8 +640,8 @@ a { color: var(--blue); }
 
 /* ---------- Draft look: hand-drawn touches ---------- */
 
-/* Sketchy grid: wobbly hour lines, dashed day lines */
-.tt-day { border-left-style: dashed; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 64' preserveAspectRatio='none'%3E%3Cpath d='M0 1 C 20 0.2, 40 1.8, 60 0.8 S 90 1.6, 100 0.9' fill='none' stroke='%23D2D2D2' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); background-size: 100% var(--block-h); }
+/* Dashed grid: dashed hour lines and day lines */
+.tt-day { border-left-style: dashed; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='64' viewBox='0 0 8 64' preserveAspectRatio='none'%3E%3Cpath d='M0 0.5 H4' stroke='%23D2D2D2' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); background-size: 8px var(--block-h); background-repeat: repeat; }
 .tt-time { border-top-style: dashed; }
 .ex-day { border-left-style: dashed; }
 
