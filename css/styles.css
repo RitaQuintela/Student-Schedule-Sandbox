@@ -330,6 +330,9 @@ a { color: var(--blue); }
 .tt-terms { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 14px; }
 .tt-term { min-width: 0; }
 .tt-term h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: var(--blue); }
+.tt-term h3 small { font-size: 13px; font-weight: 400; color: var(--muted); }
+.ref-week { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 6px; font-size: 13px; font-weight: 600; }
+.ref-week select { font: inherit; font-weight: 400; padding: 4px 6px; border: 1px solid var(--border); border-radius: var(--radius); max-width: 100%; }
 .tt-corner, .tt-dayhead {
   background: var(--blue);
   color: #fff;

@@ -64,8 +64,12 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
 - **Week** is a comma-separated list of Mondays (YYYY-MM-DD; dd/mm/yyyy and Excel dates also accepted).
   Real class date = that Monday + weekday. Skipped weeks (holidays) are simply absent;
   T2 units start mid-semester. A non-Monday date is moved to its Monday with a warning.
+- **Full schedules**: the file may have one row per class date (all weeks). Rows of the same section
+  with the same weekday, times, room and Unit are merged into one session with all their weeks
+  (warnings appear once per slot), and the published file merges rows that differ only in Week
+  (`mergeWeeks`).
 - **Overlap**: two sessions overlap only if same weekday AND times overlap (back-to-back is fine)
-  AND they share at least one week.
+  AND they share a **reference week** (see Trimesters). Clashes in other weeks are not shown (owner's choice).
 - Admin warnings: unpaired PL, auto-paired by number, unpaired lecture, times outside 08:00–20:00
   (kept, clipped in the grid), non-weekday rows (skipped), invalid times, missing values, duplicates,
   same code with different names. Errors (missing columns, no usable rows) block applying.
@@ -80,6 +84,13 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   S2/T3/T4 → Trimester 3 and 4. A trimester's dates = weeks of the courses tagged with it; if one
   trimester has no courses, it is the semester's other weeks before/after (flagged "inferred" on the
   admin page). A semester with only S courses is one "Semester n" grid.
+- **Reference week** (one per trimester): the planner grids, course cards, overlaps and "fits/overlaps"
+  show only the classes of that week; the .ics has every week. The admin picks it in a dropdown under
+  each trimester in the summary (weeks listed with their number of classes). Default = **first full
+  week** = first week with ≥ 90% of the classes of the trimester's busiest week (`setReferenceWeeks`).
+  Saved in the data file as `referenceWeeks: { T1: 'YYYY-MM-DD', … }`; a new upload keeps the
+  published choice when that week still exists. Students see "Trimester 1 · reference week", no date.
+  Course cards list a section's classes in the reference weeks, one line per slot.
 - The timetable shows **one grid per trimester** (headed "Trimester 1", "Trimester 2"), side by side when
   there is room, one above the other otherwise (always side by side when printed). A class appears in
   every trimester grid it has weeks in (semester courses in both). No trimester dropdown.

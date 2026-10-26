@@ -40,7 +40,7 @@
     const when = preview.generatedAt ? new Date(preview.generatedAt).toLocaleString() : '';
     previewNotes.push(`the timetable uploaded on the admin page (“${preview.source || 'file'}”, ${when})`);
   }
-  const data = S.buildDataset(source.rows || []);
+  const data = S.buildDataset(source.rows || [], source.referenceWeeks);
 
   // Exam calendar: published file, or an admin preview saved in this browser.
   const EXAM_PREVIEW_KEY = 'scheduleSandbox.examPreview.v1';
@@ -141,13 +141,34 @@
     return data.terms.length ? data.terms : [null];
   }
 
-  // Classes shown on a trimester's grid: those with at least one week in it.
+  // Each trimester grid shows its reference week only (chosen on the admin page).
+  const refWeeks = data.terms.map(t => t.ref).filter(Boolean);
+  const inRefWeeks = refWeeks.length ? w => refWeeks.includes(w) : () => true;
+
   function inTermOf(term) {
-    return session => !term || S.inTerm(session, term);
+    return session => !term || (term.ref ? session.weekSet.has(term.ref) : S.inTerm(session, term));
   }
 
   function clashesIn(term, clashes) {
-    return term ? clashes.filter(c => c.weeks.some(w => w >= term.start && w <= term.end)) : clashes;
+    if (!term) return clashes;
+    return clashes.filter(c => c.weeks.some(w => term.ref ? w === term.ref : w >= term.start && w <= term.end));
+  }
+
+  // Overlaps count only in the reference weeks (what students see on the grids).
+  function refOverlap(a, b) {
+    return S.sessionsOverlap(a, b) && S.sharedWeeks(a, b).some(inRefWeeks);
+  }
+
+  // A section's classes as listed on its card: those in a reference week, one line per slot.
+  function shownSessions(option) {
+    const inRef = option.sessions.filter(s => s.weeks.some(inRefWeeks));
+    const seen = new Set();
+    return (inRef.length ? inRef : option.sessions).filter(s => {
+      const key = [s.day, s.start, s.end, s.sectionName, s.room].join('|');
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   }
 
   // All overlapping pairs between different selected courses.
@@ -157,8 +178,8 @@
       for (let j = i + 1; j < list.length; j++) {
         list[i].option.sessions.forEach(a => {
           list[j].option.sessions.forEach(b => {
-            if (S.sessionsOverlap(a, b)) {
-              clashes.push({ x: list[i], y: list[j], a, b, weeks: S.sharedWeeks(a, b) });
+            if (refOverlap(a, b)) {
+              clashes.push({ x: list[i], y: list[j], a, b, weeks: S.sharedWeeks(a, b).filter(inRefWeeks) });
             }
           });
         });
@@ -168,7 +189,7 @@
   }
 
   function optionFits(course, option, list) {
-    return !list.some(e => e.course !== course && e.option.sessions.some(b => option.sessions.some(a => S.sessionsOverlap(a, b))));
+    return !list.some(e => e.course !== course && e.option.sessions.some(b => option.sessions.some(a => refOverlap(a, b))));
   }
 
   /* ---------- Actions ---------- */
@@ -246,7 +267,7 @@
     const options = (entry.option ? '' : '<option value="" selected disabled>Choose a section…</option>') +
       course.options.map(o => {
         const fits = optionFits(course, o, list);
-        const days = [...new Set(o.sessions.map(s => S.WEEKDAYS_SHORT[s.day]))].join(', ');
+        const days = [...new Set(shownSessions(o).map(s => S.WEEKDAYS_SHORT[s.day]))].join(', ');
         return `<option value="${esc(o.id)}"${o === entry.option ? ' selected' : ''}>${esc(o.label)} · ${days} — ${fits ? '✓ fits' : '⚠ overlaps'}</option>`;
       }).join('');
     const head = `<div class="cc-head">
@@ -267,7 +288,7 @@
         </div></article>`;
     }
 
-    const sessions = entry.option.sessions.map(s => {
+    const sessions = shownSessions(entry.option).map(s => {
       return `<li class="${clashIds.has(s.id) ? 'clash' : ''}">
         <span class="when">${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}</span>
         <span class="what">${esc(sectionLabel(s))}${s.room ? ' · ' + esc(s.room) : ''}</span></li>`;
@@ -380,7 +401,7 @@
       } else if (!shownCount) {
         html += `<div class="tt-empty">None of your courses have classes in this ${term ? 'trimester' : 'period'}.</div>`;
       }
-      return `<div class="tt-term">${term ? `<h3>${esc(term.label)}</h3>` : ''}<div class="timetable">${html}</div></div>`;
+      return `<div class="tt-term">${term ? `<h3>${esc(term.label)}${term.ref ? ' <small>· reference week</small>' : ''}</h3>` : ''}<div class="timetable">${html}</div></div>`;
     });
     $('timetable').innerHTML = grids.join('');
 
@@ -638,7 +659,7 @@
     $('print-week').textContent = data.terms.map(t => t.label).join(' and ');
     $('print-list').innerHTML = list.map(e =>
       `<p><b>${esc(e.course.name)}</b> (${esc(e.course.code)}) – ${esc(e.option.label)}: ` +
-      e.option.sessions.map(s => `${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}${s.room ? ' ' + esc(s.room) : ''}`).join('; ') + '</p>').join('');
+      shownSessions(e.option).map(s => `${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}${s.room ? ' ' + esc(s.room) : ''}`).join('; ') + '</p>').join('');
   }
 
   /* ---------- Events ---------- */

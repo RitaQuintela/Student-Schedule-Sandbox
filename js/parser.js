@@ -233,9 +233,24 @@
     });
   }
 
+  // A full schedule has one row per class date. Rows that differ only in Week are
+  // merged into one row listing all their weeks, so the published file stays small.
+  function mergeWeeks(rows) {
+    const merged = new Map();
+    rows.forEach(r => {
+      const key = COLUMNS.filter(c => c !== 'Week').map(c => r[c]).join('');
+      const prev = merged.get(key);
+      if (!prev) { merged.set(key, Object.assign({}, r)); return; }
+      const weeks = new Set([...prev.Week.split(','), ...r.Week.split(',')].map(w => w.trim()).filter(Boolean));
+      prev.Week = [...weeks].sort().join(',');
+    });
+    return [...merged.values()];
+  }
+
   /* ---------- Building the dataset ---------- */
 
-  function buildDataset(rows) {
+  // referenceWeeks: { T1: 'YYYY-MM-DD', … } chosen on the admin page (optional).
+  function buildDataset(rows, referenceWeeks) {
     const issues = [];
     const add = (level, message, course) => issues.push({ level, message, course: course || null });
     const courses = new Map();
@@ -330,21 +345,29 @@
       }
       seen.add(key);
 
-      if (start < DAY_START || end > DAY_END) {
-        add('warning', `${where}: ${WEEKDAYS[day]} ${formatTime(start)}–${formatTime(end)} is outside 08:00–20:00. It is kept, but the timetable only shows 08:00–20:00.`, code);
-      }
-
       if (unit) course.units.add(unit);
       groups.forEach(g => { course.groups.add(g); section.groups.add(g); });
       const note = text(r.Annotations);
       if (note && !section.notes.includes(note)) section.notes.push(note);
+      sessionCount++;
+
+      // Same class slot in other weeks (full schedules have one row per date): add the weeks.
+      const same = section.sessions.find(ss => ss.day === day && ss.start === start && ss.end === end && ss.room === room && ss.unit === unit);
+      if (same) {
+        weeks.forEach(w => { if (!same.weekSet.has(w)) { same.weekSet.add(w); same.weeks.push(w); } });
+        same.weeks.sort();
+        return;
+      }
+
+      if (start < DAY_START || end > DAY_END) {
+        add('warning', `${where}: ${WEEKDAYS[day]} ${formatTime(start)}–${formatTime(end)} is outside 08:00–20:00. It is kept, but the timetable only shows 08:00–20:00.`, code);
+      }
 
       section.sessions.push({
         id: 's' + (++sessionId),
         day, start, end, weeks, weekSet: new Set(weeks), room, unit,
         sectionName, typ,
       });
-      sessionCount++;
     });
 
     courses.forEach(course => buildOptions(course, add));
@@ -376,6 +399,7 @@
     }
 
     const terms = computeTerms(list);
+    setReferenceWeeks(terms, list, referenceWeeks || {});
 
     return {
       courses: list,
@@ -587,6 +611,29 @@
     return terms;
   }
 
+  /* ---------- Reference weeks ---------- */
+
+  // The planner shows one reference week per trimester (the .ics keeps every week).
+  // Each term gets: weeks (every teaching week in it, with its number of classes),
+  // defaultRef (the first full week), ref (the admin's choice if valid, else the default).
+  // A "full" week has at least 90% of the classes of the trimester's busiest week, so
+  // weeks with a holiday are skipped.
+  function setReferenceWeeks(terms, courses, chosen) {
+    const counts = new Map();
+    courses.forEach(c => c.sections.forEach(s => s.sessions.forEach(ss =>
+      ss.weeks.forEach(w => counts.set(w, (counts.get(w) || 0) + 1)))));
+    terms.forEach(t => {
+      t.weeks = [...counts.keys()].filter(w => w >= t.start && w <= t.end).sort()
+        .map(week => ({ week, classes: counts.get(week) }));
+      const max = Math.max(0, ...t.weeks.map(w => w.classes));
+      const full = t.weeks.find(w => w.classes >= max * 0.9);
+      t.defaultRef = full ? full.week : '';
+      const pick = chosen[t.id];
+      t.refChosen = !!pick && t.weeks.some(w => w.week === pick);
+      t.ref = t.refChosen ? pick : t.defaultRef;
+    });
+  }
+
   function inTerm(session, term) {
     return session.weeks.some(w => w >= term.start && w <= term.end);
   }
@@ -621,7 +668,7 @@
 
   global.Schedule = {
     DAY_START, DAY_END, WEEKDAYS, WEEKDAYS_SHORT, COLUMNS, REQUIRED,
-    readFile, normaliseRows, cleanRows, buildDataset,
+    readFile, normaliseRows, cleanRows, mergeWeeks, buildDataset,
     sessionsOverlap, sharedWeeks, classDate, computeTerms, inTerm, termWeeks, addDays, shortDate, formatTime,
     parseTime, parseWeeks, programmeOf, programmeLabel, unitLabel, mentions,
   };

@@ -43,7 +43,9 @@
       return;
     }
     const rows = S.cleanRows(parsed.rows);
-    const dataset = S.buildDataset(rows);
+    // Keep the published reference weeks when they still exist in the new file.
+    const published = (window.SCHEDULE_DATA && window.SCHEDULE_DATA.referenceWeeks) || {};
+    const dataset = S.buildDataset(rows, published);
     if (parsed.missingColumns.length) {
       dataset.issues.unshift({ level: 'error', message: `Missing column(s): ${parsed.missingColumns.join(', ')}. Check that the first row has the column names (see the template).` });
     }
@@ -72,7 +74,7 @@
     const tiles = [
       [d.stats.courses, 'courses'],
       [d.stats.sections, 'sections'],
-      [d.stats.sessions, 'weekly classes (rows used)'],
+      [d.stats.sessions, 'class rows used'],
       [d.stats.options, 'choices for students'],
       [d.stats.skipped, 'rows skipped'],
       [d.units.map(u => u.code).join(', ') || '–', 'periods'],
@@ -80,13 +82,25 @@
     ];
     $('stats').innerHTML = tiles.map(([n, l]) => `<div class="stat"><div class="num">${esc(n)}</div><div class="lbl">${esc(l)}</div></div>`).join('');
 
-    // Trimesters students can choose on the timetable (dates come from the Units).
+    // Trimesters (dates come from the Units) and the reference week students see for each.
     $('terms-info').innerHTML = d.terms.length
       ? `<ul class="issues">${d.terms.map(t => `<li class="${t.inferred ? 'warning' : 'info'}">${t.inferred ? '⚠' : 'ℹ'} <b>${esc(t.label)}</b>: ` +
           `${S.shortDate(t.start)} – ${S.shortDate(S.addDays(t.end, 4))}` +
           (t.inferred ? ' – no courses are tagged with this trimester, so these dates are the rest of the semester. Please check.' : '') +
-          '</li>').join('')}</ul>`
+          `<label class="ref-week">Reference week shown to students
+            <select data-term="${esc(t.id)}">${t.weeks.map(w => `<option value="${w.week}"${w.week === t.ref ? ' selected' : ''}>` +
+              `Week of ${S.shortDate(w.week)} · ${w.classes} class${w.classes === 1 ? '' : 'es'}${w.week === t.defaultRef ? ' (first full week)' : ''}</option>`).join('')}</select></label>` +
+          '</li>').join('')}</ul>` +
+        '<p class="lead">Students see only the reference week of each trimester on the planner; the calendar (.ics) export has every week.</p>'
       : '';
+    $('terms-info').querySelectorAll('select[data-term]').forEach(sel => {
+      sel.onchange = () => {
+        const t = d.terms.find(x => x.id === sel.dataset.term);
+        t.ref = sel.value;
+        t.refChosen = true;
+        setStatus('publish-status', '', '');
+      };
+    });
 
     const errors = d.issues.filter(i => i.level === 'error');
     const warnings = d.issues.filter(i => i.level === 'warning');
@@ -112,7 +126,9 @@
   }
 
   function payload() {
-    return { generatedAt: new Date().toISOString(), source: current.source, rows: current.rows };
+    const referenceWeeks = {};
+    current.dataset.terms.forEach(t => { if (t.ref) referenceWeeks[t.id] = t.ref; });
+    return { generatedAt: new Date().toISOString(), source: current.source, referenceWeeks, rows: S.mergeWeeks(current.rows) };
   }
 
   function download(name, content, type) {
