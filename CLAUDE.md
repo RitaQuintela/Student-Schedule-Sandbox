@@ -135,7 +135,7 @@ that course (the list turns red, "Drop here to remove …"); button shows
 with "✓ fits" / "⚠ overlaps"; a course with **several sections starts with none picked** ("Choose a
 section…", stored as option `''`): it stays in Your courses but is left out of the timetable, overlaps,
 exams and .ics until the student picks one (banner lists "Pick a section for: …"); a one-section course
-gets its section straight away; Mon–Fri 08:00–21:30 grid in 1h30 blocks (last row 20:00), 46px per block; overlaps in red (blocks,
+gets its section straight away; Mon–Fri 08:00–21:30 grid in 1h30 blocks (last row 20:00), 56px per block (three lines of a short name fit); overlaps in red (blocks,
 cards, banner); one grid per trimester (no dropdown, no single weeks); class blocks show only the
 short course name (section, time and room are in the hover tooltip and on the card), day headers
 use short names (MON…FRI); the overlap banner lists every overlap once, starting with the
