@@ -649,15 +649,15 @@ a { color: var(--blue); }
 .tt-toolbar { align-items: center; }
 .draft { position: relative; }
 .stamp {
-  font-family: "Caveat", cursive; color: #0B7A75; background: transparent; cursor: pointer;
-  border: 3px solid #0B7A75; border-radius: 9px; padding: 0 12px 2px; line-height: 1;
+  font-family: "Caveat", cursive; color: var(--purple); background: transparent; cursor: pointer;
+  border: 3px solid var(--purple); border-radius: 9px; padding: 0 12px 2px; line-height: 1;
   transform: rotate(-5deg); display: inline-flex; flex-direction: column; align-items: center;
-  opacity: .85; transition: opacity .15s, transform .15s;
+  transition: transform .15s;
 }
 .stamp:hover, .stamp[aria-expanded="true"] { opacity: 1; transform: rotate(-3deg) scale(1.03); }
 .stamp:focus-visible { outline: 2px solid var(--purple-ink); outline-offset: 4px; }
 .stamp-word { font-size: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
-.stamp-name { font-size: 19px; font-weight: 600; max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stamp-name { color: var(--purple-ink); font-size: 19px; font-weight: 700; max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .draft-menu {
   position: absolute; z-index: 20; top: calc(100% + 8px); right: 0; min-width: 240px;
   background: var(--surface); border: 1px solid var(--border); box-shadow: 0 6px 18px rgba(0, 0, 0, .12); padding: 6px;

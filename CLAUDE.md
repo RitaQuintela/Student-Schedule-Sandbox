@@ -24,7 +24,7 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
   - Typeface Barlow, vendored in `vendor/fonts` (SIL OFL). Handwriting: Caveat (`vendor/fonts/caveat.woff2`,
     variable weight, latin subset, SIL OFL), used only for the draft stamp.
   - **Draft look** (owner's choice, "sketch C"): dashed timetable grid (dashed hour lines and day
-    lines, straight, not wobbly) and a tilted hand-drawn **DRAFT stamp** in teal green `#0B7A75` (cool, sits well next to the blue) in the timetable toolbar, to
+    lines, straight, not wobbly) and a tilted hand-drawn **DRAFT stamp** in Master purple like the Beta tab (`--purple` #B78BFC; the draft name in `--purple-ink` #946FF1 for legibility) in the timetable toolbar, to
     the right of the buttons; it also prints, top right (CSS at the end of `styles.css`). No marker
     underlines (removed by the owner).
   - Logo: `assets/logo-clsbe-white.svg` on blue (colour version `assets/logo-clsbe.svg` for white
