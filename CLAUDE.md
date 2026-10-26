@@ -23,10 +23,10 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
   - Never use the logo's Bright Blue `#003CA5` outside the logo. No navy/gold (old identity).
   - Typeface Barlow, vendored in `vendor/fonts` (SIL OFL). Handwriting: Caveat (`vendor/fonts/caveat.woff2`,
     variable weight, latin subset, SIL OFL), used only for the draft stamp.
-  - **Draft look** (owner's choice, "sketch C"): purple marker swipe under the page title and the
-    trimester headings, sketchy timetable grid (wobbly hour lines, dashed day lines), and a tilted
-    raspberry hand-drawn **DRAFT stamp** in the timetable toolbar, before the buttons (CSS at the end of
-    `styles.css`).
+  - **Draft look** (owner's choice, "sketch C"): sketchy timetable grid (wobbly hour lines, dashed day
+    lines) and a tilted hand-drawn **DRAFT stamp** in teal green `#0B7A75` (cool, sits well next to the blue) in the timetable toolbar, to
+    the right of the buttons; it also prints, top right (CSS at the end of `styles.css`). No marker
+    underlines (removed by the owner).
   - Logo: `assets/logo-clsbe-white.svg` on blue (colour version `assets/logo-clsbe.svg` for white
     backgrounds), the version **without seal** (internal tools). Min. width on screen 150 px.
     Don't recolour, distort, outline or crowd it.
