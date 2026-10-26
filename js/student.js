@@ -64,9 +64,14 @@
   /* ---------- State ---------- */
 
   const saved = load(STORE_KEY) || {};
+
+  // A course with one section gets it straight away; with several, the student must pick one.
+  function firstOption(course) {
+    return course.options.length === 1 ? course.options[0].id : '';
+  }
   const todayIdx = (new Date().getDay() + 6) % 7;
   const state = {
-    selections: new Map(), // course code -> { option: id, color: index }, in the order added
+    selections: new Map(), // course code -> { option: id ('' until picked), color: index }, in the order added
     search: '',
     programme: '',
     unit: '',
@@ -77,7 +82,7 @@
   (saved.selections || []).forEach(([code, sel]) => {
     const course = data.byCode.get(code);
     if (!course || !course.options.length || !sel) return;
-    const option = course.options.some(o => o.id === sel.option) ? sel.option : course.options[0].id;
+    const option = course.options.some(o => o.id === sel.option) ? sel.option : firstOption(course);
     state.selections.set(code, { option, color: Number(sel.color) || 0 });
   });
   if (saved.programme && data.programmes.some(p => p.code === saved.programme)) state.programme = saved.programme;
@@ -116,13 +121,19 @@
     return s.sectionName.toUpperCase().startsWith(s.typ) ? s.sectionName : `${s.typ} ${s.sectionName}`;
   }
 
-  function entries() {
+  // Every added course, in the order added; option is null until a section is picked.
+  function allEntries() {
     return [...state.selections].map(([code, sel]) => {
       const course = data.byCode.get(code);
-      const option = course.options.find(o => o.id === sel.option) || course.options[0];
+      const option = course.options.find(o => o.id === sel.option) || null;
       const color = COLORS[sel.color % COLORS.length];
       return { course, option, color };
     });
+  }
+
+  // Courses with a section picked: the ones on the timetable, in overlaps and exams.
+  function entries() {
+    return allEntries().filter(e => e.option);
   }
 
   // One grid per trimester (one grid with everything if the file has no dates).
@@ -165,13 +176,11 @@
   function addCourse(code) {
     const course = data.byCode.get(code);
     if (!course || state.selections.has(code) || !course.options.length) return;
-    const list = entries();
-    const option = course.options.find(o => optionFits(course, o, list)) || course.options[0];
     const used = new Set([...state.selections.values()].map(s => s.color % COLORS.length));
     let color = 0;
     while (used.has(color) && color < COLORS.length) color++;
     if (color >= COLORS.length) color = state.selections.size % COLORS.length;
-    state.selections.set(code, { option: option.id, color });
+    state.selections.set(code, { option: firstOption(course), color });
     update();
   }
 
@@ -197,6 +206,7 @@
   }
 
   function renderList(list, clashes) {
+    const added = allEntries().map(a => list.find(e => e.course === a.course) || a);
     const q = fold(state.search.trim());
     const matches = c =>
       (!q || fold(`${c.name} ${c.acronym} ${c.code}`).includes(q)) &&
@@ -205,9 +215,9 @@
 
     const rest = data.courses.filter(c => !state.selections.has(c.code) && matches(c));
     let html = '';
-    if (list.length) {
-      html += `<div class="list-divider">Your courses (${list.length})</div>`;
-      html += list.map(e => cardHtml(e.course, e, list, clashes)).join('');
+    if (added.length) {
+      html += `<div class="list-divider">Your courses (${added.length})</div>`;
+      html += added.map(e => cardHtml(e.course, e, list, clashes)).join('');
       html += `<div class="list-divider">All courses</div>`;
     }
     html += rest.map(c => cardHtml(c, null, list, clashes)).join('');
@@ -233,11 +243,29 @@
 
     const mine = clashes.filter(c => c.x === entry || c.y === entry);
     const clashIds = new Set(mine.flatMap(c => [c.a.id, c.b.id]));
-    const options = course.options.map(o => {
-      const fits = optionFits(course, o, list);
-      const days = [...new Set(o.sessions.map(s => S.WEEKDAYS_SHORT[s.day]))].join(', ');
-      return `<option value="${esc(o.id)}"${o === entry.option ? ' selected' : ''}>${esc(o.label)} · ${days} — ${fits ? '✓ fits' : '⚠ overlaps'}</option>`;
-    }).join('');
+    const options = (entry.option ? '' : '<option value="" selected disabled>Choose a section…</option>') +
+      course.options.map(o => {
+        const fits = optionFits(course, o, list);
+        const days = [...new Set(o.sessions.map(s => S.WEEKDAYS_SHORT[s.day]))].join(', ');
+        return `<option value="${esc(o.id)}"${o === entry.option ? ' selected' : ''}>${esc(o.label)} · ${days} — ${fits ? '✓ fits' : '⚠ overlaps'}</option>`;
+      }).join('');
+    const head = `<div class="cc-head">
+        <div><h3>${esc(course.name)}</h3><div class="cc-meta">${meta}</div></div>
+        <button class="add-btn is-added" data-act="remove" aria-label="Remove ${esc(course.name)}">
+          <span class="when-idle">Added ✓</span><span class="when-hover">Remove ✕</span></button>
+      </div>`;
+
+    // Several sections and none picked yet: only the dropdown, nothing on the timetable.
+    if (!entry.option) {
+      return `<article class="course-card added pending" draggable="true" data-code="${esc(course.code)}"
+          style="--course-color:${entry.color[0]};--course-bg:${entry.color[1]}">
+        ${head}
+        <div class="cc-body">
+          <label class="field">Choose your section
+            <select data-act="option">${options}</select></label>
+          <div class="cc-note">Pick a section to see this course on your timetable.</div>
+        </div></article>`;
+    }
 
     const sessions = entry.option.sessions.map(s => {
       return `<li class="${clashIds.has(s.id) ? 'clash' : ''}">
@@ -260,17 +288,13 @@
     const examHtml = myExams.length
       ? `<div class="cc-exams"><b>Exams</b>${myExams.map(x => {
           const clash = examInfo.clashDates.has(x.date);
-          return `<span class="${clash ? 'clash' : ''}"${clash ? ' title="Another of your exams is on this day"' : ''}>${clash ? '⚠ ' : ''}${esc(E.seasonSingular(x.season))} · ${E.weekdayShort(x.date)} ${S.shortDate(x.date)}</span>`;
+          return `<span class="${clash ? 'clash' : ''}"${clash ? ' title="Another of your exams is on this day"' : ''}>${clash ? '⚠ ' : ''}${esc(seasonName(x, true))} · ${E.weekdayShort(x.date)} ${S.shortDate(x.date)}</span>`;
         }).join('')}</div>`
       : (examSource.exams.length ? '<div class="cc-exams none">No exam date in the exam calendar</div>' : '');
 
     return `<article class="course-card added${mine.length ? ' conflict' : ''}" draggable="true" data-code="${esc(course.code)}"
         style="--course-color:${entry.color[0]};--course-bg:${entry.color[1]}">
-      <div class="cc-head">
-        <div><h3>${esc(course.name)}</h3><div class="cc-meta">${meta}</div></div>
-        <button class="add-btn is-added" data-act="remove" aria-label="Remove ${esc(course.name)}">
-          <span class="when-idle">Added ✓</span><span class="when-hover">Remove ✕</span></button>
-      </div>
+      ${head}
       <div class="cc-body">
         <label class="field">${course.options.length > 1 ? 'Choose your section' : 'Section'}
           <select data-act="option">${options}</select></label>
@@ -350,7 +374,9 @@
       });
 
       if (!list.length) {
-        html += `<div class="tt-empty">Your timetable is empty.<br>Add courses with “+ Add” or drag them here.</div>`;
+        html += state.selections.size
+          ? `<div class="tt-empty">Pick a section for your courses<br>to see them here.</div>`
+          : `<div class="tt-empty">Your timetable is empty.<br>Add courses with “+ Add” or drag them here.</div>`;
       } else if (!shownCount) {
         html += `<div class="tt-empty">None of your courses have classes in this ${term ? 'trimester' : 'period'}.</div>`;
       }
@@ -364,6 +390,13 @@
 
   function renderBanner(list, clashes) {
     const banner = $('banner');
+    const pending = allEntries().filter(e => !e.option).map(e => e.course.name);
+    const pendingNote = pending.length ? ` Pick a section for: ${pending.join(', ')}.` : '';
+    if (!list.length && pending.length) {
+      banner.className = 'banner';
+      banner.textContent = `Choose your section in the course list to place ${pending.length === 1 ? 'this course' : 'these courses'} on the timetable.` + pendingNote;
+      return;
+    }
     if (!list.length) {
       banner.className = 'banner';
       banner.innerHTML = 'Start by adding courses from the list. ' +
@@ -387,16 +420,33 @@
     if (items.length) {
       banner.className = 'banner bad';
       banner.innerHTML = `<strong>⚠ ${items.length} overlap${items.length === 1 ? '' : 's'}.</strong> ` +
-        `Try another section for one of these courses:<ul>${items.join('')}</ul>`;
+        `Try another section for one of these courses:<ul>${items.join('')}</ul>${esc(pendingNote)}`;
       return;
     }
-    banner.className = 'banner ok';
-    banner.textContent = `✓ No overlaps · ${list.length} course${list.length === 1 ? '' : 's'}.`;
+    banner.className = pending.length ? 'banner' : 'banner ok';
+    banner.textContent = `✓ No overlaps · ${list.length} course${list.length === 1 ? '' : 's'}.` + pendingNote;
   }
 
   /* ---------- Rendering: exam calendar ---------- */
 
-  let examInfo = { clashDates: new Set(), closeDates: new Set() };
+  let examInfo = { clashDates: new Set() };
+
+  // Each exam season belongs to the trimester it falls in (Midterms -> Trimester 1,
+  // Endterms -> Trimester 2): the one whose weeks contain its first day, else the
+  // latest trimester started by then. Students see the trimester, not the planner's name.
+  const seasonTerm = new Map((examSource.periods || []).map(p => {
+    const first = E.seasonDays(p)[0];
+    const term = data.terms.find(t => first >= t.start && first <= S.addDays(t.end, 6)) ||
+      data.terms.filter(t => t.start <= first).pop() || null;
+    return [p.id, term];
+  }));
+
+  // "Trimester 1" (long) or "T1" (short); the planner's season name if no trimester fits.
+  function seasonName(exam, short) {
+    const term = seasonTerm.get(exam.period);
+    if (!term) return short ? E.seasonSingular(exam.season) : exam.season;
+    return short ? term.id : term.label;
+  }
 
   function examItems(list) {
     return list.flatMap(e => E.examsForOption(e.course, e.option, examLink.byCode.get(e.course.code) || [])
@@ -405,7 +455,7 @@
 
   function examChip(it, clash) {
     return `<span class="ex-chip${clash ? ' clash' : ''}" style="--chip-fg:${it.color[0]};--chip-bg:${it.color[1]}"
-      title="${esc(it.course.name)} – ${esc(E.seasonSingular(it.exam.season))}">${esc(courseTitle(it.course))}</span>`;
+      title="${esc(it.course.name)} – ${esc(seasonName(it.exam))} exam">${esc(courseTitle(it.course))}</span>`;
   }
 
   function dayLabel(d) {
@@ -415,8 +465,7 @@
   function renderExams(list) {
     const items = examItems(list);
     const res = E.findExamClashes(items);
-    const closeDates = new Set(res.close.flatMap(c => [c.date, c.next]));
-    examInfo = { clashDates: res.clashDates, closeDates };
+    examInfo = { clashDates: res.clashDates };
 
     // Summary banner
     const banner = $('exam-banner');
@@ -430,12 +479,7 @@
     } else if (res.clashes.length) {
       banner.className = 'banner bad';
       banner.innerHTML = `<strong>⚠ ${res.clashes.length} day${res.clashes.length === 1 ? '' : 's'} with more than one exam.</strong>` +
-        `<ul>${res.clashes.map(c => `<li><b>${dayLabel(c.date)}</b>: ${names(c.items)}</li>`).join('')}</ul>` +
-        (res.close.length ? `<div style="margin-top:6px">Also on consecutive days: ${res.close.map(c => `${dayLabel(c.date)} → ${dayLabel(c.next)}`).join('; ')}.</div>` : '');
-    } else if (res.close.length) {
-      banner.className = 'banner warn';
-      banner.innerHTML = `<strong>No exam clashes</strong>, but some exams are on consecutive days:` +
-        `<ul>${res.close.map(c => `<li><b>${dayLabel(c.date)} → ${dayLabel(c.next)}</b>: ${names(c.items)}</li>`).join('')}</ul>`;
+        `<ul>${res.clashes.map(c => `<li><b>${dayLabel(c.date)}</b>: ${names(c.items)}</li>`).join('')}</ul>`;
     } else if (items.length) {
       banner.className = 'banner ok';
       banner.textContent = `✓ No exam clashes · ${items.length} exam${items.length === 1 ? '' : 's'} for your courses`;
@@ -444,8 +488,9 @@
       banner.textContent = 'None of your courses has an exam in the published calendar.';
     }
 
-    // One day strip per season (a simple list on phones)
-    $('exam-seasons').innerHTML = (examSource.periods || []).map(p => {
+    // One day strip per season (a simple list on phones), in one column per
+    // trimester so they sit under the matching timetable grid.
+    const seasonHtml = p => {
       const days = E.seasonDays(p);
       const inSeason = d => (res.byDate.get(d) || []).filter(it => it.exam.period === p.id);
       const strip = days.map(d => {
@@ -454,7 +499,6 @@
         const cls = ['ex-day'];
         if (wd === 'Sun') cls.push('sunday');
         if (its.length && res.clashDates.has(d)) cls.push('clash');
-        else if (its.length && closeDates.has(d)) cls.push('close');
         return `<div class="${cls.join(' ')}"><div class="ex-dh">${wd}<small>${S.shortDate(d)}</small></div>
           <div class="ex-cell">${its.map(it => examChip(it, res.clashDates.has(d))).join('')}</div></div>`;
       }).join('');
@@ -462,16 +506,22 @@
       const rows = listed.map(d => {
         const its = inSeason(d);
         const clash = res.clashDates.has(d);
-        const close = !clash && closeDates.has(d);
-        return `<li class="${clash ? 'clash' : close ? 'close' : ''}"><span class="when">${clash ? '⚠ ' : ''}${dayLabel(d)}</span>
+        return `<li class="${clash ? 'clash' : ''}"><span class="when">${clash ? '⚠ ' : ''}${dayLabel(d)}</span>
           <span class="what">${its.map(it => examChip(it, clash)).join('')}</span></li>`;
       }).join('');
       return `<div class="ex-season">
-        <h3>${esc(p.season)} <small>${S.shortDate(days[0])} – ${S.shortDate(days[days.length - 1])}</small></h3>
-        <div class="ex-strip" style="grid-template-columns:repeat(${days.length}, minmax(58px, 1fr))">${strip}</div>
-        <ul class="ex-list">${rows || '<li class="empty">No exams for your courses in this season.</li>'}</ul>
+        <h3>${esc(seasonName({ period: p.id, season: p.season }))} <small>${S.shortDate(days[0])} – ${S.shortDate(days[days.length - 1])}</small></h3>
+        <div class="ex-strip" style="grid-template-columns:repeat(${days.length}, minmax(0, 1fr))">${strip}</div>
+        <ul class="ex-list">${rows || '<li class="empty">No exams for your courses in this trimester.</li>'}</ul>
       </div>`;
-    }).join('');
+    };
+    const periods = examSource.periods || [];
+    const columns = data.terms.length
+      ? data.terms.map(t => periods.filter(p => seasonTerm.get(p.id) === t))
+        .concat([periods.filter(p => !seasonTerm.get(p.id))])
+        .filter(col => col.length)
+      : periods.map(p => [p]);
+    $('exam-seasons').innerHTML = columns.map(col => `<div class="ex-col">${col.map(seasonHtml).join('')}</div>`).join('');
 
     const without = list.filter(e => !E.examsForOption(e.course, e.option, examLink.byCode.get(e.course.code) || []).length)
       .map(e => e.course.name);
@@ -490,7 +540,7 @@
     renderList(list, clashes);
     renderTimetable(list, clashes);
     renderBanner(list, clashes);
-    $('switch-count').textContent = list.length ? `(${list.length})` : '';
+    $('switch-count').textContent = state.selections.size ? `(${state.selections.size})` : '';
     persist();
   }
 
@@ -560,7 +610,7 @@
         'DTSTAMP:' + now,
         'DTSTART;VALUE=DATE:' + day,
         'DTEND;VALUE=DATE:' + next,
-        'SUMMARY:' + icsText(`Exam: ${course.name} (${E.seasonSingular(exam.season)})`),
+        'SUMMARY:' + icsText(`Exam: ${course.name} (${seasonName(exam)})`),
         'DESCRIPTION:' + icsText('Time and room to be confirmed. Always check the official exam calendar.'),
         'TRANSP:TRANSPARENT',
         'END:VEVENT',
@@ -703,7 +753,7 @@
 
   $('export-ics').addEventListener('click', () => {
     const list = entries();
-    if (!list.length) { alert('Add at least one course first.'); return; }
+    if (!list.length) { alert('Add at least one course and choose its section first.'); return; }
     const { text } = buildIcs(list);
     download('my-timetable.ics', text, 'text/calendar;charset=utf-8');
   });

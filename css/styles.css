@@ -424,13 +424,14 @@ a { color: var(--blue); }
 
 /* ---------- Exam calendar ---------- */
 
-/* Softer notes (exams on consecutive days, overlaps in the other trimester): brand orange ("Inovação" #ED9438). */
+/* Orange (brand "Inovação" #ED9438), kept for neutral warnings. */
 :root { --amber: #ED9438; --amber-soft: #FDEFE0; }
 .sidebar { grid-row: span 2; }
 .ex-panel { grid-column: 2; min-width: 0; }
 .banner.warn { background: var(--amber-soft); border-left-color: var(--amber); color: var(--ink); }
 
-.ex-season h3 { margin: 14px 0 6px; font-size: 17px; font-weight: 700; color: var(--blue); }
+.ex-col { min-width: 0; }
+.ex-season h3 { margin: 14px 0 6px; font-size: 15px; font-weight: 700; color: var(--blue); }
 .ex-season:first-child h3 { margin-top: 0; }
 .ex-season h3 small { font-size: 13px; font-weight: 400; color: var(--muted); }
 .ex-strip { display: grid; border: 1px solid var(--blue); overflow-x: auto; }
@@ -445,6 +446,7 @@ a { color: var(--blue); }
   text-transform: uppercase;
   letter-spacing: .05em;
   padding: 5px 2px;
+  white-space: nowrap;
 }
 .ex-dh small { display: block; font-size: 11px; font-weight: 400; text-transform: none; letter-spacing: 0; opacity: .9; }
 .ex-day.sunday .ex-dh { background: #5C8AF6; }
@@ -452,7 +454,6 @@ a { color: var(--blue); }
 .ex-cell { flex: 1; padding: 4px; display: grid; gap: 3px; align-content: start; }
 .ex-day.clash .ex-dh { background: var(--red); }
 .ex-day.clash .ex-cell { background: var(--red-soft); }
-.ex-day.close .ex-cell { box-shadow: inset 0 3px 0 var(--amber); background: var(--amber-soft); }
 .ex-chip {
   display: block;
   font-size: 12px;
@@ -460,9 +461,8 @@ a { color: var(--blue); }
   padding: 3px 5px;
   background: var(--chip-bg);
   border-left: 3px solid var(--chip-fg);
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  hyphens: auto;
 }
 .ex-chip.clash { box-shadow: inset 0 0 0 1px var(--red); color: var(--red-ink); }
 .ex-list { display: none; list-style: none; margin: 0; padding: 0; border: 1px solid var(--border); }
@@ -472,7 +472,6 @@ a { color: var(--blue); }
 .ex-list .what { display: flex; flex-wrap: wrap; gap: 4px; }
 .ex-list li.clash { background: var(--red-soft); }
 .ex-list li.clash .when { color: var(--red-ink); }
-.ex-list li.close { background: var(--amber-soft); }
 .ex-list li.empty { color: var(--muted); }
 
 .cc-exams { font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: baseline; }
@@ -630,3 +629,6 @@ a { color: var(--blue); }
 .admin details summary { cursor: pointer; font-weight: 600; color: var(--blue); margin: 10px 0; }
 .steps { margin: 0; padding-left: 20px; font-size: 14px; }
 .steps li { margin-bottom: 4px; }
+
+/* Added course still waiting for its section */
+.course-card.pending select { border-color: var(--purple-ink); box-shadow: 0 0 0 2px var(--purple-tint); }

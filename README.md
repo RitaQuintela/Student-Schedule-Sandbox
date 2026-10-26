@@ -32,8 +32,8 @@ to put together their own weekly timetable.
    **Print / PDF** gives you a printable timetable.
 
 8. **Check your exams.** The **Exam calendar** (under the timetable, or the **Exams** tab on a
-   phone) shows the exam dates of the courses you picked, season by season. A **raspberry** day means two
-   of your exams fall on the same day; **orange** means exams on consecutive days. Each course card
+   phone) shows the exam dates of the courses you picked, one trimester per column. A **raspberry** day means two
+   of your exams fall on the same day. Each course card
    also lists its exam dates. Exam times and rooms aren't included yet.
 
 > Schedule Sandbox is a beta planning tool: it does not enroll you in anything.
