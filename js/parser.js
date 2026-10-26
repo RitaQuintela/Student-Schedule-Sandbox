@@ -9,7 +9,7 @@
   'use strict';
 
   const DAY_START = 8 * 60;   // 08:00, in minutes after midnight
-  const DAY_END = 20 * 60;    // 20:00
+  const DAY_END = 21 * 60 + 30; // 21:30 (last block starts at 20:00)
   const WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const WEEKDAYS_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
   const TYPOLOGIES = ['T', 'PL', 'TP', 'O', 'S'];
@@ -360,7 +360,7 @@
       }
 
       if (start < DAY_START || end > DAY_END) {
-        add('warning', `${where}: ${WEEKDAYS[day]} ${formatTime(start)}–${formatTime(end)} is outside 08:00–20:00. It is kept, but the timetable only shows 08:00–20:00.`, code);
+        add('warning', `${where}: ${WEEKDAYS[day]} ${formatTime(start)}–${formatTime(end)} is outside 08:00–21:30. It is kept, but the timetable only shows 08:00–21:30.`, code);
       }
 
       section.sessions.push({

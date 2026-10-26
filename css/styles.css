@@ -38,7 +38,7 @@
   --green: #1F7A5C;
   --green-soft: #DFF3EC;
   --radius: 2px;
-  --block-h: 64px;           /* height of one 1h30 block in the timetable */
+  --block-h: 46px;           /* height of one 1h30 block in the timetable */
   font-family: "Barlow", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
   color: var(--text);
 }
@@ -561,7 +561,7 @@ a { color: var(--blue); }
 
 @media print {
   @page { size: A4 landscape; margin: 10mm; }
-  :root { --block-h: 52px; }
+  :root { --block-h: 40px; }
   body { background: #fff; font-size: 11px; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .sidebar, .tt-toolbar .actions, .draft-menu, .stamp-caret, .day-tabs, .mobile-switch, .notice, .app-footer > a, .hint, .ev-remove, .tt-panel > .bar { display: none !important; }

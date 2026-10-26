@@ -184,7 +184,7 @@
       ['One row = one weekly class. Keep the column names in row 1 exactly as they are.'],
       ['ModuleCode groups rows into a course. SectionName (T1, PL-G1, TP1…) groups rows into a section.'],
       ['Typology: T, PL, TP, O or S.'],
-      ['WeekdayName: Monday to Friday. StartTime/EndTime: HH:MM between 08:00 and 20:00.'],
+      ['WeekdayName: Monday to Friday. StartTime/EndTime: HH:MM between 08:00 and 21:30.'],
       ['Week: the Mondays of the weeks the class happens, as YYYY-MM-DD, separated by commas.'],
       ['Unit: the period, e.g. S1 (semester) or T2 (term).'],
       ['StudentGroup: program groups, separated by commas (e.g. MP_Fin_S1_PA). Used for the program filter.'],

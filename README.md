@@ -103,7 +103,7 @@ Download the **Excel template** from the admin page. The key rules:
 | ModuleCode | Groups rows into one course. |
 | SectionName | T1, PL-G1, TP1… Rows with the same name are the same section. |
 | Typology | T, PL, TP, O or S. |
-| WeekdayName, StartTime, EndTime | Monday–Friday, between 08:00 and 20:00. |
+| WeekdayName, StartTime, EndTime | Monday–Friday, between 08:00 and 21:30. |
 | Week | The Mondays of the weeks the class happens, e.g. `2026-10-26,2026-11-02`. Leave out holiday weeks. |
 | Unit | The period: S1, T2… (used for the period filter). |
 | StudentGroup | Program groups, comma-separated (used for the program filter). |
