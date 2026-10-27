@@ -4,12 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Schedule Sandbox Admin · Católica Lisbon</title>
-<link rel="stylesheet" href="css/styles.css?v=20261027a">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="css/styles.css?v=20261027b">
+<script src="js/theme.js?v=20261027b"></script>
 </head>
 <body>
 <header class="app-header">
   <div class="inner">
-    <span class="beta-tab" title="This is an early version: information may contain errors">Beta version</span>
+    <div class="header-tabs">
+      <button id="theme-toggle" class="theme-toggle" type="button"></button>
+      <span class="beta-tab" title="This is an early version: information may contain errors">Beta version</span>
+    </div>
     <img class="logo" src="assets/logo-clsbe-white.svg" alt="Católica Lisbon School of Business &amp; Economics" width="170" height="54">
     <div class="title">
       <span class="kicker">Master Programs · Admin</span>
@@ -56,7 +61,7 @@
       <button class="btn" id="download-data">Download data file (timetable-data.js)</button>
     </div>
     <p class="publish-status" id="publish-status" role="status"></p>
-    <p class="lead" id="blocked" style="color:#A93445;font-weight:600;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
+    <p class="lead" id="blocked" style="color:var(--red-ink);font-weight:600;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
     </div>
   </section>
 
@@ -86,7 +91,7 @@
         <button class="btn" id="exam-download">Download data file (exam-data.js)</button>
       </div>
       <p class="publish-status" id="exam-publish-status" role="status"></p>
-      <p class="lead" id="exam-blocked" style="color:#A93445;font-weight:600;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
+      <p class="lead" id="exam-blocked" style="color:var(--red-ink);font-weight:600;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
     </div>
     </div>
   </section>
@@ -157,8 +162,8 @@
 
 <script src="vendor/xlsx.full.min.js"></script>
 <script src="data/timetable-data.js"></script>
-<script src="js/parser.js?v=20261027a"></script>
-<script src="js/exams.js?v=20261027a"></script>
-<script src="js/admin.js?v=20261027a"></script>
+<script src="js/parser.js?v=20261027b"></script>
+<script src="js/exams.js?v=20261027b"></script>
+<script src="js/admin.js?v=20261027b"></script>
 </body>
 </html>

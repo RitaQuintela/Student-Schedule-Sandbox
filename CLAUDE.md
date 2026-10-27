@@ -31,11 +31,19 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
     backgrounds), the version **without seal** (internal tools). Min. width on screen 150 px.
     Don't recolour, distort, outline or crowd it.
 - Must stay mobile friendly (timetable shows one day at a time with day tabs below 860px).
+- **Light / dark theme** (`js/theme.js`, loaded in `<head>` of both pages): a "Dark"/"Light" tab on the
+  purple header line, left of "Beta version" (icon only below 520px). Default = the device setting; the
+  student's choice is saved in localStorage `scheduleSandbox.theme`. Dark colours are token overrides
+  under `:root[data-theme="dark"]` inside `@media screen` at the end of `styles.css`, so **print is always
+  light**. Brand blue and Master purple stay; course tints become `color-mix` of the course colour with
+  the dark surface. Use tokens, not hard-coded colours: `--text` for text (`--ink` stays black for text on
+  purple), `--blue-ink` for blue text/links, `--remove`/`--on-remove` for removing a course, `--page` for the page.
 
 ## Files
 - `index.html` + `js/student.js` – student screen.
 - `admin.html` + `js/admin.js` – upload, summary/warnings, preview, **Publish to students**, data file download, Excel template.
 - `js/parser.js` – **all timetable data rules**, shared by both screens. Change rules here only.
+- `js/theme.js` – light/dark switch, shared by both screens.
 - `js/exams.js` – **all exam rules** (reading the planner, name matching, clashes), shared by both screens.
 - `data/timetable-data.js` – the published timetable (cleaned rows). Replaced by the admin, never edited by hand.
 - `data/exam-data.js` – the published exam calendar (`window.EXAM_DATA`: periods + exams). Same rule.
