@@ -2,7 +2,7 @@
  * To publish a new exam calendar, replace this file with the one downloaded
  * from the admin page (admin.html). Do not edit by hand. */
 window.EXAM_DATA = {
- "generatedAt": "2026-10-27T09:25:07.149Z",
+ "generatedAt": "2026-10-27T09:41:39.572Z",
  "source": "Exams Integrated Planner.xlsm",
  "periods": [
   {
@@ -69,7 +69,7 @@ window.EXAM_DATA = {
    "period": "UG_MID",
    "season": "Midterms",
    "date": "2026-10-16",
-   "course": "Product and Costumer Management"
+   "course": "Product and Customer Management"
   },
   {
    "period": "UG_MID",
@@ -267,7 +267,7 @@ window.EXAM_DATA = {
    "period": "UG_MID",
    "season": "Midterms",
    "date": "2026-10-23",
-   "course": "Organizational Sociology"
+   "course": "Organization Sociology"
   },
   {
    "period": "UG_MID",
@@ -399,7 +399,7 @@ window.EXAM_DATA = {
    "period": "UG_END",
    "season": "Endterms",
    "date": "2026-12-16",
-   "course": "Product and Costumer Management"
+   "course": "Product and Customer Management"
   },
   {
    "period": "UG_END",
@@ -489,7 +489,7 @@ window.EXAM_DATA = {
    "period": "UG_END",
    "season": "Endterms",
    "date": "2027-01-04",
-   "course": "Organizational Sociology"
+   "course": "Organization Sociology"
   },
   {
    "period": "UG_END",
@@ -795,7 +795,7 @@ window.EXAM_DATA = {
    "period": "UG_FINAL",
    "season": "Final Exams",
    "date": "2027-01-18",
-   "course": "Product and Costumer Management"
+   "course": "Product and Customer Management"
   },
   {
    "period": "UG_FINAL",
@@ -819,7 +819,7 @@ window.EXAM_DATA = {
    "period": "UG_FINAL",
    "season": "Final Exams",
    "date": "2027-01-19",
-   "course": "Organizational Sociology"
+   "course": "Organization Sociology"
   },
   {
    "period": "UG_FINAL",
