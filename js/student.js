@@ -330,11 +330,6 @@
     html += rest.map(c => cardHtml(c, null, list, clashes)).join('');
     if (!rest.length) html += `<p class="cc-meta" style="padding:4px">No other courses match your search or filters.</p>`;
     $('course-list').innerHTML = html;
-
-    const total = data.courses.filter(matches).length;
-    $('list-meta').textContent = `${total} of ${data.courses.length} courses` +
-      (state.programme || state.unit || q ? ' match your filters' : '') +
-      ' · drag a course onto the timetable, or use + Add';
   }
 
   function cardHtml(course, entry, list, clashes) {
