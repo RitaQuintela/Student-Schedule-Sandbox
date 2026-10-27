@@ -345,11 +345,10 @@
       (!state.programme || c.programmes.includes(state.programme)) &&
       (!state.unit || c.units.includes(state.unit));
 
-    // The course whose section is being picked comes first, whatever the search or filters.
+    // The course whose section is being picked stays where it is in the list (owner's choice);
+    // it moves to Your courses once a section is picked.
     if (state.selections.has(state.picking)) state.picking = '';
-    const picking = data.byCode.get(state.picking);
-    const rest = (picking ? [picking] : []).concat(
-      data.courses.filter(c => c !== picking && !state.selections.has(c.code) && matches(c)));
+    const rest = data.courses.filter(c => !state.selections.has(c.code) && (matches(c) || c.code === state.picking));
     let html = '';
     if (added.length) {
       html += `<div class="list-divider">Your courses (${added.length})</div>`;

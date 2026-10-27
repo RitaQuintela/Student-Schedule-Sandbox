@@ -166,8 +166,8 @@ that course (the list turns red, "Drop here to remove …"); button shows
 "Added ✓" and "Remove ✕" on hover; added courses pinned at the top; section dropdown on the card
 with "✓ fits" / "⚠ overlaps"; a course with **several sections (or terms) must get its section before it
 is added** (owner's choice): "+ Add" or dropping it on the timetable turns its card into a "Choose your
-section" dropdown (`state.picking`, not saved; card pinned first in the list whatever the search/filters,
-with Cancel) and the course moves to Your courses only when a section is picked; a one-section course is
+section" dropdown (`state.picking`, not saved; the card **stays in its place** in the course list, owner's choice, and
+stays visible if the search/filters change; with Cancel) and the course moves to Your courses only when a section is picked; a one-section course is
 added straight away. An added course with option `''` (older saves, or a section that disappeared from the
 data) still shows "Choose a section…" and is left out of the timetable, overlaps, exams and .ics until
 picked (banner lists "Pick a section for: …"); Mon–Fri 08:00–21:30 grid in 1h30 blocks (last row 20:00), 56px per block (three lines of a short name fit); overlaps in red (blocks,
