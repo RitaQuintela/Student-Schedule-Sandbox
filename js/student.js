@@ -629,26 +629,17 @@
         `<ul>${res.clashes.map(c => `<li><b>${dayLabel(c.date)}</b>: ${names(c.items)}</li>`).join('')}</ul>`;
     } else if (items.length) {
       banner.className = 'banner ok';
-      banner.textContent = `✓ No exam overlaps ·${items.length} exam${items.length === 1 ? '' : 's'} for your courses`;
+      banner.textContent = `✓ No exam overlaps · ${items.length} exam${items.length === 1 ? '' : 's'} for your courses`;
     } else {
       banner.className = 'banner';
       banner.textContent = 'None of your courses has an exam in the published calendar.';
     }
 
-    // One day strip per season (a simple list on phones), in one column per
-    // trimester so they sit under the matching timetable grid.
+    // One list by date per season (owner's choice), in one column per trimester so
+    // they sit under the matching timetable grid.
     const seasonHtml = p => {
       const days = E.seasonDays(p);
       const inSeason = d => (res.byDate.get(d) || []).filter(it => it.exam.period === p.id);
-      const strip = days.map(d => {
-        const its = inSeason(d);
-        const wd = E.weekdayShort(d);
-        const cls = ['ex-day'];
-        if (wd === 'Sun') cls.push('sunday');
-        if (its.length && res.clashDates.has(d)) cls.push('clash');
-        return `<div class="${cls.join(' ')}"><div class="ex-dh">${wd}<small>${S.shortDate(d)}</small></div>
-          <div class="ex-cell">${its.map(it => examChip(it, res.clashDates.has(d))).join('')}</div></div>`;
-      }).join('');
       const listed = days.filter(d => inSeason(d).length);
       const rows = listed.map(d => {
         const its = inSeason(d);
@@ -658,7 +649,6 @@
       }).join('');
       return `<div class="ex-season">
         <h3>${esc(seasonName({ period: p.id, season: p.season }))} <small>${S.shortDate(days[0])} – ${S.shortDate(days[days.length - 1])}</small></h3>
-        <div class="ex-strip" style="grid-template-columns:repeat(${days.length}, minmax(0, 1fr))">${strip}</div>
         <ul class="ex-list">${rows || `<li class="empty">No exams for your courses in this ${site.seasonsByTerm ? 'trimester' : 'season'}.</li>`}</ul>
       </div>`;
     };

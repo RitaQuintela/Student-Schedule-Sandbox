@@ -150,13 +150,13 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
 - Admin: unmatched exam names = one combined warning; loose matches, ignored early exams and
   courses without exams = info notes. Errors (no ExamData/no MSc exams) block applying.
   Preview key `scheduleSandbox.examPreview.v1`. Raw planners (`*.xlsm`) are git-ignored.
-- Student: "Exam Calendar" section under the timetable (Exams tab on phones): one day strip per
-  season (list by date on phones; **always a list by date on the undergraduate site**, screen and print,
-  because its seasons are too long for the strip — CSS at the end of `styles.css`), exam dates on each course card, exams in the .ics as all-day events.
+- Student: "Exam Calendar" section under the timetable (Exams tab on phones): one **list by date**
+  per season on both sites, screen and print (owner's choice; the old day strip was removed), only days
+  with exams of the student's courses, same-day overlaps red with ⚠, exam dates on each course card, exams in the .ics as all-day events.
 - Students never see the planner's season names: each season is named after the **trimester it falls
   in** (`seasonTerm` in `js/student.js`: the trimester whose weeks contain the season's first day, else
   the latest one started), so Midterms → "Trimester 1", Endterms → "Trimester 2" (cards and chips
-  say "T1"/"T2"; .ics "Exam: Course (Trimester 1)"). The strips sit in one column per trimester,
+  say "T1"/"T2"; .ics "Exam: Course (Trimester 1)"). The season lists sit in one column per trimester,
   under the matching timetable grid. The admin page keeps the planner's names.
 
 ## Student features
