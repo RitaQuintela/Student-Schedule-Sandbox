@@ -29,12 +29,14 @@ planner's exam season names (Midterms, Endterms, Final Exams).
    or click the small **×** on one of its classes in the timetable (you can also drag a class
    back onto the course list).
    Your courses stay at the top of the list.
-4. **Choose your section.** Each added course has a dropdown. Every choice says
-   **✓ fits** or **⚠ overlaps** with what you've already picked.
+4. **Choose your section.** If a course has several sections (or runs in several trimesters),
+   **+ Add** first asks you to pick one in a dropdown on the card; the course moves to your
+   courses once you've picked (or click **Cancel**). You can change the section later on the card.
+   Every choice says **✓ fits** or **⚠ overlaps** with what you've already picked.
    For courses with practical classes (PL), you choose the PL; the theory class (T) that
    goes with it is added automatically.
-5. **Check for overlaps.** Clashing classes are highlighted in **raspberry** with ⚠ on the timetable and on the course
-   card, and a banner lists them. Two classes only clash if they happen on the same day,
+5. **Check for overlaps.** Overlapping classes are highlighted in **raspberry** with ⚠ on the timetable and on the course
+   card, and a banner lists them. Two classes only overlap if they happen on the same day,
    at the same time, in at least one of the same weeks.
 6. **Pick the trimester.** Use **Trimester** to switch between the two trimesters of the semester
    (e.g. Trimester 1 and Trimester 2). Each shows only the classes that happen in it; semester-long
@@ -150,7 +152,7 @@ timetable columns, is published.
 | `master/data/timetable-data.js` | The published timetable (replace it to publish a new one) |
 | `master/data/exam-data.js` | The published exam calendar (replace it to publish a new one) |
 | `js/parser.js` | The timetable rules (pairing, weeks, warnings) |
-| `js/exams.js` | The exam rules (reading the planner, matching names, clashes) |
+| `js/exams.js` | The exam rules (reading the planner, matching names, overlaps) |
 | `js/student.js`, `js/admin.js` | Logic of each page |
 | `css/styles.css` | Look and layout, including print |
 | `vendor/xlsx.full.min.js` | SheetJS, used to read Excel files (works offline) |

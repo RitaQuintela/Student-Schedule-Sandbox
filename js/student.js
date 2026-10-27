@@ -81,6 +81,9 @@
     unit: '',
     day: todayIdx < 5 ? todayIdx : 0,
     view: 'courses',
+    // A course with several sections whose card shows "Choose your section" before it is
+    // added: it moves to Your courses only once a section is picked. Not saved.
+    picking: '',
   };
 
   function restoreSelections(list) {
@@ -214,15 +217,31 @@
 
   /* ---------- Actions ---------- */
 
-  function addCourse(code) {
+  // Adds a course with the given section. A course with several sections and no section
+  // given is not added yet: its card asks for the section first (see startPicking).
+  function addCourse(code, optionId) {
     const course = data.byCode.get(code);
     if (!course || state.selections.has(code) || !course.options.length) return;
+    const option = course.options.some(o => o.id === optionId) ? optionId : firstOption(course);
+    if (!option) { startPicking(code); return; }
     const used = new Set([...state.selections.values()].map(s => s.color % COLORS.length));
     let color = 0;
     while (used.has(color) && color < COLORS.length) color++;
     if (color >= COLORS.length) color = state.selections.size % COLORS.length;
-    state.selections.set(code, { option: firstOption(course), color });
+    state.selections.set(code, { option, color });
+    state.picking = '';
     update();
+  }
+
+  // Opens the section dropdown on the course's card and puts the keyboard focus on it.
+  function startPicking(code) {
+    state.picking = code;
+    update();
+    const select = document.querySelector(`.course-card.picking select`);
+    if (select) {
+      select.closest('.course-card').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      select.focus({ preventScroll: true });
+    }
   }
 
   function removeCourse(code) {
@@ -326,7 +345,11 @@
       (!state.programme || c.programmes.includes(state.programme)) &&
       (!state.unit || c.units.includes(state.unit));
 
-    const rest = data.courses.filter(c => !state.selections.has(c.code) && matches(c));
+    // The course whose section is being picked comes first, whatever the search or filters.
+    if (state.selections.has(state.picking)) state.picking = '';
+    const picking = data.byCode.get(state.picking);
+    const rest = (picking ? [picking] : []).concat(
+      data.courses.filter(c => c !== picking && !state.selections.has(c.code) && matches(c)));
     let html = '';
     if (added.length) {
       html += `<div class="list-divider">Your courses (${added.length})</div>`;
@@ -341,6 +364,24 @@
   function cardHtml(course, entry, list, clashes) {
     const units = course.units.map(u => `<span class="tag">${esc(u)}</span>`).join('');
     const meta = `${units}${esc(course.acronym ? course.acronym + ' · ' : '')}${esc(course.code)} · ${esc(course.typologies.join('/'))}`;
+    // "+ Add" on a course with several sections: pick the section here; the course is added on pick.
+    if (!entry && state.picking === course.code) {
+      const choices = '<option value="" selected disabled>Choose a section…</option>' +
+        course.options.map(o => {
+          const days = [...new Set(shownSessions(o).map(s => S.WEEKDAYS_SHORT[s.day]))].join(', ');
+          return `<option value="${esc(o.id)}">${esc(o.label)} · ${days} — ${optionFits(course, o, list) ? '✓ fits' : '⚠ overlaps'}</option>`;
+        }).join('');
+      return `<article class="course-card pending picking" data-code="${esc(course.code)}">
+        <div class="cc-head">
+          <div><h3>${esc(course.name)}</h3><div class="cc-meta">${meta}</div></div>
+          <button class="add-btn" data-act="cancel" aria-label="Cancel adding ${esc(course.name)}">Cancel</button>
+        </div>
+        <div class="cc-body">
+          <label class="field">Choose your section
+            <select data-act="pick">${choices}</select></label>
+          <div class="cc-note">This course has ${course.options.length} sections: pick yours to add it to your courses.</div>
+        </div></article>`;
+    }
     if (!entry) {
       return `<article class="course-card" draggable="true" data-code="${esc(course.code)}">
         <div class="cc-head">
@@ -589,7 +630,7 @@
         `<ul>${res.clashes.map(c => `<li><b>${dayLabel(c.date)}</b>: ${names(c.items)}</li>`).join('')}</ul>`;
     } else if (items.length) {
       banner.className = 'banner ok';
-      banner.textContent = `✓ No exam clashes · ${items.length} exam${items.length === 1 ? '' : 's'} for your courses`;
+      banner.textContent = `✓ No exam overlaps ·${items.length} exam${items.length === 1 ? '' : 's'} for your courses`;
     } else {
       banner.className = 'banner';
       banner.textContent = 'None of your courses has an exam in the published calendar.';
@@ -760,10 +801,13 @@
     if (!btn) return;
     const code = btn.closest('.course-card').dataset.code;
     if (btn.dataset.act === 'add') addCourse(code);
+    else if (btn.dataset.act === 'cancel') { state.picking = ''; update(); }
     else removeCourse(code);
   });
   $('course-list').addEventListener('change', e => {
-    if (e.target.matches('select[data-act="option"]')) {
+    if (e.target.matches('select[data-act="pick"]')) {
+      addCourse(e.target.closest('.course-card').dataset.code, e.target.value);
+    } else if (e.target.matches('select[data-act="option"]')) {
       setOption(e.target.closest('.course-card').dataset.code, e.target.value);
     }
   });

@@ -7,6 +7,7 @@ changes in plain language.
 **Wording:** always write "Master" (never "Master's") and "Program(s)" (never "Programme(s)")
 in anything users or readers see: UI text, messages, templates, docs. Internal code names
 (`programmeOf`, the `programme` filter id and saved setting) are kept so saved choices still work.
+Say "overlap" (never "clash") in anything users see; internal names (`clash`, `findClashes`) stay.
 
 ## Tech constraints
 - Plain HTML, CSS and JavaScript. No frameworks, no build step, no npm.
@@ -27,9 +28,11 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
     lines, straight, not wobbly) and a tilted hand-drawn **DRAFT stamp** in Master purple like the Beta tab (`--purple` #B78BFC; the draft name in `--purple-ink` #946FF1 for legibility) in the timetable toolbar, to
     the right of the buttons; it also prints, top right (CSS at the end of `styles.css`). No marker
     underlines (removed by the owner).
-  - Logo: `assets/logo-clsbe-white.svg` on blue (colour version `assets/logo-clsbe.svg` for white
-    backgrounds), the version **without seal** (internal tools). Min. width on screen 150 px.
-    Don't recolour, distort, outline or crowd it.
+  - Logo: the version **with the seal** (owner's choice): `assets/logo-clsbe-seal-white.svg` on blue
+    (brand pack `SVG/Logo CLSBE_Horiz_white_selo.svg`; colour version `assets/logo-clsbe-seal.svg` =
+    `Logo CLSBE_Horiz_selo.svg` for white backgrounds). 240 px wide, 190 px on phones (the wordmark's
+    150 px minimum); below 520px the logo sits on its own row above the title. The seal-less files
+    (`logo-clsbe*.svg`) are kept but unused. Don't recolour, distort, outline or crowd it.
 - Must stay mobile friendly (timetable shows one day at a time with day tabs below 860px).
 - **Light / dark theme** (`js/theme.js`, loaded in `<head>` of both pages): a "Dark"/"Light" tab on the
   purple header line, left of "Beta version" (icon only below 520px). Default = the device setting; the
@@ -142,13 +145,14 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   a 19 Dec endterm → T2 edition. Students only see their chosen edition's exams.
 - An exam dated **before the course's first class week** is ignored (same course name taught in an
   earlier term, e.g. a T1 midterm for the T2 edition) and listed as an admin note.
-- Times are TBD: two of a student's exams on the **same day = clash (red)**. Exams on consecutive days
+- Times are TBD: two of a student's exams on the **same day = overlap (red)**. Exams on consecutive days
   are **not** flagged on the student page (the owner removed the orange highlight).
 - Admin: unmatched exam names = one combined warning; loose matches, ignored early exams and
   courses without exams = info notes. Errors (no ExamData/no MSc exams) block applying.
   Preview key `scheduleSandbox.examPreview.v1`. Raw planners (`*.xlsm`) are git-ignored.
 - Student: "Exam Calendar" section under the timetable (Exams tab on phones): one day strip per
-  season (list by date on phones), exam dates on each course card, exams in the .ics as all-day events.
+  season (list by date on phones; **always a list by date on the undergraduate site**, screen and print,
+  because its seasons are too long for the strip — CSS at the end of `styles.css`), exam dates on each course card, exams in the .ics as all-day events.
 - Students never see the planner's season names: each season is named after the **trimester it falls
   in** (`seasonTerm` in `js/student.js`: the trimester whose weeks contain the season's first day, else
   the latest one started), so Midterms → "Trimester 1", Endterms → "Trimester 2" (cards and chips
@@ -160,10 +164,13 @@ Search + program/period filters; "+ Add" or drag a card onto the timetable; drag
 block from the timetable back onto the course list, or click the small × on a block, to remove
 that course (the list turns red, "Drop here to remove …"); button shows
 "Added ✓" and "Remove ✕" on hover; added courses pinned at the top; section dropdown on the card
-with "✓ fits" / "⚠ overlaps"; a course with **several sections starts with none picked** ("Choose a
-section…", stored as option `''`): it stays in Your courses but is left out of the timetable, overlaps,
-exams and .ics until the student picks one (banner lists "Pick a section for: …"); a one-section course
-gets its section straight away; Mon–Fri 08:00–21:30 grid in 1h30 blocks (last row 20:00), 56px per block (three lines of a short name fit); overlaps in red (blocks,
+with "✓ fits" / "⚠ overlaps"; a course with **several sections (or terms) must get its section before it
+is added** (owner's choice): "+ Add" or dropping it on the timetable turns its card into a "Choose your
+section" dropdown (`state.picking`, not saved; card pinned first in the list whatever the search/filters,
+with Cancel) and the course moves to Your courses only when a section is picked; a one-section course is
+added straight away. An added course with option `''` (older saves, or a section that disappeared from the
+data) still shows "Choose a section…" and is left out of the timetable, overlaps, exams and .ics until
+picked (banner lists "Pick a section for: …"); Mon–Fri 08:00–21:30 grid in 1h30 blocks (last row 20:00), 56px per block (three lines of a short name fit); overlaps in red (blocks,
 cards, banner); one grid per trimester (no dropdown, no single weeks); class blocks show only the
 short course name (section, time and room are in the hover tooltip and on the card), day headers
 use short names (MON…FRI); the overlap banner lists every overlap once, starting with the
