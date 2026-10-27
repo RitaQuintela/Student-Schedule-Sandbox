@@ -292,6 +292,13 @@
     const menu = $('draft-menu');
     menu.hidden = !open;
     $('draft-stamp').setAttribute('aria-expanded', String(open));
+    if (!open) return;
+    // Open towards the side with room: on phones the stamp wraps to the left edge.
+    menu.style.left = '';
+    menu.style.right = '';
+    const r = menu.getBoundingClientRect();
+    if (r.left < 8) { menu.style.left = '0'; menu.style.right = 'auto'; }
+    else if (r.right > document.documentElement.clientWidth - 8) { menu.style.right = '0'; menu.style.left = 'auto'; }
   }
 
   /* ---------- Rendering: course list ---------- */

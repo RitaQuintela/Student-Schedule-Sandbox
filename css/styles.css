@@ -659,7 +659,7 @@ a { color: var(--blue); }
 .stamp-word { font-size: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
 .stamp-name { color: var(--purple-ink); font-size: 19px; font-weight: 700; max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .draft-menu {
-  position: absolute; z-index: 20; top: calc(100% + 8px); right: 0; min-width: 240px;
+  position: absolute; z-index: 20; top: calc(100% + 8px); right: 0; min-width: 240px; max-width: calc(100vw - 32px);
   background: var(--surface); border: 1px solid var(--border); box-shadow: 0 6px 18px rgba(0, 0, 0, .12); padding: 6px;
 }
 .draft-menu .dm-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 4px 8px; }
