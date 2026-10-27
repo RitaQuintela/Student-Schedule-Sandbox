@@ -733,3 +733,23 @@ a { color: var(--blue-ink); }
   :root[data-theme="dark"] .ex-day.sunday .ex-dh { background: #2F5DC4; }
   :root[data-theme="dark"] .draft-menu { box-shadow: 0 8px 24px rgba(0, 0, 0, .55); }
 }
+
+/* ---------- Undergraduate site (undergraduate/, <html data-site="undergraduate">) ---------- */
+
+/* The accent becomes Verde Licenciaturas #6CC9CC (brand book p. 30: the national colour is
+   used when national and international programs appear together). The "purple" tokens keep
+   their names; the brand book gives no on-white shade, so --purple-ink is a darker teal
+   (4.5:1 on white) for text, outlines and the draft name. */
+:root[data-site="undergraduate"] {
+  --purple: #6CC9CC;
+  --purple-ink: #1F7F82;
+  --purple-tint: #E2F5F5;
+  --purple-text: #174A4C;
+}
+@media screen {
+  :root[data-site="undergraduate"][data-theme="dark"] {
+    --purple-ink: #8FDCDE;
+    --purple-tint: #16302F;
+    --purple-text: #BDEEEF;
+  }
+}

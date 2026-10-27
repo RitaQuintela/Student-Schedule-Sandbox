@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-site="undergraduate">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule Sandbox · Católica Lisbon</title>
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../css/styles.css?v=20261027d">
+<script src="../js/site.js?v=20261027d"></script>
+<script src="../js/theme.js?v=20261027d"></script>
+</head>
+<body>
+<header class="app-header">
+  <div class="inner">
+    <div class="header-tabs">
+      <button id="theme-toggle" class="theme-toggle" type="button"></button>
+      <span class="beta-tab" title="This is an early version: information may contain errors">Beta version</span>
+    </div>
+    <img class="logo" src="../assets/logo-clsbe-white.svg" alt="Católica Lisbon School of Business &amp; Economics" width="170" height="54">
+    <div class="title">
+      <span class="kicker">Undergraduate Programs</span>
+      <h1>Schedule Sandbox</h1>
+      <p>Plan your classes and exams, try different schedule options, and avoid overlaps before enrollment.</p>
+    </div>
+  </div>
+</header>
+
+<div id="preview-notice" class="notice" hidden>
+  <span id="preview-text"></span>
+  <button id="preview-clear" class="btn small">Back to the published timetable</button>
+</div>
+
+<nav class="mobile-switch" aria-label="Switch view">
+  <button id="show-courses" class="active">Courses</button>
+  <button id="show-timetable">Timetable <span id="switch-count"></span></button>
+  <button id="show-exams">Exams <span id="switch-exams"></span></button>
+</nav>
+
+<main id="app" class="student" data-view="courses">
+  <aside class="sidebar panel" id="sidebar" aria-label="Courses">
+    <div class="bar" id="sidebar-bar">Courses</div>
+    <div class="filters">
+      <label class="field">Search
+        <input id="search" type="search" placeholder="Course name, acronym or code">
+      </label>
+      <label class="field">Period
+        <select id="unit"><option value="">All periods</option></select>
+      </label>
+    </div>
+    <div class="course-list" id="course-list"></div>
+  </aside>
+
+  <section class="tt-panel panel" aria-label="Weekly timetable">
+    <div class="bar">Preview of Weekly Timetable</div>
+    <div class="tt-inner">
+      <div class="print-only">
+        <h2 style="margin:0;color:#0061FF">My timetable</h2>
+        <p id="print-week" style="margin:2px 0 8px"></p>
+      </div>
+      <div class="tt-toolbar">
+        <div class="actions">
+          <button id="export-ics" class="btn">Export to calendar (.ics)</button>
+          <button id="print" class="btn">Print / PDF</button>
+          <button id="clear-all" class="btn">Clear all</button>
+        </div>
+        <div class="draft">
+          <button id="draft-stamp" class="stamp" aria-haspopup="true" aria-expanded="false" title="Your drafts: switch, create, rename">
+            <span class="stamp-word">Draft</span><span class="stamp-name"><span id="draft-name"></span><span class="stamp-caret"> ▾</span></span>
+          </button>
+          <div id="draft-menu" class="draft-menu" role="menu" hidden></div>
+        </div>
+      </div>
+      <div id="banner" class="banner" role="status"></div>
+      <div class="day-tabs" id="day-tabs" role="tablist" aria-label="Day"></div>
+      <div class="tt-terms" id="timetable"></div>
+      <p class="hint">Drag a course from the list onto the timetable to add it, or drag a class from the timetable back to the list to remove it. Red means two classes happen at the same time.</p>
+      <div class="print-only print-list" id="print-list"></div>
+    </div>
+  </section>
+
+  <section class="ex-panel panel" id="exams" aria-label="Exam calendar">
+    <div class="bar">Exam Calendar <small>· your courses</small></div>
+    <div class="tt-inner">
+      <div id="exam-banner" class="banner" role="status"></div>
+      <div class="tt-terms" id="exam-seasons"></div>
+      <p class="hint" id="exam-note"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="app-footer">
+  <div class="beta-note" role="note">
+    Schedule Sandbox is a beta planning tool: it does not enroll you in anything. Use it to plan your enrollment on the official platforms, and always check the information against the official class timetable and exam calendar.
+  </div>
+  <a href="admin.html">Admin</a>
+</footer>
+
+<script src="data/timetable-data.js"></script>
+<script src="data/exam-data.js"></script>
+<script src="../js/parser.js?v=20261027d"></script>
+<script src="../js/exams.js?v=20261027d"></script>
+<script src="../js/student.js?v=20261027d"></script>
+</body>
+</html>

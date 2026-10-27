@@ -1,7 +1,18 @@
 # Schedule Sandbox
 
-**Católica Lisbon School of Business & Economics** – a planning tool for master students
-to put together their own weekly timetable.
+**Católica Lisbon School of Business & Economics** – a planning tool for Master and
+undergraduate students to put together their own weekly timetable.
+
+There are two sites, each with its own timetable, exam calendar and admin page:
+
+| Site | Student page | Admin page |
+|---|---|---|
+| Master Programs | `master/index.html` | `master/admin.html` |
+| Undergraduate Programs | `undergraduate/index.html` | `undergraduate/admin.html` |
+
+The old address (the site's main page) still opens the Master site. Both sites work the same way;
+the undergraduate one uses the undergraduate green, has no program filter and shows the
+planner's exam season names (Midterms, Endterms, Final Exams).
 
 > This is a planning tool. It does not enrol you in anything. Always confirm your final
 > choices in the official systems.
@@ -10,7 +21,8 @@ to put together their own weekly timetable.
 
 ## For students
 
-1. **Open the app.** Open `index.html` (or the website link your program shares).
+1. **Open the app.** Open the website link your program shares (or `master/index.html` /
+   `undergraduate/index.html`).
 2. **Find your courses.** Search by name, acronym or code, or filter by program and period.
 3. **Add a course.** Click **+ Add**, or drag the course onto the timetable.
    The button changes to **Added ✓**. Click it again to remove the course (it shows **Remove ✕**),
@@ -48,10 +60,16 @@ between days.
 
 ## For the admin
 
+Use the admin page of the site you are updating: `master/admin.html` for Master Programs,
+`undergraduate/admin.html` for Undergraduate Programs. Each one publishes only its own site's
+files (`master/data/…` or `undergraduate/data/…`). The same exam planner works for both: each
+admin page keeps only its own exams (Cycle MSc or UG). The GitHub token is saved once and works
+on both admin pages.
+
 ### Publish a new timetable
 
 1. Export the timetable from the scheduling system ("Bullet extraction", `.xlsx` or `.csv`).
-2. Open **`admin.html`** and upload the file. Nothing is sent anywhere; it's read in your browser.
+2. Open the site's **admin page** and upload the file. Nothing is sent anywhere; it's read in your browser.
 3. Read the **summary** (courses, sections, weekly classes), the **trimester dates** students will
    see, and the **problems to review**:
    - **Errors** (raspberry) must be fixed in the file before you can continue.
@@ -61,17 +79,18 @@ between days.
    Use **Stop preview** (or “Back to the published timetable”) when you're done.
 5. Click **Publish to students**. The live site shows the new timetable within 1–2 minutes.
    (One-time setup: see **Set up publishing** below. Without it, use **Download data file** and
-   replace `data/timetable-data.js` by hand.)
+   replace `master/data/timetable-data.js` or `undergraduate/data/timetable-data.js` by hand.)
 
 ### Publish a new exam calendar
 
-1. Open **`admin.html`** and, under **Publish an exam calendar**, upload the
+1. Open the site's **admin page** and, under **Publish an exam calendar**, upload the
    **Integrated Exams Planner** (`.xlsm` or `.xlsx`). The app reads its **ExamData** sheet
-   (Master exams only) and the season dates from **Periods**. Macros are never run.
+   (only that site's exams: MSc or UG) and the season dates from **Periods**. Macros are never run.
 2. Check the summary and notes:
    - **Exam names not matched**: exams are linked to courses **by name**. Small differences are
-     ignored (& / and, hyphens, accents, text in brackets, a final "s"), and "Language Courses"
-     covers every language course. Names that still don't match are listed. Often these are
+     ignored (& / and, hyphens, accents, text in brackets, a final "s"), "Language Courses"
+     covers every language course and "Portuguese Language Course" every Portuguese course
+     (extensive and intensive). Names that still don't match are listed. Often these are
      courses from another term; otherwise fix the spelling in the planner.
    - **Not shown to students**: exams dated before a course's first class (usually the same course
      taught in an earlier term) are left out.
@@ -117,7 +136,7 @@ so the pairing is explicit. If a course has PLs but no T, its TP section plays t
 
 Raw exports include staff usernames and emails, and the exam planner includes student numbers.
 They are kept out of Git
-(see `.gitignore`). Only the cleaned `data/timetable-data.js`, which has just the
+(see `.gitignore`). Only the cleaned `master/data/timetable-data.js`, which has just the
 timetable columns, is published.
 
 ---
@@ -126,10 +145,10 @@ timetable columns, is published.
 
 | File | What it is |
 |---|---|
-| `index.html` | Student app |
-| `admin.html` | Admin upload page |
-| `data/timetable-data.js` | The published timetable (replace it to publish a new one) |
-| `data/exam-data.js` | The published exam calendar (replace it to publish a new one) |
+| `master/index.html` | Student app (Master Programs) |
+| `master/admin.html` | Admin upload page (Master Programs) |
+| `master/data/timetable-data.js` | The published timetable (replace it to publish a new one) |
+| `master/data/exam-data.js` | The published exam calendar (replace it to publish a new one) |
 | `js/parser.js` | The timetable rules (pairing, weeks, warnings) |
 | `js/exams.js` | The exam rules (reading the planner, matching names, clashes) |
 | `js/student.js`, `js/admin.js` | Logic of each page |

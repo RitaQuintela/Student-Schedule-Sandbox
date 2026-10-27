@@ -7,7 +7,8 @@
   'use strict';
 
   const S = window.Schedule;
-  const PREVIEW_KEY = 'scheduleSandbox.adminPreview.v1';
+  const site = window.Site;
+  const PREVIEW_KEY = site.key('adminPreview.v1');
   const BLOCKS = (S.DAY_END - S.DAY_START) / 90; // 8 blocks of 1h30
   const SPAN = S.DAY_END - S.DAY_START;
 
@@ -43,7 +44,7 @@
   const data = S.buildDataset(source.rows || [], source.referenceWeeks);
 
   // Exam calendar: published file, or an admin preview saved in this browser.
-  const EXAM_PREVIEW_KEY = 'scheduleSandbox.examPreview.v1';
+  const EXAM_PREVIEW_KEY = site.key('examPreview.v1');
   const E = window.Exams;
   let examSource = window.EXAM_DATA || { periods: [], exams: [] };
   const examPreview = load(EXAM_PREVIEW_KEY);
@@ -59,7 +60,7 @@
     document.getElementById('preview-notice').hidden = false;
   }
   // Choices made while previewing are kept apart, so they never replace the real ones.
-  const STORE_KEY = source === preview ? 'scheduleSandbox.student.preview.v1' : 'scheduleSandbox.student.v1';
+  const STORE_KEY = site.key(source === preview ? 'student.preview.v1' : 'student.v1');
 
   /* ---------- State ---------- */
 
@@ -304,11 +305,16 @@
   /* ---------- Rendering: course list ---------- */
 
   function renderFilters() {
-    $('programme').innerHTML = '<option value="">All programs</option>' +
-      data.programmes.map(p => `<option value="${esc(p.code)}">${esc(p.label)}</option>`).join('');
+    // The undergraduate page has no Program filter (search and period only).
+    if ($('programme')) {
+      $('programme').innerHTML = '<option value="">All programs</option>' +
+        data.programmes.map(p => `<option value="${esc(p.code)}">${esc(p.label)}</option>`).join('');
+      $('programme').value = state.programme;
+    } else {
+      state.programme = '';
+    }
     $('unit').innerHTML = '<option value="">All periods</option>' +
       data.units.map(u => `<option value="${esc(u.code)}">${esc(u.label)}</option>`).join('');
-    $('programme').value = state.programme;
     $('unit').value = state.unit;
   }
 
@@ -501,9 +507,7 @@
     }
     if (!list.length) {
       banner.className = 'banner';
-      banner.innerHTML = 'Start by adding courses from the list. ' +
-        '<strong>If the Master Affairs team has already enrolled you in a section, pick that section.</strong> ' +
-        'You can only choose your own section for electives.';
+      banner.innerHTML = 'Start by adding courses from the list. ' + site.startHint;
       return;
     }
     // Overlaps are listed per trimester (a semester course can clash in both).
@@ -543,10 +547,11 @@
     return [p.id, term];
   }));
 
-  // "Trimester 1" (long) or "T1" (short); the planner's season name if no trimester fits.
+  // "Trimester 1" (long) or "T1" (short); the planner's season name if no trimester fits,
+  // or on sites where several seasons share a trimester (undergraduate: Endterms and Final Exams).
   function seasonName(exam, short) {
     const term = seasonTerm.get(exam.period);
-    if (!term) return short ? E.seasonSingular(exam.season) : exam.season;
+    if (!term || !site.seasonsByTerm) return short ? E.seasonSingular(exam.season) : exam.season;
     return short ? term.id : term.label;
   }
 
@@ -614,7 +619,7 @@
       return `<div class="ex-season">
         <h3>${esc(seasonName({ period: p.id, season: p.season }))} <small>${S.shortDate(days[0])} – ${S.shortDate(days[days.length - 1])}</small></h3>
         <div class="ex-strip" style="grid-template-columns:repeat(${days.length}, minmax(0, 1fr))">${strip}</div>
-        <ul class="ex-list">${rows || '<li class="empty">No exams for your courses in this trimester.</li>'}</ul>
+        <ul class="ex-list">${rows || `<li class="empty">No exams for your courses in this ${site.seasonsByTerm ? 'trimester' : 'season'}.</li>`}</ul>
       </div>`;
     };
     const periods = examSource.periods || [];
@@ -747,7 +752,7 @@
   /* ---------- Events ---------- */
 
   $('search').addEventListener('input', e => { state.search = e.target.value; update(); });
-  $('programme').addEventListener('change', e => { state.programme = e.target.value; update(); });
+  if ($('programme')) $('programme').addEventListener('change', e => { state.programme = e.target.value; update(); });
   $('unit').addEventListener('change', e => { state.unit = e.target.value; update(); });
 
   $('course-list').addEventListener('click', e => {
@@ -888,7 +893,7 @@
   $('preview-clear').addEventListener('click', () => {
     forget(PREVIEW_KEY);
     forget(EXAM_PREVIEW_KEY);
-    forget('scheduleSandbox.student.preview.v1');
+    forget(site.key('student.preview.v1'));
     location.reload();
   });
 

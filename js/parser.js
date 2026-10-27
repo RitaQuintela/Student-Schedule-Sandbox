@@ -143,8 +143,10 @@
   /* ---------- Programs and periods (for the student filters) ---------- */
 
   // MP_Man_SEI_S1_PA -> MP_Man_SEI, MP_Fin_S3_PB -> MP_Fin, MSc_Econ_1 -> MSc_Econ
+  // Undergraduate: Y1_LIC_GEST_SECTION_2 -> LIC_GEST, Y2_IUP_BA_SECTION_REOFFER_1 -> IUP_BA, Y1_PPE -> PPE
   function programmeOf(group) {
-    return group.replace(/_S\d+(_P[A-Z0-9]+)?$/i, '').replace(/_\d+$/, '');
+    return group.replace(/^Y\d+_/i, '').replace(/_SECTION(_REOFFER)?(_\d+)?$/i, '')
+      .replace(/_S\d+(_P[A-Z0-9]+)?$/i, '').replace(/_\d+$/, '');
   }
 
   // Full program names for the Program filter, given by the program office.
@@ -161,6 +163,14 @@
     MSc_Bus: 'MSc Business',
     MSc_Bus_Analytics: 'MSc Business Analytics',
     MSc_Econ: 'MSc Economics',
+    // Undergraduate (the undergraduate page has no Program filter; the names show on its admin page)
+    ELEC_UG: 'Undergraduate Electives',
+    IUP_BA: 'IUP Business Administration',
+    IUP_EF: 'IUP Economics & Finance',
+    IUP_MDA: 'IUP Management & Data Analytics',
+    LIC_ECON: 'Licenciatura em Economia',
+    LIC_GEST: 'Licenciatura em Gestão',
+    PPE: 'Philosophy, Politics & Economics',
   };
 
   function programmeLabel(code) {

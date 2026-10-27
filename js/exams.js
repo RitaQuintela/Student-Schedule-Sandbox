@@ -1,15 +1,17 @@
 /*
  * Schedule Sandbox – exam rules.
  *
- * Reads the Integrated Exams Planner (.xlsm/.xlsx), keeps the Master (MSc)
- * exams from its ExamData sheet, links them to timetable courses by name and
- * finds clashes. Shared by the admin and student screens. See CLAUDE.md.
+ * Reads the Integrated Exams Planner (.xlsm/.xlsx), keeps this site's exams
+ * (Master: Cycle MSc, undergraduate: Cycle UG) from its ExamData sheet, links them
+ * to timetable courses by name and finds clashes. Shared by the admin and student
+ * screens. See CLAUDE.md.
  */
 (function (global) {
   'use strict';
 
   const S = global.Schedule;
-  const CYCLE = 'msc'; // only Master exams are used
+  const site = global.Site || { examCycle: 'msc', examCycleLabel: 'Master (MSc)' };
+  const CYCLE = site.examCycle; // only this site's exams are used
 
   function text(v) {
     return v === null || v === undefined ? '' : String(v).trim();
@@ -96,7 +98,7 @@
     const hasCycle = 'cycle' in c;
     const master = hasCycle ? all.filter(e => e.cycle === CYCLE) : all;
     if (hasCycle && !master.length) {
-      issues.push({ level: 'error', message: 'The file has no Master (MSc) exams in its ExamData sheet.' });
+      issues.push({ level: 'error', message: `The file has no ${site.examCycleLabel} exams in its ExamData sheet.` });
     }
 
     const seen = new Set();
@@ -173,9 +175,17 @@
       .join(' ');
   }
 
-  // "Language Courses" in the planner stands for every language course.
+  // "Language Courses" in the planner stands for every language course;
+  // "Portuguese Language Course" for every Portuguese one (extensive and intensive).
   const LANGUAGE_EXAM = normName('Language Courses');
-  const isLanguageCourse = name => /language|extensive course/i.test(name);
+  const isLanguageCourse = name => /language|extensive course|intensive course/i.test(name);
+  function languageTargets(examName, courses) {
+    const k = normName(examName);
+    if (k === LANGUAGE_EXAM) return courses.filter(c => isLanguageCourse(c.name));
+    const m = k.match(/^(.+) language course$/);
+    if (!m) return [];
+    return courses.filter(c => isLanguageCourse(c.name) && normName(c.name).startsWith(m[1] + ' '));
+  }
 
   // Returns, for the given timetable courses:
   //   byCode: course code -> list of exams
@@ -205,7 +215,7 @@
     const beforeStart = [];
     (examData.exams || []).forEach(e => {
       const k = normName(e.course);
-      const targets = k === LANGUAGE_EXAM ? courses.filter(c => isLanguageCourse(c.name)) : byNorm.get(k) || [];
+      const targets = byNorm.get(k) || languageTargets(e.course, courses);
       if (!targets.length) { unmatched.add(e.course); return; }
       targets.forEach(c => {
         const first = firstClassWeek(c);

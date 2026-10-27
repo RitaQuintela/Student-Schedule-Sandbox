@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-site="undergraduate">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule Sandbox Admin · Católica Lisbon</title>
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../css/styles.css?v=20261027d">
+<script src="../js/site.js?v=20261027d"></script>
+<script src="../js/theme.js?v=20261027d"></script>
+</head>
+<body>
+<header class="app-header">
+  <div class="inner">
+    <div class="header-tabs">
+      <button id="theme-toggle" class="theme-toggle" type="button"></button>
+      <span class="beta-tab" title="This is an early version: information may contain errors">Beta version</span>
+    </div>
+    <img class="logo" src="../assets/logo-clsbe-white.svg" alt="Católica Lisbon School of Business &amp; Economics" width="170" height="54">
+    <div class="title">
+      <span class="kicker">Undergraduate Programs · Admin</span>
+      <h1>Schedule Sandbox</h1>
+      <p><a href="index.html">Open the student view →</a></p>
+    </div>
+  </div>
+</header>
+
+<main class="admin">
+  <section class="panel">
+    <div class="bar">Publish a timetable</div>
+    <div class="panel-body">
+    <h2>1. Upload the timetable export</h2>
+    <p class="lead">Use the “Bullet extraction” file from the scheduling system (.xlsx or .csv). Nothing is sent anywhere: the file is read in this browser only.</p>
+    <label class="dropzone" id="dropzone">
+      <input type="file" id="file" accept=".xlsx,.xls,.csv" hidden>
+      <strong>Choose a file</strong> or drag it here
+      <div style="font-size:13px;margin-top:4px">.xlsx, .xls or .csv</div>
+    </label>
+    <p id="current-preview" class="lead" style="margin-top:12px" hidden></p>
+    </div>
+  </section>
+
+  <section class="panel" id="result" hidden>
+    <div class="bar">Summary</div>
+    <div class="panel-body">
+    <h2>2. Check the summary</h2>
+    <p class="lead" id="file-name"></p>
+    <div class="stats" id="stats"></div>
+    <div id="terms-info"></div>
+    <h2>Problems to review</h2>
+    <div id="issues"></div>
+    <details>
+      <summary>Courses and the options students will see</summary>
+      <div class="table-wrap"><table id="courses"></table></div>
+    </details>
+
+    <h2 style="margin-top:20px">3. Apply</h2>
+    <p class="lead">“Preview” shows this timetable in the student view, only in this browser, so you can check it. “Publish to students” puts it on the live site (set up once under <a href="#publishing">Publishing settings</a>). “Download data file” gives you <code>timetable-data.js</code> to publish by hand instead.</p>
+    <div class="actions">
+      <button class="btn" id="apply">Preview in the student view</button>
+      <button class="btn primary" id="publish-data">Publish to students</button>
+      <button class="btn" id="download-data">Download data file (timetable-data.js)</button>
+    </div>
+    <p class="publish-status" id="publish-status" role="status"></p>
+    <p class="lead" id="blocked" style="color:var(--red-ink);font-weight:600;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="bar">Publish an exam calendar</div>
+    <div class="panel-body">
+    <h2>Upload the exam planner</h2>
+    <p class="lead">Use the Integrated Exams Planner (.xlsm or .xlsx). The app reads its <b>ExamData</b> sheet (Undergraduate exams only) and the season dates from <b>Periods</b>. Exams are linked to timetable courses by name. Nothing is sent anywhere.</p>
+    <label class="dropzone" id="exam-dropzone">
+      <input type="file" id="exam-file" accept=".xlsm,.xlsx,.xls" hidden>
+      <strong>Choose the planner</strong> or drag it here
+      <div style="font-size:13px;margin-top:4px">.xlsm, .xlsx or .xls</div>
+    </label>
+    <p id="exam-current-preview" class="lead" style="margin-top:12px" hidden></p>
+    <div id="exam-result" hidden>
+      <p class="lead" id="exam-file-name" style="margin-top:12px"></p>
+      <div class="stats" id="exam-stats"></div>
+      <h2>Problems to review</h2>
+      <div id="exam-issues"></div>
+      <details>
+        <summary>Exams per season</summary>
+        <div class="table-wrap"><table id="exam-table"></table></div>
+      </details>
+      <div class="actions">
+        <button class="btn" id="exam-apply">Preview in the student view</button>
+        <button class="btn primary" id="exam-publish">Publish to students</button>
+        <button class="btn" id="exam-download">Download data file (exam-data.js)</button>
+      </div>
+      <p class="publish-status" id="exam-publish-status" role="status"></p>
+      <p class="lead" id="exam-blocked" style="color:var(--red-ink);font-weight:600;margin-top:8px" hidden>Fix the errors above before applying this file.</p>
+    </div>
+    </div>
+  </section>
+
+  <section class="panel" id="publishing">
+    <div class="bar">Publishing settings</div>
+    <div class="panel-body">
+    <h2>Publish straight to students</h2>
+    <p class="lead">With a GitHub token saved here, the <b>Publish to students</b> buttons update the live site directly (it shows the change within 1–2 minutes). The token is saved <b>only in this browser</b>: set it up on your own computer only. Without a token, this page can only preview and download.</p>
+    <div class="publish-form">
+      <label class="field">GitHub token
+        <input type="password" id="pub-token" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+      </label>
+      <label class="field">Repository
+        <input type="text" id="pub-repo" spellcheck="false">
+      </label>
+      <label class="field">Branch
+        <input type="text" id="pub-branch" spellcheck="false">
+      </label>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="pub-save">Save in this browser</button>
+      <button class="btn" id="pub-test">Test connection</button>
+      <button class="btn" id="pub-forget">Forget token</button>
+    </div>
+    <p class="publish-status" id="pub-status" role="status"></p>
+    <details>
+      <summary>How to create the token (about once a year)</summary>
+      <ol class="steps">
+        <li>Signed in to GitHub, open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+        <li><b>Token name</b>: “Schedule Sandbox publishing”. <b>Expiration</b>: up to 1 year.</li>
+        <li><b>Repository access</b>: “Only select repositories” → <b>Student-Schedule-Sandbox</b>.</li>
+        <li><b>Permissions → Repository permissions → Contents</b>: “Read and write”. Leave everything else as it is.</li>
+        <li>Click <b>Generate token</b>, copy it (it starts with <code>github_pat_</code>) and paste it above, then <b>Save in this browser</b> and <b>Test connection</b>.</li>
+        <li>Never share the token or paste it anywhere else. If it leaks, delete it on GitHub and create a new one.</li>
+      </ol>
+    </details>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="bar">Excel template &amp; rules</div>
+    <div class="panel-body">
+    <h2>Excel template</h2>
+    <p class="lead">A blank file with the right columns and a few example rows, including how to pair T and PL sections with the Annotations column.</p>
+    <button class="btn" id="template">Download Excel template</button>
+    <details>
+      <summary>Rules the app follows</summary>
+      <ul class="steps">
+        <li>One row = one weekly class. Rows are grouped into courses by <b>ModuleCode</b>, and into sections by <b>SectionName</b>. A section can have several rows (several classes a week).</li>
+        <li><b>Week</b> lists the Mondays of the weeks the class happens, separated by commas. The real date is that Monday plus the weekday. Missing weeks (holidays) simply aren't listed.</li>
+        <li><b>T/PL pairing</b> is set in the <b>Annotations</b> column of the T rows, e.g. “For PL-G1, PL-G2 and PL-E1.” A PL not mentioned in any note goes with the T section(s) that have no pairing note. Students pick a PL; its T comes with it.</li>
+        <li>If a course has PL sections but no T, its TP sections play the role of the T.</li>
+        <li>If several T sections have no pairing note, PLs are matched by number (PL1-A → T1) and you get a warning, so add notes to make it official.</li>
+        <li>Courses without PL sections (TP, O, S) offer one choice per section.</li>
+        <li>Any other Annotations text (e.g. “Online course…”) is shown to students.</li>
+        <li>Classes should be Monday–Friday between 08:00 and 21:30.</li>
+        <li>The file can list every class date (one row per week). Students see only the <b>reference week</b> you choose for each trimester in the summary (first full week by default); overlaps are checked in that week. The calendar (.ics) export has every week.</li>
+        <li><b>Exams</b> come from the planner's ExamData sheet (Undergraduate rows). They are linked to courses by name, ignoring small differences (&amp; / and, hyphens, accents, text in brackets, a final “s”). “Language Courses” covers every language course. Names that still don't match are listed as warnings.</li>
+        <li>Two exams on the <b>same day</b> are a clash (red).</li>
+      </ul>
+    </details>
+    </div>
+  </section>
+</main>
+
+<footer class="app-footer"><a href="index.html">Student view</a></footer>
+
+<script src="../vendor/xlsx.full.min.js"></script>
+<script src="data/timetable-data.js"></script>
+<script src="../js/parser.js?v=20261027d"></script>
+<script src="../js/exams.js?v=20261027d"></script>
+<script src="../js/admin.js?v=20261027d"></script>
+</body>
+</html>

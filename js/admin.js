@@ -7,7 +7,8 @@
   'use strict';
 
   const S = window.Schedule;
-  const PREVIEW_KEY = 'scheduleSandbox.adminPreview.v1';
+  const site = window.Site;
+  const PREVIEW_KEY = site.key('adminPreview.v1');
   const $ = id => document.getElementById(id);
   let current = null; // { source, rows, dataset }
 
@@ -213,7 +214,7 @@
 
   /* ---------- Exam calendar ---------- */
 
-  const EXAM_PREVIEW_KEY = 'scheduleSandbox.examPreview.v1';
+  const EXAM_PREVIEW_KEY = site.key('examPreview.v1');
   const E = window.Exams;
   let currentExams = null; // { source, payload, link }
 
@@ -259,7 +260,7 @@
     const link = E.linkExams(payload, ref.courses);
     const issues = parsed.issues.slice();
     if (!payload.exams.length && !issues.some(i => i.level === 'error')) {
-      issues.push({ level: 'error', message: 'No Master exams were found in this file.' });
+      issues.push({ level: 'error', message: `No ${site.examCycleLabel} exams were found in this file.` });
     }
     if (link.unmatched.length) {
       issues.push({
@@ -455,8 +456,9 @@
     button.disabled = true;
     setStatus(statusId, 'busy', 'Publishing…');
     try {
+      // Each site keeps its data in its own folder: master/data/…, undergraduate/data/…
       const commit = await publishFile(
-        isExam ? 'data/exam-data.js' : 'data/timetable-data.js',
+        `${site.id}/data/${isExam ? 'exam-data.js' : 'timetable-data.js'}`,
         isExam ? examJs() : timetableJs(),
         `Publish ${what} from ${item.source} (admin page)`,
       );
@@ -518,7 +520,7 @@
   showExamPreviewStatus();
   // Exposed for testing in the browser console.
   window.ScheduleAdmin = {
-    handleFile, buildTemplate, handleExamFile, publishFile, toBase64,
+    handleFile, buildTemplate, handleExamFile, publishFile, toBase64, timetableJs, examJs,
     get current() { return current; }, get currentExams() { return currentExams; },
   };
 })();

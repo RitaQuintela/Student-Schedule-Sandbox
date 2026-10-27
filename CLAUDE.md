@@ -1,6 +1,6 @@
 # Schedule Sandbox – notes for Claude
 
-Web app for Católica Lisbon master students to build a weekly timetable by
+Web app for Católica Lisbon Master and undergraduate students (one site each, see below) to build a weekly timetable by
 combining courses and choosing sections. The owner is not a developer: explain
 changes in plain language.
 
@@ -39,14 +39,34 @@ in anything users or readers see: UI text, messages, templates, docs. Internal c
   the dark surface. Use tokens, not hard-coded colours: `--text` for text (`--ink` stays black for text on
   purple), `--blue-ink` for blue text/links, `--remove`/`--on-remove` for removing a course, `--page` for the page.
 
+## Two sites: Master and Undergraduate
+Each site lives in its own folder with its own pages and data; code, styles, fonts and logos are
+shared from the root, so a fix reaches both. `master/` = Master Programs, `undergraduate/` =
+Undergraduate Programs. The root `index.html` and `admin.html` only redirect to `master/` (old links keep working).
+- Each page sets `<html data-site="master|undergraduate">`; `js/site.js` (loaded first in `<head>`) turns
+  that into `window.Site`: localStorage key prefix (Master keeps the original `scheduleSandbox.*` keys;
+  undergraduate uses `scheduleSandbox.ug.*`, so drafts and previews never mix; the theme and GitHub
+  token are shared), exam cycle (MSc / UG), how exam seasons are named, and the empty-timetable hint.
+  Publish writes to `<site id>/data/…`. Site differences go in `SITES` there, not in `if` checks scattered around.
+- **Undergraduate differences** (owner's choices): accent = brand **Verde Licenciaturas `#6CC9CC`**
+  (brand book p. 30; the national colour is used when national and international programs appear
+  together) with `#1F7F82` on white — the `--purple*` tokens are overridden under
+  `:root[data-site="undergraduate"]` at the end of `styles.css`. No Program filter (search + period only;
+  the page simply has no `#programme` select). Exams = planner **Cycle UG**, all three seasons (Midterms,
+  Endterms, Final Exams) shown **with the planner's names**, because Endterms and Final Exams fall in the
+  same trimester. No pre-enrolment sentence. Wording: "Undergraduate Programs".
+- Undergraduate groups look like `Y1_LIC_GEST_SECTION_2`, `Y2_IUP_BA_SECTION_REOFFER_1`, `Y1_PPE`;
+  `programmeOf` drops the year and section → `LIC_GEST`, `IUP_BA`, `PPE` (names in `PROGRAM_NAMES`, shown on the admin page).
+
 ## Files
-- `index.html` + `js/student.js` – student screen.
-- `admin.html` + `js/admin.js` – upload, summary/warnings, preview, **Publish to students**, data file download, Excel template.
+- `master/index.html`, `undergraduate/index.html` + `js/student.js` – student screen.
+- `master/admin.html`, `undergraduate/admin.html` + `js/admin.js` – upload, summary/warnings, preview, **Publish to students**, data file download, Excel template.
+- `js/site.js` – which site a page belongs to (see above).
 - `js/parser.js` – **all timetable data rules**, shared by both screens. Change rules here only.
 - `js/theme.js` – light/dark switch, shared by both screens.
 - `js/exams.js` – **all exam rules** (reading the planner, name matching, clashes), shared by both screens.
-- `data/timetable-data.js` – the published timetable (cleaned rows). Replaced by the admin, never edited by hand.
-- `data/exam-data.js` – the published exam calendar (`window.EXAM_DATA`: periods + exams). Same rule.
+- `<site>/data/timetable-data.js` – the published timetable (cleaned rows). Replaced by the admin, never edited by hand.
+- `<site>/data/exam-data.js` – the published exam calendar (`window.EXAM_DATA`: periods + exams). Same rule.
 - `css/styles.css` – all styling, including print.
 - `assets/` – official logos (SVG, from the brand pack).
 - `.claude/launch.json` – local preview server (`python -m http.server 8123`) for testing.
@@ -110,7 +130,7 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
 
 ## Exam rules (input: Integrated Exams Planner, .xlsm/.xlsx)
 - Read the **ExamData** sheet (header row found by its labels, not by position): Period ID, Cycle,
-  Season, Date, Course. Keep **Cycle = MSc** only. One exam per Period + Date + Course (the planner
+  Season, Date, Course. Keep the site's cycle only (**MSc** on master, **UG** on undergraduate). One exam per Period + Date + Course (the planner
   repeats it per program/track). Season date ranges come from the **Periods** sheet (MSc, Active ≠ No;
   up to 3 ranges); a season without a Periods row uses its first–last exam date. Macros never run.
   If there is no ExamData sheet, any sheet with Date and Course columns is used.
@@ -159,8 +179,8 @@ header) and a centered beta disclaimer in the footer (replaces the old "Always c
 "Plan your classes and exams, try different schedule options, and avoid overlaps before enrollment."
 
 ## Publishing (admin page)
-- **Publish to students** (timetable and exam sections) saves `data/timetable-data.js` /
-  `data/exam-data.js` straight into the GitHub repo via the REST contents API (GET for the sha, then
+- **Publish to students** (timetable and exam sections) saves `<site>/data/timetable-data.js` /
+  `<site>/data/exam-data.js` (`master/` or `undergraduate/`, from `window.Site`) straight into the GitHub repo via the REST contents API (GET for the sha, then
   PUT), commit message "Publish … from <file> (admin page)". GitHub Pages rebuilds in 1–2 minutes.
 - Needs a fine-grained GitHub token (only Student-Schedule-Sandbox, Contents: Read and write, ≤1 year)
   saved under **Publishing settings**, stored only in that browser (`scheduleSandbox.publish.v1`:
@@ -171,15 +191,15 @@ header) and a centered beta disclaimer in the footer (replaces the old "Always c
 
 ## Privacy
 Raw exports contain staff usernames/emails (CreatedUser, LastModifiedUser). They are
-git-ignored (`Bullet extraction*`). Only the cleaned `data/timetable-data.js` is committed.
+git-ignored (`Bullet extraction*`). Only the cleaned `<site>/data/timetable-data.js` files are committed.
 
 ## Cache busting
 GitHub Pages lets browsers keep files for 10 minutes, so a new page can load with an old stylesheet.
-`index.html` and `admin.html` load `css/styles.css` and `js/*.js` with `?v=YYYYMMDDx`.
+Every page (`master/` and `undergraduate/`, `index.html` and `admin.html`) loads `../css/styles.css` and `../js/*.js` with `?v=YYYYMMDDx`.
 **Whenever CSS or JS changes, bump that version in both HTML files** (same value everywhere).
 Data files (`data/*.js`) are not versioned (the admin's Publish button can't edit the HTML).
 
 ## Testing
-Start the preview server from `.claude/launch.json`, then test `index.html` and `admin.html`
+Start the preview server from `.claude/launch.json`, then test both sites' `index.html` and `admin.html`
 at desktop and 375px widths. `window.ScheduleSandbox` and `window.ScheduleAdmin` expose helpers
 for console checks. Browsers cache scripts: reload with `fetch(url, {cache:'reload'})` first.
