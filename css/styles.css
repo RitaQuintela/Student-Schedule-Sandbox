@@ -732,3 +732,35 @@ a { color: var(--blue-ink); }
     --purple-text: #BDEEEF;
   }
 }
+
+/* ---------- Nexus look: rounded corners (experiment) ---------- */
+
+/* Soft rounded corners like Nexus, the school's student portal: cards and panels 12–14px,
+   buttons and fields 8px. Brand colours, fonts and the draft look stay the same.
+   To undo the experiment, delete this whole section. */
+:root { --radius: 8px; --radius-card: 14px; --card-line: #E4E6EA; }
+@media screen { :root[data-theme="dark"] { --card-line: #33353B; } }
+
+.panel { border-radius: var(--radius-card); }
+.panel > .bar:first-child { border-radius: calc(var(--radius-card) - 1px) calc(var(--radius-card) - 1px) 0 0; }
+.notice, .banner { border-radius: 10px; }
+.mobile-switch { padding-top: 10px; padding-bottom: 10px; }
+
+.course-list { gap: 8px; }
+.course-card { border-radius: 12px; border: 1px solid var(--card-line); border-left-width: 5px; }
+/* Courses not added yet: a thin even border, like the Nexus cards (padding keeps the text in line). */
+.course-card:not(.added):not(.conflict):not(.picking) { border-left-width: 1px; padding-left: 14px; }
+.course-card.conflict { border-color: var(--red); }
+.cc-note { border-radius: 6px; }
+.tag, .ex-chip, .cc-exams span { border-radius: 4px; }
+
+.timetable { border-radius: 12px; overflow: hidden; }
+.event { border-radius: 6px; }
+.ex-list { border-radius: 12px; overflow: hidden; }
+
+.draft-menu { border-radius: 12px; }
+.draft-menu button { border-radius: 8px; }
+
+.dropzone { border-radius: var(--radius-card); }
+.stat { border-radius: 10px; }
+.issues li, .issues-ok { border-radius: 8px; }
