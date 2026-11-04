@@ -33,6 +33,9 @@ Say "overlap" (never "clash") in anything users see; internal names (`clash`, `f
     `Logo CLSBE_Horiz_selo.svg` for white backgrounds). 240 px wide, 190 px on phones (the wordmark's
     150 px minimum); below 520px the logo sits on its own row above the title. The seal-less files
     (`logo-clsbe*.svg`) are kept but unused. Don't recolour, distort, outline or crowd it.
+  - Browser-tab icon (owner's choice, "A"): the seal alone, white on a rounded Institutional Blue square,
+    `assets/favicon.svg` (the seal's paths from `logo-clsbe-seal-white.svg`); `assets/apple-touch-icon.png`
+    (180 px, square corners) for phone home screens. Linked in the `<head>` of all six HTML pages.
 - Must stay mobile friendly (timetable shows one day at a time with day tabs below 860px).
 - **Light / dark theme** (`js/theme.js`, loaded in `<head>` of both pages): a "Dark"/"Light" tab on the
   purple header line, left of "Beta version" (icon only below 520px). Default = the device setting; the
