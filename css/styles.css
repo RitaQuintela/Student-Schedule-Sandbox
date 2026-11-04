@@ -524,8 +524,8 @@ a { color: var(--blue-ink); }
   .timetable { grid-template-columns: 52px 1fr; }
   .timetable .tt-dayhead:not(.current), .timetable .tt-day:not(.current) { display: none; }
   .tt-day.current { border-left: 0; }
-  .event { font-size: 12px; line-height: 1.2; }
-  .event b { font-size: 14px; }
+  .event { font-size: 12px; line-height: 1.2; padding-top: 2px; padding-bottom: 2px; }
+  .event b { font-size: 14px; line-height: 1.15; }   /* three lines still fit in one block */
   .ev-remove { width: 22px; height: 22px; line-height: 22px; font-size: 16px; }
   .event b { padding-right: 22px; }
   .tt-toolbar { align-items: stretch; }
@@ -558,6 +558,10 @@ a { color: var(--blue-ink); }
   .student .tt-panel { display: block !important; border: 0; }
   .student .ex-panel { display: block !important; border: 0; break-before: page; }
   .tt-inner { padding: 6px 0 0; }
+  /* Blocks are shorter on paper (50px) and the phone sizes (max-width: 860px) also apply
+     when printing: keep names at 12px with tighter lines so three lines still fit. */
+  .event { padding: 2px 4px; }
+  .event b { font-size: 12px; line-height: 1.15; padding-right: 0; }
   .timetable { grid-template-columns: 52px repeat(5, minmax(0, 1fr)) !important; }
   .tt-terms { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px; }
   .timetable .tt-dayhead, .timetable .tt-day { display: block !important; }
