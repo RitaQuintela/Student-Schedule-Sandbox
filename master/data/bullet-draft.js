@@ -2,7 +2,7 @@
  * A draft: students see it only after the admin loads it and clicks
  * "Publish to students". Replaced by every fetch; do not edit by hand. */
 window.BULLET_DRAFT = {
- "fetchedAt": "2026-11-04T16:54:33Z",
+ "fetchedAt": "2026-11-04T17:09:10Z",
  "semester": 1,
  "academicYear": "2026/2027",
  "source": "Bullet API · Semester 1 2026/27",
@@ -19,7 +19,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "09:30",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -49,7 +49,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -79,7 +79,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -94,7 +94,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -124,7 +124,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -139,7 +139,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -169,7 +169,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -184,7 +184,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -214,7 +214,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -229,7 +229,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -259,7 +259,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -274,7 +274,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -289,7 +289,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -304,7 +304,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -334,7 +334,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -349,7 +349,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -379,7 +379,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -394,7 +394,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -424,7 +424,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -439,7 +439,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -454,7 +454,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -469,7 +469,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -484,7 +484,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -499,7 +499,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -514,22 +514,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
-   "Annotations": ""
-  },
-  {
-   "ModuleName": "Business Ethics and Social Responsibility",
-   "ModuleAcronym": "Bus Ethics & SR",
-   "ModuleCode": "L35.1214",
-   "Typology": "TP",
-   "SectionName": "TP2",
-   "StudentGroup": "MP_Man_IEI_S1_PA,MP_Man_ISC_S1_PA,MP_Man_ISC_S1_PB,MP_Man_IEI_S2_PB",
-   "Unit": "T1",
-   "Classroom": "Auditorium 521-B",
-   "WeekdayName": "Tuesday",
-   "StartTime": "14:00",
-   "EndTime": "15:30",
-   "Week": "2026-09-07,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -553,13 +538,28 @@ window.BULLET_DRAFT = {
    "ModuleCode": "L35.1214",
    "Typology": "TP",
    "SectionName": "TP2",
+   "StudentGroup": "MP_Man_IEI_S1_PA,MP_Man_ISC_S1_PA,MP_Man_ISC_S1_PB,MP_Man_IEI_S2_PB",
+   "Unit": "T1",
+   "Classroom": "Auditorium 521-B",
+   "WeekdayName": "Tuesday",
+   "StartTime": "14:00",
+   "EndTime": "15:30",
+   "Week": "2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
+   "Annotations": ""
+  },
+  {
+   "ModuleName": "Business Ethics and Social Responsibility",
+   "ModuleAcronym": "Bus Ethics & SR",
+   "ModuleCode": "L35.1214",
+   "Typology": "TP",
+   "SectionName": "TP2",
    "StudentGroup": "MP_Man_SEI_S2_PA,MP_Man_SEI_S2_PB",
    "Unit": "T2",
    "Classroom": "Classroom 514",
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -574,7 +574,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -589,7 +589,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -604,7 +604,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -634,7 +634,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -649,7 +649,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -664,7 +664,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -679,7 +679,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -694,7 +694,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -709,7 +709,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -724,7 +724,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -739,7 +739,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -754,7 +754,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -769,7 +769,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -784,7 +784,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -799,7 +799,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -814,7 +814,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -829,7 +829,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -859,7 +859,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -874,7 +874,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -904,7 +904,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -919,7 +919,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -934,7 +934,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -949,7 +949,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -964,7 +964,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -979,7 +979,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -994,7 +994,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1009,7 +1009,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1024,7 +1024,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1039,7 +1039,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1054,7 +1054,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1069,7 +1069,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1084,7 +1084,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1099,7 +1099,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1114,7 +1114,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -1129,7 +1129,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -1144,7 +1144,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1159,7 +1159,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "18:30",
    "EndTime": "20:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1174,7 +1174,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1189,7 +1189,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1219,7 +1219,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1234,7 +1234,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -1249,7 +1249,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1264,7 +1264,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -1279,7 +1279,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1294,7 +1294,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -1309,7 +1309,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1324,7 +1324,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -1339,7 +1339,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1354,7 +1354,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1369,7 +1369,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1384,7 +1384,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1399,7 +1399,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1414,7 +1414,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1429,7 +1429,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1444,7 +1444,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1459,7 +1459,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1474,7 +1474,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -1489,7 +1489,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1504,7 +1504,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -1519,7 +1519,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "17:00",
    "EndTime": "20:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1534,7 +1534,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1549,7 +1549,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1564,7 +1564,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1579,7 +1579,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1594,7 +1594,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1609,7 +1609,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1624,7 +1624,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1639,7 +1639,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1654,7 +1654,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1669,7 +1669,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1699,7 +1699,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -1714,7 +1714,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1729,7 +1729,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1744,7 +1744,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1774,7 +1774,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -1789,7 +1789,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1804,7 +1804,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1819,7 +1819,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1834,7 +1834,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1849,7 +1849,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1864,7 +1864,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1879,7 +1879,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1894,7 +1894,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1924,7 +1924,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -1939,7 +1939,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1954,7 +1954,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -1969,7 +1969,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -1984,7 +1984,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -1999,22 +1999,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28",
-   "Annotations": ""
-  },
-  {
-   "ModuleName": "Financial Analysis and Forecasting",
-   "ModuleAcronym": "Fin An Forecast",
-   "ModuleCode": "L35.1831",
-   "Typology": "TP",
-   "SectionName": "TP2",
-   "StudentGroup": "MP_Fin_S2_PA,MP_Fin_S2_PB",
-   "Unit": "T1",
-   "Classroom": "Auditorium 521-A",
-   "WeekdayName": "Tuesday",
-   "StartTime": "14:00",
-   "EndTime": "15:30",
-   "Week": "2026-09-07,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2037,6 +2022,21 @@ window.BULLET_DRAFT = {
    "ModuleAcronym": "Fin An Forecast",
    "ModuleCode": "L35.1831",
    "Typology": "TP",
+   "SectionName": "TP2",
+   "StudentGroup": "MP_Fin_S2_PA,MP_Fin_S2_PB",
+   "Unit": "T1",
+   "Classroom": "Auditorium 521-A",
+   "WeekdayName": "Tuesday",
+   "StartTime": "14:00",
+   "EndTime": "15:30",
+   "Week": "2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
+   "Annotations": ""
+  },
+  {
+   "ModuleName": "Financial Analysis and Forecasting",
+   "ModuleAcronym": "Fin An Forecast",
+   "ModuleCode": "L35.1831",
+   "Typology": "TP",
    "SectionName": "TP3",
    "StudentGroup": "MP_Fin_S3_PA,MP_Fin_S3_PB",
    "Unit": "T1",
@@ -2044,7 +2044,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2059,7 +2059,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2074,7 +2074,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2089,7 +2089,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2104,7 +2104,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2119,7 +2119,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2149,7 +2149,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2164,7 +2164,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -2194,7 +2194,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2209,7 +2209,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -2224,7 +2224,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2239,7 +2239,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2269,7 +2269,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2284,7 +2284,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -2299,7 +2299,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2314,7 +2314,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2329,7 +2329,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2344,7 +2344,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2359,7 +2359,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2374,7 +2374,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2404,7 +2404,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2419,7 +2419,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -2434,7 +2434,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2449,7 +2449,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2464,7 +2464,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2494,7 +2494,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -2509,7 +2509,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2524,7 +2524,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2554,7 +2554,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2569,7 +2569,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -2584,7 +2584,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2599,7 +2599,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2614,7 +2614,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -2629,7 +2629,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2644,7 +2644,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -2659,7 +2659,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2674,7 +2674,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2689,7 +2689,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2704,7 +2704,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2719,7 +2719,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2734,7 +2734,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2749,7 +2749,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2779,7 +2779,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2794,7 +2794,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -2809,7 +2809,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2824,7 +2824,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2839,7 +2839,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2854,7 +2854,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2869,7 +2869,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2884,7 +2884,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -2899,7 +2899,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2914,7 +2914,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2929,7 +2929,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2944,7 +2944,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2959,7 +2959,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2974,7 +2974,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -2989,7 +2989,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3004,7 +3004,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3019,7 +3019,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3034,7 +3034,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3049,7 +3049,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3064,7 +3064,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3079,7 +3079,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3094,7 +3094,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3124,7 +3124,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3139,7 +3139,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -3154,7 +3154,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3169,7 +3169,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3184,7 +3184,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3199,7 +3199,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3214,7 +3214,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3229,7 +3229,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "20:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3244,7 +3244,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -3259,7 +3259,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3274,7 +3274,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -3289,7 +3289,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3304,7 +3304,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3319,7 +3319,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3334,7 +3334,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3349,7 +3349,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3364,7 +3364,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "17:00",
    "EndTime": "20:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3379,7 +3379,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "17:00",
    "EndTime": "20:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3394,7 +3394,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3409,7 +3409,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -3424,7 +3424,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3439,7 +3439,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3454,7 +3454,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3469,7 +3469,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3484,7 +3484,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3514,7 +3514,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3529,7 +3529,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -3544,7 +3544,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3559,7 +3559,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3574,7 +3574,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3604,7 +3604,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -3619,7 +3619,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3634,7 +3634,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3664,7 +3664,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3679,7 +3679,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -3694,7 +3694,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3709,22 +3709,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
-   "Annotations": ""
-  },
-  {
-   "ModuleName": "Leadership Development",
-   "ModuleAcronym": "Lead Dev",
-   "ModuleCode": "L35.1388",
-   "Typology": "TP",
-   "SectionName": "TP2",
-   "StudentGroup": "ELEC_MSC_MAN",
-   "Unit": "T1",
-   "Classroom": "Auditorium 511",
-   "WeekdayName": "Friday",
-   "StartTime": "11:00",
-   "EndTime": "12:30",
-   "Week": "2026-09-07,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -3750,11 +3735,26 @@ window.BULLET_DRAFT = {
    "SectionName": "TP2",
    "StudentGroup": "ELEC_MSC_MAN",
    "Unit": "T1",
+   "Classroom": "Auditorium 511",
+   "WeekdayName": "Friday",
+   "StartTime": "11:00",
+   "EndTime": "12:30",
+   "Week": "2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
+   "Annotations": ""
+  },
+  {
+   "ModuleName": "Leadership Development",
+   "ModuleAcronym": "Lead Dev",
+   "ModuleCode": "L35.1388",
+   "Typology": "TP",
+   "SectionName": "TP2",
+   "StudentGroup": "ELEC_MSC_MAN",
+   "Unit": "T1",
    "Classroom": "Auditorium 521-A",
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -3769,7 +3769,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3784,7 +3784,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3799,7 +3799,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3814,7 +3814,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3829,7 +3829,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3844,7 +3844,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3859,7 +3859,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3874,7 +3874,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3889,7 +3889,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3904,7 +3904,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -3919,7 +3919,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3934,7 +3934,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3949,7 +3949,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3964,7 +3964,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "17:00",
    "EndTime": "20:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -3979,7 +3979,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -3994,7 +3994,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4009,7 +4009,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -4024,7 +4024,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4039,7 +4039,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -4054,7 +4054,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4069,7 +4069,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4084,7 +4084,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4099,7 +4099,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4114,7 +4114,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4129,7 +4129,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4144,7 +4144,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4159,7 +4159,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4174,7 +4174,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4189,7 +4189,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4204,7 +4204,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4219,7 +4219,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "18:30",
    "EndTime": "20:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4234,7 +4234,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "18:30",
    "EndTime": "20:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4264,7 +4264,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "18:30",
    "EndTime": "20:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -4294,7 +4294,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4309,7 +4309,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -4339,7 +4339,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4354,7 +4354,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -4384,7 +4384,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4399,7 +4399,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -4414,7 +4414,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4429,7 +4429,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4444,7 +4444,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4459,7 +4459,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -4474,7 +4474,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4489,7 +4489,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -4504,7 +4504,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4519,7 +4519,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4534,7 +4534,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4549,7 +4549,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4579,7 +4579,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4594,7 +4594,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -4624,7 +4624,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4639,7 +4639,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -4654,7 +4654,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4669,7 +4669,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4699,7 +4699,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4714,7 +4714,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -4729,7 +4729,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4759,7 +4759,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4774,7 +4774,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -4789,7 +4789,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "18:30",
    "EndTime": "21:30",
-   "Week": "2026-08-31,2026-09-07",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21",
    "Annotations": "Classes held from August 31st to September 23rd."
   },
   {
@@ -4804,7 +4804,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "18:30",
    "EndTime": "21:30",
-   "Week": "2026-08-31",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21",
    "Annotations": "Classes held from August 31st to September 23rd."
   },
   {
@@ -4819,7 +4819,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "18:30",
    "EndTime": "21:30",
-   "Week": "2026-08-31,2026-09-07",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21",
    "Annotations": "Classes held from August 31st to September 23rd."
   },
   {
@@ -4834,7 +4834,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "18:30",
    "EndTime": "21:30",
-   "Week": "2026-08-31",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21",
    "Annotations": "Classes held from August 31st to September 23rd."
   },
   {
@@ -4849,7 +4849,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4864,7 +4864,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -4879,7 +4879,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -4894,7 +4894,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -4924,7 +4924,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -4939,7 +4939,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -4954,7 +4954,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -4984,7 +4984,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -5014,7 +5014,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -5029,7 +5029,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5044,7 +5044,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5059,7 +5059,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5074,7 +5074,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5089,7 +5089,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5104,7 +5104,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5119,7 +5119,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5134,7 +5134,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5149,7 +5149,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5164,7 +5164,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5179,7 +5179,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "11:00",
    "EndTime": "12:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5194,7 +5194,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5209,7 +5209,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5224,7 +5224,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5239,7 +5239,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5254,7 +5254,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5269,7 +5269,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5284,7 +5284,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5299,7 +5299,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5314,7 +5314,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5329,7 +5329,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5359,7 +5359,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5374,7 +5374,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -5389,7 +5389,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-07,2026-10-12,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5419,7 +5419,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5434,7 +5434,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -5449,7 +5449,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5464,7 +5464,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "15:30",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5479,7 +5479,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -5494,7 +5494,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5509,7 +5509,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Monday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-07,2026-10-12",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-12",
    "Annotations": ""
   },
   {
@@ -5524,7 +5524,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "17:00",
    "EndTime": "18:30",
-   "Week": "2026-08-31,2026-09-28",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5554,7 +5554,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5569,7 +5569,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -5584,7 +5584,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "12:30",
    "EndTime": "14:00",
-   "Week": "2026-08-31,2026-09-28,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5599,7 +5599,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "17:00",
    "EndTime": "20:00",
-   "Week": "2026-08-31,2026-10-05,2026-11-02,2026-11-30",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05,2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5614,7 +5614,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "14:00",
    "EndTime": "17:00",
-   "Week": "2026-08-31,2026-10-05",
+   "Week": "2026-08-31,2026-09-07,2026-09-14,2026-09-21,2026-09-28,2026-10-05",
    "Annotations": ""
   },
   {
@@ -5629,7 +5629,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5644,7 +5644,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "15:30",
    "EndTime": "17:00",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5674,7 +5674,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Thursday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5689,7 +5689,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Tuesday",
    "StartTime": "09:30",
    "EndTime": "11:00",
-   "Week": "2026-10-26,2026-11-02",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23",
    "Annotations": ""
   },
   {
@@ -5704,7 +5704,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Friday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   },
   {
@@ -5719,7 +5719,7 @@ window.BULLET_DRAFT = {
    "WeekdayName": "Wednesday",
    "StartTime": "08:00",
    "EndTime": "09:30",
-   "Week": "2026-10-26,2026-11-02,2026-11-30",
+   "Week": "2026-10-26,2026-11-02,2026-11-09,2026-11-16,2026-11-23,2026-11-30",
    "Annotations": ""
   }
  ]
