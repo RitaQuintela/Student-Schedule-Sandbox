@@ -68,6 +68,8 @@ Undergraduate Programs. The root `index.html` and `admin.html` only redirect to 
 - `master/index.html`, `undergraduate/index.html` + `js/student.js` – student screen.
 - `master/admin.html`, `undergraduate/admin.html` + `js/admin.js` – upload, summary/warnings, preview, **Publish to students**, data file download, Excel template.
 - `js/site.js` – which site a page belongs to (see above).
+- `scripts/fetch_bullet.py` + `.github/workflows/fetch-bullet.yml` – fetch from the Bullet API (see below).
+- `<site>/data/bullet-draft.js` – last fetch from Bullet, a draft for the admin page (written by the GitHub task).
 - `js/parser.js` – **all timetable data rules**, shared by both screens. Change rules here only.
 - `js/theme.js` – light/dark switch, shared by both screens.
 - `js/exams.js` – **all exam rules** (reading the planner, name matching, clashes), shared by both screens.
@@ -198,6 +200,28 @@ header) and a centered beta disclaimer in the footer (replaces the old "Always c
   only sent to api.github.com and never shown again. Errors are explained in plain words (401 expired,
   403 no permission, 404 wrong repo/branch). "Download data file" stays as the manual fallback.
 - Never ask the owner to paste the token in chat; never put a token in the repo.
+
+## Bullet API (alternative to the CSV export)
+- API docs: https://clsbe-api.bulletscheduling.com/swagger-documentation/index.html (full read/write API;
+  the client **Integration_4** is read-only, confirmed by the owner 2026-11-04). Sign-in: OAuth client
+  credentials at `https://clsbe-is.bulletscheduling.com/connect/token`, scope `bestlegacy_api_scope`.
+  The API sends no CORS headers, so browsers (the admin page) can't call it: only the GitHub task does.
+- **GitHub Action "Fetch from Bullet"** (`.github/workflows/fetch-bullet.yml`, manual Run only, owner's
+  choice) runs `scripts/fetch_bullet.py` (Python standard library). Inputs: semester **1** (Units S1/T1/T2)
+  or **2** (S2/T3/T4), academic year (empty = current; switches on 1 May), mode **check** (summary only)
+  or **save**. It calls `GET /api/Events/createeventallcsv/{start}/{end}` month by month, keeps only rows of
+  the chosen semester's Units, splits by event type: **"Aula Mestrado" → master, "Aula Licenciatura" →
+  undergraduate** (owner's choice; other types skipped and counted), keeps only the 13 columns (teacher and
+  student data dropped), merges weeks, and commits `<site>/data/bullet-draft.js` (`window.BULLET_DRAFT`).
+  Students see one semester at a time: the draft holds one semester.
+- The run's summary (Actions page) lists counts and samples per site; the repo is public, so it never shows
+  personal data or the secret.
+- Admin page: "Or: load the latest fetch from Bullet" loads the draft into the same summary/warnings as an
+  upload; the admin then publishes as usual. The CSV upload stays as the fallback.
+- Secrets `BULLET_CLIENT_ID`, `BULLET_CLIENT_SECRET` are GitHub repository secrets, set by the owner.
+  Never ask for them in chat, never put them in the repo.
+- Field mapping to check against the first real run: Typology ← `typologyName` (must be T/PL/TP/O/S),
+  StudentGroup ← `studentGroupName`, Classroom ← `classroomName`, Week/weekday ← `eventDateOccurrence`.
 
 ## Privacy
 Raw exports contain staff usernames/emails (CreatedUser, LastModifiedUser). They are

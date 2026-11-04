@@ -7,9 +7,9 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="../css/styles.css?v=20261104a">
-<script src="../js/site.js?v=20261104a"></script>
-<script src="../js/theme.js?v=20261104a"></script>
+<link rel="stylesheet" href="../css/styles.css?v=20261104b">
+<script src="../js/site.js?v=20261104b"></script>
+<script src="../js/theme.js?v=20261104b"></script>
 </head>
 <body>
 <header class="app-header">
@@ -38,6 +38,12 @@
       <strong>Choose a file</strong> or drag it here
       <div style="font-size:13px;margin-top:4px">.xlsx, .xls or .csv</div>
     </label>
+    <div class="bullet-draft">
+      <h2>Or: load the latest fetch from Bullet</h2>
+      <p class="lead">On GitHub, open <a href="https://github.com/RitaQuintela/Student-Schedule-Sandbox/actions/workflows/fetch-bullet.yml" target="_blank" rel="noopener">Actions → Fetch from Bullet</a>, click <b>Run workflow</b>, choose the semester and “save”. About 2 minutes after it finishes, the new fetch appears here.</p>
+      <p class="lead" id="bullet-info" role="status">Looking for a fetch from Bullet…</p>
+      <button class="btn primary" id="bullet-load" disabled>Load latest from Bullet</button>
+    </div>
     <p id="current-preview" class="lead" style="margin-top:12px" hidden></p>
     </div>
   </section>
@@ -165,8 +171,8 @@
 
 <script src="../vendor/xlsx.full.min.js"></script>
 <script src="data/timetable-data.js"></script>
-<script src="../js/parser.js?v=20261104a"></script>
-<script src="../js/exams.js?v=20261104a"></script>
-<script src="../js/admin.js?v=20261104a"></script>
+<script src="../js/parser.js?v=20261104b"></script>
+<script src="../js/exams.js?v=20261104b"></script>
+<script src="../js/admin.js?v=20261104b"></script>
 </body>
 </html>

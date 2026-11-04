@@ -768,3 +768,6 @@ a { color: var(--blue-ink); }
 .dropzone { border-radius: var(--radius-card); }
 .stat { border-radius: 10px; }
 .issues li, .issues-ok { border-radius: 8px; }
+
+/* Admin: loading the timetable fetched from Bullet's API (scripts/fetch_bullet.py) */
+.bullet-draft { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }

@@ -43,6 +43,11 @@
       renderError(file.name, 'This file could not be read. Is it an .xlsx or .csv export? (' + err.message + ')');
       return;
     }
+    useRows(file.name, parsed);
+  }
+
+  // Shared by the file upload and the Bullet draft: parsed = { rows, missingColumns }.
+  function useRows(source, parsed) {
     const rows = S.cleanRows(parsed.rows);
     // Keep the published reference weeks when they still exist in the new file.
     const published = (window.SCHEDULE_DATA && window.SCHEDULE_DATA.referenceWeeks) || {};
@@ -50,9 +55,46 @@
     if (parsed.missingColumns.length) {
       dataset.issues.unshift({ level: 'error', message: `Missing column(s): ${parsed.missingColumns.join(', ')}. Check that the first row has the column names (see the template).` });
     }
-    current = { source: file.name, rows, dataset };
+    current = { source, rows, dataset };
     render();
   }
+
+  /* ---------- Bullet API draft (saved by the "Fetch from Bullet" task on GitHub) ---------- */
+
+  // data/bullet-draft.js is loaded fresh with a <script> tag (works from file:// too).
+  function loadBulletDraft() {
+    return new Promise(resolve => {
+      delete window.BULLET_DRAFT;
+      const s = document.createElement('script');
+      s.src = 'data/bullet-draft.js?t=' + Date.now();
+      s.onload = () => { s.remove(); resolve(window.BULLET_DRAFT || null); };
+      s.onerror = () => { s.remove(); resolve(null); };
+      document.head.appendChild(s);
+    });
+  }
+
+  async function showBulletDraft() {
+    const draft = await loadBulletDraft();
+    const info = $('bullet-info');
+    const btn = $('bullet-load');
+    if (!draft || !Array.isArray(draft.rows)) {
+      info.textContent = 'No timetable has been fetched from Bullet yet. Run “Fetch from Bullet” on GitHub (Save draft), then come back here.';
+      btn.disabled = true;
+      return null;
+    }
+    const when = new Date(draft.fetchedAt);
+    info.textContent = `Latest fetch: ${draft.source} · ${draft.rows.length} class rows · fetched ` +
+      when.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) + '.';
+    btn.disabled = false;
+    return draft;
+  }
+
+  $('bullet-load').addEventListener('click', async () => {
+    const draft = await showBulletDraft();
+    if (!draft) return;
+    useRows(draft.source + ' (fetched ' + draft.fetchedAt.slice(0, 10) + ')', S.normaliseRows(draft.rows));
+    $('result').scrollIntoView({ behavior: 'smooth' });
+  });
 
   function renderError(name, message) {
     $('result').hidden = false;
@@ -518,9 +560,10 @@
   showPublishSettings();
   showPreviewStatus();
   showExamPreviewStatus();
+  showBulletDraft();
   // Exposed for testing in the browser console.
   window.ScheduleAdmin = {
-    handleFile, buildTemplate, handleExamFile, publishFile, toBase64, timetableJs, examJs,
+    handleFile, useRows, loadBulletDraft, buildTemplate, handleExamFile, publishFile, toBase64, timetableJs, examJs,
     get current() { return current; }, get currentExams() { return currentExams; },
   };
 })();
