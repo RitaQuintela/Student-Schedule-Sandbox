@@ -210,7 +210,7 @@ header) and a centered beta disclaimer in the footer (replaces the old "Always c
 - **GitHub Action "Fetch from Bullet"** (`.github/workflows/fetch-bullet.yml`, manual Run only, owner's
   choice) runs `scripts/fetch_bullet.py` (Python standard library). Inputs: semester **1** (Units S1/T1/T2)
   or **2** (S2/T3/T4), academic year (empty = current; switches on 1 May), mode **check** (summary only)
-  or **save**. It calls `GET /api/Events/createeventallcsv/{start}/{end}` month by month, keeps only rows of
+  or **save**. It calls `GET /api/Events/createeventallcsv/{start}/{end}` **one week per request** (Bullet sends each class once per request, its first date in the range, so monthly requests kept only one week a month), keeps only rows of
   the chosen semester's Units, splits by event type: **"Aula Mestrado" → master, "Aula Licenciatura" →
   undergraduate** (owner's choice; other types skipped and counted), keeps only the 13 columns (teacher and
   student data dropped), merges weeks, and commits `<site>/data/bullet-draft.js` (`window.BULLET_DRAFT`).

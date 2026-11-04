@@ -90,13 +90,14 @@ def get_token(client_id, secret):
     return res['access_token']
 
 
-def months(start, end):
-    """(first day, last day) of every month from start to end."""
-    d = start
+def weeks(start, end):
+    """(Monday, Sunday) of every week from start to end.
+    One week per request: Bullet sends each class once per request (its first date in the
+    requested range), so asking for a whole month would keep only one week of each month."""
+    d = start - dt.timedelta(days=start.weekday())
     while d <= end:
-        nxt = (d.replace(day=28) + dt.timedelta(days=4)).replace(day=1)
-        yield d, min(nxt - dt.timedelta(days=1), end)
-        d = nxt
+        yield d, d + dt.timedelta(days=6)
+        d += dt.timedelta(days=7)
 
 
 def semester_dates(semester, year):
@@ -131,8 +132,8 @@ def access_report(token, a, b):
 
 def fetch_rows(token, start, end, report):
     rows, endpoint = [], None
-    for a, b in months(start, end):
-        where = f'the classes of {a:%B %Y}'
+    for a, b in weeks(start, end):
+        where = f'the classes of the week of {a:%d %B %Y}'
         if endpoint is None:
             for candidate in ENDPOINTS:
                 try:
@@ -149,7 +150,10 @@ def fetch_rows(token, start, end, report):
             report.append(f'- Bullet request used: `GET {endpoint}`')
         else:
             data = get(token, endpoint.format(a=a.isoformat(), b=b.isoformat()), where)
-        rows.extend(data or [])
+        for raw in data or []:
+            if isinstance(raw, dict):
+                raw['_week'] = a
+                rows.append(raw)
     return rows
 
 
@@ -189,6 +193,9 @@ def site_of(raw):
 def convert(raw):
     row = {col: pick(raw, keys) for col, keys in FIELDS.items()}
     day = to_date(pick(raw, ['eventDateOccurrence']))
+    week = raw.get('_week')
+    if day and week and not (week <= day <= week + dt.timedelta(days=6)):
+        day = week + dt.timedelta(days=day.weekday())  # a date outside the week asked for: keep its weekday in that week
     monday = day - dt.timedelta(days=day.weekday()) if day else to_date(pick(raw, ['eventWeekStartDate']))
     row['WeekdayName'] = WEEKDAYS[day.weekday()] if day else pick(raw, ['eventWeekdayText'])
     row['StartTime'] = to_time(pick(raw, ['eventStartTime']))
