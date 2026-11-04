@@ -73,6 +73,12 @@
     });
   }
 
+  // "4 Nov 2026, 16:54" (Lisbon time on the admin's computer).
+  function fetchedWhen(draft) {
+    return new Date(draft.fetchedAt).toLocaleString('en-GB',
+      { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  }
+
   async function showBulletDraft() {
     const draft = await loadBulletDraft();
     const info = $('bullet-info');
@@ -82,9 +88,7 @@
       btn.disabled = true;
       return null;
     }
-    const when = new Date(draft.fetchedAt);
-    info.textContent = `Latest fetch: ${draft.source} · ${draft.rows.length} class rows · fetched ` +
-      when.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) + '.';
+    info.textContent = `Latest fetch: ${draft.source} · ${draft.rows.length} class rows · fetched ${fetchedWhen(draft)}.`;
     btn.disabled = false;
     return draft;
   }
@@ -92,7 +96,7 @@
   $('bullet-load').addEventListener('click', async () => {
     const draft = await showBulletDraft();
     if (!draft) return;
-    useRows(draft.source + ' (fetched ' + draft.fetchedAt.slice(0, 10) + ')', S.normaliseRows(draft.rows));
+    useRows(`${draft.source} (fetched ${fetchedWhen(draft)})`, S.normaliseRows(draft.rows));
     $('result').scrollIntoView({ behavior: 'smooth' });
   });
 
@@ -505,7 +509,8 @@
         `Publish ${what} from ${item.source} (admin page)`,
       );
       const link = commit && commit.html_url ? ` <a href="${esc(commit.html_url)}" target="_blank" rel="noopener">See the change on GitHub</a>.` : '';
-      setStatus(statusId, 'ok', `✓ Published. The live site will show the new ${what} within 1–2 minutes (students may need to refresh the page).${link}`);
+      const at = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+      setStatus(statusId, 'ok', `✓ Published at ${at}. The live site will show the new ${what} within 1–2 minutes (students may need to refresh the page).${link}`);
     } catch (e) {
       setStatus(statusId, 'bad', '✕ Not published. ' + esc(e.message));
     } finally {
