@@ -205,7 +205,8 @@ header) and a centered beta disclaimer in the footer (replaces the old "Always c
 - API docs: https://clsbe-api.bulletscheduling.com/swagger-documentation/index.html (full read/write API;
   the client **Integration_4** is read-only, confirmed by the owner 2026-11-04). Sign-in: OAuth client
   credentials at `https://clsbe-is.bulletscheduling.com/connect/token`, scope `bestlegacy_api_scope`.
-  The API sends no CORS headers, so browsers (the admin page) can't call it: only the GitHub task does.
+  Classes come from `createeventallcsv`, or `allRows` if that one is refused (403); when both are refused the
+  run lists what the client may read, to send to Bullet. The API sends no CORS headers, so browsers (the admin page) can't call it: only the GitHub task does.
 - **GitHub Action "Fetch from Bullet"** (`.github/workflows/fetch-bullet.yml`, manual Run only, owner's
   choice) runs `scripts/fetch_bullet.py` (Python standard library). Inputs: semester **1** (Units S1/T1/T2)
   or **2** (S2/T3/T4), academic year (empty = current; switches on 1 May), mode **check** (summary only)

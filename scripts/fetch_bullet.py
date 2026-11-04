@@ -51,7 +51,10 @@ COLUMNS = ['ModuleName', 'ModuleAcronym', 'ModuleCode', 'Typology', 'SectionName
 
 
 class Stop(Exception):
-    """An error explained in plain words for the run's summary."""
+    """An error explained in plain words for the run's summary (status = Bullet's HTTP code, if any)."""
+    def __init__(self, message, status=None):
+        super().__init__(message)
+        self.status = status
 
 
 def explain(status, where):
@@ -61,7 +64,7 @@ def explain(status, where):
     return {
         400: f'Bullet did not accept the request for {where} (400). The date format may need changing.',
         401: 'Bullet refused the sign-in (401): check BULLET_CLIENT_ID and BULLET_CLIENT_SECRET, or the secret has expired.',
-        403: f'Integration_4 is not allowed to read {where} (403): ask Bullet to grant read access to Events.',
+        403: f'The Bullet client is not allowed to read {where} (403).',
         404: f'Bullet does not know {where} (404): the API address may have changed.',
     }.get(status, f'Bullet answered with error {status} for {where}. Try again later; if it persists, ask Bullet.')
 
@@ -72,7 +75,7 @@ def request(url, data=None, headers=None, where='the timetable'):
         with urllib.request.urlopen(req, timeout=180) as res:
             return json.loads(res.read().decode('utf-8-sig'))
     except urllib.error.HTTPError as err:
-        raise Stop(explain(err.code, where)) from None
+        raise Stop(explain(err.code, where), err.code) from None
     except urllib.error.URLError as err:
         raise Stop(f'Could not reach Bullet ({err.reason}). If Bullet only accepts approved '
                    'computers, GitHub\'s servers may be blocked: ask Bullet.') from None
@@ -103,13 +106,49 @@ def semester_dates(semester, year):
     return dt.date(year + 1, 1, 1), dt.date(year + 1, 7, 31)
 
 
-def fetch_rows(token, start, end):
-    rows = []
+# Two read-only requests give the same class rows (same field names for what we use).
+# The first one the Bullet client may use is kept for the whole fetch.
+ENDPOINTS = ['/api/Events/createeventallcsv/{a}/{b}', '/api/Events/allRows/{a}/{b}']
+PROBES = [('/api/AcademicYear/active', 'GET /api/AcademicYear/active (academic years)')] +     [(e, 'GET ' + e) for e in ENDPOINTS]
+
+
+def get(token, path, where):
+    res = request(API_URL + path, headers={'Authorization': f'Bearer {token}', 'Accept': 'application/json'}, where=where)
+    return res.get('data') if isinstance(res, dict) else res
+
+
+def access_report(token, a, b):
+    """Which read requests the client may use, to send to Bullet when the timetable is refused."""
+    lines = []
+    for path, label in PROBES:
+        try:
+            get(token, path.format(a=a.isoformat(), b=b.isoformat()), label)
+            lines.append(f'  - {label}: allowed')
+        except Stop as err:
+            lines.append(f'  - {label}: refused ({err.status or "no answer"})')
+    return lines
+
+
+def fetch_rows(token, start, end, report):
+    rows, endpoint = [], None
     for a, b in months(start, end):
-        url = f'{API_URL}/api/Events/createeventallcsv/{a.isoformat()}/{b.isoformat()}'
-        res = request(url, headers={'Authorization': f'Bearer {token}', 'Accept': 'application/json'},
-                      where=f'the classes of {a:%B %Y}')
-        data = res.get('data') if isinstance(res, dict) else res
+        where = f'the classes of {a:%B %Y}'
+        if endpoint is None:
+            for candidate in ENDPOINTS:
+                try:
+                    data = get(token, candidate.format(a=a.isoformat(), b=b.isoformat()), where)
+                    endpoint = candidate
+                    break
+                except Stop as err:
+                    if err.status not in (403, 404, 405):
+                        raise
+            if endpoint is None:
+                report += ['- Access of the Bullet client (send this to Bullet):'] + access_report(token, a, b)
+                raise Stop('The Bullet client may sign in but is not allowed to read the classes (403). '
+                           'Ask Bullet to allow one of the two Events requests listed above (read only).')
+            report.append(f'- Bullet request used: `GET {endpoint}`')
+        else:
+            data = get(token, endpoint.format(a=a.isoformat(), b=b.isoformat()), where)
         rows.extend(data or [])
     return rows
 
@@ -201,7 +240,7 @@ def main():
             raise Stop('The secrets BULLET_CLIENT_ID and BULLET_CLIENT_SECRET are not set in the repository.')
         token = get_token(client_id, secret)
         start, end = semester_dates(semester, year)
-        raw_rows = fetch_rows(token, start, end)
+        raw_rows = fetch_rows(token, start, end, report)
         report.append(f'- Rows received from Bullet ({start:%d %b %Y} – {end:%d %b %Y}): **{len(raw_rows)}**')
         if not raw_rows:
             raise Stop('Bullet returned no classes for these dates.')
