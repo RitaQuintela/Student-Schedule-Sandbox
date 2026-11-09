@@ -68,36 +68,56 @@ files (`master/data/…` or `undergraduate/data/…`). The same exam planner wor
 admin page keeps only its own exams (Cycle MSc or UG). The GitHub token is saved once and works
 on both admin pages.
 
-### Publish a new timetable
+### Update the data (each semester, or when something changes)
 
-1. Export the timetable from the scheduling system ("Bullet extraction", `.xlsx` or `.csv`).
-2. Open the site's **admin page** and upload the file. Nothing is sent anywhere; it's read in your browser.
-3. Read the **summary** (courses, sections, weekly classes), the **trimester dates** students will
-   see, and the **problems to review**:
-   - **Errors** (raspberry) must be fixed in the file before you can continue.
-   - **Warnings** (purple) don't block you, but check them. For example, “PLs were paired
-     by section number” means the file has no pairing notes for that course.
-4. Click **Preview in the student view** to try it yourself. Only your browser sees the preview.
-   Use **Stop preview** (or “Back to the published timetable”) when you're done.
-5. Click **Publish to students**. The live site shows the new timetable within 1–2 minutes.
-   (One-time setup: see **Set up publishing** below. Without it, use **Download data file** and
-   replace `master/data/timetable-data.js` or `undergraduate/data/timetable-data.js` by hand.)
+Do it once for **each site**: Master and Undergraduate. Publish the **timetable first**, then the
+**exams**, because exams are linked to the timetable's courses by name.
 
-### Publish a new exam calendar
+Each publish section of the admin page starts with **Live for students now**: the file students
+see, when it was published and its size. Use it to check where the current data comes from.
 
-1. Open the site's **admin page** and, under **Publish an exam calendar**, upload the
-   **Integrated Exams Planner** (`.xlsm` or `.xlsx`). The app reads its **ExamData** sheet
-   (only that site's exams: MSc or UG) and the season dates from **Periods**. Macros are never run.
+#### 1. Timetable (from Bullet)
+
+1. On GitHub, open
+   [Actions → Fetch from Bullet](https://github.com/RitaQuintela/Student-Schedule-Sandbox/actions/workflows/fetch-bullet.yml)
+   and click **Run workflow**:
+   - **Semester**: 1 (S1, T1, T2) or 2 (S2, T3, T4).
+   - **Academic year**: leave empty for the current one.
+   - **Mode**: **check** shows a summary only; **save** keeps the fetch for the admin pages.
+   It takes about a minute. One run fetches both sites.
+2. About 2 minutes after a **save** run, open the site's **admin page** and click
+   **Load latest from Bullet**. The text above the button shows when the fetch was made.
+3. Read the **summary**:
+   - **Trimester dates and reference weeks**: students see one week per trimester (by default the
+     first full week). Change it in the dropdown if needed.
+   - **Problems to review**: **errors** (raspberry) must be fixed in Bullet before you can publish.
+     **Warnings** (purple) don't block you, but check them (for example, "PLs were paired by
+     section number", or a row with no section name in Bullet).
+4. Optional: **Preview in the student view** to try it. Only your browser sees the preview;
+   click **Stop preview** when you're done.
+5. Click **Publish to students** and confirm. The message shows the publish time, and after
+   1–2 minutes it says "now live for students".
+
+**Without Bullet** (fallback): export the "Bullet extraction" file (`.xlsx` or `.csv`) and upload it
+on the admin page instead of step 1–2. The rest is the same.
+
+#### 2. Exam calendar (from the Integrated Exams Planner)
+
+1. On the same admin page, under **Publish an exam calendar**, upload the
+   **Integrated Exams Planner** (`.xlsm` or `.xlsx`). The same file works for both sites: each
+   keeps only its own exams (Cycle MSc or UG), with the season dates from **Periods**. Macros are never run.
 2. Check the summary and notes:
-   - **Exam names not matched**: exams are linked to courses **by name**. Small differences are
-     ignored (& / and, hyphens, accents, text in brackets, a final "s"), "Language Courses"
-     covers every language course and "Portuguese Language Course" every Portuguese course
-     (extensive and intensive). Names that still don't match are listed. Often these are
-     courses from another term; otherwise fix the spelling in the planner.
+   - **Exam names not matched**: small differences are ignored (& / and, hyphens, accents, text in
+     brackets, a final "s"). Names that still don't match are listed: often courses from another
+     term; otherwise fix the spelling in the planner and upload it again.
    - **Not shown to students**: exams dated before a course's first class (usually the same course
      taught in an earlier term) are left out.
-3. **Preview in the student view**, then **Publish to students**. The class timetable and the exam
-   calendar are published separately.
+3. **Preview in the student view** (optional), then **Publish to students**.
+
+#### 3. Check the student page
+
+Open the student page and refresh it with **Ctrl+F5** (browsers can keep the old data for up to
+10 minutes). Add a course or two and check its times and exam dates.
 
 ### Set up publishing (once, then about once a year)
 
