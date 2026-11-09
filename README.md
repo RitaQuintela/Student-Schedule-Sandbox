@@ -62,8 +62,9 @@ between days.
 
 ## For the admin
 
-Use the admin page of the site you are updating: `master/admin.html` for Master Programs,
-`undergraduate/admin.html` for Undergraduate Programs. Each one publishes only its own site's
+Use the admin page of the site you are updating (bookmark them: the student pages don't link to them):
+[Master admin](https://ritaquintela.github.io/Student-Schedule-Sandbox/master/admin.html) and
+[Undergraduate admin](https://ritaquintela.github.io/Student-Schedule-Sandbox/undergraduate/admin.html). Each one publishes only its own site's
 files (`master/data/…` or `undergraduate/data/…`). The same exam planner works for both: each
 admin page keeps only its own exams (Cycle MSc or UG). The GitHub token is saved once and works
 on both admin pages.

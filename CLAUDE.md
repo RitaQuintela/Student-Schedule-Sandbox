@@ -66,7 +66,7 @@ Undergraduate Programs. The root `index.html` and `admin.html` only redirect to 
 
 ## Files
 - `master/index.html`, `undergraduate/index.html` + `js/student.js` – student screen.
-- `master/admin.html`, `undergraduate/admin.html` + `js/admin.js` – upload, summary/warnings, preview, **Publish to students**, data file download, Excel template.
+- `master/admin.html`, `undergraduate/admin.html` + `js/admin.js` – (not linked from the student pages, owner's choice; `noindex`) upload, summary/warnings, preview, **Publish to students**, data file download, Excel template.
 - `js/site.js` – which site a page belongs to (see above).
 - `scripts/fetch_bullet.py` + `.github/workflows/fetch-bullet.yml` – fetch from the Bullet API (see below).
 - `<site>/data/bullet-draft.js` – last fetch from Bullet, a draft for the admin page (written by the GitHub task).
