@@ -7,9 +7,9 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="../css/styles.css?v=20261104c">
-<script src="../js/site.js?v=20261104c"></script>
-<script src="../js/theme.js?v=20261104c"></script>
+<link rel="stylesheet" href="../css/styles.css?v=20261109a">
+<script src="../js/site.js?v=20261109a"></script>
+<script src="../js/theme.js?v=20261109a"></script>
 </head>
 <body>
 <header class="app-header">
@@ -31,6 +31,7 @@
   <section class="panel">
     <div class="bar">Publish a timetable</div>
     <div class="panel-body">
+    <p class="live-now" id="live-timetable" role="status">Checking what students see now…</p>
     <h2>1. Upload the timetable export</h2>
     <p class="lead">Use the “Bullet extraction” file from the scheduling system (.xlsx or .csv). Nothing is sent anywhere: the file is read in this browser only.</p>
     <label class="dropzone" id="dropzone">
@@ -77,6 +78,7 @@
   <section class="panel">
     <div class="bar">Publish an exam calendar</div>
     <div class="panel-body">
+    <p class="live-now" id="live-exams" role="status">Checking what students see now…</p>
     <h2>Upload the exam planner</h2>
     <p class="lead">Use the Integrated Exams Planner (.xlsm or .xlsx). The app reads its <b>ExamData</b> sheet (Undergraduate exams only) and the season dates from <b>Periods</b>. Exams are linked to timetable courses by name. Nothing is sent anywhere.</p>
     <label class="dropzone" id="exam-dropzone">
@@ -171,8 +173,8 @@
 
 <script src="../vendor/xlsx.full.min.js"></script>
 <script src="data/timetable-data.js"></script>
-<script src="../js/parser.js?v=20261104c"></script>
-<script src="../js/exams.js?v=20261104c"></script>
-<script src="../js/admin.js?v=20261104c"></script>
+<script src="../js/parser.js?v=20261109a"></script>
+<script src="../js/exams.js?v=20261109a"></script>
+<script src="../js/admin.js?v=20261109a"></script>
 </body>
 </html>

@@ -61,22 +61,57 @@
 
   /* ---------- Bullet API draft (saved by the "Fetch from Bullet" task on GitHub) ---------- */
 
-  // data/bullet-draft.js is loaded fresh with a <script> tag (works from file:// too).
-  function loadBulletDraft() {
+  // Loads a data file fresh (never the browser's saved copy) with a <script> tag (works from file:// too)
+  // and resolves to the window variable it sets, or null.
+  function loadDataFile(file, name) {
     return new Promise(resolve => {
-      delete window.BULLET_DRAFT;
+      const before = window[name];
+      delete window[name];
       const s = document.createElement('script');
-      s.src = 'data/bullet-draft.js?t=' + Date.now();
-      s.onload = () => { s.remove(); resolve(window.BULLET_DRAFT || null); };
-      s.onerror = () => { s.remove(); resolve(null); };
+      s.src = file + '?t=' + Date.now();
+      s.onload = () => { s.remove(); resolve(window[name] || null); };
+      s.onerror = () => { s.remove(); if (before) window[name] = before; resolve(null); };
       document.head.appendChild(s);
     });
   }
+  const loadBulletDraft = () => loadDataFile('data/bullet-draft.js', 'BULLET_DRAFT');
 
   // "4 Nov 2026, 16:54" (Lisbon time on the admin's computer).
-  function fetchedWhen(draft) {
-    return new Date(draft.fetchedAt).toLocaleString('en-GB',
+  function when(iso) {
+    return new Date(iso).toLocaleString('en-GB',
       { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  }
+  const fetchedWhen = draft => when(draft.fetchedAt);
+
+  /* ---------- What students see now (the published data files, read fresh) ---------- */
+
+  const LIVE = {
+    timetable: { file: 'data/timetable-data.js', name: 'SCHEDULE_DATA', el: 'live-timetable',
+      count: d => `${(d.rows || []).length} class rows` },
+    exam: { file: 'data/exam-data.js', name: 'EXAM_DATA', el: 'live-exams',
+      count: d => `${(d.exams || []).length} exams` },
+  };
+
+  async function showLive(kind) {
+    const k = LIVE[kind];
+    const data = await loadDataFile(k.file, k.name);
+    const el = $(k.el);
+    if (!el) return data;
+    el.innerHTML = data
+      ? `<b>Live for students now:</b> “${esc(data.source || 'unknown file')}”` +
+        (data.generatedAt ? ` · published ${esc(when(data.generatedAt))}` : '') + ` · ${esc(k.count(data))}`
+      : '<b>Live for students now:</b> nothing published yet.';
+    return data;
+  }
+
+  // After a publish, check every 20 seconds (up to 5 minutes) until the site serves the new file.
+  async function waitForLive(kind, previous) {
+    for (let i = 0; i < 15; i++) {
+      await new Promise(r => setTimeout(r, 20000));
+      const data = await showLive(kind);
+      if (data && data.generatedAt !== previous) return true;
+    }
+    return false;
   }
 
   async function showBulletDraft() {
@@ -511,6 +546,11 @@
       const link = commit && commit.html_url ? ` <a href="${esc(commit.html_url)}" target="_blank" rel="noopener">See the change on GitHub</a>.` : '';
       const at = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
       setStatus(statusId, 'ok', `✓ Published at ${at}. The live site will show the new ${what} within 1–2 minutes (students may need to refresh the page).${link}`);
+      const kind = isExam ? 'exam' : 'timetable';
+      const previous = (window[LIVE[kind].name] || {}).generatedAt;
+      waitForLive(kind, previous).then(done => {
+        if (done) setStatus(statusId, 'ok', `✓ Published at ${at} and now live for students (they may need to refresh the page).${link}`);
+      });
     } catch (e) {
       setStatus(statusId, 'bad', '✕ Not published. ' + esc(e.message));
     } finally {
@@ -566,6 +606,8 @@
   showPreviewStatus();
   showExamPreviewStatus();
   showBulletDraft();
+  showLive('timetable');
+  showLive('exam');
   // Exposed for testing in the browser console.
   window.ScheduleAdmin = {
     handleFile, useRows, loadBulletDraft, buildTemplate, handleExamFile, publishFile, toBase64, timetableJs, examJs,

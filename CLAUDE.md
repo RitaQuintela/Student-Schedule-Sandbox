@@ -200,6 +200,9 @@ header) and a centered beta disclaimer in the footer (replaces the old "Always c
   only sent to api.github.com and never shown again. Errors are explained in plain words (401 expired,
   403 no permission, 404 wrong repo/branch). "Download data file" stays as the manual fallback.
 - Never ask the owner to paste the token in chat; never put a token in the repo.
+- Each publish panel starts with **"Live for students now:"** (source, publish time, rows/exams), read from the
+  published data file with `?t=` so it is never the browser's saved copy; after a publish it re-checks every
+  20 s (up to 5 min) and then says "now live for students".
 
 ## Bullet API (alternative to the CSV export)
 - API docs: https://clsbe-api.bulletscheduling.com/swagger-documentation/index.html (full read/write API;

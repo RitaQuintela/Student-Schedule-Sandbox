@@ -771,3 +771,6 @@ a { color: var(--blue-ink); }
 
 /* Admin: loading the timetable fetched from Bullet's API (scripts/fetch_bullet.py) */
 .bullet-draft { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
+
+/* Admin: what students see now, at the top of each publish panel */
+.live-now { margin: 0 0 16px; padding: 10px 14px; border-left: 4px solid var(--blue); background: var(--grey); border-radius: 8px; font-size: 14px; color: var(--text); }
