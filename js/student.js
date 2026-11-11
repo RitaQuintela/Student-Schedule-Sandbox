@@ -70,6 +70,8 @@
   function firstOption(course) {
     return course.options.length === 1 ? course.options[0].id : '';
   }
+  // A draft is called "Draft name" until the student renames it (owner's choice).
+  const DEFAULT_DRAFT = 'Draft name';
   const todayIdx = (new Date().getDay() + 6) % 7;
   const state = {
     // Drafts: named scenarios the student can switch between. Each keeps its own courses.
@@ -84,6 +86,10 @@
     // A course with several sections whose card shows "Choose your section" before it is
     // added: it moves to Your courses only once a section is picked. Not saved.
     picking: '',
+    // The added course whose section dropdown is open in Your courses. Not saved.
+    open: '',
+    // The section being tried on the timetable while pointing at it: { code, option }. Not saved.
+    preview: null,
   };
 
   function restoreSelections(list) {
@@ -99,7 +105,7 @@
   // Saves from before drafts existed (a single "selections" list) become "Draft 1".
   const savedDrafts = Array.isArray(saved.drafts) && saved.drafts.length
     ? saved.drafts
-    : [{ id: 'd1', name: 'Draft 1', selections: saved.selections }];
+    : [{ id: 'd1', name: DEFAULT_DRAFT, selections: saved.selections }];
   state.drafts = savedDrafts.map(d => ({ id: String(d.id), name: String(d.name || 'Draft'), selections: restoreSelections(d.selections) }));
   state.draftId = (state.drafts.find(d => d.id === saved.draftId) || state.drafts[0]).id;
   state.selections = currentDraft().selections;
@@ -194,6 +200,22 @@
     });
   }
 
+  // A section's weekly hours on one line, days with the same hours together:
+  // "Mon, Wed 09:30–11:00; Thu 15:30–17:00".
+  function slotText(option) {
+    const groups = new Map();
+    shownSessions(option).slice().sort((a, b) => a.day - b.day || a.start - b.start).forEach(s => {
+      const hours = timeRange(s);
+      if (!groups.has(hours)) groups.set(hours, []);
+      const day = S.WEEKDAYS_SHORT[s.day];
+      if (!groups.get(hours).includes(day)) groups.get(hours).push(day);
+    });
+    return [...groups].map(([hours, days]) => `${days.join(', ')} ${hours}`).join('; ');
+  }
+
+  // "Trimester 1" for T1, "Semester 1" for S1 (the period filter's names, without the code).
+  const unitNames = new Map(data.units.map(u => [u.code, u.label.replace(/\s*\(.*\)$/, '')]));
+
   // All overlapping pairs between different selected courses.
   function findClashes(list) {
     const clashes = [];
@@ -224,34 +246,49 @@
     if (!course || state.selections.has(code) || !course.options.length) return;
     const option = course.options.some(o => o.id === optionId) ? optionId : firstOption(course);
     if (!option) { startPicking(code); return; }
-    const used = new Set([...state.selections.values()].map(s => s.color % COLORS.length));
-    let color = 0;
-    while (used.has(color) && color < COLORS.length) color++;
-    if (color >= COLORS.length) color = state.selections.size % COLORS.length;
-    state.selections.set(code, { option, color });
+    state.selections.set(code, { option, color: freeColor() });
     state.picking = '';
+    state.preview = null;
     update();
   }
 
-  // Opens the section dropdown on the course's card and puts the keyboard focus on it.
+  // The first course colour not used in this draft yet.
+  function freeColor() {
+    const used = new Set([...state.selections.values()].map(s => s.color % COLORS.length));
+    let color = 0;
+    while (used.has(color) && color < COLORS.length) color++;
+    return color < COLORS.length ? color : state.selections.size % COLORS.length;
+  }
+
+  // Opens the list of sections on the course's card and puts the keyboard focus on it.
   function startPicking(code) {
     state.picking = code;
+    state.open = '';
+    state.preview = null;
     update();
-    const select = document.querySelector(`.course-card.picking select`);
-    if (select) {
-      select.closest('.course-card').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-      select.focus({ preventScroll: true });
+    const first = document.querySelector('.course-card.picking .sec');
+    if (first) {
+      first.closest('.course-card').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      first.focus({ preventScroll: true });
     }
   }
 
   function removeCourse(code) {
     state.selections.delete(code);
+    if (state.open === code) state.open = '';
+    state.preview = null;
     update();
   }
 
   function setOption(code, id) {
     const sel = state.selections.get(code);
-    if (sel) { sel.option = id; update(); }
+    if (!sel) return;
+    sel.option = id;
+    state.open = '';
+    state.preview = null;
+    update();
+    const btn = document.querySelector(`.tile[data-code="${CSS.escape(code)}"] .dd-btn`);
+    if (btn) btn.focus({ preventScroll: true });
   }
 
   /* ---------- Drafts ---------- */
@@ -261,13 +298,16 @@
   function switchDraft(id) {
     state.draftId = id;
     state.selections = currentDraft().selections;
+    state.picking = state.open = '';
+    state.preview = null;
     update();
   }
 
+  // "Draft name", then "Draft name 2", "Draft name 3"… so two drafts never share a name.
   function nextDraftName() {
-    let n = state.drafts.length + 1;
-    while (state.drafts.some(d => d.name === 'Draft ' + n)) n++;
-    return 'Draft ' + n;
+    let name = DEFAULT_DRAFT;
+    for (let n = 2; state.drafts.some(d => d.name === name); n++) name = `${DEFAULT_DRAFT} ${n}`;
+    return name;
   }
 
   // A new empty draft, or a copy of the current one.
@@ -292,7 +332,7 @@
     const draft = currentDraft();
     if (!confirm(`Delete “${draft.name}” and its courses?`)) return;
     state.drafts = state.drafts.filter(d => d !== draft);
-    if (!state.drafts.length) state.drafts.push({ id: 'd' + Date.now().toString(36), name: 'Draft 1', selections: new Map() });
+    if (!state.drafts.length) state.drafts.push({ id: 'd' + Date.now().toString(36), name: DEFAULT_DRAFT, selections: new Map() });
     switchDraft(state.drafts[0].id);
   }
 
@@ -337,8 +377,8 @@
     $('unit').value = state.unit;
   }
 
-  function renderList(list, clashes) {
-    const added = allEntries().map(a => list.find(e => e.course === a.course) || a);
+  // The course list holds the courses not added yet; added ones are tiles in Your courses.
+  function renderList(list) {
     const q = fold(state.search.trim());
     const matches = c =>
       (!q || fold(`${c.name} ${c.acronym} ${c.code}`).includes(q)) &&
@@ -349,106 +389,98 @@
     // it moves to Your courses once a section is picked.
     if (state.selections.has(state.picking)) state.picking = '';
     const rest = data.courses.filter(c => !state.selections.has(c.code) && (matches(c) || c.code === state.picking));
-    let html = '';
-    if (added.length) {
-      html += `<div class="list-divider">Your courses (${added.length})</div>`;
-      html += added.map(e => cardHtml(e.course, e, list, clashes)).join('');
-      html += `<div class="list-divider">All courses</div>`;
-    }
-    html += rest.map(c => cardHtml(c, null, list, clashes)).join('');
-    if (!rest.length) html += `<p class="cc-meta" style="padding:4px">No other courses match your search or filters.</p>`;
-    $('course-list').innerHTML = html;
+    $('course-list').innerHTML = `<div class="list-divider">All courses · ${rest.length}</div>` +
+      (rest.map(c => cardHtml(c, list)).join('') ||
+        `<p class="cc-meta" style="padding:4px">No other courses match your search or filters.</p>`);
   }
 
-  function cardHtml(course, entry, list, clashes) {
-    const units = course.units.map(u => `<span class="tag">${esc(u)}</span>`).join('');
-    const meta = `${units}${esc(course.acronym ? course.acronym + ' · ' : '')}${esc(course.code)} · ${esc(course.typologies.join('/'))}`;
+  // The sections of a course as a list of one-line buttons. Pointing at one (or moving to it
+  // with the keyboard) tries it on the timetable; clicking keeps it.
+  function optionsHtml(course, current, list) {
+    return `<div class="sec-list" role="group" aria-label="Sections of ${esc(course.name)}">` +
+      course.options.map(o => {
+        const on = o.id === current;
+        const fits = optionFits(course, o, list);
+        return `<button type="button" class="sec${on ? ' on' : ''}${fits ? '' : ' bad'}" data-opt="${esc(o.id)}" aria-pressed="${on}">` +
+          `<span class="ol"><b>${esc(o.label)}</b> ${esc(slotText(o))}</span>` +
+          `<small>${on ? 'chosen' : fits ? '✓ fits' : '⚠ overlaps'}</small></button>`;
+      }).join('') + '</div>';
+  }
+
+  // A course not added yet: its name, "+ Add" and one short line (period, sections).
+  function cardHtml(course, list) {
     // "+ Add" on a course with several sections: pick the section here; the course is added on pick.
-    if (!entry && state.picking === course.code) {
-      const choices = '<option value="" selected disabled>Choose a section…</option>' +
-        course.options.map(o => {
-          const days = [...new Set(shownSessions(o).map(s => S.WEEKDAYS_SHORT[s.day]))].join(', ');
-          return `<option value="${esc(o.id)}">${esc(o.label)} · ${days} — ${optionFits(course, o, list) ? '✓ fits' : '⚠ overlaps'}</option>`;
-        }).join('');
-      return `<article class="course-card pending picking" data-code="${esc(course.code)}">
+    if (state.picking === course.code) {
+      return `<article class="course-card picking" data-code="${esc(course.code)}">
         <div class="cc-head">
-          <div><h3>${esc(course.name)}</h3><div class="cc-meta">${meta}</div></div>
+          <h3>${esc(course.name)}</h3>
           <button class="add-btn" data-act="cancel" aria-label="Cancel adding ${esc(course.name)}">Cancel</button>
         </div>
-        <div class="cc-body">
-          <label class="field">Choose your section
-            <select data-act="pick">${choices}</select></label>
-          <div class="cc-note">This course has ${course.options.length} sections: pick yours to add it to your courses.</div>
-        </div></article>`;
+        <div class="cc-body"><span class="dd-label">Choose your section</span>${optionsHtml(course, '', list)}</div></article>`;
     }
-    if (!entry) {
-      return `<article class="course-card" draggable="true" data-code="${esc(course.code)}">
-        <div class="cc-head">
-          <div><h3>${esc(course.name)}</h3><div class="cc-meta">${meta}</div></div>
-          <button class="add-btn" data-act="add" aria-label="Add ${esc(course.name)}">+ Add</button>
-        </div></article>`;
-    }
+    const periods = course.units.map(u => unitNames.get(u) || u).join(' / ');
+    const n = course.options.length;
+    const what = n === 1 ? slotText(course.options[0]) : `${n} sections`;
+    return `<article class="course-card" draggable="true" data-code="${esc(course.code)}">
+      <div class="cc-head">
+        <h3>${esc(course.name)}</h3>
+        <button class="add-btn" data-act="add" aria-label="Add ${esc(course.name)}">+ Add</button>
+      </div>
+      <div class="cc-meta">${esc([periods, what].filter(Boolean).join(' · '))}</div></article>`;
+  }
 
+  /* ---------- Rendering: Your courses (tiles above the timetable) ---------- */
+
+  // One small tile per added course, in the course colour: short name, full name, section
+  // (a dropdown when the course has several), exam dates, overlap warning, × to remove.
+  function renderMine(list, clashes) {
+    const added = allEntries().map(a => list.find(e => e.course === a.course) || a);
+    $('mine-bar').textContent = `Your courses · ${added.length}`;
+    if (state.open && !state.selections.has(state.open)) state.open = '';
+    $('mine').innerHTML = added.length
+      ? `<div class="tiles">${added.map(e => tileHtml(e, list, clashes)).join('')}</div>`
+      : `<p class="mine-empty">None yet. Press “+ Add” on a course in the list.</p>`;
+    // An open dropdown that would run off the right edge opens towards the left instead.
+    const pop = document.querySelector('.tile.open .sec-list');
+    if (pop && pop.getBoundingClientRect().right > document.documentElement.clientWidth - 8) pop.parentNode.classList.add('to-left');
+  }
+
+  function tileHtml(entry, list, clashes) {
+    const course = entry.course;
+    const open = state.open === course.code;
     const mine = clashes.filter(c => c.x === entry || c.y === entry);
-    const clashIds = new Set(mine.flatMap(c => [c.a.id, c.b.id]));
-    const options = (entry.option ? '' : '<option value="" selected disabled>Choose a section…</option>') +
-      course.options.map(o => {
-        const fits = optionFits(course, o, list);
-        const days = [...new Set(shownSessions(o).map(s => S.WEEKDAYS_SHORT[s.day]))].join(', ');
-        return `<option value="${esc(o.id)}"${o === entry.option ? ' selected' : ''}>${esc(o.label)} · ${days} — ${fits ? '✓ fits' : '⚠ overlaps'}</option>`;
-      }).join('');
-    const head = `<div class="cc-head">
-        <div><h3>${esc(course.name)}</h3><div class="cc-meta">${meta}</div></div>
-        <button class="add-btn is-added" data-act="remove" aria-label="Remove ${esc(course.name)}">
-          <span class="when-idle">Added ✓</span><span class="when-hover">Remove ✕</span></button>
-      </div>`;
+    const others = [...new Set(mine.map(c => (c.x === entry ? c.y : c.x).course.name))];
+    const hours = entry.option ? slotText(entry.option) : '';
 
-    // Several sections and none picked yet: only the dropdown, nothing on the timetable.
+    let section;
     if (!entry.option) {
-      return `<article class="course-card added pending" draggable="true" data-code="${esc(course.code)}"
-          style="--course-color:${entry.color[0]};--course-bg:${entry.color[1]}">
-        ${head}
-        <div class="cc-body">
-          <label class="field">Choose your section
-            <select data-act="option">${options}</select></label>
-          <div class="cc-note">Pick a section to see this course on your timetable.</div>
-        </div></article>`;
+      // Older saves, or a section that disappeared from the data: the section must be picked again.
+      section = `<button type="button" class="dd-btn pending" data-act="toggle" aria-expanded="${open}"><span>Choose a section…</span><i aria-hidden="true"></i></button>`;
+    } else if (course.options.length > 1) {
+      section = `<button type="button" class="dd-btn" data-act="toggle" aria-expanded="${open}" title="${esc(hours)}" aria-label="Section of ${esc(course.name)}: ${esc(entry.option.label)}. Change section"><span>${esc(entry.option.label)}</span><i aria-hidden="true"></i></button>`;
+    } else {
+      section = `<span class="one" title="${esc(hours)}">${esc(entry.option.label)}</span>`;
     }
 
-    const sessions = shownSessions(entry.option).map(s => {
-      return `<li class="${clashIds.has(s.id) ? 'clash' : ''}">
-        <span class="when">${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)}</span>
-        <span class="what">${esc(sectionLabel(s))}${s.room ? ' · ' + esc(s.room) : ''}</span></li>`;
-    }).join('');
+    // Exam dates (with ⚠ when another of your exams is the same day).
+    const myExams = entry.option ? E.examsForOption(course, entry.option, examLink.byCode.get(course.code) || []) : [];
+    const examText = myExams.map(x => {
+      const clash = examInfo.clashDates.has(x.date);
+      const day = `${E.weekdayShort(x.date)} ${S.shortDate(x.date)}`;
+      return `<span${clash ? ' class="clash" title="Another of your exams is on this day"' : ''}>${clash ? '⚠ ' : ''}${site.seasonsByTerm ? '' : esc(seasonName(x, true)) + ' '}${day}</span>`;
+    }).join(', ');
+    const notes = entry.option
+      ? [...new Set(entry.option.sections.flatMap(s => s.studentNotes))].map(n => `<span class="tile-note" title="${esc(n)}">ℹ ${esc(n)}</span>`).join('')
+      : '';
 
-    const notes = [...new Set(entry.option.sections.flatMap(s => s.studentNotes))]
-      .map(n => `<div class="cc-note">ℹ ${esc(n)}</div>`).join('');
-
-    const others = [...new Map(mine.map(c => {
-      const other = c.x === entry ? c.y : c.x;
-      const s = c.x === entry ? c.b : c.a;
-      return [other.course.code + s.day + s.start, `${other.course.name} (${S.WEEKDAYS_SHORT[s.day]} ${timeRange(s)})`];
-    })).values()];
-    const clashHtml = others.length ? `<div class="cc-clash">⚠ Overlaps with ${esc(others.join(', '))}</div>` : '';
-
-    // Exam dates for this course (red when another of your exams is the same day).
-    const myExams = E.examsForOption(course, entry.option, examLink.byCode.get(course.code) || []);
-    const examHtml = myExams.length
-      ? `<div class="cc-exams"><b>Exams</b>${myExams.map(x => {
-          const clash = examInfo.clashDates.has(x.date);
-          return `<span class="${clash ? 'clash' : ''}"${clash ? ' title="Another of your exams is on this day"' : ''}>${clash ? '⚠ ' : ''}${esc(seasonName(x, true))} · ${E.weekdayShort(x.date)} ${S.shortDate(x.date)}</span>`;
-        }).join('')}</div>`
-      : (examSource.exams.length ? '<div class="cc-exams none">No exam date in the exam calendar</div>' : '');
-
-    return `<article class="course-card added${mine.length ? ' conflict' : ''}" draggable="true" data-code="${esc(course.code)}"
+    return `<article class="tile${mine.length ? ' conflict' : ''}${open ? ' open' : ''}" data-code="${esc(course.code)}"
         style="--course-color:${entry.color[0]};--course-bg:${entry.color[1]}">
-      ${head}
-      <div class="cc-body">
-        <label class="field">${course.options.length > 1 ? 'Choose your section' : 'Section'}
-          <select data-act="option">${options}</select></label>
-        <ul class="session-list">${sessions}</ul>
-        ${notes}${examHtml}${clashHtml}
-      </div></article>`;
+      <button type="button" class="tile-x" data-act="remove" title="Remove ${esc(course.name)}" aria-label="Remove ${esc(course.name)}">×</button>
+      <b>${esc(courseTitle(course))}</b>
+      <span class="tile-name" title="${esc(course.name)}">${esc(course.name)}</span>
+      ${section}
+      <span class="tile-info">${examText ? `<span>${site.seasonsByTerm ? 'Exam ' : ''}${examText}</span>` : ''}${others.length ? `<em title="Overlaps with ${esc(others.join(', '))}">⚠ overlaps</em>` : ''}</span>
+      ${notes}${open ? optionsHtml(course, entry.option ? entry.option.id : '', list) : ''}</article>`;
   }
 
   /* ---------- Rendering: timetable ---------- */
@@ -478,9 +510,26 @@
     return items;
   }
 
+  // The section being tried on the timetable (see state.preview), as an entry like those
+  // of the list, or null. A course not added yet gets the colour it would take.
+  function previewEntry(list) {
+    const p = state.preview;
+    const course = p && data.byCode.get(p.code);
+    const option = course && course.options.find(o => o.id === p.option);
+    if (!option) return null;
+    const current = list.find(e => e.course === course);
+    if (current && current.option === option) return null;
+    const sel = state.selections.get(course.code);
+    const color = COLORS[(sel ? sel.color : freeColor()) % COLORS.length];
+    return { course, option, color, fits: optionFits(course, option, list) };
+  }
+
   function renderTimetable(list, clashes) {
     const clashDays = new Set();
-    const grids = shownTerms().map(term => {
+    const ghost = previewEntry(list);
+    const terms = shownTerms();
+    const periods = examSource.periods || [];
+    const grids = terms.map(term => {
       const termClashes = clashesIn(term, clashes);
       const clashIds = new Set(termClashes.flatMap(c => [c.a.id, c.b.id]));
       termClashes.forEach(c => clashDays.add(c.a.day));
@@ -497,39 +546,52 @@
       let shownCount = 0;
       S.WEEKDAYS.forEach((d, day) => {
         const items = [];
-        list.forEach(e => e.option.sessions.forEach(s => {
-          if (s.day === day && inTerm(s) && s.end > S.DAY_START && s.start < S.DAY_END) items.push({ e, s });
-        }));
+        const onDay = s => s.day === day && inTerm(s) && s.end > S.DAY_START && s.start < S.DAY_END;
+        list.forEach(e => e.option.sessions.forEach(s => { if (onDay(s)) items.push({ e, s }); }));
         shownCount += items.length;
+        if (ghost) ghost.option.sessions.forEach(s => { if (onDay(s)) items.push({ e: ghost, s, ghost: true }); });
         html += `<div class="tt-day${day === state.day ? ' current' : ''}" style="height:calc(var(--block-h) * ${BLOCKS})">`;
-        layoutDay(items).forEach(({ e, s, lane, lanes }) => {
+        layoutDay(items).forEach(it => {
+          const { e, s, lane, lanes } = it;
           const start = Math.max(s.start, S.DAY_START);
           const end = Math.min(s.end, S.DAY_END);
           const top = (start - S.DAY_START) / SPAN * 100;
           const height = (end - start) / SPAN * 100;
           const left = lane / lanes * 100;
           const width = 100 / lanes;
+          const place = `top:calc(${top}% + 1px);height:calc(${height}% - 2px);left:calc(${left}% + 2px);width:calc(${width}% - 4px);--ev-fg:${e.color[0]};--ev-bg:${e.color[1]}`;
+          if (it.ghost) {
+            // A section being tried: dashed, with its short name, section and whether it fits.
+            html += `<div class="event ghost${e.fits ? '' : ' bad'}" style="${place}"><b>${esc(courseTitle(e.course))} · ${esc(sectionLabel(s))} ${e.fits ? '✓' : '⚠'}</b></div>`;
+            return;
+          }
           const clash = clashIds.has(s.id);
-          // Only the short name fits; section, time and room are in the tooltip and on the card.
+          // The section the student is about to replace is faded while another one is tried.
+          const fading = ghost && ghost.course === e.course;
+          // Only the short name fits; section, time and room are in the tooltip.
           const tip = `${e.course.name}\n${sectionLabel(s)} · ${timeRange(s)}${s.room ? ' · ' + s.room : ''}${clash ? '\n⚠ Overlaps with another class' : ''}`;
-          html += `<div class="event${clash ? ' clash' : ''}" title="${esc(tip)}" draggable="true" data-code="${esc(e.course.code)}"
-            style="top:calc(${top}% + 1px);height:calc(${height}% - 2px);left:calc(${left}% + 2px);width:calc(${width}% - 4px);--ev-fg:${e.color[0]};--ev-bg:${e.color[1]}">
+          html += `<div class="event${clash ? ' clash' : ''}${fading ? ' fading' : ''}" title="${esc(tip)}" draggable="true" data-code="${esc(e.course.code)}" style="${place}">
             <button class="ev-remove" data-code="${esc(e.course.code)}" title="Remove ${esc(e.course.name)} from my timetable" aria-label="Remove ${esc(e.course.name)}">×</button>
-            <b>${clash && lanes === 1 ? '⚠ ' : ''}${esc(courseTitle(e.course))}</b>
+            <b>${clash && lanes === 1 ? '<span class="warn">⚠</span> ' : ''}${esc(courseTitle(e.course))}</b>
           </div>`;
         });
         html += '</div>';
       });
 
-      if (!list.length) {
+      if (!list.length && !ghost) {
         html += state.selections.size
           ? `<div class="tt-empty">Pick a section for your courses<br>to see them here.</div>`
           : `<div class="tt-empty">Your timetable is empty.<br>Add courses with “+ Add” or drag them here.</div>`;
-      } else if (!shownCount) {
+      } else if (!shownCount && !ghost) {
         html += `<div class="tt-empty">None of your courses have classes in this ${term ? 'trimester' : 'period'}.</div>`;
       }
-      return `<div class="tt-term">${term ? `<h3>${esc(term.label)}${term.ref ? ' <small>· reference week</small>' : ''}</h3>` : ''}<div class="timetable">${html}</div></div>`;
+      // The exams of this trimester sit under its grid.
+      const mine = term ? periods.filter(p => seasonTerm.get(p.id) === term) : periods;
+      return `<div class="tt-term">${term ? `<h3>${esc(term.label)}</h3>` : ''}<div class="timetable">${html}</div>${mine.map(seasonHtml).join('')}</div>`;
     });
+    // Exam seasons that fall in no trimester of the timetable get a column of their own.
+    const loose = terms[0] ? periods.filter(p => !seasonTerm.get(p.id)) : [];
+    if (loose.length) grids.push(`<div class="tt-term"><h3>Other exams</h3>${loose.map(seasonHtml).join('')}</div>`);
     $('timetable').innerHTML = grids.join('');
 
     $('day-tabs').innerHTML = S.WEEKDAYS_SHORT.map((d, i) =>
@@ -542,7 +604,7 @@
     const pendingNote = pending.length ? ` Pick a section for: ${pending.join(', ')}.` : '';
     if (!list.length && pending.length) {
       banner.className = 'banner';
-      banner.textContent = `Choose your section in the course list to place ${pending.length === 1 ? 'this course' : 'these courses'} on the timetable.` + pendingNote;
+      banner.textContent = `Choose your section in Your courses to place ${pending.length === 1 ? 'this course' : 'these courses'} on the timetable.` + pendingNote;
       return;
     }
     if (!list.length) {
@@ -575,8 +637,6 @@
 
   /* ---------- Rendering: exam calendar ---------- */
 
-  let examInfo = { clashDates: new Set() };
-
   // Each exam season belongs to the trimester it falls in (Midterms -> Trimester 1,
   // Endterms -> Trimester 2): the one whose weeks contain its first day, else the
   // latest trimester started by then. Students see the trimester, not the planner's name.
@@ -602,84 +662,80 @@
 
   function examChip(it, clash) {
     return `<span class="ex-chip${clash ? ' clash' : ''}" style="--chip-fg:${it.color[0]};--chip-bg:${it.color[1]}"
-      title="${esc(it.course.name)} – ${esc(seasonName(it.exam))} exam">${esc(courseTitle(it.course))}</span>`;
+      title="${esc(it.course.name)} – ${esc(seasonName(it.exam))} exam">${esc(it.course.name)}</span>`;
   }
 
   function dayLabel(d) {
     return `${E.weekdayShort(d)} ${S.shortDate(d)}`;
   }
 
+  // The exams of the student's courses: who clashes with whom, kept for the grids and tiles.
+  let examInfo = { clashDates: new Set(), byDate: new Map(), clashes: [], count: 0 };
+
   function renderExams(list) {
     const items = examItems(list);
     const res = E.findExamClashes(items);
-    examInfo = { clashDates: res.clashDates };
+    examInfo = { clashDates: res.clashDates, byDate: res.byDate, clashes: res.clashes, count: items.length };
 
-    // Summary banner
+    // A banner only when two exams fall on the same day.
     const banner = $('exam-banner');
     const names = arr => [...new Set(arr.map(it => it.course.name))].map(esc).join(', ');
-    if (!examSource.exams.length) {
-      banner.className = 'banner';
-      banner.textContent = 'The exam calendar has not been published yet.';
-    } else if (!list.length) {
-      banner.className = 'banner';
-      banner.textContent = 'Add courses to see their exam dates here.';
-    } else if (res.clashes.length) {
+    banner.hidden = !res.clashes.length;
+    if (res.clashes.length) {
       banner.className = 'banner bad';
       banner.innerHTML = `<strong>⚠ ${res.clashes.length} day${res.clashes.length === 1 ? '' : 's'} with more than one exam.</strong>` +
         `<ul>${res.clashes.map(c => `<li><b>${dayLabel(c.date)}</b>: ${names(c.items)}</li>`).join('')}</ul>`;
-    } else if (items.length) {
-      banner.className = 'banner ok';
-      banner.textContent = `✓ No exam overlaps · ${items.length} exam${items.length === 1 ? '' : 's'} for your courses`;
-    } else {
-      banner.className = 'banner';
-      banner.textContent = 'None of your courses has an exam in the published calendar.';
     }
-
-    // One list by date per season (owner's choice), in one column per trimester so
-    // they sit under the matching timetable grid.
-    const seasonHtml = p => {
-      const days = E.seasonDays(p);
-      const inSeason = d => (res.byDate.get(d) || []).filter(it => it.exam.period === p.id);
-      const listed = days.filter(d => inSeason(d).length);
-      const rows = listed.map(d => {
-        const its = inSeason(d);
-        const clash = res.clashDates.has(d);
-        return `<li class="${clash ? 'clash' : ''}"><span class="when">${clash ? '⚠ ' : ''}${dayLabel(d)}</span>
-          <span class="what">${its.map(it => examChip(it, clash)).join('')}</span></li>`;
-      }).join('');
-      return `<div class="ex-season">
-        <h3>${esc(seasonName({ period: p.id, season: p.season }))} <small>${S.shortDate(days[0])} – ${S.shortDate(days[days.length - 1])}</small></h3>
-        <ul class="ex-list">${rows || `<li class="empty">No exams for your courses in this ${site.seasonsByTerm ? 'trimester' : 'season'}.</li>`}</ul>
-      </div>`;
-    };
-    const periods = examSource.periods || [];
-    const columns = data.terms.length
-      ? data.terms.map(t => periods.filter(p => seasonTerm.get(p.id) === t))
-        .concat([periods.filter(p => !seasonTerm.get(p.id))])
-        .filter(col => col.length)
-      : periods.map(p => [p]);
-    $('exam-seasons').innerHTML = columns.map(col => `<div class="ex-col">${col.map(seasonHtml).join('')}</div>`).join('');
 
     const without = list.filter(e => !E.examsForOption(e.course, e.option, examLink.byCode.get(e.course.code) || []).length)
       .map(e => e.course.name);
     $('exam-note').textContent = examSource.exams.length
       ? 'Exam times and rooms are not in the calendar yet.' +
         (without.length ? ` No exam date found for: ${without.join('; ')} – check with your program.` : '')
-      : '';
-    $('switch-exams').textContent = res.clashes.length ? '⚠' : items.length ? `(${items.length})` : '';
-    $('show-exams').classList.toggle('has-clash', res.clashes.length > 0);
+      : 'The exam calendar has not been published yet.';
   }
+
+  // One list by date per season (owner's choice), under the timetable of its trimester.
+  function seasonHtml(p) {
+    const inSeason = d => (examInfo.byDate.get(d) || []).filter(it => it.exam.period === p.id);
+    const rows = E.seasonDays(p).filter(d => inSeason(d).length).map(d => {
+      const clash = examInfo.clashDates.has(d);
+      return `<li class="${clash ? 'clash' : ''}"><span class="when">${clash ? '<span class="warn">⚠</span> ' : ''}${dayLabel(d)}</span>
+        <span class="what">${inSeason(d).map(it => examChip(it, clash)).join('')}</span></li>`;
+    }).join('');
+    // Where several seasons share a trimester (undergraduate), each list says which one it is.
+    return `<div class="ex-season">
+      <h4>Exams${site.seasonsByTerm ? '' : ` <small>· ${esc(p.season)}</small>`}</h4>
+      <ul class="ex-list">${rows || `<li class="empty">No exams for your courses in this ${site.seasonsByTerm ? 'trimester' : 'season'}.</li>`}</ul>
+    </div>`;
+  }
+
+  // What was last drawn, so trying a section redraws the timetable only.
+  let drawn = { list: [], clashes: [] };
 
   function update() {
     const list = entries();
     const clashes = findClashes(list);
+    drawn = { list, clashes };
     renderExams(list);
-    renderList(list, clashes);
+    renderList(list);
+    renderMine(list, clashes);
     renderTimetable(list, clashes);
     renderBanner(list, clashes);
     renderDrafts();
     $('switch-count').textContent = state.selections.size ? `(${state.selections.size})` : '';
+    $('show-timetable').classList.toggle('has-clash', clashes.length > 0 || examInfo.clashes.length > 0);
     persist();
+  }
+
+  // Tries a section on the timetable (null stops): only the grids are redrawn, so the
+  // list the student is pointing at stays in place.
+  function setPreview(code, option) {
+    const next = code ? { code, option } : null;
+    const same = (!next && !state.preview) || (next && state.preview && next.code === state.preview.code && next.option === state.preview.option);
+    if (same) return;
+    state.preview = next;
+    renderTimetable(drawn.list, drawn.clashes);
   }
 
   /* ---------- Calendar export (.ics) ---------- */
@@ -759,20 +815,11 @@
     return { text: lines.map(icsFold).join('\r\n') + '\r\n', count };
   }
 
-  function download(name, content, type) {
-    const blob = new Blob([content], { type });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = name;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
-  }
-
   /* ---------- Print ---------- */
 
   function preparePrint() {
     const list = entries();
+    $('print-draft').textContent = currentDraft().name;
     $('print-week').textContent = [currentDraft().name, data.terms.map(t => t.label).join(' and ')].filter(Boolean).join(' · ');
     $('print-list').innerHTML = list.map(e =>
       `<p><b>${esc(e.course.name)}</b> (${esc(e.course.code)}) – ${esc(e.option.label)}: ` +
@@ -785,20 +832,74 @@
   if ($('programme')) $('programme').addEventListener('change', e => { state.programme = e.target.value; update(); });
   $('unit').addEventListener('change', e => { state.unit = e.target.value; update(); });
 
+  // Course list: "+ Add", Cancel, and picking a section for a course being added.
   $('course-list').addEventListener('click', e => {
+    const card = e.target.closest('.course-card');
+    if (!card) return;
+    const sec = e.target.closest('.sec');
     const btn = e.target.closest('button[data-act]');
-    if (!btn) return;
-    const code = btn.closest('.course-card').dataset.code;
-    if (btn.dataset.act === 'add') addCourse(code);
-    else if (btn.dataset.act === 'cancel') { state.picking = ''; update(); }
-    else removeCourse(code);
+    if (sec) addCourse(card.dataset.code, sec.dataset.opt);
+    else if (btn && btn.dataset.act === 'add') addCourse(card.dataset.code);
+    else if (btn && btn.dataset.act === 'cancel') { state.picking = ''; state.preview = null; update(); }
   });
-  $('course-list').addEventListener('change', e => {
-    if (e.target.matches('select[data-act="pick"]')) {
-      addCourse(e.target.closest('.course-card').dataset.code, e.target.value);
-    } else if (e.target.matches('select[data-act="option"]')) {
-      setOption(e.target.closest('.course-card').dataset.code, e.target.value);
+
+  // Your courses: remove, open the section dropdown, choose a section.
+  $('mine').addEventListener('click', e => {
+    const tile = e.target.closest('.tile');
+    if (!tile) return;
+    const code = tile.dataset.code;
+    const sec = e.target.closest('.sec');
+    const btn = e.target.closest('button[data-act]');
+    if (sec) setOption(code, sec.dataset.opt);
+    else if (btn && btn.dataset.act === 'remove') removeCourse(code);
+    else if (btn && btn.dataset.act === 'toggle') {
+      state.open = state.open === code ? '' : code;
+      state.picking = '';
+      state.preview = null;
+      update();
+      const focus = document.querySelector(state.open
+        ? '.tile.open .sec.on, .tile.open .sec'
+        : `.tile[data-code="${CSS.escape(code)}"] .dd-btn`);
+      if (focus) focus.focus({ preventScroll: true });
     }
+  });
+
+  // Pointing at a section, or moving to it with the keyboard, tries it on the timetable.
+  function tryFrom(e) {
+    const sec = e.target.closest && e.target.closest('.sec');
+    const holder = sec && sec.closest('[data-code]');
+    if (holder) setPreview(holder.dataset.code, sec.dataset.opt);
+  }
+  function stopTrying(e) {
+    const list = e.target.closest && e.target.closest('.sec-list');
+    if (list && !(e.relatedTarget && list.contains(e.relatedTarget))) setPreview(null);
+  }
+  [$('course-list'), $('mine')].forEach(el => {
+    el.addEventListener('mouseover', tryFrom);
+    el.addEventListener('focusin', tryFrom);
+    el.addEventListener('mouseout', stopTrying);
+    el.addEventListener('focusout', stopTrying);
+  });
+
+  // Keyboard in a list of sections: arrows move (the preview follows), Escape closes.
+  document.addEventListener('keydown', e => {
+    const sec = e.target.closest && e.target.closest('.sec-list .sec');
+    if (sec && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+      e.preventDefault();
+      const next = e.key === 'ArrowDown' ? sec.nextElementSibling : sec.previousElementSibling;
+      if (next) next.focus();
+    } else if (e.key === 'Escape' && (state.open || state.picking)) {
+      const code = state.open;
+      state.open = state.picking = '';
+      state.preview = null;
+      update();
+      const btn = code && document.querySelector(`.tile[data-code="${CSS.escape(code)}"] .dd-btn`);
+      if (btn) btn.focus({ preventScroll: true });
+    }
+  });
+  // A click anywhere else closes an open section dropdown.
+  document.addEventListener('click', e => {
+    if (state.open && !e.target.closest('.tile')) { state.open = ''; state.preview = null; update(); }
   });
 
   // Drag and drop, both ways:
@@ -813,7 +914,7 @@
     drag = null;
     tt.classList.remove('drop-hover');
     sidebar.classList.remove('drop-remove');
-    $('sidebar-bar').textContent = 'Courses';
+    $('sidebar-bar').textContent = 'Course List';
     document.querySelectorAll('.dragging').forEach(el => el.classList.remove('dragging'));
   }
 
@@ -885,25 +986,46 @@
     $('app').dataset.view = view;
     $('show-courses').classList.toggle('active', view === 'courses');
     $('show-timetable').classList.toggle('active', view === 'timetable');
-    $('show-exams').classList.toggle('active', view === 'exams');
     window.scrollTo({ top: 0 });
   }
   $('show-courses').addEventListener('click', () => setView('courses'));
   $('show-timetable').addEventListener('click', () => setView('timetable'));
-  $('show-exams').addEventListener('click', () => setView('exams'));
 
-  $('export-ics').addEventListener('click', () => {
-    const list = entries();
-    if (!list.length) { alert('Add at least one course and choose its section first.'); return; }
-    const { text } = buildIcs(list);
-    const slug = currentDraft().name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    download(`my-timetable${slug ? '-' + slug : ''}.ics`, text, 'text/calendar;charset=utf-8');
-  });
   $('print').addEventListener('click', () => { preparePrint(); window.print(); });
   window.addEventListener('beforeprint', preparePrint);
+  // "Clear all" empties the current draft straight away and can be undone for a few
+  // seconds: a small "Draft cleared · Undo" message at the bottom right.
+  let undo = null; // { draft, selections, timer }
+  function hideUndo() {
+    if (undo) clearTimeout(undo.timer);
+    undo = null;
+    const toast = $('undo-toast');
+    if (toast) toast.remove();
+  }
   $('clear-all').addEventListener('click', () => {
     if (!state.selections.size) return;
-    if (confirm(`Remove all courses from “${currentDraft().name}”?`)) { state.selections.clear(); update(); }
+    hideUndo();
+    const draft = currentDraft();
+    undo = { draft, selections: new Map(draft.selections), timer: setTimeout(hideUndo, 7000) };
+    draft.selections.clear();
+    state.picking = state.open = '';
+    state.preview = null;
+    update();
+    const toast = document.createElement('div');
+    toast.id = 'undo-toast';
+    toast.className = 'toast';
+    toast.setAttribute('role', 'status');
+    toast.innerHTML = '<span>Draft cleared</span><button type="button">Undo</button>';
+    toast.querySelector('button').addEventListener('click', () => {
+      const u = undo;
+      hideUndo();
+      // Courses added since the clear stay; the cleared ones come back with their sections and colours.
+      if (u && state.drafts.includes(u.draft)) {
+        u.selections.forEach((sel, code) => { if (!u.draft.selections.has(code)) u.draft.selections.set(code, sel); });
+        update();
+      }
+    });
+    document.body.appendChild(toast);
   });
 
   // The draft stamp opens a small menu: switch, new, duplicate, rename, delete.
@@ -935,8 +1057,8 @@
 
   // admin.html opens index.html#exams after an exam preview.
   if (location.hash === '#exams') {
-    if (window.matchMedia('(max-width: 860px)').matches) setView('exams');
-    else $('exams').scrollIntoView();
+    if (window.matchMedia('(max-width: 860px)').matches) setView('timetable');
+    $('exams').scrollIntoView();
   }
 
   // Exposed for testing in the browser console.

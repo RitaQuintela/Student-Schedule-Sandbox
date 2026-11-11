@@ -16,6 +16,8 @@
 @font-face { font-family: "Barlow"; font-weight: 800; font-display: swap; src: url("../vendor/fonts/barlow-800.woff2") format("woff2"); }
 /* Handwriting for the "draft" look (Caveat, SIL OFL, variable weight). */
 @font-face { font-family: "Caveat"; font-weight: 400 700; font-display: swap; src: url("../vendor/fonts/caveat.woff2") format("woff2"); }
+/* Handwriting of the draft stamp (Nanum Pen Script, latin subset, SIL OFL), owner's choice. */
+@font-face { font-family: "Nanum Pen Script"; font-weight: 400; font-display: swap; src: url("../vendor/fonts/nanum-pen-script.woff2") format("woff2"); }
 
 :root {
   --blue: #0061FF;          /* Azul Institucional */
@@ -240,24 +242,11 @@ a { color: var(--blue-ink); }
   cursor: grab;
 }
 .course-card:active { cursor: grabbing; }
-.course-card.added { background: var(--course-bg, var(--blue-tint)); border-left-color: var(--course-color, var(--blue)); }
-.course-card.conflict { background: var(--red-soft); border-left-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
 .course-card.dragging { opacity: .5; }
 
 .cc-head { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; }
 .cc-head h3 { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.2; }
 .cc-meta { font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 2px; }
-.tag {
-  display: inline-block;
-  font-size: 11px;
-  padding: 0 5px;
-  background: var(--purple);
-  color: var(--ink);
-  margin-right: 5px;
-  font-weight: 700;
-  letter-spacing: .04em;
-}
-
 .add-btn {
   flex-shrink: 0;
   border: 1px solid var(--blue);
@@ -271,21 +260,8 @@ a { color: var(--blue-ink); }
   min-width: 92px;
 }
 .add-btn:hover { background: var(--blue); color: #fff; }
-.add-btn .when-hover { display: none; }
-.add-btn.is-added { background: var(--blue); color: #fff; }
-.add-btn.is-added:hover, .add-btn.is-added:focus-visible { background: var(--remove); border-color: var(--remove); color: var(--on-remove); }
-.add-btn.is-added:hover .when-idle, .add-btn.is-added:focus-visible .when-idle { display: none; }
-.add-btn.is-added:hover .when-hover, .add-btn.is-added:focus-visible .when-hover { display: inline; }
 
-.cc-body { margin-top: 8px; display: grid; gap: 7px; }
-.cc-body select { width: 100%; }
-.session-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; font-size: 13px; }
-.session-list li { display: flex; gap: 8px; align-items: baseline; }
-.session-list .when { font-weight: 600; min-width: 116px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.session-list .what { font-weight: 400; color: var(--text-2); }
-.session-list li.clash .when { color: var(--red-ink); }
-.cc-note { font-size: 13px; background: var(--soft-white); padding: 5px 8px; border-left: 3px solid var(--purple-ink); }
-.cc-clash { font-size: 13px; color: var(--red-ink); font-weight: 600; }
+.cc-body { margin-top: 8px; }
 
 /* ---------- Timetable ---------- */
 
@@ -439,14 +415,9 @@ a { color: var(--blue-ink); }
 
 /* Orange (brand "Inovação" #ED9438), kept for neutral warnings. */
 :root { --amber: #ED9438; --amber-soft: #FDEFE0; }
-.sidebar { grid-row: span 2; }
-.ex-panel { grid-column: 2; min-width: 0; }
 .banner.warn { background: var(--amber-soft); border-left-color: var(--amber); color: var(--text); }
 
 .ex-col { min-width: 0; }
-.ex-season h3 { margin: 14px 0 6px; font-size: 15px; font-weight: 700; color: var(--blue-ink); }
-.ex-season:first-child h3 { margin-top: 0; }
-.ex-season h3 small { font-size: 13px; font-weight: 400; color: var(--muted); }
 /* Each season is a list by date (owner's choice, both sites); same-day overlaps in red. */
 .ex-chip {
   display: block;
@@ -458,21 +429,14 @@ a { color: var(--blue-ink); }
   overflow: hidden;
   hyphens: auto;
 }
-.ex-chip.clash { box-shadow: inset 0 0 0 1px var(--red); color: var(--red-ink); }
+.ex-chip.clash { box-shadow: inset 0 0 0 1px var(--red); }
 .ex-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--border); }
 .ex-list li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 9px; border-top: 1px solid var(--border); }
 .ex-list li:first-child { border-top: 0; }
 .ex-list .when { min-width: 96px; font-weight: 600; }
 .ex-list .what { display: flex; flex-wrap: wrap; gap: 4px; }
 .ex-list li.clash { background: var(--red-soft); }
-.ex-list li.clash .when { color: var(--red-ink); }
 .ex-list li.empty { color: var(--muted); }
-
-.cc-exams { font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: baseline; }
-.cc-exams b { font-weight: 600; margin-right: 2px; }
-.cc-exams span { background: var(--soft-white); padding: 1px 6px; }
-.cc-exams span.clash { background: var(--red); color: #fff; font-weight: 600; }
-.cc-exams.none { color: var(--muted); font-style: italic; }
 
 /* Mobile switch between course list and timetable */
 .mobile-switch { display: none; }
@@ -513,10 +477,6 @@ a { color: var(--blue-ink); }
     cursor: pointer;
   }
   .mobile-switch button.active { background: var(--blue); color: #fff; }
-  .sidebar, .ex-panel { grid-row: auto; grid-column: auto; }
-  .student:not([data-view="courses"]) .sidebar { display: none; }
-  .student:not([data-view="timetable"]) .tt-panel { display: none; }
-  .student:not([data-view="exams"]) .ex-panel { display: none; }
   .mobile-switch button.has-clash { border-color: var(--red); color: var(--red-ink); }
   .mobile-switch button.active.has-clash { background: var(--red); color: #fff; }
 
@@ -553,10 +513,9 @@ a { color: var(--blue-ink); }
   :root { --block-h: 50px; }
   body { background: #fff; font-size: 11px; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .sidebar, .tt-toolbar .actions, .draft-menu, .stamp-caret, .theme-toggle, .day-tabs, .mobile-switch, .notice, .app-footer > a, .hint, .ev-remove, .tt-panel > .bar { display: none !important; }
+  .sidebar, .theme-toggle, .day-tabs, .mobile-switch, .notice, .app-footer > a, .hint, .ev-remove, .tt-panel > .bar { display: none !important; }
   .student { display: block; padding: 0; }
   .student .tt-panel { display: block !important; border: 0; }
-  .student .ex-panel { display: block !important; border: 0; break-before: page; }
   .tt-inner { padding: 6px 0 0; }
   /* Blocks are shorter on paper (50px) and the phone sizes (max-width: 860px) also apply
      when printing: keep names at 12px with tighter lines so three lines still fit. */
@@ -626,10 +585,6 @@ a { color: var(--blue-ink); }
 .steps { margin: 0; padding-left: 20px; font-size: 14px; }
 .steps li { margin-bottom: 4px; }
 
-/* Course waiting for its section (being added, or an older save without one) */
-.course-card.pending select { border-color: var(--purple-ink); box-shadow: 0 0 0 2px var(--purple-tint); }
-/* "+ Add" on a course with several sections: the card asks for the section first */
-.course-card.picking { border-left-color: var(--purple-ink); }
 
 /* ---------- Draft look: hand-drawn touches ---------- */
 
@@ -647,7 +602,6 @@ a { color: var(--blue-ink); }
 }
 .stamp:hover, .stamp[aria-expanded="true"] { opacity: 1; transform: rotate(-3deg) scale(1.03); }
 .stamp:focus-visible { outline: 2px solid var(--purple-ink); outline-offset: 4px; }
-.stamp-word { font-size: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
 .stamp-name { color: var(--purple-ink); font-size: 19px; font-weight: 700; max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .draft-menu {
   position: absolute; z-index: 20; top: calc(100% + 8px); right: 0; min-width: 240px; max-width: calc(100vw - 32px);
@@ -659,12 +613,6 @@ a { color: var(--blue-ink); }
 .draft-menu button small { color: var(--muted); }
 .draft-menu .dm-check { width: 14px; color: var(--purple-ink); font-weight: 700; }
 .draft-menu hr { border: 0; border-top: 1px solid var(--border); margin: 6px 0; }
-@media (max-width: 860px) { .stamp-word { font-size: 24px; } .stamp-name { font-size: 17px; } }
-@media print {
-  /* The stamp prints top right, with the draft's name. */
-  .tt-toolbar { justify-content: flex-end; margin: -40px 0 4px; }
-  .stamp { opacity: 1; }
-}
 
 /* ---------- Light / dark theme ---------- */
 
@@ -711,7 +659,6 @@ a { color: var(--blue-ink); }
     --grid-dash: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='64' viewBox='0 0 8 64' preserveAspectRatio='none'%3E%3Cpath d='M0 0.5 H4' stroke='%233A3C43' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
   }
   /* Course colours: the light tints become dark mixes of each course's own colour. */
-  :root[data-theme="dark"] .course-card.added:not(.conflict) { background: color-mix(in srgb, var(--course-color) 22%, var(--surface)); }
   :root[data-theme="dark"] .event:not(.clash) { background: color-mix(in srgb, var(--ev-fg) 28%, var(--surface)); }
   :root[data-theme="dark"] .ex-chip { background: color-mix(in srgb, var(--chip-fg) 26%, var(--surface)); }
   :root[data-theme="dark"] .draft-menu { box-shadow: 0 8px 24px rgba(0, 0, 0, .55); }
@@ -753,10 +700,8 @@ a { color: var(--blue-ink); }
 .course-list { gap: 8px; }
 .course-card { border-radius: 12px; border: 1px solid var(--card-line); border-left-width: 5px; }
 /* Courses not added yet: a thin even border, like the Nexus cards (padding keeps the text in line). */
-.course-card:not(.added):not(.conflict):not(.picking) { border-left-width: 1px; padding-left: 14px; }
-.course-card.conflict { border-color: var(--red); }
-.cc-note { border-radius: 6px; }
-.tag, .ex-chip, .cc-exams span { border-radius: 4px; }
+.course-card:not(.picking) { border-left-width: 1px; padding-left: 14px; }
+.ex-chip { border-radius: 4px; }
 
 .timetable { border-radius: 12px; overflow: hidden; }
 .event { border-radius: 6px; }
@@ -774,3 +719,155 @@ a { color: var(--blue-ink); }
 
 /* Admin: what students see now, at the top of each publish panel */
 .live-now { margin: 0 0 16px; padding: 10px 14px; border-left: 4px solid var(--blue); background: var(--grey); border-radius: 8px; font-size: 14px; color: var(--text); }
+
+/* ---------- Layout of November 2026 (from the UX design work, docs/ux) ---------- */
+
+/* Four blocks, each with its own blue bar: Draft and Course List on the left, Your courses and
+   the Preview (timetable with the exams under each trimester) on the right. */
+.sidebar { gap: 18px; }
+.list-panel { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.main-col { min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+
+/* Draft block: the stamp and the two buttons on one line. With an empty draft it is as tall as
+   Your courses, so the two blocks under them start level. */
+.draft-panel .tt-toolbar { margin: 0; padding: 10px; gap: 6px; flex-wrap: nowrap; min-height: 74px; }
+.draft-panel .actions { flex-wrap: nowrap; gap: 4px; }
+.draft-panel .btn.small { padding: 5px 7px; font-size: 12.5px; }
+
+/* The stamp shows the draft's name in capitals (the bar already says "Draft"): handwriting,
+   a hand-drawn frame whose lines cross at the corners, and an arrow because it opens a menu. */
+.stamp {
+  font-family: "Nanum Pen Script", "Caveat", cursive; font-weight: 400; color: var(--purple-ink);
+  border: 0; border-radius: 0; padding: 8px 26px 9px 10px; margin: 6px; line-height: 1.05;
+  position: relative; transform: none; flex-direction: row;
+}
+.stamp:hover, .stamp[aria-expanded="true"] { transform: scale(1.03); }
+.stamp::before, .stamp::after { content: ""; position: absolute; pointer-events: none; }
+.stamp::before { left: -6px; right: -6px; top: 0; bottom: 0; border-top: 2px solid var(--purple-ink); border-bottom: 2px solid var(--purple-ink); transform: rotate(-.7deg); }
+.stamp::after { top: -6px; bottom: -6px; left: 0; right: 0; border-left: 2px solid var(--purple-ink); border-right: 2px solid var(--purple-ink); transform: rotate(.6deg); }
+.stamp-name { font-size: 21px; font-weight: 400; text-transform: uppercase; letter-spacing: .05em; max-width: 121px; }
+.stamp-arrow {
+  position: absolute; right: 7px; top: 50%; width: 9px; height: 9px; margin-top: -7px;
+  border-right: 2.5px solid var(--purple-ink); border-bottom: 2.5px solid var(--purple-ink);
+  transform: rotate(45deg); transition: transform .15s, margin .15s;
+}
+.stamp[aria-expanded="true"] .stamp-arrow { transform: rotate(225deg); margin-top: -2px; }
+.draft-menu { left: 0; right: auto; }
+
+/* Course List: Search and Period on the first line, Program on the second. */
+.filters { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 8px 10px; padding: 10px 12px; }
+.filters .field-wide { grid-column: 1 / -1; }
+
+/* Courses not added yet: name, "+ Add" and one short line. */
+.cc-head h3 { min-width: 0; }
+.course-card.picking { background: var(--purple-tint); border-left-width: 5px; border-left-color: var(--purple-ink); cursor: default; }
+.dd-label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+
+/* A list of sections, one line each; the one pointed at is tried on the timetable. */
+.sec-list { display: grid; gap: 3px; margin-top: 4px; }
+.sec {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px; width: 100%; text-align: left;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 6px;
+  padding: 5px 8px; font-size: 13px; cursor: pointer;
+}
+.sec .ol { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sec small { flex-shrink: 0; font-size: 12px; color: var(--green-ink); }
+.sec.bad small { color: var(--red-ink); font-weight: 600; }
+.sec:hover, .sec:focus-visible { border-color: var(--blue); background: var(--blue-tint); outline: 0; }
+.sec.on { border-color: var(--blue); box-shadow: inset 3px 0 0 var(--blue); }
+.sec.on small { color: var(--muted); font-weight: 400; }
+
+/* Your courses: small tiles in the course colour. */
+.mine { padding: 12px 14px; min-height: 74px; display: flex; flex-direction: column; justify-content: center; }
+.mine-empty { margin: 0; font-size: 14px; color: var(--muted); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 6px; }
+.tile {
+  position: relative; min-width: 0; padding: 7px 26px 7px 9px; font-size: 12.5px; border-radius: 8px;
+  background: var(--course-bg); border-left: 5px solid var(--course-color);
+}
+.tile.conflict { box-shadow: inset 0 0 0 2px var(--red); }
+.tile > b { display: block; font-size: 14px; font-weight: 700; line-height: 1.2; }
+.tile-name { display: block; color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tile-x {
+  position: absolute; top: 4px; right: 4px; width: 18px; height: 18px; padding: 0; border: 0; border-radius: 50%;
+  background: var(--soft-white); color: var(--text); font-size: 15px; line-height: 18px; font-weight: 600; cursor: pointer;
+}
+.tile-x:hover, .tile-x:focus-visible { background: var(--remove); color: var(--on-remove); }
+.tile .one { display: block; margin-top: 5px; font-weight: 600; }
+.dd-btn {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px; width: 100%; margin-top: 4px;
+  text-align: left; background: var(--surface); color: var(--text); border: 1px solid var(--border);
+  border-radius: 6px; padding: 4px 8px; font-size: 13px; cursor: pointer;
+}
+.dd-btn span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dd-btn i { flex-shrink: 0; width: 6px; height: 6px; margin: -3px 2px 0; border-right: 2px solid var(--blue-ink); border-bottom: 2px solid var(--blue-ink); transform: rotate(45deg); transition: transform .15s; }
+.dd-btn[aria-expanded="true"] { border-color: var(--blue); }
+.dd-btn[aria-expanded="true"] i { transform: rotate(225deg); margin-top: 3px; }
+.dd-btn.pending { border-color: var(--purple-ink); box-shadow: 0 0 0 2px var(--purple-tint); }
+.dd-btn:focus-visible, .tile-x:focus-visible, .toast button:focus-visible { outline: 2px solid var(--purple-ink); outline-offset: 1px; }
+.tile-info { display: flex; flex-wrap: wrap; gap: 2px 8px; margin-top: 5px; font-size: 12px; color: var(--text-2); }
+.tile-info:empty { display: none; }
+.tile-info em, .tile-info .clash { font-style: normal; font-weight: 600; color: var(--red-ink); }
+.tile-note { display: block; margin-top: 4px; font-size: 12px; color: var(--text-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+/* The open dropdown floats over what is below the tile. */
+.tile .sec-list {
+  position: absolute; z-index: 15; top: calc(100% + 4px); left: -5px; width: max(100%, 300px); max-width: calc(100vw - 40px);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .14);
+}
+.tile.to-left .sec-list { left: auto; right: 0; }
+
+/* Timetable: trimester headings in blue capitals with a line; an overlap is a red outline and a
+   warning sign on top of the course colour; a section being tried is dashed. */
+.tt-term h3 {
+  margin: 0 0 10px; padding: 0 2px 4px; font-size: 13px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--blue-ink); border-bottom: 2px solid var(--blue);
+}
+.event.clash { background: var(--ev-bg); border-left-color: var(--ev-fg); }
+.event.clash b { color: inherit; }
+.warn { color: var(--red-ink); }
+.event.ghost { background: var(--surface); border: 2px dashed var(--ev-fg); border-radius: 6px; cursor: default; pointer-events: none; z-index: 2; }
+.event.ghost.bad { border-color: var(--red); }
+.event.ghost b { padding-right: 0; }
+.event.fading { opacity: .35; }
+
+/* Exams under each trimester's timetable: a small label and a list by date. Two exams on the
+   same day: pale red row and a red warning sign; the course names keep their colour. */
+.ex-season h4 { margin: 14px 0 6px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text); }
+.ex-season h4 small { font-size: 12px; font-weight: 400; color: var(--muted); }
+.tt-term > .ex-season:first-of-type:not(:nth-child(3)) h4 { margin-top: 0; }
+
+/* "Draft cleared · Undo", for a few seconds after Clear all */
+.toast {
+  position: fixed; right: 22px; bottom: 22px; z-index: 50; display: flex; align-items: center; gap: 14px;
+  background: var(--remove); color: var(--on-remove); padding: 10px 14px 10px 16px; border-radius: 8px;
+  font-size: 15px; box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+}
+.toast button { background: none; border: 0; border-left: 1px solid color-mix(in srgb, var(--on-remove) 35%, transparent); padding: 2px 0 2px 14px; color: inherit; font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }
+
+@media screen {
+  :root[data-theme="dark"] .tile { background: color-mix(in srgb, var(--course-color) 26%, var(--surface)); }
+  :root[data-theme="dark"] .event.clash { background: color-mix(in srgb, var(--ev-fg) 28%, var(--surface)); }
+  :root[data-theme="dark"] .event.ghost { background: var(--surface); }
+  :root[data-theme="dark"] .tile .sec-list { box-shadow: 0 8px 24px rgba(0, 0, 0, .55); }
+}
+
+@media (max-width: 860px) {
+  /* Phones: the Draft block stays on top; below it, the course list or the timetable. */
+  .sidebar { display: contents; }
+  .student { gap: 12px; }
+  .main-col { gap: 12px; }
+  .student:not([data-view="courses"]) .list-panel { display: none; }
+  .student:not([data-view="timetable"]) .main-col { display: none; }
+  .tiles { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .toast { right: 12px; bottom: 12px; }
+}
+
+@media print {
+  .mine-panel, .toast, .event.ghost { display: none !important; }
+  .main-col { display: block; }
+  .print-head { position: relative; }
+  .print-stamp { position: absolute; right: 8px; top: 2px; display: inline-flex; }
+  .print-stamp .stamp-name { max-width: none; }
+  .ex-season h4 { margin-top: 8px; }
+}

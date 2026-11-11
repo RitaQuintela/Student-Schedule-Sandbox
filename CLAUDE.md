@@ -164,6 +164,38 @@ EndTime, Week, Annotations. Other columns are ignored. Headers match case-insens
   say "T1"/"T2"; .ics "Exam: Course (Trimester 1)"). The season lists sit in one column per trimester,
   under the matching timetable grid. The admin page keeps the planner's names.
 
+## Student page layout (November 2026, from the UX design work in `docs/ux`)
+Owner's choices, made on a proof of concept and then built into both sites. **Where this section and
+"Student features" below disagree, this section wins.**
+- Four blocks, each with a blue bar. Left column: **Draft** (the stamp, Print / PDF, Clear all, on one
+  line) and **Course List** (Search and Period on the first line, Program on the second; "All courses · N").
+  Right column: **Your courses · N** (tiles) and **Preview of Weekly Timetable and Exam Calendar**.
+  With an empty draft, Draft and Your courses are the same height so the second row starts level.
+- **Added courses are tiles** in Your courses, not cards pinned in the list: short name, full name,
+  section, exam dates, "⚠ overlaps" (names in the tooltip), Bullet notes, × to remove. A course with
+  several sections has a **dropdown drawn by the page** (not a `<select>`): one line per section
+  ("TP2 Mon, Wed 11:00–12:30 · ✓ fits / ⚠ overlaps / chosen"); pointing at a section, or moving to
+  it with the arrow keys, **tries it on the timetable** as a dashed block (`state.preview`, only the grids
+  are redrawn); Escape or a click elsewhere closes it (`state.open`).
+- Cards of courses not added yet are compact: name, "+ Add", one line ("Trimester 1 · 2 sections", or
+  the hours of a single section). "+ Add" on a course with several sections opens the same list of
+  sections on the card ("Choose your section", Cancel).
+- **Stamp**: the draft's name only, in capitals (the bar says "Draft"), Nanum Pen Script
+  (`vendor/fonts/nanum-pen-script.woff2`, SIL OFL), straight (no tilt), frame lines crossing at the corners,
+  `--purple-ink`, with an arrow. A draft is called **"Draft name"** until renamed (then "Draft name 2"…).
+  It prints top right (`.print-stamp`).
+- **Clear all** has no question: it clears and shows "Draft cleared · Undo" for 7 seconds, bottom right.
+- **No "Export to calendar (.ics)" button** (owner removed it); `buildIcs` stays in `js/student.js`,
+  unused, in case it returns.
+- Trimester headings say only "Trimester 1" (no "reference week"). **Exams sit under each trimester's
+  grid**, labelled "Exams" (undergraduate: "Exams · Midterms", one list per season); seasons in no
+  trimester go in an "Other exams" column. There is no separate Exam Calendar panel and no Exams tab on
+  phones (two tabs: Course list / Timetable and exams; the Draft block stays on top of both).
+- Overlaps are shown **on top of the course colour** (red outline, ⚠), never instead of it. Two exams on
+  the same day: pale red row and a red ⚠; the course names are not red. A banner about exams appears only
+  when two exams share a day.
+- Round corners everywhere (the "Nexus look" section of `styles.css`, now permanent).
+
 ## Student features
 Search + program/period filters; "+ Add" or drag a card onto the timetable; drag a class
 block from the timetable back onto the course list, or click the small × on a block, to remove
