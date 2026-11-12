@@ -431,8 +431,8 @@ a { color: var(--blue-ink); }
 }
 .ex-chip.clash { box-shadow: inset 0 0 0 1px var(--red); }
 /* The × on an exam removes its course, as on a class block. */
-.ex-chip { position: relative; padding-right: 24px; cursor: grab; }
-.ex-chip .ev-remove { top: 50%; transform: translateY(-50%); }
+.ex-chip { position: relative; padding-right: 30px; cursor: grab; }
+.ex-chip .ev-remove { top: 50%; right: 7px; transform: translateY(-50%); }
 .ex-chip.dragging { opacity: .4; }
 .ex-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--border); }
 .ex-list li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 9px; border-top: 1px solid var(--border); }
