@@ -1,5 +1,10 @@
 Copyright 2014 The Caveat Project Authors (https://github.com/googlefonts/caveat)
 Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)
+Copyright (c) 2010, NHN Corporation (http://www.nhncorp.com),
+with Reserved Font Name Nanum, Naver Nanum, NanumGothic, Naver
+NanumGothic, NanumMyeongjo, Naver NanumMyeongjo, NanumBrush, Naver
+NanumBrush, NanumPen, Naver NanumPen. (Nanum Pen Script, nanum-pen-script.woff2,
+latin subset as served by Google Fonts)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

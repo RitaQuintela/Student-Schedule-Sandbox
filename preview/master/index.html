@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-site="master">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preview · Schedule Sandbox · Católica Lisbon</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../css/styles.css?v=20261111a">
+<script src="../js/site.js?v=20261111a"></script>
+<script src="../js/theme.js?v=20261111a"></script>
+</head>
+<body>
+<header class="app-header">
+  <div class="inner">
+    <div class="header-tabs">
+      <button id="theme-toggle" class="theme-toggle" type="button"></button>
+      <span class="beta-tab" title="This is an early version: information may contain errors">Beta version</span>
+    </div>
+    <img class="logo" src="../../assets/logo-clsbe-seal-white.svg" alt="Católica Lisbon School of Business &amp; Economics" width="240" height="70">
+    <div class="title">
+      <span class="kicker">Master Programs</span>
+      <h1>Schedule Sandbox</h1>
+      <p>Plan your classes and exams, try different schedule options, and avoid overlaps before enrollment.</p>
+    </div>
+  </div>
+</header>
+
+<div id="preview-notice" class="notice" hidden>
+  <span id="preview-text"></span>
+  <button id="preview-clear" class="btn small">Back to the published timetable</button>
+</div>
+
+<nav class="mobile-switch" aria-label="Switch view">
+  <button id="show-courses" class="active">Course list</button>
+  <button id="show-timetable">Timetable and exams <span id="switch-count"></span></button>
+</nav>
+
+<main id="app" class="student" data-view="courses">
+  <aside class="sidebar" id="sidebar" aria-label="Draft and course list">
+    <section class="panel draft-panel" aria-label="Draft">
+      <div class="bar">Draft</div>
+      <div class="tt-toolbar">
+        <div class="draft">
+          <button id="draft-stamp" class="stamp" aria-haspopup="true" aria-expanded="false" title="Your drafts: switch, create, rename">
+            <span class="stamp-name" id="draft-name"></span><span class="stamp-arrow" aria-hidden="true"></span>
+          </button>
+          <div id="draft-menu" class="draft-menu" role="menu" hidden></div>
+        </div>
+        <div class="actions">
+          <button id="print" class="btn small">Print / PDF</button>
+          <button id="clear-all" class="btn small">Clear all</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel list-panel" aria-label="Course list">
+      <div class="bar" id="sidebar-bar">Course List</div>
+      <div class="filters">
+        <label class="field">Search
+          <input id="search" type="search" placeholder="Course name or acronym">
+        </label>
+        <label class="field">Period
+          <select id="unit"><option value="">All periods</option></select>
+        </label>
+      <label class="field field-wide">Program
+        <select id="programme"><option value="">All programs</option></select>
+      </label>
+      </div>
+      <div class="course-list" id="course-list"></div>
+    </section>
+  </aside>
+
+  <div class="main-col">
+    <section class="panel mine-panel" aria-label="Your courses">
+      <div class="bar" id="mine-bar">Your courses</div>
+      <div class="mine" id="mine"></div>
+    </section>
+
+    <section class="tt-panel panel" id="exams" aria-label="Weekly timetable and exam calendar">
+      <div class="bar">Preview of Weekly Timetable and Exam Calendar</div>
+      <div class="tt-inner">
+        <div class="print-only print-head">
+          <div class="stamp print-stamp"><span class="stamp-name" id="print-draft"></span></div>
+          <h2 style="margin:0;color:#0061FF">My timetable</h2>
+          <p id="print-week" style="margin:2px 0 8px"></p>
+        </div>
+        <div id="banner" class="banner" role="status"></div>
+        <div id="exam-banner" class="banner" role="status" hidden></div>
+        <div class="day-tabs" id="day-tabs" role="tablist" aria-label="Day"></div>
+        <div class="tt-terms" id="timetable"></div>
+        <p class="hint">Press “+ Add” on a course, or drag it onto the timetable, to add it; a course with several sections asks for its section first. Point at a section to try it on the timetable before you choose. To remove a course, use its × or drag a class back to the course list. Start by adding the courses in which you were pre-enrolled by Master Affairs. Red means two classes happen at the same time.</p>
+        <p class="hint" id="exam-note"></p>
+        <div class="print-only print-list" id="print-list"></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="app-footer">
+  <div class="beta-note" role="note">
+    Schedule Sandbox is a beta planning tool: it does not enroll you in anything. Use it to plan your enrollment on the official platforms, and always check the information against the official class timetable and exam calendar.
+  </div>
+</footer>
+
+<script src="../../master/data/timetable-data.js"></script>
+<script src="../../master/data/exam-data.js"></script>
+<script src="../js/parser.js?v=20261111a"></script>
+<script src="../js/exams.js?v=20261111a"></script>
+<script src="../js/student.js?v=20261111a"></script>
+</body>
+</html>
