@@ -632,7 +632,7 @@
       return;
     }
     banner.className = pending.length ? 'banner' : 'banner ok';
-    banner.textContent = `✓ No overlaps · ${list.length} course${list.length === 1 ? '' : 's'}.` + pendingNote;
+    banner.textContent = `✓ No timetable overlaps · ${list.length} course${list.length === 1 ? '' : 's'}.` + pendingNote;
   }
 
   /* ---------- Rendering: exam calendar ---------- */
