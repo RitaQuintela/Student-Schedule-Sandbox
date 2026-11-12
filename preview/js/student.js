@@ -660,9 +660,11 @@
       .map(exam => ({ course: e.course, color: e.color, exam })));
   }
 
+  // An exam in the list: the course name on its colour, with the same × as a class block
+  // (it removes the course) and, like a block, it can be dragged back to the course list.
   function examChip(it, clash) {
-    return `<span class="ex-chip${clash ? ' clash' : ''}" style="--chip-fg:${it.color[0]};--chip-bg:${it.color[1]}"
-      title="${esc(it.course.name)} – ${esc(seasonName(it.exam))} exam">${esc(it.course.name)}</span>`;
+    return `<span class="ex-chip${clash ? ' clash' : ''}" draggable="true" data-code="${esc(it.course.code)}" style="--chip-fg:${it.color[0]};--chip-bg:${it.color[1]}"
+      title="${esc(it.course.name)} – ${esc(seasonName(it.exam))} exam">${esc(it.course.name)}<button class="ev-remove" data-code="${esc(it.course.code)}" title="Remove ${esc(it.course.name)} from my timetable" aria-label="Remove ${esc(it.course.name)}">×</button></span>`;
   }
 
   function dayLabel(d) {
@@ -927,8 +929,8 @@
     card.classList.add('dragging');
   });
   tt.addEventListener('dragstart', e => {
-    const block = e.target.closest('.event');
-    if (!block) return;
+    const block = e.target.closest('.event, .ex-chip');
+    if (!block || !block.dataset.code) return;
     drag = { from: 'timetable', code: block.dataset.code };
     e.dataTransfer.setData('text/plain', block.dataset.code);
     e.dataTransfer.effectAllowed = 'move';
@@ -968,7 +970,7 @@
     removeCourse(code);
   });
 
-  // The small × on a class block removes that course from the timetable.
+  // The small × on a class block, or on an exam in the list, removes that course.
   tt.addEventListener('click', e => {
     const btn = e.target.closest('.ev-remove');
     if (btn) removeCourse(btn.dataset.code);
