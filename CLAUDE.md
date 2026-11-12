@@ -194,6 +194,8 @@ Owner's choices, made on a proof of concept and then built into both sites. **Wh
 - Overlaps are shown **on top of the course colour** (red outline, ⚠), never instead of it. Two exams on
   the same day: pale red row and a red ⚠; the course names are not red. A banner about exams appears only
   when two exams share a day.
+- An exam in the list has the same × as a class block (it removes the course) and can be dragged back to
+  the course list, like a block.
 - Round corners everywhere (the "Nexus look" section of `styles.css`, now permanent).
 
 ## Student features
