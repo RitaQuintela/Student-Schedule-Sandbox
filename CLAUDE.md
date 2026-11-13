@@ -196,7 +196,7 @@ header) and a centered beta disclaimer in the footer (replaces the old "Always c
   PUT), commit message "Publish … from <file> (admin page)". GitHub Pages rebuilds in 1–2 minutes.
 - Needs a fine-grained GitHub token (only Student-Schedule-Sandbox, Contents: Read and write, ≤1 year)
   saved under **Publishing settings**, stored only in that browser (`scheduleSandbox.publish.v1`:
-  token, repo default `RitaQuintela/Student-Schedule-Sandbox`, branch default `main`). The token is
+  token, repo default `catolica-lisbon-sbe/Student-Schedule-Sandbox` (GitHub organisation, moved from `RitaQuintela` in Nov 2026; old saved settings switch automatically), branch default `main`). The token is
   only sent to api.github.com and never shown again. Errors are explained in plain words (401 expired,
   403 no permission, 404 wrong repo/branch). "Download data file" stays as the manual fallback.
 - Never ask the owner to paste the token in chat; never put a token in the repo.

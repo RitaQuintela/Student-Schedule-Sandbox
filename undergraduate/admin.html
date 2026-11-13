@@ -8,9 +8,9 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="../css/styles.css?v=20261109a">
-<script src="../js/site.js?v=20261109a"></script>
-<script src="../js/theme.js?v=20261109a"></script>
+<link rel="stylesheet" href="../css/styles.css?v=20261113a">
+<script src="../js/site.js?v=20261113a"></script>
+<script src="../js/theme.js?v=20261113a"></script>
 </head>
 <body>
 <header class="app-header">
@@ -42,7 +42,7 @@
     </label>
     <div class="bullet-draft">
       <h2>Or: load the latest fetch from Bullet</h2>
-      <p class="lead">On GitHub, open <a href="https://github.com/RitaQuintela/Student-Schedule-Sandbox/actions/workflows/fetch-bullet.yml" target="_blank" rel="noopener">Actions → Fetch from Bullet</a>, click <b>Run workflow</b>, choose the semester and “save”. About 2 minutes after it finishes, the new fetch appears here.</p>
+      <p class="lead">On GitHub, open <a href="https://github.com/catolica-lisbon-sbe/Student-Schedule-Sandbox/actions/workflows/fetch-bullet.yml" target="_blank" rel="noopener">Actions → Fetch from Bullet</a>, click <b>Run workflow</b>, choose the semester and “save”. About 2 minutes after it finishes, the new fetch appears here.</p>
       <p class="lead" id="bullet-info" role="status">Looking for a fetch from Bullet…</p>
       <button class="btn primary" id="bullet-load" disabled>Load latest from Bullet</button>
     </div>
@@ -134,7 +134,7 @@
       <summary>How to create the token (about once a year)</summary>
       <ol class="steps">
         <li>Signed in to GitHub, open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
-        <li><b>Token name</b>: “Schedule Sandbox publishing”. <b>Expiration</b>: up to 1 year.</li>
+        <li><b>Token name</b>: “Schedule Sandbox publishing”. <b>Resource owner</b>: <b>catolica-lisbon-sbe</b> (the organisation, not your own account). <b>Expiration</b>: up to 1 year.</li>
         <li><b>Repository access</b>: “Only select repositories” → <b>Student-Schedule-Sandbox</b>.</li>
         <li><b>Permissions → Repository permissions → Contents</b>: “Read and write”. Leave everything else as it is.</li>
         <li>Click <b>Generate token</b>, copy it (it starts with <code>github_pat_</code>) and paste it above, then <b>Save in this browser</b> and <b>Test connection</b>.</li>
@@ -174,8 +174,8 @@
 
 <script src="../vendor/xlsx.full.min.js"></script>
 <script src="data/timetable-data.js"></script>
-<script src="../js/parser.js?v=20261109a"></script>
-<script src="../js/exams.js?v=20261109a"></script>
-<script src="../js/admin.js?v=20261109a"></script>
+<script src="../js/parser.js?v=20261113a"></script>
+<script src="../js/exams.js?v=20261113a"></script>
+<script src="../js/admin.js?v=20261113a"></script>
 </body>
 </html>

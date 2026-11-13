@@ -63,8 +63,8 @@ between days.
 ## For the admin
 
 Use the admin page of the site you are updating (bookmark them: the student pages don't link to them):
-[Master admin](https://ritaquintela.github.io/Student-Schedule-Sandbox/master/admin.html) and
-[Undergraduate admin](https://ritaquintela.github.io/Student-Schedule-Sandbox/undergraduate/admin.html). Each one publishes only its own site's
+[Master admin](https://catolica-lisbon-sbe.github.io/Student-Schedule-Sandbox/master/admin.html) and
+[Undergraduate admin](https://catolica-lisbon-sbe.github.io/Student-Schedule-Sandbox/undergraduate/admin.html). Each one publishes only its own site's
 files (`master/data/…` or `undergraduate/data/…`). The same exam planner works for both: each
 admin page keeps only its own exams (Cycle MSc or UG). The GitHub token is saved once and works
 on both admin pages.
@@ -80,7 +80,7 @@ see, when it was published and its size. Use it to check where the current data 
 #### 1. Timetable (from Bullet)
 
 1. On GitHub, open
-   [Actions → Fetch from Bullet](https://github.com/RitaQuintela/Student-Schedule-Sandbox/actions/workflows/fetch-bullet.yml)
+   [Actions → Fetch from Bullet](https://github.com/catolica-lisbon-sbe/Student-Schedule-Sandbox/actions/workflows/fetch-bullet.yml)
    and click **Run workflow**:
    - **Semester**: 1 (S1, T1, T2) or 2 (S2, T3, T4).
    - **Academic year**: leave empty for the current one.
@@ -126,7 +126,8 @@ The **Publish to students** buttons save the new data straight to GitHub, which 
 They need a GitHub *token*: a key that only allows changing files in this repository.
 
 1. Signed in to GitHub, open <https://github.com/settings/personal-access-tokens/new>.
-2. **Token name**: "Schedule Sandbox publishing". **Expiration**: up to 1 year.
+2. **Token name**: "Schedule Sandbox publishing". **Resource owner**: **catolica-lisbon-sbe** (the
+   organisation, not your own account). **Expiration**: up to 1 year.
 3. **Repository access**: "Only select repositories" → **Student-Schedule-Sandbox**.
 4. **Permissions → Repository permissions → Contents**: "Read and write". Nothing else.
 5. **Generate token**, copy it, and paste it on the admin page under **Publishing settings**.

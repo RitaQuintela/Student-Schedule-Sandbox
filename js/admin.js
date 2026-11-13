@@ -444,14 +444,17 @@
    * to api.github.com). GitHub Pages then rebuilds the site in 1–2 minutes.
    */
   const PUBLISH_KEY = 'scheduleSandbox.publish.v1';
-  const DEFAULT_REPO = 'RitaQuintela/Student-Schedule-Sandbox';
+  const DEFAULT_REPO = 'catolica-lisbon-sbe/Student-Schedule-Sandbox';
+  const OLD_REPO = 'RitaQuintela/Student-Schedule-Sandbox'; // before the move to the organisation (Nov 2026)
   const DEFAULT_BRANCH = 'main';
 
   function publishSettings() {
     let s = null;
     try { s = JSON.parse(localStorage.getItem(PUBLISH_KEY)); } catch (e) { /* ignore */ }
     s = s || {};
-    return { token: s.token || '', repo: s.repo || DEFAULT_REPO, branch: s.branch || DEFAULT_BRANCH };
+    // Settings saved before the move still name the old repository: use the new one.
+    const repo = !s.repo || s.repo.toLowerCase() === OLD_REPO.toLowerCase() ? DEFAULT_REPO : s.repo;
+    return { token: s.token || '', repo, branch: s.branch || DEFAULT_BRANCH };
   }
 
   function setStatus(id, cls, html) {
@@ -567,7 +570,7 @@
     const repo = $('pub-repo').value.trim() || DEFAULT_REPO;
     const branch = $('pub-branch').value.trim() || DEFAULT_BRANCH;
     if (!token) { setStatus('pub-status', 'bad', 'Paste a token first.'); return; }
-    if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) { setStatus('pub-status', 'bad', 'The repository should look like “owner/name”, e.g. RitaQuintela/Student-Schedule-Sandbox.'); return; }
+    if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) { setStatus('pub-status', 'bad', 'The repository should look like “owner/name”, e.g. catolica-lisbon-sbe/Student-Schedule-Sandbox.'); return; }
     try {
       localStorage.setItem(PUBLISH_KEY, JSON.stringify({ token, repo, branch }));
     } catch (e) {
